@@ -1,26 +1,11 @@
-package class-diagram;
+package enums;
 
+import java.util.Comparator;
 
-/**
-* @generated
-*/
-public class UrgencyLevelComparator {
-    
-    
-    
+public class UrgencyLevelComparator implements Comparator<Request> {
 
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int compare() {
-        //TODO
-        return 0;
+    @Override
+    public int compare(Request request1, Request request2) {
+        return request2.getUrgencyLevel().compareTo(request1.getUrgencyLevel());
     }
-    
-    
 }

@@ -1,26 +1,11 @@
-package class-diagram;
+package enums;
 
+import java.util.Comparator;
 
-/**
-* @generated
-*/
-public class PaperByDateComparator {
-    
-    
-    
+public class PaperByDateComparator implements Comparator<ResearchPaper> {
 
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public int comapre() {
-        //TODO
-        return 0;
+    @Override
+    public int compare(ResearchPaper paper1, ResearchPaper paper2) {
+        return paper2.getPublishDate().compareTo(paper1.getPublishDate());
     }
-    
-    
 }
