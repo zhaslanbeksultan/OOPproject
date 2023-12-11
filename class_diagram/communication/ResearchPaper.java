@@ -1,5 +1,7 @@
-package class-diagram;
+package communication;
 
+import Date;
+import Vector;
 
 /**
 * @generated

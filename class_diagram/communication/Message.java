@@ -1,6 +1,7 @@
+import Date;
 import users.Employee;
 
-package class-diagram;
+package communication;
 
 
 /**

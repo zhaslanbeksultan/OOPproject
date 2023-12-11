@@ -1,7 +1,8 @@
+import Vector;
 import users.Employee;
 import users.Student;
 
-package class-diagram;
+package communication;
 
 
 /**

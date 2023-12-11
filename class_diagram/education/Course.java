@@ -1,6 +1,6 @@
 import users.Teacher;
 
-package class-diagram;
+package education;
 
 
 /**

@@ -1,6 +1,7 @@
+import Vector;
 import users.Student;
 
-package class-diagram;
+package education;
 
 
 /**

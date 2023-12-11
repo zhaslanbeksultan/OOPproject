@@ -1,5 +1,5 @@
-import Course;
 import Vector;
+import education.Course;
 
 package users;
 

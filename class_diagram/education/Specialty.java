@@ -1,4 +1,6 @@
-package class-diagram;
+import Vector;
+
+package education;
 
 
 /**

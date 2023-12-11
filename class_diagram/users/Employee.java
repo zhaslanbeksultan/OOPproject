@@ -1,7 +1,7 @@
 package users;
 
 import Date;
-import Message;
+import communication.Message;
 
 /**
 * @generated
