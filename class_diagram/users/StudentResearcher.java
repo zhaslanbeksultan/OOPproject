@@ -1,10 +1,10 @@
-package class-diagram;
+package users;
 
 
 /**
 * @generated
 */
-public class TeacherResearcher extends Teacher implements Researcher {
+public class StudentResearcher extends Student implements Researcher {
     
     /**
     * @generated

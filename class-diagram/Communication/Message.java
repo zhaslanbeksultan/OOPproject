@@ -1,3 +1,5 @@
+import users.Employee;
+
 package class-diagram;
 
 

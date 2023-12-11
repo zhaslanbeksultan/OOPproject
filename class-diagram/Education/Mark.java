@@ -1,3 +1,5 @@
+import users.Student;
+
 package class-diagram;
 
 

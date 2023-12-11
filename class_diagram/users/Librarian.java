@@ -1,15 +1,15 @@
-package class-diagram;
+package users;
 
 
 /**
 * @generated
 */
-public class Admin {
+public class Librarian extends Employee {
     
     
     
 
-    private String name;
+    
     
 
     //                          Operations                                  

@@ -1,4 +1,7 @@
-package class-diagram;
+import Date;
+import Vector;
+
+package users;
 
 
 /**

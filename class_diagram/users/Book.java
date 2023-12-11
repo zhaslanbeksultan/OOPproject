@@ -1,5 +1,4 @@
-package class-diagram;
-
+package users;
 
 /**
 * @generated
