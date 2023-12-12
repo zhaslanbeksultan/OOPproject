@@ -1,11 +1,12 @@
 package app;
-import common.commonBuffer;
+import common.*;
 
 public class Login {
 	public String inputl;
 	public String inputp;
 	public String testl;
 	public String testp;
+	public int type;
 	public commonBuffer cb= new commonBuffer();
 	public Menu m;
 	{
@@ -19,24 +20,29 @@ public class Login {
 		login();
     	password();
     	System.out.println("Correct");
-    	m = new Menu();
+    	m = new Menu(type);
 	}
     public void login() {
     	while(true) {
     		System.out.println("Enter your email: ");
             inputl=cb.readInput();
-            if (!inputl.equals(testl)) {
-                System.out.println("Incorrect input");
+            if(!Data.getInstance().getLogs().containsKey(inputl)) {
+            	 System.out.println("Incorrect input");
             }
             else {
-            	break;
+            	if(inputl.charAt(0)=='a') {
+            		type=0;
+            	}
+            	else if(inputl.charAt(0)=='s') {
+            		type=1;
+            	}
             }
     	}
     }
     public void password() {
     	System.out.println("Enter your password: ");
         inputp=cb.readInput();
-        if (!inputp.equals(testp)) {
+        if (!Data.getInstance().getLogs().get(inputl).equals(inputp)) {
         	System.out.println("Incorrect input");
         	password();
         }

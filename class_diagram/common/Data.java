@@ -1,4 +1,6 @@
 package common;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 import users.*;
 import communication.*;
@@ -15,6 +17,7 @@ public class Data {
     private Vector<Lesson> lessons;
     private Vector<Specialty> specialities;
     private Vector<Message> messages;
+    private Map<String, String> logs;
     
     private static final Data DATA = new Data();
     
@@ -27,12 +30,18 @@ public class Data {
         lessons = new Vector<>();
         specialities = new Vector<>();
         messages = new Vector<>();
+        logs= new HashMap();
     }
 
     public static Data getInstance() {
     	return DATA;
     }
-    
+    public void setLogs(String login, String password) {
+    	logs.put(login, password);
+    }
+    public Map getLogs() {
+    	return logs;
+    }
     public Vector<Message> getMessages() {
 		return messages;
 	}
