@@ -29,7 +29,6 @@ public abstract class User {
 	public User(String firstName, String lastName, Date birthDay, String id, String username, String password, String email,
 			Date registrationDate, String phoneNumber, String pasportNumber, Gender gender, String nationality,
 			String citizenship) {
-		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDay = birthDay;
@@ -227,23 +226,49 @@ public abstract class User {
         
     }
     
-    public void showMessages() {
-        for(Message message: messages) {
-        	System.out.println(message);
-        }
+    public void showMessages() {//надо сделать цикл + exit
+    	System.out.println("'Answere' or 'Read', then Enter MessageId");
+    	for(Message message: Data.getInstance().getMessages()) {
+    		if(username.equals(message.getRecipient()))
+    			System.out.println(message);
+
+    	}
+    	String choose = commonBuffer.readInput();
+    	if(choose.equals("Answere")) {
+    		System.out.println("Enter Message ID: ");
+    		int look = Integer.parseInt(commonBuffer.readInput());
+    		sendMessage(look);
+    	}
+    	else if(choose.equals("Read")) {
+    		System.out.println("Enter Message ID: ");
+    		int look = Integer.parseInt(commonBuffer.readInput());
+    		System.out.println(Data.getInstance().getMessages().get(look));
+    		System.out.println("Text: " + Data.getInstance().getMessages().get(look).getMessageWording());
+    	}
+    	else System.out.println("Enter only 'Answere' or 'Read'!");
     }
     
     public void sendMessage() {
     	System.out.print("Recipient username: ");
     	String recipient = commonBuffer.readInput();
-    	System.out.print("Message Type: ");
-    	String messageType = commonBuffer.readInput();//I will change, if its needed.
     	System.out.print("Theme: "); 
     	String theme = commonBuffer.readInput();
     	System.out.print("Message Wording: ");
     	String messageWording = commonBuffer.readInput(); 
     	
-    	Message message = new Message(messageType, theme, this.username, recipient, messageWording);
+    	Message message = new Message(theme, this.username, recipient, messageWording);
+    	Data.getInstance().getMessages().add(message);
+    }
+    
+    public void sendMessage(int answer) {
+    	System.out.print("Recipient username: ");
+    	String recipient = commonBuffer.readInput();
+    	System.out.print("Theme: "); 
+    	String theme = commonBuffer.readInput();
+    	System.out.print("Message Wording: ");
+    	String messageWording = commonBuffer.readInput(); 
+    	
+    	Message message = new Message(theme, this.username, recipient, messageWording, answer);
     	Data.getInstance().getMessages().add(message);
     }
 	@Override
