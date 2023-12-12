@@ -1,44 +1,33 @@
 package users;
 
+import java.util.Date;
 
-/**
-* @generated
-*/
-public class TechSupportSpecialist {
-    
-    /**
-    * @generated
-    */
+import communication.Message;
+import enums.Gender;
+
+public class TechSupportSpecialist extends Employee {
+
     private String complaintType;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    public String getComplaintType() {
+    public TechSupportSpecialist(String firstName, String lastName, Date birthDay, String id, String username,
+			String password, String email, Date registrationDate, String phoneNumber, String pasportNumber,
+			Gender gender, String nationality, String citizenship, Request request, News news, Message message,
+			double salary, users.Date hireDate, String insuranceNumber, Message message2, String complaintType) {
+		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
+				pasportNumber, gender, nationality, citizenship, request, news, message, salary, hireDate,
+				insuranceNumber, message2);
+		this.complaintType = complaintType;
+	}
+
+	public String getComplaintType() {
         return this.complaintType;
     }
-    
-    /**
-    * @generated
-    */
+
     public String setComplaintType(String complaintType) {
         this.complaintType = complaintType;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
     public boolean FixComplaintType() {
-        //TODO
         return false;
     }
     

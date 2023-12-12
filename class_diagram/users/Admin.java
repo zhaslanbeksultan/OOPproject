@@ -1,17 +1,10 @@
 package users;
 
-
-/**
-* @generated
-*/
-public class Admin {
+public class Admin extends TechSupportSpecialist{
     
     
     
-
-    
-
-    //                          Operations                                  
+                               
     
     
 }
