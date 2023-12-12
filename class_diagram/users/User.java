@@ -1,10 +1,14 @@
 package users;
 
 import java.util.Date;
-
-import common.commonBuffer;
+import common.*;
+import java.util.Vector;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import enums.Gender;
-
+import communication.News;
+import communication.Request;
+import communication.Message;
 
 public abstract class User {
     private String firstName;
@@ -16,16 +20,15 @@ public abstract class User {
     private String email;
     private Date registrationDate;
     private String phoneNumber;
-    private String PasportNumber;
+    private String pasportNumber;
     private Gender gender;
     private String nationality;
     private String citizenship;
     private Request request;
     private News news;
-    private Message message;
 	public User(String firstName, String lastName, Date birthDay, String id, String username, String password, String email,
 			Date registrationDate, String phoneNumber, String pasportNumber, Gender gender, String nationality,
-			String citizenship, Request request, News news, Message message) {
+			String citizenship) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -36,19 +39,16 @@ public abstract class User {
 		this.email = email;
 		this.registrationDate = registrationDate;
 		this.phoneNumber = phoneNumber;
-		PasportNumber = pasportNumber;
+		this.pasportNumber = pasportNumber;
 		this.gender = gender;
 		this.nationality = nationality;
 		this.citizenship = citizenship;
-		this.request = request;
-		this.news = news;
-		this.message = message;
 	}
     private String getFirstName() {
         return this.firstName;
     }
 
-    private String setFirstName(String firstName) {
+    private void setFirstName(String firstName) {
         this.firstName = firstName;
     }
     
@@ -56,7 +56,7 @@ public abstract class User {
         return this.lastName;
     }
 
-    private String setLastName(String lastName) {
+    private void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -64,15 +64,20 @@ public abstract class User {
         return this.birthDay;
     }
 
-    private Date setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
+    private void setBirthDay(String birthDay) {
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            this.birthDay = dateFormat.parse(birthDay);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     private String getId() {
         return this.id;
     }
 
-    private String setId(String id) {
+    private void setId(String id) {
         this.id = id;
     }
 
@@ -80,7 +85,7 @@ public abstract class User {
         return this.username;
     }
 
-    private String setUsername(String username) {
+    private void setUsername(String username) {
         this.username = username;
     }
 
@@ -88,9 +93,7 @@ public abstract class User {
         return this.password;
     }
 
-    private void setPassword() {
-    	System.out.print("Enter new password: ");
-    	String password = commonBuffer.readInput();;//will change
+    private void setPassword(String password) {
         if(this.password != password)
         	this.password = password;
         else System.out.println("The password must not match the previous one");
@@ -100,7 +103,7 @@ public abstract class User {
         return this.email;
     }
 
-    private String setEmail(String email) {
+    private void setEmail(String email) {
         this.email = email;
     }
 
@@ -108,7 +111,7 @@ public abstract class User {
         return this.registrationDate;
     }
 
-    private Date setRegistrationDate(Date registrationDate) {
+    private void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
 
@@ -116,31 +119,33 @@ public abstract class User {
         return this.phoneNumber;
     }
 
-    private String setPhoneNumber(String phoneNumber) {
+    private void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     private String getPasportNumber() {
-        return this.PasportNumber;
+        return this.pasportNumber;
     }
 
-    private String setPasportNumber(String PasportNumber) {
-        this.PasportNumber = PasportNumber;
+    private void setPasportNumber(String PasportNumber) {
+        this.pasportNumber = PasportNumber;
     }
 
     private Gender getGender() {
         return this.gender;
     }
 
-    private Gender setGender(Gender gender) {
-        this.gender = gender;
+    private void setGender(String gender) {
+    	if(gender.equals("male") || gender.equals("MALE") || gender.equals("Male") || gender.equals("M") || gender.equals("m")) this.gender = Gender.MALE;
+    	else if(gender.equals("female") || gender.equals("FEMALE") || gender.equals("Female") || gender.equals("F") || gender.equals("f")) this.gender = Gender.FEMALE;
+    	else this.gender = Gender.UNDEFINED;
     }
 
     private String getNationality() {
         return this.nationality;
     }
 
-    private String setNationality(String nationality) {
+    private void setNationality(String nationality) {
         this.nationality = nationality;
     }
 
@@ -148,7 +153,7 @@ public abstract class User {
         return this.citizenship;
     }
 
-    private String setCitizenship(String citizenship) {
+    private void setCitizenship(String citizenship) {
         this.citizenship = citizenship;
     }
 
@@ -156,7 +161,7 @@ public abstract class User {
         return this.news;
     }
 
-    public News setNews(News news) {
+    public void setNews(News news) {
         this.news = news;
     }
 
@@ -164,74 +169,91 @@ public abstract class User {
         return this.request;
     }
 
-    public Request setRequest(Request request) {
+    public void setRequest(Request request) {
         this.request = request;
     }
 
-    public Message getMessage() {
-        return this.message;
-    }
-
-    public Message setMessage(Message message) {
-        this.message = message;
-    }
-
     public void editPersonalData() {
-//    	String inputFileName = "file.txt";
-//
-//		try (BufferedReader reader = new BufferedReader(new FileReader(inputFileName))) {
-//			String line;
-//			while ((line = reader.readLine()) != null) {
-//				System.out.println(line + "\n");
-//			}
-//		}
-//                catch (IOException e) {
-//			e.printStackTrace();
-//		}
-    	String line;
+    	String choose = commonBuffer.readInput();
     	//Отдельный для Админа и Юзера
-    	if(this instanceof User) {
-    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Father Name\n5.Set Birth Day\n6.Set Phone Number\n7.Set Pasport Number\n8.Set Gender\n9.Set Nationality\n10.Set Citizenship\n11.Set Id\n12.Set Username\n13.Set Email");
-    		if(line=="1")editPassword();
-    	}
     	if(this instanceof Admin) {
-    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Father Name\n5.Set Birth Day\n6.Set Phone Number\n7.Set Pasport Number\n8.Set Gender\n9.Set Nationality\n10.Set Citizenship");
-    		
+    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship\n10.Set Id\n11.Set Username\n12.Set Email");
+    		if(choose=="1") {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
+    		else if(choose=="2") {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
+    		else if(choose=="3") {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
+    		else if(choose=="4") {System.out.println("Write a Birth Day: "); setBirthDay(commonBuffer.readInput());}
+    		else if(choose=="5") {System.out.println("Write a Phone Number: "); setPhoneNumber(commonBuffer.readInput());}
+    		else if(choose=="6") {System.out.println("Write a Pasport Number: "); setPasportNumber(commonBuffer.readInput());}
+    		else if(choose=="7") {System.out.println("Write a Gender: "); setGender(commonBuffer.readInput());}
+    		else if(choose=="8") {System.out.println("Write a Nationality: "); setNationality(commonBuffer.readInput());}
+    		else if(choose=="9") {System.out.println("Write a Citizenship: "); setCitizenship(commonBuffer.readInput());}
+    		else if(choose=="10") {System.out.println("Write an Id: "); setId(commonBuffer.readInput());}
+    		else if(choose=="11") {System.out.println("Write a username: "); setUsername(commonBuffer.readInput());}
+    		else if(choose=="12") {System.out.println("Write a email: "); setEmail(commonBuffer.readInput());}
+    		else {System.out.println("The wrong character is entered!");}
     	}
-    }
-
-    public boolean editPassword() {
-        return false;
+    	if(this instanceof User) {
+    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship");
+    		if(choose=="1") {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
+    		else if(choose=="2") {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
+    		else if(choose=="3") {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
+    		else if(choose=="4") {System.out.println("Write a Birth Day: "); setBirthDay(commonBuffer.readInput());}
+    		else if(choose=="5") {System.out.println("Write a Phone Number: "); setPhoneNumber(commonBuffer.readInput());}
+    		else if(choose=="6") {System.out.println("Write a Pasport Number: "); setPasportNumber(commonBuffer.readInput());}
+    		else if(choose=="7") {System.out.println("Write a Gender: "); setGender(commonBuffer.readInput());}
+    		else if(choose=="8") {System.out.println("Write a Nationality: "); setNationality(commonBuffer.readInput());}
+    		else if(choose=="9") {System.out.println("Write a Citizenship: "); setCitizenship(commonBuffer.readInput());}
+    		else {System.out.println("The wrong character is entered!");}
+    	}
     }
 
     public String accesingFeedback() {
         return "";
     }
 
-    public String viewNews() {
-        return "";
+    public void viewNews() {
+        //TODO
     }
 
     public String getNotifications() {
         return "";
     }
-    
-
-    public String getUserId() {
-        return "";
-    }
 
     public String getUserInformation() {
-        return "";
+        return toString();
     }
 
-    public String showMenu() {
-        return "";
+    public void showMenu() {
+        
     }
-
+    
+    public void showMessages() {
+        for(Message message: messages) {
+        	System.out.println(message);
+        }
+    }
+    
     public void sendMessage() {
+    	System.out.print("Recipient username: ");
+    	String recipient = commonBuffer.readInput();
+    	System.out.print("Message Type: ");
+    	String messageType = commonBuffer.readInput();//I will change, if its needed.
+    	System.out.print("Theme: "); 
+    	String theme = commonBuffer.readInput();
+    	System.out.print("Message Wording: ");
+    	String messageWording = commonBuffer.readInput(); 
+    	
+    	Message message = new Message(messageType, theme, this.username, recipient, messageWording);
+    	Data.getInstance().getMessages().add(message);
     }
+	@Override
+	public String toString() {
+		return " FirstName = " + firstName + "\n LastName = " + lastName + "\n Birth Day = " + birthDay + "\n Id = " + id
+				+ username + "\n Email = " + email + "\n RegistrationDate = "
+				+ registrationDate + "/n Phone Number = " + phoneNumber + ", PasportNumber = " + pasportNumber + "\n Gender = "
+				+ gender + "\n Nationality = " + nationality + "\n Citizenship = " + citizenship;
+	}
 
-
+    
     
 }

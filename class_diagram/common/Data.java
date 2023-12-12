@@ -1,155 +1,101 @@
 package common;
+import java.util.Vector;
+import users.*;
+import communication.*;
+import userCapabilities.*;
+import education.*;
 
-
-
-/**
-* @generated
-*/
 public class Data {
-    
-    /**
-    * @generated
-    */
-    private Vector Student;
-    
-    /**
-    * @generated
-    */
-    private Vector Teacher;
-    
-    /**
-    * @generated
-    */
-    private Vector News;
-    
-    /**
-    * @generated
-    */
-    private Vector Researchers;
-    
-    /**
-    * @generated
-    */
-    private Vector Courses;
-    
-    /**
-    * @generated
-    */
-    private Vector Lessons;
-    
-    /**
-    * @generated
-    */
-    private Vector Specialities;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    public Vector getStudent() {
-        return this.Student;
+    private Vector<Student> students;
+    private Vector<Teacher> teachers;
+    private Vector<News> news;
+    private Vector<Researcher> researchers;
+    private Vector<Course> courses;
+    private Vector<Lesson> lessons;
+    private Vector<Specialty> specialities;
+    private Vector<Message> messages;
+    
+    private static final Data DATA = new Data();
+    
+    private Data() {
+        students = new Vector<>();
+        teachers = new Vector<>();
+        news = new Vector<>();
+        researchers = new Vector<>();
+        courses = new Vector<>();
+        lessons = new Vector<>();
+        specialities = new Vector<>();
+        messages = new Vector<>();
+    }
+
+    public static Data getInstance() {
+    	return DATA;
     }
     
-    /**
-    * @generated
-    */
-    public Vector setStudent(Vector Student) {
-        this.Student = Student;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Vector getTeacher() {
-        return this.Teacher;
-    }
-    
-    /**
-    * @generated
-    */
-    public Vector setTeacher(Vector Teacher) {
-        this.Teacher = Teacher;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Vector getNews() {
-        return this.News;
-    }
-    
-    /**
-    * @generated
-    */
-    public Vector setNews(Vector News) {
-        this.News = News;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Vector getResearchers() {
-        return this.Researchers;
-    }
-    
-    /**
-    * @generated
-    */
-    public Vector setResearchers(Vector Researchers) {
-        this.Researchers = Researchers;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Vector getCourses() {
-        return this.Courses;
-    }
-    
-    /**
-    * @generated
-    */
-    public Vector setCourses(Vector Courses) {
-        this.Courses = Courses;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Vector getLessons() {
-        return this.Lessons;
-    }
-    
-    /**
-    * @generated
-    */
-    public Vector setLessons(Vector Lessons) {
-        this.Lessons = Lessons;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Vector getSpecialities() {
-        return this.Specialities;
-    }
-    
-    /**
-    * @generated
-    */
-    public Vector setSpecialities(Vector Specialities) {
-        this.Specialities = Specialities;
-    }
-    
-    
-    
-    
+    public Vector<Message> getMessages() {
+		return messages;
+	}
+
+	public void addMessage(Message message) {
+		messages.add(message);	
+	}
+
+	public Vector<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Vector<Student> students) {
+		this.students = students;
+	}
+
+	public Vector<Teacher> getTeachers() {
+		return teachers;
+	}
+
+	public void setTeachers(Vector<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+
+	public Vector<News> getNews() {
+		return news;
+	}
+
+	public void setNews(Vector<News> news) {
+		this.news = news;
+	}
+
+	public Vector<Researcher> getResearchers() {
+		return researchers;
+	}
+
+	public void setResearchers(Vector<Researcher> researchers) {
+		this.researchers = researchers;
+	}
+
+	public Vector<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Vector<Course> courses) {
+		this.courses = courses;
+	}
+
+	public Vector<Lesson> getLessons() {
+		return lessons;
+	}
+
+	public void setLessons(Vector<Lesson> lessons) {
+		this.lessons = lessons;
+	}
+
+	public Vector<Specialty> getSpecialities() {
+		return specialities;
+	}
+
+	public void setSpecialities(Vector<Specialty> specialities) {
+		this.specialities = specialities;
+	}
+
+	
 }

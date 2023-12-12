@@ -1,51 +1,34 @@
-import Date;
-import users.Employee;
-
 package communication;
-
+import java.util.Date;
+import enums.MessageType;
+import users.Employee;
 
 
 public class Message {
-    
-    private String messageId;
-
     private MessageType messageType;
-
     private String theme;
-    
     private String sender;
-
     private String recipient;
-
     private Date messageSentDate;
-    
-
     private String messageWording;
     
-
-    private Employee employee;
-    
-
-    private Employee employee;
-    
-  
-    private User user;
-    
-    private String getMessageId() {
-        return this.messageId;
-    }
-
-    private String setMessageId(String messageId) {
-        this.messageId = messageId;
+    {
+    	messageSentDate = new Date();
     }
     
-    
+    public Message(String messageType, String theme, String sender, String recipient, String messageWording) {
+		this.messageType = messageType;
+		this.theme = theme;
+		this.sender = sender;
+		this.recipient = recipient;
+		this.messageWording = messageWording;
+	}
 
     private MessageType getMessageType() {
         return this.messageType;
     }
     
-    private MessageType setMessageType(MessageType messageType) {
+    private void setMessageType(MessageType messageType) {
         this.messageType = messageType;
     }
     
@@ -55,7 +38,7 @@ public class Message {
     }
     
 
-    private String setTheme(String theme) {
+    private void setTheme(String theme) {
         this.theme = theme;
     }
     
@@ -64,7 +47,7 @@ public class Message {
         return this.sender;
     }
 
-    private String setSender(String sender) {
+    private void setSender(String sender) {
         this.sender = sender;
     }
     
@@ -73,7 +56,7 @@ public class Message {
         return this.recipient;
     }
 
-    private String setRecipient(String recipient) {
+    private void setRecipient(String recipient) {
         this.recipient = recipient;
     }
     
@@ -83,7 +66,7 @@ public class Message {
     }
     
 
-    private Date setMessageSentDate(Date messageSentDate) {
+    private void setMessageSentDate(Date messageSentDate) {
         this.messageSentDate = messageSentDate;
     }
 
@@ -92,38 +75,9 @@ public class Message {
     }
     
 
-    private String setMessageWording(String messageWording) {
+    private void setMessageWording(String messageWording) {
         this.messageWording = messageWording;
     }
-    
-
-    public Employee getEmployee() {
-        return this.employee;
-    }
-    
-
-    public Employee setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public Employee getEmployee() {
-        return this.employee;
-    }
-
-    public Employee setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-    
-    
-
-    public User getUser() {
-        return this.user;
-    }
-  
-    public User setUser(User user) {
-        this.user = user;
-    }
-    
 
     public String viewMessageId() {
         
@@ -136,10 +90,10 @@ public class Message {
         return "";
     }
 
-    public String getMessageWording() {
-    
-        return "";
-    }
+	@Override
+	public String toString() {
+		return "Theme = " + theme + ", sender=" + sender;
+	}
     
     
 }
