@@ -1,14 +1,12 @@
-import java.util.Date;
-
-import enums.Gender;
-
 package users;
 
+import java.util.Date;
 
-/**
-* @generated
-*/
-public class User {
+import common.commonBuffer;
+import enums.Gender;
+
+
+public abstract class User {
     private String firstName;
     private String lastName;
     private Date birthDay;
@@ -25,7 +23,27 @@ public class User {
     private Request request;
     private News news;
     private Message message;
-
+	public User(String firstName, String lastName, Date birthDay, String id, String username, String password, String email,
+			Date registrationDate, String phoneNumber, String pasportNumber, Gender gender, String nationality,
+			String citizenship, Request request, News news, Message message) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthDay = birthDay;
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.registrationDate = registrationDate;
+		this.phoneNumber = phoneNumber;
+		PasportNumber = pasportNumber;
+		this.gender = gender;
+		this.nationality = nationality;
+		this.citizenship = citizenship;
+		this.request = request;
+		this.news = news;
+		this.message = message;
+	}
     private String getFirstName() {
         return this.firstName;
     }
@@ -70,8 +88,12 @@ public class User {
         return this.password;
     }
 
-    private String setPassword(String password) {
-        this.password = password;
+    private void setPassword() {
+    	System.out.print("Enter new password: ");
+    	String password = commonBuffer.readInput();;//will change
+        if(this.password != password)
+        	this.password = password;
+        else System.out.println("The password must not match the previous one");
     }
 
     private String getEmail() {
@@ -154,8 +176,28 @@ public class User {
         this.message = message;
     }
 
-    public String editPersonalData() {
-        return "";
+    public void editPersonalData() {
+//    	String inputFileName = "file.txt";
+//
+//		try (BufferedReader reader = new BufferedReader(new FileReader(inputFileName))) {
+//			String line;
+//			while ((line = reader.readLine()) != null) {
+//				System.out.println(line + "\n");
+//			}
+//		}
+//                catch (IOException e) {
+//			e.printStackTrace();
+//		}
+    	String line;
+    	//Отдельный для Админа и Юзера
+    	if(this instanceof User) {
+    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Father Name\n5.Set Birth Day\n6.Set Phone Number\n7.Set Pasport Number\n8.Set Gender\n9.Set Nationality\n10.Set Citizenship\n11.Set Id\n12.Set Username\n13.Set Email");
+    		if(line=="1")editPassword();
+    	}
+    	if(this instanceof Admin) {
+    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Father Name\n5.Set Birth Day\n6.Set Phone Number\n7.Set Pasport Number\n8.Set Gender\n9.Set Nationality\n10.Set Citizenship");
+    		
+    	}
     }
 
     public boolean editPassword() {
@@ -189,5 +231,7 @@ public class User {
 
     public void sendMessage() {
     }
+
+
     
 }
