@@ -96,6 +96,8 @@ public class Data {
 	public void setSpecialities(Vector<Specialty> specialities) {
 		this.specialities = specialities;
 	}
-
+	public void addStudent(Student s) {
+		students.add(s);
+	}
 	
 }

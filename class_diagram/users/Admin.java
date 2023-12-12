@@ -1,8 +1,10 @@
 package users;
 
-public class Admin extends TechSupportSpecialist{
+public class Admin {
     
-    
+    public void addStudent() {
+    	
+    }
     
                                
     

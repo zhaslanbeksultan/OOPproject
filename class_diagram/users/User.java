@@ -43,6 +43,9 @@ public abstract class User {
 		this.nationality = nationality;
 		this.citizenship = citizenship;
 	}
+	public User() {
+		
+	}
     private String getFirstName() {
         return this.firstName;
     }
