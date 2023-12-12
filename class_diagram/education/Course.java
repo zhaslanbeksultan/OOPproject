@@ -1,219 +1,157 @@
-import users.Teacher;
-
 package education;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
-* @generated
-*/
-public class Course {
-    
-    /**
-    * @generated
-    */
+import enums.DisciplineType;
+import userCapabilities.Administrationable;
+import users.Teacher;
+
+public abstract class Course implements Administrationable {
+
     private String courseId;
-    
-    /**
-    * @generated
-    */
     private String courseName;
-    
-    /**
-    * @generated
-    */
     private int numberOfCredits;
-    
-    /**
-    * @generated
-    */
     private DisciplineType disciplineType;
-    
-    /**
-    * @generated
-    */
     private String specialtyId;
-    
-    /**
-    * @generated
-    */
+    private Set<Teacher> teachers;
     private Teacher lessonTaughtProfessor;
-    
-    
-    /**
-    * @generated
-    */
-    private Teacher teacher;
-    
-    /**
-    * @generated
-    */
-    private Specialty specialty;
-    
-    /**
-    * @generated
-    */
     private Lesson lesson;
-    
-    /**
-    * @generated
-    */
-    private Set<Teacher> teacher;
-    
-    
+    private Specialty specialty;
 
-    /**
-    * @generated
-    */
-    private String getCourseId() {
-        return this.courseId;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setCourseId(String courseId) {
+    public Course(String courseId, String courseName, int numberOfCredits, DisciplineType disciplineType, String specialtyId) {
         this.courseId = courseId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getCourseName() {
-        return this.courseName;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setCourseName(String courseName) {
         this.courseName = courseName;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getNumberOfCredits() {
-        return this.numberOfCredits;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setNumberOfCredits(Integer numberOfCredits) {
         this.numberOfCredits = numberOfCredits;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private DisciplineType getDisciplineType() {
-        return this.disciplineType;
-    }
-    
-    /**
-    * @generated
-    */
-    private DisciplineType setDisciplineType(DisciplineType disciplineType) {
         this.disciplineType = disciplineType;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getSpecialtyId() {
-        return this.specialtyId;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setSpecialtyId(String specialtyId) {
         this.specialtyId = specialtyId;
+        this.teachers = new HashSet<>();
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Teacher getLessonTaughtProfessor() {
-        return this.lessonTaughtProfessor;
+
+    public String getCourseId() {
+        return courseId;
     }
-    
-    /**
-    * @generated
-    */
-    private Teacher setLessonTaughtProfessor(Teacher lessonTaughtProfessor) {
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public int getNumberOfCredits() {
+        return numberOfCredits;
+    }
+
+    public DisciplineType getDisciplineType() {
+        return this.disciplineType; 
+    }
+
+    public String getSpecialtyId() {
+        return specialtyId;
+    }
+
+    public Teacher getLessonTaughtProfessor() {
+        return lessonTaughtProfessor;
+    }
+
+    public void setLessonTaughtProfessor(Teacher lessonTaughtProfessor) {
         this.lessonTaughtProfessor = lessonTaughtProfessor;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Set<Teacher> getTeacher() {
-        if (this.teacher == null) {
-            this.teacher = new HashSet<Teacher>();
-        }
-        return this.teacher;
+
+    public Set<Teacher> getTeachers() {
+        return teachers;
     }
-    
-    /**
-    * @generated
-    */
-    public Set<Teacher> setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Teacher getTeacher() {
-        return this.teacher;
-    }
-    
-    /**
-    * @generated
-    */
-    public Teacher setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-    
-    
-    /**
-    * @generated
-    */
+
     public Lesson getLesson() {
-        return this.lesson;
+        return lesson;
     }
-    
-    /**
-    * @generated
-    */
-    public Lesson setLesson(Lesson lesson) {
+
+    public void setLesson(Lesson lesson) {
         this.lesson = lesson;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     public Specialty getSpecialty() {
-        return this.specialty;
+        return specialty;
     }
-    
-    /**
-    * @generated
-    */
-    public Specialty setSpecialty(Specialty specialty) {
+
+    public void setSpecialty(Specialty specialty) {
         this.specialty = specialty;
     }
-    
-    
-    
+
+    private static String readInput() {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            return reader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public boolean disciplineRegistration(String discipline, boolean isRegistrationAllowed) {
+        if (isRegistrationAllowed) {
+            System.out.println("Congratulations! You have successfully registered for discipline " + discipline + "!");
+            return true;
+        } else {
+            System.out.println("Registration for discipline " + discipline + " is not allowed due to existing retakes for prerequisites of this discipline!");
+            return false;
+        }
+    }
+
+    @Override
+    public boolean addDiscipline(String discipline) {
+        if (numberOfCredits + Lesson.getDisciplineCredits(discipline) > 30) {
+            System.out.println("Adding discipline " + discipline + " to your schedule has failed. Exceeds maximum credits.");
+            return false;
+        }
+
+        switch (disciplineType) {
+            case MAJOR:
+                System.out.println("Adding major discipline " + discipline + " to your schedule is not allowed.");
+                return false;
+            case MINOR:
+                if (hasMinorDisciplineInSchedule()) {
+                    System.out.println("Adding discipline " + discipline + " to your schedule has failed. You can have only one minor discipline in your schedule.");
+                    return false;
+                }
+                break;
+            case FREE:
+                // For FREE, just add the discipline
+                break;
+            default:
+                System.out.println("Adding discipline " + discipline + " to your schedule has failed. Unsupported discipline type, please check the instructions again!");
+                return false;
+        }
+
+        System.out.println("Discipline " + discipline + " added successfully. Congratulations!");
+        return true;
+    }
+
+    @Override
+    public boolean dropDiscipline(String discipline) {
+        if (disciplineType != DisciplineType.MAJOR) {
+            System.out.println("Discipline " + discipline + " dropped successfully.");
+            return true;
+        } else {
+            System.out.println("Dropping major discipline " + discipline + " is not allowed.");
+            return false;
+        }
+    }
+
+    private boolean checkMajorDisciplineCompatibility(String discipline) {
+        return disciplineType == DisciplineType.MAJOR && Lesson.checkMajorDisciplineCompatibility(discipline);
+    }
+
+    private boolean hasMinorDisciplineInSchedule() {
+        // Logic to check for the presence of a minor discipline in the schedule
+        return disciplineType == DisciplineType.MINOR; // Example logic; implement according to your data structure
+    }
+
+    @Override
+    public boolean disciplineRegistration(String discipline) {
+        System.out.println("Discipline " + discipline + " registration logic goes here.");
+        return true;
+    }
 }

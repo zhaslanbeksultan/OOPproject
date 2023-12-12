@@ -1,176 +1,104 @@
-import users.Teacher;
-
 package education;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
-/**
-* @generated
-*/
-public class Lesson {
-    
-    /**
-    * @generated
-    */
+import enums.WeekDays;
+import userCapabilities.Educationable;
+import education.Course;
+import education.Mark;
+import users.Teacher;
+import enums.DisciplineType;
+
+public class Lesson implements Educationable {
+
     private int lessonId;
-    
-    /**
-    * @generated
-    */
     private Teacher instructor;
-    
-    /**
-    * @generated
-    */
-    private LessonType lessonType;
-    
-    /**
-    * @generated
-    */
-    private Data lessonTime;
-    
-    /**
-    * @generated
-    */
-    private WeekDays weekDay;
-    
-    /**
-    * @generated
-    */
+    private DisciplineType lessonType;
+    private WeekDays lessonTime;
     private String room;
-    
-    
-    /**
-    * @generated
-    */
     private Course course;
-    
-    /**
-    * @generated
-    */
     private Mark mark;
-    
-    
 
-    /**
-    * @generated
-    */
-    private int getLessonId() {
-        return this.lessonId;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setLessonId(Integer lessonId) {
+    public Lesson(int lessonId, Teacher instructor, DisciplineType lessonType, WeekDays lessonTime,
+            String room, Course course) {
         this.lessonId = lessonId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Teacher getInstructor() {
-        return this.instructor;
-    }
-    
-    /**
-    * @generated
-    */
-    private Teacher setInstructor(Teacher instructor) {
         this.instructor = instructor;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private LessonType getLessonType() {
-        return this.lessonType;
-    }
-    
-    /**
-    * @generated
-    */
-    private LessonType setLessonType(LessonType lessonType) {
         this.lessonType = lessonType;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Data getLessonTime() {
-        return this.lessonTime;
-    }
-    
-    /**
-    * @generated
-    */
-    public Data setLessonTime(Data lessonTime) {
         this.lessonTime = lessonTime;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public WeekDays getWeekDay() {
-        return this.weekDay;
-    }
-    
-    /**
-    * @generated
-    */
-    public WeekDays setWeekDay(WeekDays weekDay) {
-        this.weekDay = weekDay;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public String getRoom() {
-        return this.room;
-    }
-    
-    /**
-    * @generated
-    */
-    public String setRoom(String room) {
         this.room = room;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Mark getMark() {
-        return this.mark;
-    }
-    
-    /**
-    * @generated
-    */
-    public Mark setMark(Mark mark) {
-        this.mark = mark;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Course getCourse() {
-        return this.course;
-    }
-    
-    /**
-    * @generated
-    */
-    public Course setCourse(Course course) {
         this.course = course;
     }
-    
-    
-    
+
+    public int getLessonId() {
+        return lessonId;
+    }
+
+    public Teacher getInstructor() {
+        return instructor;
+    }
+
+    public DisciplineType getLessonType() {
+        return lessonType;
+    }
+
+    public WeekDays getLessonTime() {
+        return lessonTime;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public Mark getMark() {
+        return mark;
+    }
+
+    public void setMark(Mark mark) {
+        this.mark = mark;
+    }
+
+    @Override
+    public HashMap<Lesson, Integer> viewAttestation() {
+        return new HashMap<>();
+    }
+
+    @Override
+    public Vector<String> viewDownloadedFiles() {
+        return new Vector<>();
+    }
+
+    @Override
+    public HashMap<Lesson, WeekDays> viewLessonSchedule() {
+        return new HashMap<>();
+    }
+
+    @Override
+    public HashMap<Teacher, WeekDays> viewOfficeHourSchedule() {
+        return new HashMap<>();
+    }
+
+    @Override
+    public HashMap<String, Vector<Mark>> viewMarks() {
+        return new HashMap<>();
+    }
+
+    @Override
+    public String getReport() {
+        return "";
+    }
+
+	public static int getDisciplineCredits(String discipline) {
+		return 0;
+	}
+
+	public static boolean checkMajorDisciplineCompatibility(String discipline) {
+		return false;
+	}
 }
+

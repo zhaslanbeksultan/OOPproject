@@ -1,136 +1,117 @@
-import Vector;
-
 package education;
 
+import java.util.Objects;
+import java.util.Vector;
+import enums.Faculty;
+import enums.DisciplineType;
 
-/**
-* @generated
-*/
-public class Specialty {
-    
-    /**
-    * @generated
-    */
+public class Specialty implements Comparable<Specialty> {
+
     private String specialtyId;
-    
-    /**
-    * @generated
-    */
     private String specialtyName;
-    
-    /**
-    * @generated
-    */
-    private Vector majorCourses;
-    
-    /**
-    * @generated
-    */
-    private Vector minorCourses;
-    
-    /**
-    * @generated
-    */
-    private Vector freeCourses;
-    
-    
-    /**
-    * @generated
-    */
+    private Vector<Course> majorCourses;
+    private Vector<Course> minorCourses;
+    private Vector<Course> freeCourses;
     private Course course;
-    
-    
+    private Faculty faculty;
 
-    /**
-    * @generated
-    */
-    private String getSpecialtyId() {
-        return this.specialtyId;
+    public Specialty(String specialtyId, String specialtyName, Faculty faculty) {
+        this.specialtyId = specialtyId;
+        this.specialtyName = specialtyName;
+        this.faculty = faculty;
+        this.majorCourses = new Vector<>();
+        this.minorCourses = new Vector<>();
+        this.freeCourses = new Vector<>();
     }
-    
-    /**
-    * @generated
-    */
-    private String setSpecialtyId(String specialtyId) {
+
+    public String getSpecialtyId() {
+        return specialtyId;
+    }
+
+    public void setSpecialtyId(String specialtyId) {
         this.specialtyId = specialtyId;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private String getSpecialtyName() {
-        return this.specialtyName;
+
+    public String getSpecialtyName() {
+        return specialtyName;
     }
-    
-    /**
-    * @generated
-    */
-    private String setSpecialtyName(String specialtyName) {
+
+    public void setSpecialtyName(String specialtyName) {
         this.specialtyName = specialtyName;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getMajorCourses() {
-        return this.majorCourses;
+
+    public Vector<Course> getMajorCourses() {
+        return majorCourses;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setMajorCourses(Vector majorCourses) {
+
+    public void setMajorCourses(Vector<Course> majorCourses) {
         this.majorCourses = majorCourses;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getMinorCourses() {
-        return this.minorCourses;
+
+    public Vector<Course> getMinorCourses() {
+        return minorCourses;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setMinorCourses(Vector minorCourses) {
+
+    public void setMinorCourses(Vector<Course> minorCourses) {
         this.minorCourses = minorCourses;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getFreeCourses() {
-        return this.freeCourses;
+
+    public Vector<Course> getFreeCourses() {
+        return freeCourses;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setFreeCourses(Vector freeCourses) {
+
+    public void setFreeCourses(Vector<Course> freeCourses) {
         this.freeCourses = freeCourses;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
+
     public Course getCourse() {
-        return this.course;
+        return course;
     }
-    
-    /**
-    * @generated
-    */
-    public Course setCourse(Course course) {
+
+    public void setCourse(Course course) {
         this.course = course;
     }
-    
-    
-    
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
+
+    public void addCourse(Course course, DisciplineType disciplineType) {
+        switch (disciplineType) {
+            case MAJOR:
+                majorCourses.add(course);
+                break;
+            case MINOR:
+                minorCourses.add(course);
+                break;
+            case FREE:
+                freeCourses.add(course);
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported discipline type");
+        }
+        
+     //   Data.getInstance().addCourse(course);
+    }
+    @Override
+    public int compareTo(Specialty other) {
+        return this.specialtyId.compareTo(other.specialtyId);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Specialty)) return false;
+        Specialty specialty = (Specialty) o;
+        return Objects.equals(specialtyId, specialty.specialtyId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(specialtyId);
+    }
 }
