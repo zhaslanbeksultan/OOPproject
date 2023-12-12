@@ -50,7 +50,7 @@ public abstract class User {
         return this.firstName;
     }
 
-    private void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
     
@@ -58,7 +58,7 @@ public abstract class User {
         return this.lastName;
     }
 
-    private void setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -66,7 +66,7 @@ public abstract class User {
         return this.birthDay;
     }
 
-    private void setBirthDay(String birthDay) {
+    public void setBirthDay(String birthDay) {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             this.birthDay = dateFormat.parse(birthDay);
@@ -79,7 +79,7 @@ public abstract class User {
         return this.id;
     }
 
-    private void setId(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -87,7 +87,7 @@ public abstract class User {
         return this.username;
     }
 
-    private void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -95,7 +95,7 @@ public abstract class User {
         return this.password;
     }
 
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         if(this.password != password)
         	this.password = password;
         else System.out.println("The password must not match the previous one");
@@ -105,7 +105,7 @@ public abstract class User {
         return this.email;
     }
 
-    private void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -113,7 +113,7 @@ public abstract class User {
         return this.registrationDate;
     }
 
-    private void setRegistrationDate(Date registrationDate) {
+    public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
 
@@ -121,7 +121,7 @@ public abstract class User {
         return this.phoneNumber;
     }
 
-    private void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -129,7 +129,7 @@ public abstract class User {
         return this.pasportNumber;
     }
 
-    private void setPasportNumber(String PasportNumber) {
+    public void setPasportNumber(String PasportNumber) {
         this.pasportNumber = PasportNumber;
     }
 
@@ -137,7 +137,7 @@ public abstract class User {
         return this.gender;
     }
 
-    private void setGender(String gender) {
+    public void setGender(String gender) {
     	if(gender.equals("male") || gender.equals("MALE") || gender.equals("Male") || gender.equals("M") || gender.equals("m")) this.gender = Gender.MALE;
     	else if(gender.equals("female") || gender.equals("FEMALE") || gender.equals("Female") || gender.equals("F") || gender.equals("f")) this.gender = Gender.FEMALE;
     	else this.gender = Gender.UNDEFINED;
@@ -147,7 +147,7 @@ public abstract class User {
         return this.nationality;
     }
 
-    private void setNationality(String nationality) {
+    public void setNationality(String nationality) {
         this.nationality = nationality;
     }
 
@@ -155,7 +155,7 @@ public abstract class User {
         return this.citizenship;
     }
 
-    private void setCitizenship(String citizenship) {
+    public void setCitizenship(String citizenship) {
         this.citizenship = citizenship;
     }
 

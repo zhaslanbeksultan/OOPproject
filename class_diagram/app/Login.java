@@ -7,8 +7,9 @@ public class Login {
 	public String testl;
 	public String testp;
 	public commonBuffer cb= new commonBuffer();
+	public Menu m;
 	{
-		testl="student.arsen_zhex";
+		testl="arsen_zhex";
 		testp="abcde";
 	}
 	public Login(){
@@ -18,6 +19,7 @@ public class Login {
 		login();
     	password();
     	System.out.println("Correct");
+    	m = new Menu();
 	}
     public void login() {
     	while(true) {
