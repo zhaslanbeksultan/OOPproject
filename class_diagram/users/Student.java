@@ -1,241 +1,176 @@
-import Date;
-import Vector;
-
 package users;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Vector;
 
-
-/**
-* @generated
-*/
+import education.Lesson;
+import education.Mark;
+import enums.*;
+import userCapabilities.*;
 public class Student extends User implements CanBorrowBook, Educationable, Administrationable {
-    
-    /**
-    * @generated
-    */
     private double gpa;
-    
-    /**
-    * @generated
-    */
     private int studyYear;
-    
-    /**
-    * @generated
-    */
     private Faculty faculty;
-    
-    /**
-    * @generated
-    */
     private Date enrollmentDate;
-    
-    /**
-    * @generated
-    */
     private Vector coursesTaught;
-    
-    /**
-    * @generated
-    */
-    private String major;
-    
-    /**
-    * @generated
-    */
+    private String major;    
     private String school;
-    
-    
-    /**
-    * @generated
-    */
     private Organizations organizations;
-    
-    /**
-    * @generated
-    */
-    private Organizations organizations;
-    
-    
-
-    /**
-    * @generated
-    */
-    private double getGpa() {
-        return this.gpa;
-    }
-    
-    /**
-    * @generated
-    */
-    private double setGpa(Real gpa) {
+    public Student() {
+    	
+    };
+    private void setGpa(double gpa) {
         this.gpa = gpa;
     }
-    
-    
-    /**
-    * @generated
-    */
     private int getStudyYear() {
         return this.studyYear;
     }
-    
-    /**
-    * @generated
-    */
-    private int setStudyYear(Integer studyYear) {
+    private void setStudyYear(Integer studyYear) {
         this.studyYear = studyYear;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Faculty getFaculty() {
-        return this.faculty;
-    }
-    
-    /**
-    * @generated
-    */
-    private Faculty setFaculty(Faculty faculty) {
+    private void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
-    
-    
-    /**
-    * @generated
-    */
     private Date getEnrollmentDate() {
         return this.enrollmentDate;
     }
-    
-    /**
-    * @generated
-    */
-    private Date setEnrollmentDate(Date enrollmentDate) {
+    private void setEnrollmentDate(Date enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
     }
-    
-    
-    /**
-    * @generated
-    */
     private Vector getCoursesTaught() {
         return this.coursesTaught;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setCoursesTaught(Vector coursesTaught) {
+    private void setCoursesTaught(Vector coursesTaught) {
         this.coursesTaught = coursesTaught;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     private String getMajor() {
         return this.major;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setMajor(String major) {
+    }    
+    private void setMajor(String major) {
         this.major = major;
     }
-    
-    
-    /**
-    * @generated
-    */
     private String getSchool() {
         return this.school;
     }
-    
-    /**
-    * @generated
-    */
-    private String setSchool(String school) {
+    private void setSchool(String school) {
         this.school = school;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
     public Organizations getOrganizations() {
         return this.organizations;
     }
-    
-    /**
-    * @generated
-    */
-    public Organizations setOrganizations(Organizations organizations) {
+    public void setOrganizations(Organizations organizations) {
         this.organizations = organizations;
     }
-    
-    
-    /**
-    * @generated
-    */
-    public Organizations getOrganizations() {
-        return this.organizations;
-    }
-    
-    /**
-    * @generated
-    */
-    public Organizations setOrganizations(Organizations organizations) {
-        this.organizations = organizations;
-    }
-    
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
     public Vector getCoursesEnrolled() {
         //TODO
         return null;
     }
-    
-    /**
-    * @generated
-    */
     public double getGpa() {
         //TODO
         return 0.0;
     }
-    
-    /**
-    * @generated
-    */
     public String getFaculty() {
         //TODO
         return "";
     }
-    
-    /**
-    * @generated
-    */
     public String getReport() {
         //TODO
         return "";
     }
-    
-    /**
-    * @generated
-    */
     public HashMap getTranscipt() {
         //TODO
         return null;
     }
+	@Override
+	public boolean disciplineRegistration(String discipline) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean addDiscipline(String discipline) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean dropDiscipline(String discipline) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean disciplineRegistration(String discipline, boolean isRegistrationAllowed) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public HashMap<Lesson, Integer> viewAttestation() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Vector<String> viewDownloadedFiles() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public HashMap<Lesson, WeekDays> viewLessonSchedule() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public HashMap<Teacher, WeekDays> viewOfficeHourSchedule() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public HashMap<String, Vector<Mark>> viewMarks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void borrowBook() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public boolean returnBook() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public Date getBorrowedDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Date getMustReturnDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
     
 }

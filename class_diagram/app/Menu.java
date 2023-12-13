@@ -7,6 +7,9 @@ public class Menu {
 		if(n==0) {
 			admin();
 		}
+		else if(n==1){
+			student();
+		}
 	}
 	public void admin() {
 		Admin a= new Admin();
@@ -22,5 +25,18 @@ public class Menu {
 			break;
 		}
 		
+	}
+	public void student() {
+		System.out.println("1. Get retake lol\n"
+				+ "2. Log out");
+		String input=commonBuffer.readInput();
+		switch(input) {
+		case("1"):
+			System.out.println("Successfuly got retake :(");
+		case("2"):
+			Login l= new Login();
+			l.menu();
+			break;
+		}
 	}
 }
