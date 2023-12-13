@@ -2,7 +2,7 @@ package users;
 
 import java.util.Date;
 import communication.*;
-import enums.Gender;
+import enums.*;
 
 public class Employee extends User {
 
@@ -23,22 +23,22 @@ public class Employee extends User {
 		this.insuranceNumber = insuranceNumber;
 		this.message = message;
 	}
-	private double getSalary() {
+	public double getSalary() {
         return this.salary;
     }
-    private void setSalary(double salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
-    private Date getHireDate() {
+    public Date getHireDate() {
         return this.hireDate;
     }
-    private void setHireDate(Date hireDate) {
+    public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
-    private String getInsuranceNumber() {
+    public String getInsuranceNumber() {
         return this.insuranceNumber;
     }
-    private void setInsuranceNumber(String insuranceNumber) {
+    public void setInsuranceNumber(String insuranceNumber) {
         this.insuranceNumber = insuranceNumber;
     }
     public Message getMessage() {
