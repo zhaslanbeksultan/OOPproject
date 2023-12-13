@@ -1,221 +1,111 @@
-import Vector;
-import users.Student;
-
 package education;
 
+import java.util.HashMap;
+import java.util.Vector;
+import enums.WeekDays;
+import userCapabilities.Educationable;
+import userCapabilities.Managable;
+import users.Teacher;
 
-/**
-* @generated
-*/
-public class Mark {
-    
-    /**
-    * @generated
-    */
+public class Mark implements Managable, Educationable {
+
     private int percentageOfMark;
-    
-    /**
-    * @generated
-    */
-    private  ;
-    
-    /**
-    * @generated
-    */
-    private Student ratedStudent;
-    
-    /**
-    * @generated
-    */
-    private double finalScore;
-    
-    /**
-    * @generated
-    */
-    private double attestationScore;
-    
-    /**
-    * @generated
-    */
-    private Vector lessonMark;
-    
-    /**
-    * @generated
-    */
-    private double overAllScore;
-    
-    
-    /**
-    * @generated
-    */
-    private Lesson lesson;
-    
-    
+    private Vector<Integer> lessonMark;
+    private HashMap<Lesson, Integer> attestationResults;
+    private Vector<String> downloadedFiles;
+    private HashMap<Lesson, WeekDays> lessonSchedule;
+    private HashMap<Teacher, WeekDays> officeHourSchedule;
+    private HashMap<String, Vector<Mark>> marks;
+    private String report;
 
-    /**
-    * @generated
-    */
-    public int getPercentageOfMark() {
-        return this.percentageOfMark;
+    public Mark() {
+        this.percentageOfMark = 0;
+        this.lessonMark = new Vector<>();
+        this.attestationResults = new HashMap<>();
+        this.downloadedFiles = new Vector<>();
+        this.lessonSchedule = new HashMap<>();
+        this.officeHourSchedule = new HashMap<>();
+        this.marks = new HashMap<>();
+        this.report = "";
     }
-    
-    /**
-    * @generated
-    */
-    public int setPercentageOfMark(Integer percentageOfMark) {
-        this.percentageOfMark = percentageOfMark;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public  get() {
-        return this.;
-    }
-    
-    /**
-    * @generated
-    */
-    public  set(invalid ) {
-        this. = ;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Student getRatedStudent() {
-        return this.ratedStudent;
-    }
-    
-    /**
-    * @generated
-    */
-    private Student setRatedStudent(Student ratedStudent) {
-        this.ratedStudent = ratedStudent;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private double getFinalScore() {
-        return this.finalScore;
-    }
-    
-    /**
-    * @generated
-    */
-    private double setFinalScore(Real finalScore) {
-        this.finalScore = finalScore;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private double getAttestationScore() {
-        return this.attestationScore;
-    }
-    
-    /**
-    * @generated
-    */
-    private double setAttestationScore(Real attestationScore) {
-        this.attestationScore = attestationScore;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getLessonMark() {
-        return this.lessonMark;
-    }
-    
-    /**
-    * @generated
-    */
-    private Vector setLessonMark(Vector lessonMark) {
-        this.lessonMark = lessonMark;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private double getOverAllScore() {
-        return this.overAllScore;
-    }
-    
-    /**
-    * @generated
-    */
-    private double setOverAllScore(Real overAllScore) {
-        this.overAllScore = overAllScore;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Lesson getLesson() {
-        return this.lesson;
-    }
-    
-    /**
-    * @generated
-    */
-    public Lesson setLesson(Lesson lesson) {
-        this.lesson = lesson;
-    }
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public String getMark() {
-        //TODO
-        return "";
+
+    @Override
+    public void viewAcademicStatistics() {
+
     }
-    
-    /**
-    * @generated
-    */
-    public int viewTotalScore() {
-        //TODO
-        return 0;
+
+    @Override
+    public void makeOfficeHoursSchedule() {
+       
     }
-    
-    /**
-    * @generated
-    */
-    public boolean isPassed() {
-        //TODO
-        return false;
+
+    @Override
+    public void obtainingProgressStatistics() {
+      
     }
-    
-    /**
-    * @generated
-    */
-    public boolean isIncreasedScolarship() {
-        //TODO
-        return false;
+
+    @Override
+    public void gettingPassingStatistics() {
+      
     }
+
+    @Override
+    public void viewRegisteredSchedule() {
     
-    /**
-    * @generated
-    */
-    public boolean isFX() {
-        //TODO
-        return false;
     }
+
     
-    
+    @Override
+    public HashMap<Lesson, Integer> viewAttestation() {
+        
+        return attestationResults;
+    }
+
+    @Override
+    public Vector<String> viewDownloadedFiles() {
+        
+        return downloadedFiles;
+    }
+
+    @Override
+    public HashMap<Lesson, WeekDays> viewLessonSchedule() {
+        
+        return lessonSchedule;
+    }
+
+    @Override
+    public HashMap<Teacher, WeekDays> viewOfficeHourSchedule() {
+        
+        return officeHourSchedule;
+    }
+
+    @Override
+    public HashMap<String, Vector<Mark>> viewMarks() {
+        
+        return marks;
+    }
+
+    @Override
+    public String getReport() {
+       
+        return report;
+    }
+
+
+    public void addMark(String studentName, Lesson lesson, int mark) {
+        this.lessonMark.add(mark);
+        if (attestationResults.containsKey(lesson)) {
+            attestationResults.put(lesson, mark);
+        }
+
+        if (marks.containsKey(studentName)) {
+            marks.get(studentName).add(this);
+        } else {
+            Vector<Mark> studentMarks = new Vector<>();
+            studentMarks.add(this);
+            marks.put(studentName, studentMarks);
+        }
+    }
+
 }
