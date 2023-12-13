@@ -1,20 +1,22 @@
-import Vector;
+package communication;
+
+import java.util.HashMap;
+import java.util.Vector;
 import users.Employee;
 import users.Student;
-
-package communication;
+import users.User;
 
 public class Request {
 
-    private Vector requests;
+    private Vector<String> requests; 
     
     private User user;
 
-    public Vector getRequests() {
+    public Vector<String> getRequests() {
         return this.requests;
     }
     
-    public Vector setRequests(Vector requests) {
+    public void setRequests(Vector<String> requests) {
         this.requests = requests;
     }
     
@@ -23,28 +25,19 @@ public class Request {
         return this.user;
     }
     
-  
-    public User setUser(User user) {
+    public void setUser(User user) {
         this.user = user;
     }
     
-    
-
-    public HashMap<Student,String> getRequest() {
-       
+    public HashMap<Student, String> getStudentRequests() {
         return null;
     }
     
-    public HashMap<Employee,String> getRequest() {
-        
+    public HashMap<Employee, String> getEmployeeRequests() {
         return null;
     }
     
-  
     public boolean processRequest() {
-        
         return false;
     }
-    
-    
 }

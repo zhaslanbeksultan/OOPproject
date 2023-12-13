@@ -1,138 +1,107 @@
-import Date;
-import Vector;
-
 package communication;
+
+import java.util.Date;
+import java.util.Vector;
+
+import userCapabilities.Researcher;
 
 public class ResearchProject {
     
     private String topic;
-
-    private Vector participants;
-
-    private Vector publishedPapers;
-
+    private Vector<String> participants;
+    private Vector<String> publishedPapers;
     private Date publishedDate;
-
-    private  supervisor;
-
-    private  ;
- 
-    private Vector researchPapers;
-
+    private String supervisor;
+    private Vector<String> researchPapers;
     private String reviewCritique;
- 
     private Researcher researcher;
 
     private String getTopic() {
         return this.topic;
     }
- 
-    private String setTopic(String topic) {
+
+    private void setTopic(String topic) {
         this.topic = topic;
     }
- 
-    private Vector getParticipants() {
+
+    private Vector<String> getParticipants() {
         return this.participants;
     }
-    
-  
-    private Vector setParticipants(Vector participants) {
+
+    private void setParticipants(Vector<String> participants) {
         this.participants = participants;
     }
-    
- 
-    private Vector getPublishedPapers() {
+
+    private Vector<String> getPublishedPapers() {
         return this.publishedPapers;
     }
-  
-    private Vector setPublishedPapers(Vector publishedPapers) {
+
+    private void setPublishedPapers(Vector<String> publishedPapers) {
         this.publishedPapers = publishedPapers;
     }
 
     private Date getPublishedDate() {
         return this.publishedDate;
     }
-  
-    private Date setPublishedDate(Date publishedDate) {
+
+    private void setPublishedDate(Date publishedDate) {
         this.publishedDate = publishedDate;
     }
 
-    private  getSupervisor() {
+    private String getSupervisor() {
         return this.supervisor;
     }
 
-    private  setSupervisor(invalid supervisor) {
+    private void setSupervisor(String supervisor) {
         this.supervisor = supervisor;
     }
-    
 
-    public  get() {
-        return this.;
-    }
-  
-    public  set(invalid ) {
-        this. = ;
-    }
-    
-
-    public Vector getResearchPapers() {
+    private Vector<String> getResearchPapers() {
         return this.researchPapers;
     }
-    
- 
-    public Vector setResearchPapers(Vector researchPapers) {
+
+    private void setResearchPapers(Vector<String> researchPapers) {
         this.researchPapers = researchPapers;
     }
-    
 
     private String getReviewCritique() {
         return this.reviewCritique;
     }
 
-    private String setReviewCritique(String reviewCritique) {
+    private void setReviewCritique(String reviewCritique) {
         this.reviewCritique = reviewCritique;
     }
-    
 
     public Researcher getResearcher() {
         return this.researcher;
     }
-   
-    public Researcher setResearcher(Researcher researcher) {
+
+    public void setResearcher(Researcher researcher) {
         this.researcher = researcher;
     }
 
     public String getResearchProjectTopic() {
-       
-        return "";
+        return this.topic;
     }
 
-    public Vector getWritersOfResearch() {
-     
-        return null;
+    public Vector<String> getWritersOfResearch() {
+        return this.participants;
     }
 
-    public String getSupervisor() {
-        
-        return "";
+    public String getSupervisorName() {
+        return this.supervisor;
     }
-    
-  
+
     public ResearchPaper toReferenceToPapers() {
-  
         return null;
     }
-    
 
     public String getReview() {
-     
-        return "";
+        return this.reviewCritique;
     }
 
     public boolean checkSupervisorEligibility() {
-
+    	
         return false;
     }
-    
-    
 }

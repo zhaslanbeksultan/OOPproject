@@ -1,95 +1,61 @@
 package communication;
 
-import Vector;
+import java.util.Vector;
+import users.User;
 
 public class News {
 
-    private NewsType newsType;
-    
+    private String newsType;
     private String newsTitle;
-    
-
     private String newsWording;
-   
-    private Vector newsComments;
-    
-
+    private Vector<String> newsComments; 
     private User user;
 
-    private NewsType getNewsType() {
+    public String getNewsType() {
         return this.newsType;
     }
-    
-   
-    private NewsType setNewsType(NewsType newsType) {
+
+    public void setNewsType(String newsType) {
         this.newsType = newsType;
     }
-    
-    
 
-    private String getNewsTitle() {
+    public String getNewsTitle() {
         return this.newsTitle;
     }
-    
 
-    private String setNewsTitle(String newsTitle) {
+    public void setNewsTitle(String newsTitle) {
         this.newsTitle = newsTitle;
     }
-    
- 
-    private String getNewsWording() {
+
+    public String getNewsWording() {
         return this.newsWording;
     }
- 
-    private String setNewsWording(String newsWording) {
+
+    public void setNewsWording(String newsWording) {
         this.newsWording = newsWording;
     }
-    
-  
-    private Vector getNewsComments() {
+
+    public Vector<String> getNewsComments() {
         return this.newsComments;
     }
-    
 
-    private Vector setNewsComments(Vector newsComments) {
+    public void setNewsComments(Vector<String> newsComments) {
         this.newsComments = newsComments;
     }
-    
-    
 
     public User getUser() {
         return this.user;
     }
-  
-    public User setUser(User user) {
+
+    public void setUser(User user) {
         this.user = user;
     }
-    
-    
-    
 
     public boolean viewNews() {
-    
         return false;
     }
-    
-  
-    public String getNewsTitle() {
-        
-        return "";
-    }
-    
-  
+
     public String respondToNews() {
-        
         return "";
     }
-    
- 
-    public String getNewsWording() {
-        
-        return "";
-    }
-    
-    
 }
