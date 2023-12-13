@@ -5,10 +5,9 @@ import common.*;
 import java.util.Vector;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import enums.Gender;
-import communication.News;
-import communication.Request;
-import communication.Message;
+import enums.*;
+import communication.*;
+
 
 public abstract class User {
     private String firstName;

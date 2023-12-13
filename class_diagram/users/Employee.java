@@ -1,8 +1,8 @@
 package users;
 
-import Date;
-import communication.Message;
-import enums.Gender;
+import java.util.Date;
+import communication.*;
+import enums.*;
 
 public class Employee extends User {
 
@@ -10,57 +10,49 @@ public class Employee extends User {
     private Date hireDate;
     private String insuranceNumber;
     private Message message;
-    private Message message;
     
-    public Employee(String firstName, String lastName, java.util.Date birthDay, String id, String username,
-			String password, String email, java.util.Date registrationDate, String phoneNumber, String pasportNumber,
-			Gender gender, String nationality, String citizenship, Request request, News news, users.Message message,
-			double salary, users.Date hireDate, String insuranceNumber, Message message2) {
+    
+	public Employee(String firstName, String lastName, Date birthDay, String id, String username, String password,
+			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
+			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber,
+			Message message) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
-				pasportNumber, gender, nationality, citizenship, request, news, message);
+				pasportNumber, gender, nationality, citizenship);
 		this.salary = salary;
 		this.hireDate = hireDate;
 		this.insuranceNumber = insuranceNumber;
-		message = message2;
+		this.message = message;
 	}
-	private double getSalary() {
+	public double getSalary() {
         return this.salary;
     }
-    private double setSalary(double salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
-    private Date getHireDate() {
+    public Date getHireDate() {
         return this.hireDate;
     }
-    private Date setHireDate(Date hireDate) {
+    public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
-    private String getInsuranceNumber() {
+    public String getInsuranceNumber() {
         return this.insuranceNumber;
     }
-    private String setInsuranceNumber(String insuranceNumber) {
+    public void setInsuranceNumber(String insuranceNumber) {
         this.insuranceNumber = insuranceNumber;
     }
     public Message getMessage() {
         return this.message;
     }
-    public Message setMessage(Message message) {
+    public void setMessage(Message message) {
         this.message = message;
     }
-    public Message getMessage() {
-        return this.message;
-    }
-    public Message setMessage(Message message) {
-        this.message = message;
-    }
+
     public String getEmployeeId() {
         return "";
     }
-    public String sentComplaintMessage() {
-        return "";
-    }
-    public double getSalary() {
-        return 0.0;
+    public void sentComplaintMessage() {
+       
     }
     public String performInsuranceNumber() {
         return "";

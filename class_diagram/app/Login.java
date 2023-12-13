@@ -4,6 +4,9 @@ import common.*;
 public class Login {
 	public String inputl;
 	public String inputp;
+//need to change to private!!!!
+	public String testl;
+	public String testp;
 	public int type;
 	public commonBuffer cb= new commonBuffer();
 	public Menu m;
