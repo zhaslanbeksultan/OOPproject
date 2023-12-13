@@ -2,14 +2,12 @@ package app;
 import common.*;
 
 public class Login {
-	public String inputl;
-	public String inputp;
-//need to change to private!!!!
-	public String testl;
-	public String testp;
-	public int type;
-	public commonBuffer cb= new commonBuffer();
-	public Menu m;
+	private String inputl;
+	private String inputp;
+	private String testl;
+	private String testp;
+	private int type;
+	private Menu m;
 	public Login(){
     	
     }
@@ -22,7 +20,7 @@ public class Login {
     public void login() {
     	while(true) {
     		System.out.println("Enter your email: ");
-            inputl=cb.readInput();
+            inputl=commonBuffer.readInput();
             if(!Data.getInstance().getLogs().containsKey(inputl)) {
             	 System.out.println("Incorrect input");
             }
@@ -39,7 +37,7 @@ public class Login {
     }
     public void password() {
     	System.out.println("Enter your password: ");
-        inputp=cb.readInput();
+        inputp=commonBuffer.readInput();
         if (!Data.getInstance().getLogs().get(inputl).equals(inputp)) {
         	System.out.println("Incorrect input");
         	password();
