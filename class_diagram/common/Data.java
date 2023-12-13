@@ -17,7 +17,7 @@ public class Data {
     private Vector<Lesson> lessons;
     private Vector<Specialty> specialities;
     private Vector<Message> messages;
-    private Map<String, String> logs;
+    private HashMap<String, String> logs;
     
     private static final Data DATA = new Data();
     
@@ -30,7 +30,7 @@ public class Data {
         lessons = new Vector<>();
         specialities = new Vector<>();
         messages = new Vector<>();
-        logs= new HashMap();
+        logs = new HashMap<String, String>();
     }
 
     public static Data getInstance() {
@@ -39,7 +39,7 @@ public class Data {
     public void setLogs(String login, String password) {
     	logs.put(login, password);
     }
-    public Map getLogs() {
+    public HashMap<String, String> getLogs() {
     	return logs;
     }
     public Vector<Message> getMessages() {
