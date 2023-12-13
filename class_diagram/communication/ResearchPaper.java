@@ -1,91 +1,66 @@
 package communication;
 
-import Date;
-import Vector;
+import java.util.Date;
+import java.util.Vector;
+
 public class ResearchPaper {
 
     private int paperId;
-  
-    private String reasearchPaperTitle;
- 
-    private String reasearchPaperWording;
- 
+    private String researchPaperTitle;
+    private String researchPaperWording;
     private String researchPaperTopic;
- 
-    private Vector researchPaperAuthors;
+    private Vector<String> researchPaperAuthors;
+    private Date researchPaperWrittenDate;
 
-    private Date reserchPaperWrittenDate;
-    
-    private int getPaperId() {
+    public int getPaperId() {
         return this.paperId;
     }
-    
-    private int setPaperId(Integer paperId) {
+
+    public void setPaperId(int paperId) {
         this.paperId = paperId;
     }
 
-    public String getReasearchPaperTitle() {
-        return this.reasearchPaperTitle;
+    public String getResearchPaperTitle() {
+        return this.researchPaperTitle;
     }
 
-    public String setReasearchPaperTitle(String reasearchPaperTitle) {
-        this.reasearchPaperTitle = reasearchPaperTitle;
-    }
-    
-    private String getReasearchPaperWording() {
-        return this.reasearchPaperWording;
+    public void setResearchPaperTitle(String researchPaperTitle) {
+        this.researchPaperTitle = researchPaperTitle;
     }
 
-    private String setReasearchPaperWording(String reasearchPaperWording) {
-        this.reasearchPaperWording = reasearchPaperWording;
-    }
-    
-    private String getResearchPaperTopic() {
-        return this.researchPaperTopic;
+    public String getResearchPaperWording() {
+        return this.researchPaperWording;
     }
 
-    private String setResearchPaperTopic(String researchPaperTopic) {
-        this.researchPaperTopic = researchPaperTopic;
-    }
-
-    private Vector getResearchPaperAuthors() {
-        return this.researchPaperAuthors;
-    }
-
-    private Vector setResearchPaperAuthors(Vector researchPaperAuthors) {
-        this.researchPaperAuthors = researchPaperAuthors;
-    }
-
-    private Date getReserchPaperWrittenDate() {
-        return this.reserchPaperWrittenDate;
-    }
-
-    private Date setReserchPaperWrittenDate(Date reserchPaperWrittenDate) {
-        this.reserchPaperWrittenDate = reserchPaperWrittenDate;
-    }
-
-    public int getPaperId() {
-        return 0;
+    public void setResearchPaperWording(String researchPaperWording) {
+        this.researchPaperWording = researchPaperWording;
     }
 
     public String getResearchPaperTopic() {
-    
-        return "";
+        return this.researchPaperTopic;
     }
- 
-    public Vector getResearchPaperAuthors() {
-    
-        return null;
+
+    public void setResearchPaperTopic(String researchPaperTopic) {
+        this.researchPaperTopic = researchPaperTopic;
+    }
+
+    public Vector<String> getResearchPaperAuthors() {
+        return this.researchPaperAuthors;
+    }
+
+    public void setResearchPaperAuthors(Vector<String> researchPaperAuthors) {
+        this.researchPaperAuthors = researchPaperAuthors;
     }
 
     public Date getResearchPaperWrittenDate() {
-        return new Date();
+        return this.researchPaperWrittenDate;
     }
- 
+
+    public void setResearchPaperWrittenDate(Date researchPaperWrittenDate) {
+        this.researchPaperWrittenDate = researchPaperWrittenDate;
+    }
+
     public int getArticleLength() {
-    
         return 0;
     }
-    
-    
 }
