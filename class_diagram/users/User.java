@@ -228,29 +228,46 @@ public abstract class User {
         
     }
     
-    public void showMessages() {//надо сделать цикл + exit
-    	System.out.println("'Answere' or 'Read', then Enter MessageId");
-    	for(Message message: Data.getInstance().getMessages()) {
-    		if(username.equals(message.getRecipient()))
-    			System.out.println(message);
+    public void showMessages() {
 
-    	}
-    	String choose = commonBuffer.readInput();
-    	if(choose.equals("Answere")) {
-    		System.out.println("Enter Message ID: ");
-    		int look = Integer.parseInt(commonBuffer.readInput());
-    		sendMessage(look);
-    	}
-    	else if(choose.equals("Read")) {
-    		System.out.println("Enter Message ID: ");
-    		int look = Integer.parseInt(commonBuffer.readInput());
-    		System.out.println(Data.getInstance().getMessages().get(look));
-    		System.out.println("Text: " + Data.getInstance().getMessages().get(look).getMessageWording());
-    	}
-    	else System.out.println("Enter only 'Answere' or 'Read'!");
+    	System.out.println("Enter '0' to exit.");
+    	int look = -1;
+    	String choose = "";
+    	while(!choose.equals("0")) {
+    		System.out.println("----WINDOW SHOW MESSAGES----");
+	    	System.out.println("'Answer' or 'Read', then Enter Message Id");
+	    	for(Message message: Data.getInstance().getMessages()) {
+	    		if(username.equals(message.getRecipient()))
+	    			System.out.println(message);
+	
+	    	}
+	    	choose = commonBuffer.readInput();
+	    	if(choose.equals("0")) break;
+	    	else if(choose.equals("Answer")) {
+		    		System.out.println("Enter Message ID: ");
+		    		look = Integer.parseInt(commonBuffer.readInput());
+		    		sendMessage(look-1);
+	    	}
+	    	else if(choose.equals("Read")) {
+	        	System.out.println("Enter '0' to exit.");
+	    		System.out.println("Enter Message ID: ");
+	    		look = Integer.parseInt(commonBuffer.readInput());
+	        	System.out.println("----WINDOW READ MESSAGE----");
+	        	if(Data.getInstance().getMessages().get(look-1).getAnsweredMessage()!= -1)
+	        		System.out.println("Answered Message Id: " + Data.getInstance().getMessages().get(look-1).getAnsweredMessage() + 1);
+		    	System.out.println(Data.getInstance().getMessages().get(look-1));
+		    	System.out.println("Text: " + Data.getInstance().getMessages().get(look-1).getMessageWording());
+		    	while(look!=0) {
+		    		System.out.println("Enter '0' to exit.");
+		    		look = Integer.parseInt(commonBuffer.readInput());
+		    	}
+	    	}
+	    	else System.out.println("Enter only 'Answer', 'Read' or '0'!");
+	    	}
     }
     
     public void sendMessage() {
+    	System.out.println("----WINDOW SEND MESSAGE----");
     	System.out.print("Recipient username: ");
     	String recipient = commonBuffer.readInput();
     	System.out.print("Theme: "); 
@@ -263,8 +280,9 @@ public abstract class User {
     }
     
     public void sendMessage(int answer) {
-    	System.out.print("Recipient username: ");
-    	String recipient = commonBuffer.readInput();
+    	System.out.println("----WINDOW ANSWERE TO MESSAGE----");
+    	String recipient = Data.getInstance().getMessages().get(answer).getSender();
+    	System.out.println("Recipient: " + recipient);
     	System.out.print("Theme: "); 
     	String theme = commonBuffer.readInput();
     	System.out.print("Message Wording: ");

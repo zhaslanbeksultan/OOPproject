@@ -14,12 +14,23 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     private Date enrollmentDate;
     private Vector coursesTaught;
     private String major;    
-    private String school;
     private Organizations organizations;
-    public Student() {
-    	
-    };
-    private void setGpa(double gpa) {
+
+    public Student(String firstName, String lastName, Date birthDay, String id, String username, String password,
+			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
+			String nationality, String citizenship, double gpa, int studyYear, Faculty faculty, Date enrollmentDate,
+			Vector coursesTaught, String major, Organizations organizations) {
+		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
+				pasportNumber, gender, nationality, citizenship);
+		this.gpa = gpa;
+		this.studyYear = studyYear;
+		this.faculty = faculty;
+		this.enrollmentDate = enrollmentDate;
+		this.coursesTaught = coursesTaught;
+		this.major = major;
+		this.organizations = organizations;
+	}
+	private void setGpa(double gpa) {
         this.gpa = gpa;
     }
     private int getStudyYear() {
@@ -50,12 +61,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     private void setMajor(String major) {
         this.major = major;
     }
-    private String getSchool() {
-        return this.school;
-    }
-    private void setSchool(String school) {
-        this.school = school;
-    }
+
     public Organizations getOrganizations() {
         return this.organizations;
     }
