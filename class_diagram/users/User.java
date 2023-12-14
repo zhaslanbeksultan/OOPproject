@@ -216,10 +216,6 @@ public abstract class User {
         //TODO
     }
 
-    public String getNotifications() {
-        return "";
-    }
-
     public String getUserInformation() {
         return toString();
     }
