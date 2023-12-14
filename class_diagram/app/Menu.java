@@ -12,7 +12,7 @@ public class Menu {
 		}
 	}
 	public void admin() {
-		Admin a= new Admin();
+		Admin a= new Admin(null, null, null, null, null, null, null, null, null, null, null, null, null, 0, null, null);
 		System.out.println("1. Add student\n"
 							+ "2. Log out");
 		String input=commonBuffer.readInput();

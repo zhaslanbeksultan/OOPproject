@@ -14,14 +14,12 @@ public class Employee extends User {
     
 	public Employee(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
-			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber,
-			Message message) {
+			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship);
 		this.salary = salary;
 		this.hireDate = hireDate;
 		this.insuranceNumber = insuranceNumber;
-		this.message = message;
 	}
 	public double getSalary() {
         return this.salary;
