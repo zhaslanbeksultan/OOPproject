@@ -93,7 +93,7 @@ public class Lesson implements Educationable {
         return "";
     }
 
-	public static int getDisciplineCredits(Courses discipline) {
+	public static int getDisciplineCredits1(Courses discipline) {
 		return 0;
 	}
 
@@ -101,10 +101,6 @@ public class Lesson implements Educationable {
 		return false;
 	}
 
-	public static int getDisciplineCredits(Courses discipline) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	public static int getDisciplineCredits(Courses discipline) {
 		// TODO Auto-generated method stub

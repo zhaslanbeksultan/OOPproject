@@ -228,7 +228,7 @@ public abstract class Course implements Administrationable {
         	
  }
 
- /*   @Override
+  /*@Override
    public boolean disciplineRegistration(Courses discipline) {
         if ( courseList.contains(discipline)) {
             System.out.println("Congratulations! You have successfully registered for discipline " + discipline + "!");
@@ -238,8 +238,8 @@ public abstract class Course implements Administrationable {
             System.out.println("Registration for discipline " + discipline + " is not allowed or not in the courses list!");
             return false;
         }
-    }
-*/
+    }*/
+
     
     
     public boolean addDiscipline(Courses discipline) {
