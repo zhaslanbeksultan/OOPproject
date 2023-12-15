@@ -90,7 +90,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     /**
     * @generated
     */
-    private Faculty getFaculty() {
+    public Faculty getFaculty() {
         return this.faculty;
     }
     
@@ -236,6 +236,11 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
         //TODO
         return null;
     }
+
+	public int getCourse() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
     
 }

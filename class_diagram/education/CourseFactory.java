@@ -16,4 +16,5 @@ public class CourseFactory {
                 throw new IllegalArgumentException("Unsupported discipline type: " + disciplineType);
         }
     }
+    
 }

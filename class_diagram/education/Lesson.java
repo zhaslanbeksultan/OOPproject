@@ -93,12 +93,22 @@ public class Lesson implements Educationable {
         return "";
     }
 
-	public static int getDisciplineCredits(String discipline) {
+	public static int getDisciplineCredits(Courses discipline) {
 		return 0;
 	}
 
 	public static boolean checkMajorDisciplineCompatibility(String discipline) {
 		return false;
+	}
+
+	public static int getDisciplineCredits(Courses discipline) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static int getDisciplineCredits(Courses discipline) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
 
