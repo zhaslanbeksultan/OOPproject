@@ -25,6 +25,7 @@ public abstract class Course implements Administrationable {
     private Lesson lesson;
     private Specialty specialty;
 
+    //constructor 
     public Course(String courseId, String courseName, int numberOfCredits, DisciplineType disciplineType, String specialtyId) {
         this.courseId = courseId;
         this.courseName = courseName;

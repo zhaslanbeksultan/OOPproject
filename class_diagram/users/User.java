@@ -5,10 +5,9 @@ import common.*;
 import java.util.Vector;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import enums.Gender;
-import communication.News;
-import communication.Request;
-import communication.Message;
+import enums.*;
+import communication.*;
+
 
 public abstract class User {
     private String firstName;
@@ -43,11 +42,14 @@ public abstract class User {
 		this.nationality = nationality;
 		this.citizenship = citizenship;
 	}
+	public User() {
+		
+	}
     private String getFirstName() {
         return this.firstName;
     }
 
-    private void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
     
@@ -55,7 +57,7 @@ public abstract class User {
         return this.lastName;
     }
 
-    private void setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -63,7 +65,7 @@ public abstract class User {
         return this.birthDay;
     }
 
-    private void setBirthDay(String birthDay) {
+    public void setBirthDay(String birthDay) {
     	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
             this.birthDay = dateFormat.parse(birthDay);
@@ -76,7 +78,7 @@ public abstract class User {
         return this.id;
     }
 
-    private void setId(String id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -84,7 +86,7 @@ public abstract class User {
         return this.username;
     }
 
-    private void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
@@ -92,7 +94,7 @@ public abstract class User {
         return this.password;
     }
 
-    private void setPassword(String password) {
+    public void setPassword(String password) {
         if(this.password != password)
         	this.password = password;
         else System.out.println("The password must not match the previous one");
@@ -102,7 +104,7 @@ public abstract class User {
         return this.email;
     }
 
-    private void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -110,7 +112,7 @@ public abstract class User {
         return this.registrationDate;
     }
 
-    private void setRegistrationDate(Date registrationDate) {
+    public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
 
@@ -118,7 +120,7 @@ public abstract class User {
         return this.phoneNumber;
     }
 
-    private void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -126,7 +128,7 @@ public abstract class User {
         return this.pasportNumber;
     }
 
-    private void setPasportNumber(String PasportNumber) {
+    public void setPasportNumber(String PasportNumber) {
         this.pasportNumber = PasportNumber;
     }
 
@@ -134,7 +136,7 @@ public abstract class User {
         return this.gender;
     }
 
-    private void setGender(String gender) {
+    public void setGender(String gender) {
     	if(gender.equals("male") || gender.equals("MALE") || gender.equals("Male") || gender.equals("M") || gender.equals("m")) this.gender = Gender.MALE;
     	else if(gender.equals("female") || gender.equals("FEMALE") || gender.equals("Female") || gender.equals("F") || gender.equals("f")) this.gender = Gender.FEMALE;
     	else this.gender = Gender.UNDEFINED;
@@ -144,7 +146,7 @@ public abstract class User {
         return this.nationality;
     }
 
-    private void setNationality(String nationality) {
+    public void setNationality(String nationality) {
         this.nationality = nationality;
     }
 
@@ -152,7 +154,7 @@ public abstract class User {
         return this.citizenship;
     }
 
-    private void setCitizenship(String citizenship) {
+    public void setCitizenship(String citizenship) {
         this.citizenship = citizenship;
     }
 
@@ -210,12 +212,41 @@ public abstract class User {
         return "";
     }
 
-    public void viewNews() {
-        //TODO
-    }
-
-    public String getNotifications() {
-        return "";
+    public void viewNews() { //will be abstract and child classes will implement
+    	System.out.println("Enter '0' to exit.");
+    	int look = -1;
+    	String choose = "";
+    	while(!choose.equals("0")) {
+    		System.out.println("----WINDOW FOLLOW THE NEWS----");
+	    	System.out.println("'Comment' or 'Read', then Enter Post Id");
+	    	for(News post: Data.getInstance().getNews()) {
+	    		if(username.equals(post.getRecipient()))
+	    			System.out.println(post);
+	
+	    	}
+	    	choose = commonBuffer.readInput();
+	    	if(choose.equals("0")) break;
+	    	else if(choose.equals("Answer")) {
+		    		System.out.println("Enter Message ID: ");
+		    		look = Integer.parseInt(commonBuffer.readInput());
+		    		sendMessage(look-1);
+	    	}
+	    	else if(choose.equals("Read")) {
+	        	System.out.println("Enter '0' to exit.");
+	    		System.out.println("Enter Message ID: ");
+	    		look = Integer.parseInt(commonBuffer.readInput());
+	        	System.out.println("----WINDOW READ MESSAGE----");
+	        	if(Data.getInstance().getMessages().get(look-1).getAnsweredMessage()!= -1)
+	        		System.out.println("Answered Message Id: " + Data.getInstance().getMessages().get(look-1).getAnsweredMessage() + 1);
+		    	System.out.println(Data.getInstance().getMessages().get(look-1));
+		    	System.out.println("Text: " + Data.getInstance().getMessages().get(look-1).getMessageWording());
+		    	while(look!=0) {
+		    		System.out.println("Enter '0' to exit.");
+		    		look = Integer.parseInt(commonBuffer.readInput());
+		    	}
+	    	}
+	    	else System.out.println("Enter only 'Answer', 'Read' or '0'!");
+	    	}
     }
 
     public String getUserInformation() {
@@ -226,29 +257,46 @@ public abstract class User {
         
     }
     
-    public void showMessages() {//надо сделать цикл + exit
-    	System.out.println("'Answere' or 'Read', then Enter MessageId");
-    	for(Message message: Data.getInstance().getMessages()) {
-    		if(username.equals(message.getRecipient()))
-    			System.out.println(message);
+    public void showMessages() {
 
-    	}
-    	String choose = commonBuffer.readInput();
-    	if(choose.equals("Answere")) {
-    		System.out.println("Enter Message ID: ");
-    		int look = Integer.parseInt(commonBuffer.readInput());
-    		sendMessage(look);
-    	}
-    	else if(choose.equals("Read")) {
-    		System.out.println("Enter Message ID: ");
-    		int look = Integer.parseInt(commonBuffer.readInput());
-    		System.out.println(Data.getInstance().getMessages().get(look));
-    		System.out.println("Text: " + Data.getInstance().getMessages().get(look).getMessageWording());
-    	}
-    	else System.out.println("Enter only 'Answere' or 'Read'!");
+    	System.out.println("Enter '0' to exit.");
+    	int look = -1;
+    	String choose = "";
+    	while(!choose.equals("0")) {
+    		System.out.println("----WINDOW SHOW MESSAGES----");
+	    	System.out.println("'Answer' or 'Read', then Enter Message Id");
+	    	for(Message message: Data.getInstance().getMessages()) {
+	    		if(username.equals(message.getRecipient()))
+	    			System.out.println(message);
+	
+	    	}
+	    	choose = commonBuffer.readInput();
+	    	if(choose.equals("0")) break;
+	    	else if(choose.equals("Answer")) {
+		    		System.out.println("Enter Message ID: ");
+		    		look = Integer.parseInt(commonBuffer.readInput());
+		    		sendMessage(look-1);
+	    	}
+	    	else if(choose.equals("Read")) {
+	        	System.out.println("Enter '0' to exit.");
+	    		System.out.println("Enter Message ID: ");
+	    		look = Integer.parseInt(commonBuffer.readInput());
+	        	System.out.println("----WINDOW READ MESSAGE----");
+	        	if(Data.getInstance().getMessages().get(look-1).getAnsweredMessage()!= -1)
+	        		System.out.println("Answered Message Id: " + Data.getInstance().getMessages().get(look-1).getAnsweredMessage() + 1);
+		    	System.out.println(Data.getInstance().getMessages().get(look-1));
+		    	System.out.println("Text: " + Data.getInstance().getMessages().get(look-1).getMessageWording());
+		    	while(look!=0) {
+		    		System.out.println("Enter '0' to exit.");
+		    		look = Integer.parseInt(commonBuffer.readInput());
+		    	}
+	    	}
+	    	else System.out.println("Enter only 'Answer', 'Read' or '0'!");
+	    	}
     }
     
     public void sendMessage() {
+    	System.out.println("----WINDOW SEND MESSAGE----");
     	System.out.print("Recipient username: ");
     	String recipient = commonBuffer.readInput();
     	System.out.print("Theme: "); 
@@ -261,8 +309,9 @@ public abstract class User {
     }
     
     public void sendMessage(int answer) {
-    	System.out.print("Recipient username: ");
-    	String recipient = commonBuffer.readInput();
+    	System.out.println("----WINDOW ANSWERE TO MESSAGE----");
+    	String recipient = Data.getInstance().getMessages().get(answer).getSender();
+    	System.out.println("Recipient: " + recipient);
     	System.out.print("Theme: "); 
     	String theme = commonBuffer.readInput();
     	System.out.print("Message Wording: ");

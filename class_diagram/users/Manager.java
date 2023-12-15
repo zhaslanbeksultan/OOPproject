@@ -1,116 +1,134 @@
-import Vector;
-
 package users;
+import java.util.Date;
+import java.util.Vector;
+
+import common.Data;
+import common.commonBuffer;
+import communication.News;
+import enums.*;
+import userCapabilities.*;
 
 
-/**
-* @generated
-*/
-public class Manager extends Employee implements NewsPostable, Managable, Administrationable {
-    
-    /**
-    * @generated
-    */
+public class Manager extends Employee implements Managable, Administrationable {
+	
     private ManagerPosition managerPosition;
-    
-    /**
-    * @generated
-    */
     private Vector coursesRegisterTo;
-    
-    /**
-    * @generated
-    */
-    private  attribute;
-    
-    /**
-    * @generated
-    */
     private Vector requests;
-    
-    
-    
 
-    /**
-    * @generated
-    */
-    private ManagerPosition getManagerPosition() {
+    public Manager(String firstName, String lastName, Date birthDay, String id, String username, String password,
+			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
+			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber) {
+		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber, pasportNumber,
+				gender, nationality, citizenship, salary, hireDate, insuranceNumber);
+		this.managerPosition = managerPosition;
+	}
+
+    public ManagerPosition getManagerPosition() {
         return this.managerPosition;
     }
-    
-    /**
-    * @generated
-    */
-    private ManagerPosition setManagerPosition(ManagerPosition managerPosition) {
+
+    public void setManagerPosition(ManagerPosition managerPosition) {
         this.managerPosition = managerPosition;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getCoursesRegisterTo() {
+
+    public Vector getCoursesRegisterTo() {
         return this.coursesRegisterTo;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector setCoursesRegisterTo(Vector coursesRegisterTo) {
+
+    public void setCoursesRegisterTo(Vector coursesRegisterTo) {
         this.coursesRegisterTo = coursesRegisterTo;
     }
-    
-    
-    /**
-    * @generated
-    */
-    public  getAttribute() {
-        return this.attribute;
-    }
-    
-    /**
-    * @generated
-    */
-    public  setAttribute(invalid attribute) {
-        this.attribute = attribute;
-    }
-    
-    
-    /**
-    * @generated
-    */
+
     public Vector getRequests() {
         return this.requests;
     }
-    
-    /**
-    * @generated
-    */
-    public Vector setRequests(Vector requests) {
+
+    public void setRequests(Vector requests) {
         this.requests = requests;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
     public Vector getManagerDuties() {
-        //TODO
         return null;
     }
-    
-    /**
-    * @generated
-    */
+
     public boolean isCapableToPostNews() {
-        //TODO
         return false;
     }
+
+	@Override
+	public boolean disciplineRegistration(String discipline) {
+		return false;
+	}
+
+	@Override
+	public boolean addDiscipline(String discipline) {
+		return false;
+	}
+
+	@Override
+	public boolean dropDiscipline(String discipline) {
+		return false;
+	}
+
+	@Override
+	public boolean disciplineRegistration(String discipline, boolean isRegistrationAllowed) {
+		return false;
+	}
+
+	@Override
+	public void viewAcademicStatistics() {
+		
+	}
+
+	@Override
+	public void makeOfficeHoursSchedule() {
+		
+	}
+
+	@Override
+	public void obtainingProgressStatistics() {
+		
+	}
+
+	@Override
+	public void gettingPassingStatistics() {
+		
+	}
+
+	@Override
+	public void viewRegisteredSchedule() {
+		
+	}
+
+	public void postNews() {
+		if(!managerPosition.equals(ManagerPosition.OR)) {
+			System.out.println("Only OR Manager Can Post News!");
+			return;
+		}
+		System.out.println("----WINDOW POST NEWS----");
+    	System.out.print("Recipients 'Students' or 'Employees': ");
+    	String recipients = commonBuffer.readInput();
+    	System.out.print("News Type: "); 
+    	String newsType = commonBuffer.readInput();
+    	System.out.print("News Wording: ");
+    	String newsTitle = commonBuffer.readInput();
+    	System.out.print("News Title: ");
+    	String newsWording = commonBuffer.readInput(); 
+    	News post = new News(recipients, newsType, newsTitle, newsWording);
+    	Data.getInstance().setNews(post);
+	}
+
+	public void manageNewsWording(String newsTitle, String newWording) {
+		
+	}
+
+	public boolean accessRespondsFromNews() {
+		return false;
+	}
+
+	public String answerToComplaints(String complaint) {
+		return null;
+	}
     
     
 }
