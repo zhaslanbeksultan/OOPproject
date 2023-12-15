@@ -70,8 +70,8 @@ public class Data {
 		return news;
 	}
 
-	public void setNews(Vector<News> news) {
-		this.news = news;
+	public void setNews(News post) {
+		news.add(post);
 	}
 
 	public Vector<Researcher> getResearchers() {

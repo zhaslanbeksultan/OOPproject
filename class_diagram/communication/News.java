@@ -1,17 +1,39 @@
 package communication;
 
+import java.util.Date;
 import java.util.Vector;
 import users.User;
 
 public class News {
-
+	private static int cnt = 1;
+	private int newsId;
+	private String recipients;
     private String newsType;
     private String newsTitle;
     private String newsWording;
-    private Vector<String> newsComments; 
-    private User user;
+    private Date postSentDate;
+    private Vector<String> newsComments;
 
-    public String getNewsType() {
+    public News(String recipients, String newsType, String newsTitle, String newsWording) {
+    	this.recipients = recipients;
+		this.newsType = newsType;
+		this.newsTitle = newsTitle;
+		this.newsWording = newsWording;
+    	this.newsId = cnt++;
+		postSentDate = new Date();
+	}
+   
+	public String getRecipients() {
+		return recipients;
+	}
+
+
+
+	public void setRecipients(String recipients) {
+		this.recipients = recipients;
+	}
+
+	public String getNewsType() {
         return this.newsType;
     }
 
@@ -43,14 +65,6 @@ public class News {
         this.newsComments = newsComments;
     }
 
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public boolean viewNews() {
         return false;
     }
@@ -58,4 +72,12 @@ public class News {
     public String respondToNews() {
         return "";
     }
+
+	@Override
+	public String toString() {
+		return "Post Id=" + newsId + ", newsType=" + newsType + ", newsTitle="
+				+ newsTitle + ", postSentDate=" + postSentDate;
+	}
+    
+    
 }
