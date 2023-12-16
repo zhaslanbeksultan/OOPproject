@@ -245,7 +245,7 @@ public abstract class Course implements Administrationable {
     
     public boolean addDiscipline(Courses discipline) {
     	int totalECTS = 0;
-        int disciplineECTS = Lesson.getDisciplineCredits(discipline);
+        int disciplineECTS = Courses.getDisciplineCredits(discipline);
 
             if (totalECTS + disciplineECTS > 30) {
                 System.out.println("Adding discipline " + discipline + " to your schedule has failed. Exceeds maximum credits.");

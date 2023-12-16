@@ -2,7 +2,7 @@ package education;
 
 public class Courses {
     private String courseName;
-    private int numberOfCredits;
+    private static int numberOfCredits;
 
     public Courses( String courseName, int numberOfCredits) {
         this.courseName = courseName;
@@ -13,8 +13,13 @@ public class Courses {
         return courseName;
     }
 
-    public int getNumberOfCredits() {
+    public static int getNumberOfCredits() {
         return numberOfCredits;
     }
-}
+
+	public static int getDisciplineCredits(Courses discipline) {
+		return numberOfCredits;
+	}
+
+	}
 

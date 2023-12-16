@@ -45,7 +45,7 @@ public abstract class User {
 	public User() {
 		
 	}
-    private String getFirstName() {
+    public String getFirstName() {
         return this.firstName;
     }
 

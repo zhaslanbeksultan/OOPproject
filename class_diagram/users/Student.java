@@ -1,13 +1,15 @@
 package users;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 
+import education.Courses;
 import education.Lesson;
 import education.Mark;
 import enums.*;
 import userCapabilities.*;
-public class Student extends User implements CanBorrowBook, Educationable, Administrationable {
+public class Student extends User implements CanBorrowBook, Educationable, Administrationable, Serializable {
     private double gpa;
     private int studyYear;
     private Faculty faculty;
@@ -15,6 +17,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     private Vector coursesTaught;
     private String major;    
     private Organizations organizations;
+    private HashMap<Lesson, Mark> marks;
 
     public Student(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
@@ -201,5 +204,23 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 >>>>>>> b64bc34648dab6a6511b649bb603b9d8687c9212
 	}
     
+	
+	 public HashMap<Lesson, Mark> getMarks() {
+	        return getMarks();
+	    }
+
+	    public void addMark(Lesson lesson, Mark mark) {
+			marks.put(lesson, mark);
+	    }
+		@Override
+		public boolean dropDiscipline(Courses discipline) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+		@Override
+		public boolean addDiscipline(Courses discipline) {
+			// TODO Auto-generated method stub
+			return false;
+		}
     
 }

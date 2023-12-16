@@ -108,6 +108,11 @@ public class Data {
 	public void addStudent(Student s) {
 		students.add(s);
 	}
+
+	public void addCourse(Course course) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

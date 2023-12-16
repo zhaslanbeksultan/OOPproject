@@ -1,13 +1,20 @@
 package education;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Vector;
+
+import common.Data;
 import enums.Faculty;
 import enums.DisciplineType;
 
-public class Specialty implements Comparable<Specialty> {
+public class Specialty implements Comparable<Specialty>, Serializable {
 
-    private String specialtyId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String specialtyId;
     private String specialtyName;
     private Vector<Course> majorCourses;
     private Vector<Course> minorCourses;
@@ -95,7 +102,7 @@ public class Specialty implements Comparable<Specialty> {
                 throw new IllegalArgumentException("Unsupported discipline type");
         }
         
-     //   Data.getInstance().addCourse(course);
+     Data.getInstance().addCourse(course);
     }
     @Override
     public int compareTo(Specialty other) {
@@ -114,4 +121,5 @@ public class Specialty implements Comparable<Specialty> {
     public int hashCode() {
         return Objects.hash(specialtyId);
     }
+    
 }

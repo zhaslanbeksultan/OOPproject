@@ -1,19 +1,21 @@
 package education;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
-
 import enums.WeekDays;
-import userCapabilities.Educationable;
-import education.Course;
-import education.Mark;
+import users.Student;
 import users.Teacher;
+
+import java.io.Serializable;
+
 import enums.DisciplineType;
 
-public class Lesson implements Educationable {
+public class Lesson implements Serializable {
 
-    private int lessonId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int lessonId;
+    private String lessonName;
     private Teacher instructor;
     private DisciplineType lessonType;
     private WeekDays lessonTime;
@@ -21,9 +23,10 @@ public class Lesson implements Educationable {
     private Course course;
     private Mark mark;
 
-    public Lesson(int lessonId, Teacher instructor, DisciplineType lessonType, WeekDays lessonTime,
-            String room, Course course) {
+    public Lesson(int lessonId, String lessonName, Teacher instructor, DisciplineType lessonType, WeekDays lessonTime,
+                  String room, Course course) {
         this.lessonId = lessonId;
+        this.lessonName = lessonName;
         this.instructor = instructor;
         this.lessonType = lessonType;
         this.lessonTime = lessonTime;
@@ -35,20 +38,28 @@ public class Lesson implements Educationable {
         return lessonId;
     }
 
-    public Teacher getInstructor() {
-        return instructor;
+    public String getLessonName() {
+        return lessonName;
     }
 
-    public DisciplineType getLessonType() {
-        return lessonType;
+    public void setLessonName(String lessonName) {
+        this.lessonName = lessonName;
     }
 
     public WeekDays getLessonTime() {
         return lessonTime;
     }
 
+    public void setLessonTime(WeekDays lessonTime) {
+        this.lessonTime = lessonTime;
+    }
+
     public String getRoom() {
         return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
     }
 
     public Course getCourse() {
@@ -62,49 +73,12 @@ public class Lesson implements Educationable {
     public void setMark(Mark mark) {
         this.mark = mark;
     }
-
-    @Override
-    public HashMap<Lesson, Integer> viewAttestation() {
-        return new HashMap<>();
+    
+    public void registerStudent(Student student, int mark) {
+        Mark studentMark = new Mark();
+        WeekDays lessonTime = getLessonTime();
+        studentMark.addLessonMark(this, mark, lessonTime);
+        student.addMark(this, studentMark);
     }
 
-    @Override
-    public Vector<String> viewDownloadedFiles() {
-        return new Vector<>();
-    }
-
-    @Override
-    public HashMap<Lesson, WeekDays> viewLessonSchedule() {
-        return new HashMap<>();
-    }
-
-    @Override
-    public HashMap<Teacher, WeekDays> viewOfficeHourSchedule() {
-        return new HashMap<>();
-    }
-
-    @Override
-    public HashMap<String, Vector<Mark>> viewMarks() {
-        return new HashMap<>();
-    }
-
-    @Override
-    public String getReport() {
-        return "";
-    }
-
-	public static int getDisciplineCredits1(Courses discipline) {
-		return 0;
-	}
-
-	public static boolean checkMajorDisciplineCompatibility(String discipline) {
-		return false;
-	}
-
-
-	public static int getDisciplineCredits(Courses discipline) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }
-

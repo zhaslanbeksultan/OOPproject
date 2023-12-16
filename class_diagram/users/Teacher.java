@@ -1,136 +1,96 @@
-import Vector;
+/*import Vector;
 import education.Course;
 
 package users;
 
 
-/**
-* @generated
-*/
 public class Teacher extends TechSupportSpecialistUserEmployee implements CanBorrowBook, Managable {
     
-    /**
-    * @generated
-    */
     private String EducationDegree;
     
-    /**
-    * @generated
-    */
+   
     private Vector ResearchInterests;
     
     
-    /**
-    * @generated
-    */
+  
+    private GraduateStudent graduateStudent;
+
     private GraduateStudent graduateStudent;
     
-    /**
-    * @generated
-    */
-    private GraduateStudent graduateStudent;
-    
-    /**
-    * @generated
-    */
     private Course course;
     
-    /**
-    * @generated
-    */
+   
     private Set<Course> course;
     
     
 
-    /**
-    * @generated
-    */
+    public Teacher(String string, String string2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Teacher(String string, String string2) {
+		// TODO Auto-generated constructor stub
+
     private String getEducationDegree() {
         return this.EducationDegree;
     }
     
-    /**
-    * @generated
-    */
+  
     private String setEducationDegree(String EducationDegree) {
         this.EducationDegree = EducationDegree;
     }
     
     
-    /**
-    * @generated
-    */
+  
     private Vector getResearchInterests() {
         return this.ResearchInterests;
     }
-    
-    /**
-    * @generated
-    */
+ 
     private Vector setResearchInterests(Vector ResearchInterests) {
         this.ResearchInterests = ResearchInterests;
     }
     
     
-    
-    /**
-    * @generated
-    */
+  
     public GraduateStudent getGraduateStudent() {
         return this.graduateStudent;
     }
     
-    /**
-    * @generated
-    */
+   
     public GraduateStudent setGraduateStudent(GraduateStudent graduateStudent) {
         this.graduateStudent = graduateStudent;
     }
     
     
-    /**
-    * @generated
-    */
+  
     public GraduateStudent getGraduateStudent() {
         return this.graduateStudent;
     }
     
-    /**
-    * @generated
-    */
+  
     public GraduateStudent setGraduateStudent(GraduateStudent graduateStudent) {
         this.graduateStudent = graduateStudent;
     }
     
     
-    /**
-    * @generated
-    */
+    
     public Course getCourse() {
         return this.course;
     }
     
-    /**
-    * @generated
-    */
+    
     public Course setCourse(Course course) {
         this.course = course;
     }
     
-    
-    /**
-    * @generated
-    */
+  
     public Set<Course> getCourse() {
         if (this.course == null) {
             this.course = new HashSet<Course>();
         }
         return this.course;
     }
-    
-    /**
-    * @generated
-    */
+  
     public Set<Course> setCourse(Course course) {
         this.course = course;
     }
@@ -139,62 +99,113 @@ public class Teacher extends TechSupportSpecialistUserEmployee implements CanBor
     
 
     //                          Operations                                  
-    
-    /**
-    * @generated
-    */
+  
     public String sendComplaintToDean() {
         //TODO
         return "";
     }
     
-    /**
-    * @generated
-    */
+  
     public int enteringGrades() {
         //TODO
         return 0;
     }
     
-    /**
-    * @generated
-    */
+   
     public boolean officeHoursTeaching() {
         //TODO
         return false;
     }
     
-    /**
-    * @generated
-    */
-    public Vector createCourseMaterail() {
-        //TODO
-        return null;
-    }
-    
-    /**
-    * @generated
-    */
-    public double putMark() {
-        //TODO
-        return 0.0;
-    }
-    
-    /**
-    * @generated
-    */
-    public double putAttestation () {
-        //TODO
-        return 0.0;
-    }
-    
-    /**
-    * @generated
-    */
-    public double putFinalScore() {
-        //TODO
-        return 0.0;
-    }
-    
+       
     
 }
+
+*/
+
+package users;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+import education.Course;
+import education.GraduateStudent;
+import education.Lesson;
+import education.Mark;
+import enums.WeekDays;
+import userCapabilities.Managable;
+import users.Student;
+
+public class Teacher implements Managable {
+
+    private Set<Course> courses;
+    private GraduateStudent graduateStudent;
+    private Course course;
+
+    public Teacher(String name, String subject) {
+        super();
+        this.courses = new HashSet<>();
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
+    }
+
+    public GraduateStudent getGraduateStudent() {
+        return graduateStudent;
+    }
+
+    public void setGraduateStudent(GraduateStudent graduateStudent) {
+        this.graduateStudent = graduateStudent;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+	@Override
+	public void viewAcademicStatistics() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void makeOfficeHoursSchedule() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void obtainingProgressStatistics() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void gettingPassingStatistics() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewRegisteredSchedule() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public HashMap<String, HashMap<WeekDays, Teacher>> getLessonSchedule() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
+
