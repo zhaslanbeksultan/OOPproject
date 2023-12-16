@@ -72,5 +72,4 @@ public class Book {
 				+ ", isBorrowed=" + isBorrowed + ", reader=" + reader + "]";
 	}
     
-    
 }

@@ -42,9 +42,35 @@ public class Librarian extends Employee {
 	}
 
 	public void addBook() {
-		System.out.println("----MAIN WINDOW----");
-		System.out.println("Enter Book Name: ");
-		System.out.println("Enter Book Author: ");
+		while(true) {
+			System.out.println("----WINDOW FOR ADDING BOOKS----");
+			System.out.println("Enter '0' to exit or '1' to continiue working.");
+			System.out.println("Enter Book Name: ");
+			String bookName = commonBuffer.readInput(); 
+			System.out.println("Enter Book Author: ");
+			String author = commonBuffer.readInput(); 
+			Book book = new Book(bookName, author);
+			Data.getInstance().addBook(book);
+			System.out.println("Book Successfully Added!");
+			String choice = commonBuffer.readInput(); 
+			if(choice.equals("0"))
+				break;
+		}
 	}
-	public void removeBook() {}
+	public void removeBook() {
+		while(true) {
+			System.out.println("----WINDOW FOR REMOVING BOOKS----");
+			System.out.println("Enter '0' to exit or '1' to continiue working.");
+			System.out.println("Enter Book Name: ");
+			String bookName = commonBuffer.readInput();
+			for(Book book: Data.getInstance().getBooks()) {
+				if(book.getBookName().equals(bookName))
+					Data.getInstance().getBooks().remove(book.getBookId()-1);
+			}
+			System.out.println("Books Successfully Removed From The Library!");
+			String choice = commonBuffer.readInput(); 
+			if(choice.equals("0"))
+				break;
+		}
+	}
 }

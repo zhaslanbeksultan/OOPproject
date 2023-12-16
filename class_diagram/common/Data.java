@@ -51,7 +51,7 @@ public class Data {
 		return books;
 	}
 
-	public void addBooks(Book book) {
+	public void addBook(Book book) {
 		this.books.add(book);
 	}
 

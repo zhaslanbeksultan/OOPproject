@@ -1,128 +1,3 @@
-/*import Vector;
-import education.Course;
-
-package users;
-
-
-public class Teacher extends TechSupportSpecialistUserEmployee implements CanBorrowBook, Managable {
-    
-    private String EducationDegree;
-    
-   
-    private Vector ResearchInterests;
-    
-    
-  
-    private GraduateStudent graduateStudent;
-
-    private GraduateStudent graduateStudent;
-    
-    private Course course;
-    
-   
-    private Set<Course> course;
-    
-    
-
-    public Teacher(String string, String string2) {
-		// TODO Auto-generated constructor stub
-	}
-
-	public Teacher(String string, String string2) {
-		// TODO Auto-generated constructor stub
-
-    private String getEducationDegree() {
-        return this.EducationDegree;
-    }
-    
-  
-    private String setEducationDegree(String EducationDegree) {
-        this.EducationDegree = EducationDegree;
-    }
-    
-    
-  
-    private Vector getResearchInterests() {
-        return this.ResearchInterests;
-    }
- 
-    private Vector setResearchInterests(Vector ResearchInterests) {
-        this.ResearchInterests = ResearchInterests;
-    }
-    
-    
-  
-    public GraduateStudent getGraduateStudent() {
-        return this.graduateStudent;
-    }
-    
-   
-    public GraduateStudent setGraduateStudent(GraduateStudent graduateStudent) {
-        this.graduateStudent = graduateStudent;
-    }
-    
-    
-  
-    public GraduateStudent getGraduateStudent() {
-        return this.graduateStudent;
-    }
-    
-  
-    public GraduateStudent setGraduateStudent(GraduateStudent graduateStudent) {
-        this.graduateStudent = graduateStudent;
-    }
-    
-    
-    
-    public Course getCourse() {
-        return this.course;
-    }
-    
-    
-    public Course setCourse(Course course) {
-        this.course = course;
-    }
-    
-  
-    public Set<Course> getCourse() {
-        if (this.course == null) {
-            this.course = new HashSet<Course>();
-        }
-        return this.course;
-    }
-  
-    public Set<Course> setCourse(Course course) {
-        this.course = course;
-    }
-    
-    
-    
-
-    //                          Operations                                  
-  
-    public String sendComplaintToDean() {
-        //TODO
-        return "";
-    }
-    
-  
-    public int enteringGrades() {
-        //TODO
-        return 0;
-    }
-    
-   
-    public boolean officeHoursTeaching() {
-        //TODO
-        return false;
-    }
-    
-       
-    
-}
-
-*/
-
 package users;
 
 import java.util.Date;
@@ -130,11 +5,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import common.Data;
 import education.*;
 import enums.*;
 import userCapabilities.*;
 
-public class Teacher implements Managable,CanBorrowBook {
+public class Teacher extends Employee implements Managable,CanBorrowBook {
 
     private Set<Course> courses;
     private GraduateStudent graduateStudent;
@@ -206,27 +82,26 @@ public class Teacher implements Managable,CanBorrowBook {
 	}
 
 	@Override
-	public void borrowBook() {
-		
-		
+	public void borrowBook(String bookName) {
+		if(Book.isBookAvailable(bookName)) {
+			for(Book book: Data.getInstance().getBooks()) {
+				if(book.getBookName().equals(bookName)) {
+					book.setBorrowed(true);
+					book.setReader(this);
+				}
+			}
+		}
 	}
 
-	@Override
-	public boolean returnBook() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
-	public Date getBorrowedDate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Date getMustReturnDate() {
-		// TODO Auto-generated method stub
-		return null;
+	public void returnBook(String bookName) {
+		for(Book book: Data.getInstance().getBooks()) {
+			if(book.getReader().getUsername().equals(this.getUsername()) && book.getBookName().equals(bookName)) {
+				book.setBorrowed(false);
+				book.setReader(null);
+			}
+		}
 	}
 }
 
