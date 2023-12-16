@@ -1,6 +1,8 @@
 package users;
 
 import java.util.Date;
+import java.util.HashMap;
+
 import common.*;
 import java.util.Vector;
 import java.text.ParseException;
@@ -212,7 +214,55 @@ public abstract class User {
         return "";
     }
 
-    abstract public void viewNews();
+    public void viewNews() {
+    	System.out.println("Enter '0' to exit.");
+    	int look = -1;
+    	String choose = "";
+    	while(!choose.equals("0")) {
+    		System.out.println("----WINDOW FOLLOW THE NEWS----");
+	    	System.out.println("'Comment' or 'Read', then Enter Post Id");
+	    	if(this instanceof Student) {
+		    	for(News post: Data.getInstance().getNews()) {
+		    		if(post.getRecipients().equals("Students"))
+		    			System.out.println(post);
+		
+		    	}
+	    	}
+	    	if(this instanceof Employee) {
+		    	for(News post: Data.getInstance().getNews()) {
+		    		if(post.getRecipients().equals("Employees"))
+		    			System.out.println(post);
+		
+		    	}
+	    	}
+	    	choose = commonBuffer.readInput();
+	    	if(choose.equals("0")) break;
+	    	else if(choose.equals("Comment")) {
+		    		System.out.println("Enter Post ID: ");
+		    		look = Integer.parseInt(commonBuffer.readInput());
+		    		System.out.println("Write a Comment");
+		    		String comment = commonBuffer.readInput();
+		    		Data.getInstance().getNews().get(look-1).setNewsComments(this.getUsername(), comment);
+	    	}
+	    	else if(choose.equals("Read")) {
+	        	System.out.println("Enter '0' to exit.");
+	    		System.out.println("Enter Post ID: ");
+	    		look = Integer.parseInt(commonBuffer.readInput());
+	        	System.out.println("----WINDOW READ PUBLICATION----");
+		    	System.out.println(Data.getInstance().getNews().get(look-1));
+		    	System.out.println("Text: " + Data.getInstance().getNews().get(look-1).getNewsWording());
+		    	System.out.println("Comments: ");
+		    	for(HashMap.Entry<String,String> comment: Data.getInstance().getNews().get(look-1).getNewsComments().entrySet()) {
+		    		System.out.println(comment.getKey() + ": " + comment.getValue());
+		    	}
+		    	while(look!=0) {
+		    		System.out.println("Enter '0' to exit.");
+		    		look = Integer.parseInt(commonBuffer.readInput());
+		    	}
+	    	}
+	    	else System.out.println("Enter only 'Comment', 'Read' or '0'!");
+	    	}
+    }
 
     public String getUserInformation() {
         return toString();

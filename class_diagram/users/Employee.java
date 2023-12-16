@@ -1,6 +1,10 @@
 package users;
 
 import java.util.Date;
+import java.util.HashMap;
+
+import common.Data;
+import common.commonBuffer;
 import communication.*;
 import enums.*;
 
@@ -45,6 +49,7 @@ public class Employee extends User {
     public void setMessage(Message message) {
         this.message = message;
     }
+    
 
     public String getEmployeeId() {
         return "";

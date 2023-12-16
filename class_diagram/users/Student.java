@@ -97,48 +97,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	@Override
-    public void viewNews() {
-    	System.out.println("Enter '0' to exit.");
-    	int look = -1;
-    	String choose = "";
-    	while(!choose.equals("0")) {
-    		System.out.println("----WINDOW FOLLOW THE NEWS----");
-	    	System.out.println("'Comment' or 'Read', then Enter Post Id");
-	    	for(News post: Data.getInstance().getNews()) {
-	    		if(post.getRecipients().equals("Students"))
-	    			System.out.println(post);
-	
-	    	}
-	    	choose = commonBuffer.readInput();
-	    	if(choose.equals("0")) break;
-	    	else if(choose.equals("Comment")) {
-		    		System.out.println("Enter Post ID: ");
-		    		look = Integer.parseInt(commonBuffer.readInput());
-		    		System.out.println("Write a Comment");
-		    		String comment = commonBuffer.readInput();
-		    		Data.getInstance().getNews().get(look-1).setNewsComments(this.getUsername(), comment);
-	    	}
-	    	else if(choose.equals("Read")) {
-	        	System.out.println("Enter '0' to exit.");
-	    		System.out.println("Enter Post ID: ");
-	    		look = Integer.parseInt(commonBuffer.readInput());
-	        	System.out.println("----WINDOW READ PUBLICATION----");
-		    	System.out.println(Data.getInstance().getNews().get(look-1));
-		    	System.out.println("Text: " + Data.getInstance().getNews().get(look-1).getNewsWording());
-		    	System.out.println("Comments: ");
-		    	for(HashMap.Entry<String,String> comment: Data.getInstance().getNews().get(look-1).getNewsComments().entrySet()) {
-		    		System.out.println(comment.getKey() + ": " + comment.getValue());
-		    	}
-		    	while(look!=0) {
-		    		System.out.println("Enter '0' to exit.");
-		    		look = Integer.parseInt(commonBuffer.readInput());
-		    	}
-	    	}
-	    	else System.out.println("Enter only 'Comment', 'Read' or '0'!");
-	    	}
-    }
+
 	@Override
 	public boolean disciplineRegistration(String discipline) {
 		// TODO Auto-generated method stub
