@@ -82,7 +82,7 @@ public abstract class User {
         this.id = id;
     }
 
-    private String getUsername() {
+    public String getUsername() {
         return this.username;
     }
 
@@ -212,42 +212,7 @@ public abstract class User {
         return "";
     }
 
-    public void viewNews() { //will be abstract and child classes will implement
-    	System.out.println("Enter '0' to exit.");
-    	int look = -1;
-    	String choose = "";
-    	while(!choose.equals("0")) {
-    		System.out.println("----WINDOW FOLLOW THE NEWS----");
-	    	System.out.println("'Comment' or 'Read', then Enter Post Id");
-	    	for(News post: Data.getInstance().getNews()) {
-	    		if(username.equals(post.getRecipient()))
-	    			System.out.println(post);
-	
-	    	}
-	    	choose = commonBuffer.readInput();
-	    	if(choose.equals("0")) break;
-	    	else if(choose.equals("Answer")) {
-		    		System.out.println("Enter Message ID: ");
-		    		look = Integer.parseInt(commonBuffer.readInput());
-		    		sendMessage(look-1);
-	    	}
-	    	else if(choose.equals("Read")) {
-	        	System.out.println("Enter '0' to exit.");
-	    		System.out.println("Enter Message ID: ");
-	    		look = Integer.parseInt(commonBuffer.readInput());
-	        	System.out.println("----WINDOW READ MESSAGE----");
-	        	if(Data.getInstance().getMessages().get(look-1).getAnsweredMessage()!= -1)
-	        		System.out.println("Answered Message Id: " + Data.getInstance().getMessages().get(look-1).getAnsweredMessage() + 1);
-		    	System.out.println(Data.getInstance().getMessages().get(look-1));
-		    	System.out.println("Text: " + Data.getInstance().getMessages().get(look-1).getMessageWording());
-		    	while(look!=0) {
-		    		System.out.println("Enter '0' to exit.");
-		    		look = Integer.parseInt(commonBuffer.readInput());
-		    	}
-	    	}
-	    	else System.out.println("Enter only 'Answer', 'Read' or '0'!");
-	    	}
-    }
+    abstract public void viewNews();
 
     public String getUserInformation() {
         return toString();
@@ -286,6 +251,7 @@ public abstract class User {
 	        		System.out.println("Answered Message Id: " + Data.getInstance().getMessages().get(look-1).getAnsweredMessage() + 1);
 		    	System.out.println(Data.getInstance().getMessages().get(look-1));
 		    	System.out.println("Text: " + Data.getInstance().getMessages().get(look-1).getMessageWording());
+		    	Data.getInstance().getMessages().get(look-1).setStatus(MessageStatus.READ);
 		    	while(look!=0) {
 		    		System.out.println("Enter '0' to exit.");
 		    		look = Integer.parseInt(commonBuffer.readInput());

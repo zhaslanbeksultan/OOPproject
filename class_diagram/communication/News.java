@@ -3,20 +3,19 @@ package communication;
 import java.util.Date;
 import java.util.Vector;
 import users.User;
+import java.util.HashMap;
 
 public class News {
 	private static int cnt = 1;
 	private int newsId;
 	private String recipients;
-    private String newsType;
     private String newsTitle;
     private String newsWording;
     private Date postSentDate;
-    private Vector<String> newsComments;
+    private HashMap<String,String> newsComments;
 
     public News(String recipients, String newsType, String newsTitle, String newsWording) {
     	this.recipients = recipients;
-		this.newsType = newsType;
 		this.newsTitle = newsTitle;
 		this.newsWording = newsWording;
     	this.newsId = cnt++;
@@ -32,14 +31,6 @@ public class News {
 	public void setRecipients(String recipients) {
 		this.recipients = recipients;
 	}
-
-	public String getNewsType() {
-        return this.newsType;
-    }
-
-    public void setNewsType(String newsType) {
-        this.newsType = newsType;
-    }
 
     public String getNewsTitle() {
         return this.newsTitle;
@@ -57,12 +48,12 @@ public class News {
         this.newsWording = newsWording;
     }
 
-    public Vector<String> getNewsComments() {
+    public HashMap<String,String> getNewsComments() {
         return this.newsComments;
     }
 
-    public void setNewsComments(Vector<String> newsComments) {
-        this.newsComments = newsComments;
+    public void setNewsComments(String username, String comment) {
+        this.newsComments.put(username, comment);
     }
 
     public boolean viewNews() {
@@ -75,7 +66,7 @@ public class News {
 
 	@Override
 	public String toString() {
-		return "Post Id=" + newsId + ", newsType=" + newsType + ", newsTitle="
+		return "Post Id=" + newsId + ", newsTitle="
 				+ newsTitle + ", postSentDate=" + postSentDate;
 	}
     

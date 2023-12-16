@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 
-import education.Courses;
-import education.Lesson;
-import education.Mark;
+import common.*;
+import communication.*;
+import education.*;
 import enums.*;
 import userCapabilities.*;
 public class Student extends User implements CanBorrowBook, Educationable, Administrationable, Serializable {
@@ -42,23 +42,12 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     private void setStudyYear(Integer studyYear) {
         this.studyYear = studyYear;
     }
-<<<<<<< HEAD
-    
-    
-    /**
-    * @generated
-    */
+
     public Faculty getFaculty() {
         return this.faculty;
     }
-    
-    /**
-    * @generated
-    */
-    private Faculty setFaculty(Faculty faculty) {
-=======
+
     private void setFaculty(Faculty faculty) {
->>>>>>> b64bc34648dab6a6511b649bb603b9d8687c9212
         this.faculty = faculty;
     }
     private Date getEnrollmentDate() {
@@ -95,10 +84,6 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
         //TODO
         return 0.0;
     }
-    public String getFaculty() {
-        //TODO
-        return "";
-    }
     public String getReport() {
         //TODO
         return "";
@@ -107,12 +92,53 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
         //TODO
         return null;
     }
-<<<<<<< HEAD
 
 	public int getCourse() {
 		// TODO Auto-generated method stub
 		return 0;
-=======
+	}
+	
+	@Override
+    public void viewNews() {
+    	System.out.println("Enter '0' to exit.");
+    	int look = -1;
+    	String choose = "";
+    	while(!choose.equals("0")) {
+    		System.out.println("----WINDOW FOLLOW THE NEWS----");
+	    	System.out.println("'Comment' or 'Read', then Enter Post Id");
+	    	for(News post: Data.getInstance().getNews()) {
+	    		if(post.getRecipients().equals("Students"))
+	    			System.out.println(post);
+	
+	    	}
+	    	choose = commonBuffer.readInput();
+	    	if(choose.equals("0")) break;
+	    	else if(choose.equals("Comment")) {
+		    		System.out.println("Enter Post ID: ");
+		    		look = Integer.parseInt(commonBuffer.readInput());
+		    		System.out.println("Write a Comment");
+		    		String comment = commonBuffer.readInput();
+		    		Data.getInstance().getNews().get(look-1).setNewsComments(this.getUsername(), comment);
+	    	}
+	    	else if(choose.equals("Read")) {
+	        	System.out.println("Enter '0' to exit.");
+	    		System.out.println("Enter Post ID: ");
+	    		look = Integer.parseInt(commonBuffer.readInput());
+	        	System.out.println("----WINDOW READ PUBLICATION----");
+		    	System.out.println(Data.getInstance().getNews().get(look-1));
+		    	System.out.println("Text: " + Data.getInstance().getNews().get(look-1).getNewsWording());
+		    	System.out.println("Comments: ");
+		    	for(HashMap.Entry<String,String> comment: Data.getInstance().getNews().get(look-1).getNewsComments().entrySet()) {
+		    		System.out.println(comment.getKey() + ": " + comment.getValue());
+		    	}
+		    	while(look!=0) {
+		    		System.out.println("Enter '0' to exit.");
+		    		look = Integer.parseInt(commonBuffer.readInput());
+		    	}
+	    	}
+	    	else System.out.println("Enter only 'Comment', 'Read' or '0'!");
+	    	}
+    }
 	@Override
 	public boolean disciplineRegistration(String discipline) {
 		// TODO Auto-generated method stub
@@ -201,7 +227,6 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	public Date getMustReturnDate() {
 		// TODO Auto-generated method stub
 		return null;
->>>>>>> b64bc34648dab6a6511b649bb603b9d8687c9212
 	}
     
 	

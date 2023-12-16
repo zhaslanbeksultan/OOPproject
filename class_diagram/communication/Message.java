@@ -1,6 +1,6 @@
 package communication;
 import java.util.Date;
-import enums.MessageType;
+import enums.*;
 import users.Employee;
 
 
@@ -13,6 +13,7 @@ public class Message {
     private Date messageSentDate;
     private String messageWording;
     private int answeredMessage = -1;
+    private MessageStatus status;
     
     public Message(String theme, String sender, String recipient, String messageWording) {
     	this.messageId = cnt++;
@@ -20,6 +21,7 @@ public class Message {
 		this.sender = sender;
 		this.recipient = recipient;
 		this.messageWording = messageWording;
+		this.status = MessageStatus.UNREAD;
 		messageSentDate = new Date();
 	}
 
@@ -30,7 +32,16 @@ public class Message {
 		this.sender = sender;
 		this.recipient = recipient;
 		this.messageWording = messageWording;
+		this.status = MessageStatus.UNREAD;
 		messageSentDate = new Date();
+	}
+
+	public MessageStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(MessageStatus status) {
+		this.status = status;
 	}
 
 	public int getAnsweredMessage() {
@@ -97,7 +108,7 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message Id: " + messageId + ", Theme = " + theme + ", Sender = " + sender
+		return "Message Id: " + messageId + ", Theme = " + theme + ", Sender = " + sender + ", Status: " + status
 				+ ", Sent Date: " + messageSentDate;
 	}
     
