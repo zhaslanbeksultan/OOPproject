@@ -125,19 +125,16 @@ public class Teacher extends TechSupportSpecialistUserEmployee implements CanBor
 
 package users;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import education.Course;
-import education.GraduateStudent;
-import education.Lesson;
-import education.Mark;
-import enums.WeekDays;
-import userCapabilities.Managable;
-import users.Student;
+import education.*;
+import enums.*;
+import userCapabilities.*;
 
-public class Teacher implements Managable {
+public class Teacher implements Managable,CanBorrowBook {
 
     private Set<Course> courses;
     private GraduateStudent graduateStudent;
@@ -204,6 +201,30 @@ public class Teacher implements Managable {
 
 	@Override
 	public HashMap<String, HashMap<WeekDays, Teacher>> getLessonSchedule() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void borrowBook() {
+		
+		
+	}
+
+	@Override
+	public boolean returnBook() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Date getBorrowedDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Date getMustReturnDate() {
 		// TODO Auto-generated method stub
 		return null;
 	}

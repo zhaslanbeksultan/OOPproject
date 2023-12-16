@@ -3,11 +3,7 @@ package userCapabilities;
 import java.util.Date;
 
 public interface CanBorrowBook {
-    void borrowBook();
+    void borrowBook(String bookName);
 
-    boolean returnBook();
-
-    Date getBorrowedDate();
-
-    Date getMustReturnDate();
+    void returnBook(String bookName);
 }

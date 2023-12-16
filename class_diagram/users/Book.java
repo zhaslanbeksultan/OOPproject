@@ -1,125 +1,76 @@
 package users;
 
-/**
-* @generated
-*/
-public class Book {
-    
-    /**
-    * @generated
-    */
-    private String name;
-    
-    /**
-    * @generated
-    */
-    private String author;
-    
-    /**
-    * @generated
-    */
-    private int amount;
-    
-    /**
-    * @generated
-    */
-    private String bookId;
-    
-    
-    /**
-    * @generated
-    */
-    private Library library;
-    
-    
+import common.Data;
+import userCapabilities.*;
 
-    /**
-    * @generated
-    */
-    private String getName() {
-        return this.name;
+public class Book {
+
+    private String bookName;
+    private String author;
+    private int bookId;
+    private int cnt = 1;
+    private boolean isBorrowed;
+    private User reader;
+    
+    public Book(String bookName, String author) {
+		this.bookName = bookName;
+		this.author = author;
+		this.bookId = cnt++;
+		this.isBorrowed = false;
+	}
+
+    public String getBookName() {
+        return this.bookName;
     }
-    
-    /**
-    * @generated
-    */
-    private String setName(String name) {
-        this.name = name;
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private String getAuthor() {
+
+    public String getAuthor() {
         return this.author;
     }
-    
-    /**
-    * @generated
-    */
-    private String setAuthor(String author) {
+
+    public void setAuthor(String author) {
         this.author = author;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private int getAmount() {
-        return this.amount;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setAmount(Integer amount) {
-        this.amount = amount;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private String getBookId() {
+
+    public int getBookId() {
         return this.bookId;
     }
-    
-    /**
-    * @generated
-    */
-    private String setBookId(String bookId) {
+
+    public void setBookId(int bookId) {
         this.bookId = bookId;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Library getLibrary() {
-        return this.library;
-    }
-    
-    /**
-    * @generated
-    */
-    public Library setLibrary(Library library) {
-        this.library = library;
-    }
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public boolean isAvailable() {
-        //TODO
-        return false;
+
+    public boolean isBorrowed() {
+		return isBorrowed;
+	}
+
+	public void setBorrowed(boolean isBorrowed) {
+		this.isBorrowed = isBorrowed;
+	}
+
+	public static boolean isBookAvailable(String bookName) {
+		for(Book book: Data.getInstance().getBooks())
+			if(book.getBookName().equals(bookName) || !book.isBorrowed) return true;
+		return false;
     }
+
+	public User getReader() {
+		return reader;
+	}
+
+	public void setReader(User reader) {
+		this.reader = reader;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [bookName=" + bookName + ", author=" + author + ", bookId=" + bookId + ", cnt=" + cnt
+				+ ", isBorrowed=" + isBorrowed + ", reader=" + reader + "]";
+	}
     
     
 }

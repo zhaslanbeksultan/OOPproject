@@ -177,10 +177,10 @@ public abstract class User {
     }
 
     public void editPersonalData() {
-    	String choose = commonBuffer.readInput();
     	//Отдельный для Админа и Юзера
     	if(this instanceof Admin) {
     		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship\n10.Set Id\n11.Set Username\n12.Set Email");
+    		String choose = commonBuffer.readInput();
     		if(choose=="1") {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
     		else if(choose=="2") {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
     		else if(choose=="3") {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
@@ -197,6 +197,7 @@ public abstract class User {
     	}
     	if(this instanceof User) {
     		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship");
+    		String choose = commonBuffer.readInput();
     		if(choose=="1") {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
     		else if(choose=="2") {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
     		else if(choose=="3") {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
@@ -268,9 +269,7 @@ public abstract class User {
         return toString();
     }
 
-    public void showMenu() {
-        
-    }
+    public abstract void showMenu();
     
     public void showMessages() {
 

@@ -162,33 +162,28 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 
 
 	@Override
-	public void borrowBook() {
-		// TODO Auto-generated method stub
-		
+	public void borrowBook(String bookName) {
+		if(Book.isBookAvailable(bookName)) {
+			for(Book book: Data.getInstance().getBooks()) {
+				if(book.getBookName().equals(bookName)) {
+					book.setBorrowed(true);
+					book.setReader(this);
+				}
+			}
+		}
 	}
 
 
 	@Override
-	public boolean returnBook() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	@Override
-	public Date getBorrowedDate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public Date getMustReturnDate() {
-		// TODO Auto-generated method stub
-		return null;
+	public void returnBook(String bookName) {
+		for(Book book: Data.getInstance().getBooks()) {
+			if(book.getReader().getUsername().equals(this.getUsername()) && book.getBookName().equals(bookName)) {
+				book.setBorrowed(false);
+				book.setReader(null);
+			}
+		}
 	}
     
-	
 	 public HashMap<Lesson, Mark> getMarks() {
 	        return getMarks();
 	    }

@@ -15,6 +15,7 @@ public class Data {
     private Vector<Researcher> researchers;
     private Vector<Course> courses;
     private Vector<Lesson> lessons;
+    private Vector<Book> books;
     private Vector<Specialty> specialities;
     private Vector<Message> messages;
     private HashMap<String, String> logs;
@@ -44,6 +45,14 @@ public class Data {
     }
     public Vector<Message> getMessages() {
 		return messages;
+	}
+
+	public Vector<Book> getBooks() {
+		return books;
+	}
+
+	public void addBooks(Book book) {
+		this.books.add(book);
 	}
 
 	public void addMessage(Message message) {
