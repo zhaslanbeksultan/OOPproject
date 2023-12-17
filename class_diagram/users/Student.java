@@ -33,6 +33,9 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 		this.major = major;
 		this.organizations = organizations;
 	}
+    public Student() {
+    	
+    }
 	private void setGpa(double gpa) {
         this.gpa = gpa;
     }
@@ -98,70 +101,69 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 		return 0;
 	}
 
-	@Override
 	public boolean disciplineRegistration(String discipline) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 
-	@Override
+
 	public boolean addDiscipline(String discipline) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 
-	@Override
+	
 	public boolean dropDiscipline(String discipline) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 
-	@Override
+	
 	public boolean disciplineRegistration(String discipline, boolean isRegistrationAllowed) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 
-	@Override
+	
 	public HashMap<Lesson, Integer> viewAttestation() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	@Override
+	
 	public Vector<String> viewDownloadedFiles() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	@Override
+	
 	public HashMap<Lesson, WeekDays> viewLessonSchedule() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	@Override
+	
 	public HashMap<Teacher, WeekDays> viewOfficeHourSchedule() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	@Override
+	
 	public HashMap<String, Vector<Mark>> viewMarks() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
-	@Override
+	
 	public void borrowBook(String bookName) {
 		if(Book.isBookAvailable(bookName)) {
 			for(Book book: Data.getInstance().getBooks()) {
@@ -174,7 +176,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	}
 
 
-	@Override
+	
 	public void returnBook(String bookName) {
 		for(Book book: Data.getInstance().getBooks()) {
 			if(book.getReader().getUsername().equals(this.getUsername()) && book.getBookName().equals(bookName)) {
@@ -191,12 +193,12 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	    public void addMark(Lesson lesson, Mark mark) {
 			marks.put(lesson, mark);
 	    }
-		@Override
+		
 		public boolean dropDiscipline(Courses discipline) {
 			// TODO Auto-generated method stub
 			return false;
 		}
-		@Override
+		
 		public boolean addDiscipline(Courses discipline) {
 			// TODO Auto-generated method stub
 			return false;

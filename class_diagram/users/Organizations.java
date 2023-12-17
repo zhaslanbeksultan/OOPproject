@@ -1,6 +1,7 @@
 package users;
 
-import Vector;
+import java.util.HashMap;
+import java.util.Vector;
 
 /**
 * @generated
@@ -31,7 +32,6 @@ public class Organizations {
     /**
     * @generated
     */
-    private Student student;
     
     
 
@@ -45,7 +45,7 @@ public class Organizations {
     /**
     * @generated
     */
-    private String setOrganizationName(String organizationName) {
+    private void setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
     }
     
@@ -60,7 +60,7 @@ public class Organizations {
     /**
     * @generated
     */
-    private Vector setMembers(Vector members) {
+    private void setMembers(Vector members) {
         this.members = members;
     }
     
@@ -75,7 +75,7 @@ public class Organizations {
     /**
     * @generated
     */
-    private Student setHead(Student head) {
+    private void setHead(Student head) {
         this.head = head;
     }
     
@@ -91,24 +91,12 @@ public class Organizations {
     /**
     * @generated
     */
-    public Student setStudent(Student student) {
+    public void setStudent(Student student) {
         this.student = student;
     }
     
     
-    /**
-    * @generated
-    */
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
-        this.student = student;
-    }
+ 
     
     
     

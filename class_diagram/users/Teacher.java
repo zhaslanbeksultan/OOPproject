@@ -20,7 +20,9 @@ public class Teacher extends Employee implements Managable,CanBorrowBook {
         super();
         this.courses = new HashSet<>();
     }
-
+    public Teacher() {
+    	
+    }
     public Set<Course> getCourses() {
         return courses;
     }

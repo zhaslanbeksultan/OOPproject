@@ -1,4 +1,5 @@
 package common;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -7,15 +8,15 @@ import communication.*;
 import userCapabilities.*;
 import education.*;
 
-public class Data {
+public class Data implements Serializable {
 
     private Vector<Student> students;
     private Vector<Teacher> teachers;
+    
     private Vector<News> news;
     private Vector<Researcher> researchers;
     private Vector<Course> courses;
     private Vector<Lesson> lessons;
-    private Vector<Book> books;
     private Vector<Specialty> specialities;
     private Vector<Message> messages;
     private HashMap<String, String> logs;
@@ -45,14 +46,6 @@ public class Data {
     }
     public Vector<Message> getMessages() {
 		return messages;
-	}
-
-	public Vector<Book> getBooks() {
-		return books;
-	}
-
-	public void addBook(Book book) {
-		this.books.add(book);
 	}
 
 	public void addMessage(Message message) {
@@ -121,6 +114,11 @@ public class Data {
 	public void addCourse(Course course) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public Book[] getBooks() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

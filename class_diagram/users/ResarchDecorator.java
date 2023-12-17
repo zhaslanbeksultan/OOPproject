@@ -1,5 +1,7 @@
 package users;
 
+import communication.ResearchProject;
+import userCapabilities.Researcher;
 
 /**
 * @generated
@@ -128,6 +130,24 @@ public class ResarchDecorator implements Researcher {
     public EmployeeResearcher setEmployeeResearcher(EmployeeResearcher employeeResearcher) {
         this.employeeResearcher = employeeResearcher;
     }
+
+	@Override
+	public void writeNewResearch(ResearchProject research) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public double findGIndex(String researcherId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void conductResearch(String researchTopic) {
+		// TODO Auto-generated method stub
+		
+	}
     
     
     

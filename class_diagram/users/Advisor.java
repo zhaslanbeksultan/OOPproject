@@ -1,7 +1,7 @@
 package users;
 
-import Date;
-import Vector;
+import java.util.Date;
+import java.util.Vector;
 
 /**
 * @generated
@@ -19,7 +19,9 @@ public class Advisor extends Teacher {
     private Vector studentsToConsult;
     
     
-    
+    public Advisor() {
+    	
+    }
 
     /**
     * @generated
@@ -31,7 +33,7 @@ public class Advisor extends Teacher {
     /**
     * @generated
     */
-    private String setAreaOfConsulting(String areaOfConsulting) {
+    private void setAreaOfConsulting(String areaOfConsulting) {
         this.areaOfConsulting = areaOfConsulting;
     }
     
@@ -46,7 +48,7 @@ public class Advisor extends Teacher {
     /**
     * @generated
     */
-    private Vector setStudentsToConsult(Vector studentsToConsult) {
+    private void setStudentsToConsult(Vector studentsToConsult) {
         this.studentsToConsult = studentsToConsult;
     }
     

@@ -1,10 +1,12 @@
 package users;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Vector;
 
 import common.Data;
 import common.commonBuffer;
 import communication.News;
+import education.Courses;
 import enums.*;
 import userCapabilities.*;
 
@@ -55,47 +57,47 @@ public class Manager extends Employee implements Managable, Administrationable {
         return false;
     }
 
-	@Override
+	
 	public boolean disciplineRegistration(String discipline) {
 		return false;
 	}
 
-	@Override
+	
 	public boolean addDiscipline(String discipline) {
 		return false;
 	}
 
-	@Override
+	
 	public boolean dropDiscipline(String discipline) {
 		return false;
 	}
 
-	@Override
+	
 	public boolean disciplineRegistration(String discipline, boolean isRegistrationAllowed) {
 		return false;
 	}
 
-	@Override
+	
 	public void viewAcademicStatistics() {
 		
 	}
 
-	@Override
+	
 	public void makeOfficeHoursSchedule() {
 		
 	}
 
-	@Override
+	
 	public void obtainingProgressStatistics() {
 		
 	}
 
-	@Override
+	
 	public void gettingPassingStatistics() {
 		
 	}
 
-	@Override
+	
 	public void viewRegisteredSchedule() {
 		
 	}
@@ -127,6 +129,24 @@ public class Manager extends Employee implements Managable, Administrationable {
 	}
 
 	public String answerToComplaints(String complaint) {
+		return null;
+	}
+
+	
+	public boolean dropDiscipline(Courses discipline) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+	public boolean addDiscipline(Courses discipline) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+	public HashMap<String, HashMap<WeekDays, Teacher>> getLessonSchedule() {
+		// TODO Auto-generated method stub
 		return null;
 	}
     

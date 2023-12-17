@@ -1,6 +1,8 @@
 package users;
 
-import Date;
+import java.util.Date;
+
+import enums.DegreeType;
 
 /**
 * @generated
@@ -25,7 +27,7 @@ public class GraduateStudent extends StudentResearcher {
     /**
     * @generated
     */
-    private  supervisor;
+    private String supervisor;
     
     
     /**
@@ -36,7 +38,6 @@ public class GraduateStudent extends StudentResearcher {
     /**
     * @generated
     */
-    private Teacher teacher;
     
     
 
@@ -50,7 +51,7 @@ public class GraduateStudent extends StudentResearcher {
     /**
     * @generated
     */
-    private Date setGraduatingDate(Date graduatingDate) {
+    private void setGraduatingDate(Date graduatingDate) {
         this.graduatingDate = graduatingDate;
     }
     
@@ -65,7 +66,7 @@ public class GraduateStudent extends StudentResearcher {
     /**
     * @generated
     */
-    private String setDiplomaTytle(String diplomaTytle) {
+    private void setDiplomaTytle(String diplomaTytle) {
         this.diplomaTytle = diplomaTytle;
     }
     
@@ -80,7 +81,7 @@ public class GraduateStudent extends StudentResearcher {
     /**
     * @generated
     */
-    private DegreeType setDegreeType(DegreeType degreeType) {
+    private void setDegreeType(DegreeType degreeType) {
         this.degreeType = degreeType;
     }
     
@@ -88,14 +89,14 @@ public class GraduateStudent extends StudentResearcher {
     /**
     * @generated
     */
-    public  getSupervisor() {
+    public String getSupervisor() {
         return this.supervisor;
     }
     
     /**
     * @generated
     */
-    public  setSupervisor(invalid supervisor) {
+    public void setSupervisor(String supervisor) {
         this.supervisor = supervisor;
     }
     
@@ -111,24 +112,11 @@ public class GraduateStudent extends StudentResearcher {
     /**
     * @generated
     */
-    public Teacher setTeacher(Teacher teacher) {
+    public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
     
-    
-    /**
-    * @generated
-    */
-    public Teacher getTeacher() {
-        return this.teacher;
-    }
-    
-    /**
-    * @generated
-    */
-    public Teacher setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
+  
     
     
     
