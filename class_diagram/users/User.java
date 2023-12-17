@@ -214,6 +214,7 @@ public abstract class User implements Serializable{
 	    		else {System.out.println("The wrong character is entered!");}
 	    	}
 	    }
+    }
 
     public String accesingFeedback() {
         return "";
@@ -233,7 +234,7 @@ public abstract class User implements Serializable{
 		
 		    	}
 	    	}
-	    	if(this instanceof Employee) {
+	    	if(this instanceof EmployeeBase) {
 		    	for(News post: Data.getInstance().getNews()) {
 		    		if(post.getRecipients().equals("Employees"))
 		    			System.out.println(post);

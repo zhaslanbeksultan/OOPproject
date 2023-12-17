@@ -203,5 +203,10 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 			// TODO Auto-generated method stub
 			return false;
 		}
+		@Override
+		public void showMenu() {
+			// TODO Auto-generated method stub
+			
+		}
     
 }

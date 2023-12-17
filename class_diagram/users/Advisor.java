@@ -1,90 +1,57 @@
 package users;
 
 import java.util.Date;
+import java.util.Set;
 import java.util.Vector;
+import education.Course;
+import enums.Gender;
 
-/**
-* @generated
-*/
+
 public class Advisor extends Teacher {
-    
-    /**
-    * @generated
-    */
-    private String areaOfConsulting;
-    
-    /**
-    * @generated
-    */
+
+    public Advisor(String firstName, String lastName, Date birthDay, String id, String username, String password,
+			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
+			String nationality, String citizenship, Set<Course> courses, GraduateStudent graduateStudent,
+			Course course) {
+		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber, pasportNumber,
+				gender, nationality, citizenship, courses, graduateStudent, course);
+	}
+
+	private String areaOfConsulting;
+
     private Vector studentsToConsult;
     
-    
-    public Advisor() {
-    	
-    }
-
-    /**
-    * @generated
-    */
     private String getAreaOfConsulting() {
         return this.areaOfConsulting;
     }
-    
-    /**
-    * @generated
-    */
+
     private void setAreaOfConsulting(String areaOfConsulting) {
         this.areaOfConsulting = areaOfConsulting;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     private Vector getStudentsToConsult() {
         return this.studentsToConsult;
     }
-    
-    /**
-    * @generated
-    */
+
     private void setStudentsToConsult(Vector studentsToConsult) {
         this.studentsToConsult = studentsToConsult;
     }
-    
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
     public String conductСonsultations() {
         //TODO
         return "";
     }
-    
-    /**
-    * @generated
-    */
+
     public boolean isAnyProgressChecking() {
         //TODO
         return false;
     }
-    
-    /**
-    * @generated
-    */
+
     public String updateStudentProgress() {
         //TODO
         return "";
     }
-    
-    /**
-    * @generated
-    */
+
     public Date getAvailableAppointments() {
         //TODO
         return new Date();
