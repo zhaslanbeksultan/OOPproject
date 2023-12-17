@@ -12,7 +12,7 @@ public class Data implements Serializable {
 
     private Vector<Student> students;
     private Vector<Teacher> teachers;
-    
+    private Vector<Book> books;
     private Vector<News> news;
     private Vector<Researcher> researchers;
     private Vector<Course> courses;
@@ -116,9 +116,12 @@ public class Data implements Serializable {
 		
 	}
 
-	public Book[] getBooks() {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector<Book> getBooks() {
+		return books;
+	}
+
+	public void addBook(Book book) {
+		this.books.add(book);
 	}
 	
 	
