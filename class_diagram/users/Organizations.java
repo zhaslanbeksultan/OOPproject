@@ -1,12 +1,13 @@
 package users;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Vector;
 
 /**
 * @generated
 */
-public class Organizations {
+public class Organizations implements Serializable{
     
     /**
     * @generated
