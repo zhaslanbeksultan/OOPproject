@@ -63,6 +63,11 @@ public class News {
     public String respondToNews() {
         return "";
     }
+	 public void viewNewsComments() {
+        for (String comment : this.newsComments) {
+            System.out.println(comment);
+        }
+    }
 
 	@Override
 	public String toString() {
