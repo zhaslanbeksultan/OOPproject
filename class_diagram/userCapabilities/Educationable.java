@@ -12,13 +12,13 @@ public interface Educationable {
 
     HashMap<Lesson, Integer> viewAttestation();
 
-    Vector<String> viewDownloadedFiles();
-
     HashMap<Lesson, WeekDays> viewLessonSchedule();
 
     HashMap<Teacher, WeekDays> viewOfficeHourSchedule();
 
     HashMap<String, Vector<Mark>> viewMarks();
+    
+    void viewExamsSchedule();
 
     String getReport();
 }

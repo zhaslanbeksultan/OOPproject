@@ -8,8 +8,8 @@ import common.commonBuffer;
 import communication.*;
 import enums.*;
 
-public class Employee extends User{
-
+public abstract class Employee extends User{
+	
     private double salary;
     private Date hireDate;
     private String insuranceNumber;
@@ -50,21 +50,11 @@ public class Employee extends User{
         this.message = message;
     }
     
-
-    public String getEmployeeId() {
-        return "";
-    }
     public void sentComplaintMessage() {
        
     }
     public String performInsuranceNumber() {
         return "";
     }
-	@Override
-	public void showMenu() {
-		// TODO Auto-generated method stub
-		
-	}
-    
-    
+     
 }

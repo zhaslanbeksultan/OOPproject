@@ -160,12 +160,6 @@ public class Teacher extends Employee implements Managable,CanBorrowBook {
 	}
 
 	@Override
-	public String getEmployeeId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void sentComplaintMessage() {
 		// TODO Auto-generated method stub
 		

@@ -1,52 +1,41 @@
 package users;
 
-import communication.ResearchProject;
-import userCapabilities.Researcher;
+import java.util.Date;
+import java.util.Vector;
+import communication.*;
+import education.*;
+import enums.*;
+import userCapabilities.*;
 
-/**
-* @generated
-*/
 public class StudentResearcher extends Student implements Researcher {
-    
-    /**
-    * @generated
-    */
+
     private int hindex;
-    
-    
-    /**
-    * @generated
-    */
     private ResarchDecorator resarchDecorator;
     
-    
+    public StudentResearcher(String firstName, String lastName, Date birthDay, String id, String username,
+			String password, String email, Date registrationDate, String phoneNumber, String pasportNumber,
+			Gender gender, String nationality, String citizenship, double gpa, int studyYear, Faculty faculty,
+			Date enrollmentDate, Vector<Course> coursesEnrolled, String major, Vector<Organization> organizations,
+			int hindex, ResarchDecorator resarchDecorator) {
+		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
+				pasportNumber, gender, nationality, citizenship, gpa, studyYear, faculty, enrollmentDate,
+				coursesEnrolled, major, organizations);
+		this.hindex = hindex;
+		this.resarchDecorator = resarchDecorator;
+	}
 
-    /**
-    * @generated
-    */
     public int getHindex() {
         return this.hindex;
     }
-    
-    /**
-    * @generated
-    */
+
     public void setHindex(Integer hindex) {
         this.hindex = hindex;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
+
     public ResarchDecorator getResarchDecorator() {
         return this.resarchDecorator;
     }
-    
-    /**
-    * @generated
-    */
+
     public void setResarchDecorator(ResarchDecorator resarchDecorator) {
         this.resarchDecorator = resarchDecorator;
     }

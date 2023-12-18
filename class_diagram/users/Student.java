@@ -14,28 +14,26 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     private int studyYear;
     private Faculty faculty;
     private Date enrollmentDate;
-    private Vector coursesTaught;
+    private Vector<Course> coursesEnrolled;
     private String major;    
-    private Organizations organizations;
+    private Vector<Organization> organizations;
     private HashMap<Lesson, Mark> marks;
 
     public Student(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
 			String nationality, String citizenship, double gpa, int studyYear, Faculty faculty, Date enrollmentDate,
-			Vector coursesTaught, String major, Organizations organizations) {
+			Vector<Course> coursesEnrolled, String major, Vector<Organization> organizations) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship);
 		this.gpa = gpa;
 		this.studyYear = studyYear;
 		this.faculty = faculty;
 		this.enrollmentDate = enrollmentDate;
-		this.coursesTaught = coursesTaught;
+		this.coursesEnrolled = coursesEnrolled;
 		this.major = major;
 		this.organizations = organizations;
 	}
-    public Student() {
-    	
-    }
+
 	private void setGpa(double gpa) {
         this.gpa = gpa;
     }
@@ -59,11 +57,11 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     private void setEnrollmentDate(Date enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
     }
-    private Vector getCoursesTaught() {
-        return this.coursesTaught;
+    private Vector<Course> getCoursesEnrolled() {
+        return this.coursesEnrolled;
     }
-    private void setCoursesTaught(Vector coursesTaught) {
-        this.coursesTaught = coursesTaught;
+    private void setCoursesEnrolled(Course course) {
+        this.coursesEnrolled.add(course);
     }
 
     private String getMajor() {
@@ -73,25 +71,21 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
         this.major = major;
     }
 
-    public Organizations getOrganizations() {
+    public Vector<Organization> getOrganizations() {
         return this.organizations;
     }
-    public void setOrganizations(Organizations organizations) {
-        this.organizations = organizations;
+    public void setOrganizations(Organization organization) {
+        this.organizations.add(organization);
     }
-    public Vector getCoursesEnrolled() {
-        //TODO
-        return null;
-    }
+
     public double getGpa() {
-        //TODO
-        return 0.0;
+        return this.gpa;
     }
     public String getReport() {
         //TODO
         return "";
     }
-    public HashMap getTranscipt() {
+    public String getTranscipt() {
         //TODO
         return null;
     }
@@ -100,29 +94,9 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	public boolean disciplineRegistration(String discipline) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-
-	public boolean addDiscipline(String discipline) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
 	
-	public boolean dropDiscipline(String discipline) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
 	
-	public boolean disciplineRegistration(String discipline, boolean isRegistrationAllowed) {
+	public boolean disciplineRegistration(String discipline, boolean isRegistrationAllowed) {//isRegistrationAllowed is a static method in Admin
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -130,13 +104,6 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 
 	
 	public HashMap<Lesson, Integer> viewAttestation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	
-	public Vector<String> viewDownloadedFiles() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -186,27 +153,72 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 		}
 	}
     
-	 public HashMap<Lesson, Mark> getMarks() {
+	public HashMap<Lesson, Mark> getMarks() {
 	        return getMarks();
 	    }
 
-	    public void addMark(Lesson lesson, Mark mark) {
+	public void addMark(Lesson lesson, Mark mark) {
 			marks.put(lesson, mark);
 	    }
-		
-		public boolean dropDiscipline(Courses discipline) {
+	
+	@Override
+	public boolean addDropDiscipline() {
 			// TODO Auto-generated method stub
 			return false;
-		}
+	}
+	public void academicMobility() {}
+	public void viewJournal() {}
+	public void viewRequests() {}
+	public void attendanceMark() {}
+	public void viewDisciplineSchedule() {}
+	public void registrationForFx() {}
+	public void viewSocialTranscript() {}
+	@Override
+	public void viewExamsSchedule() {}
 		
-		public boolean addDiscipline(Courses discipline) {
-			// TODO Auto-generated method stub
-			return false;
+	@Override
+	public void showMenu() {
+		while(true) {
+			System.out.println("----MAIN WINDOW----");
+			System.out.println("1. Academic Mobility\n2. ADD/DROP Disciplines\n3. Journal\n4. Requests\n5. Personal Datas\n6. News"
+					+ "\n7. Attendance Mark\n8. View Attestation\n9. Discipline Schedule\n10. Lesson Schedule\n11. Exams Schedule"
+					+ "\n12. Registration For FX\n13. Registration For Disciplines\n14. Social Transcript\n15. Transcript"
+					+ "\n16. View Office Hours Schedule\n0.Log Out");
+			String choice = commonBuffer.readInput();
+			switch(choice) {
+				case "0":
+					break;
+				case "1":
+					this.academicMobility();
+				case "2":
+					this.addDropDiscipline();
+				case "3":
+					this.viewJournal();
+				case "4":
+					this.viewRequests();
+				case "5":
+					System.out.println(this);;
+				case "6":
+					this.viewNews();
+				case "7":
+					this.attendanceMark();;
+				case "8":
+					this.viewAttestation();
+				case "9":
+					this.viewDisciplineSchedule();
+				case "10":
+					this.viewLessonSchedule();
+				case "11":
+					this.viewExamsSchedule();
+				case "12":
+					this.registrationForFx();
+				case "13":
+					this.disciplineRegistration(choice, false);
+				case "14":
+					this.viewSocialTranscript();
+				case "15":
+					this.viewOfficeHourSchedule();
+			}
 		}
-		@Override
-		public void showMenu() {
-			// TODO Auto-generated method stub
-			
-		}
-    
+	}
 }
