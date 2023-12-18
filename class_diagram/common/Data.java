@@ -18,6 +18,7 @@ public class Data implements Serializable {
     private Vector<Course> courses;
     private Vector<Lesson> lessons;
     private Vector<Specialty> specialities;
+    private Vector<Request> requests;
     private Vector<Message> messages;
     private HashMap<String, String> logs;
     
@@ -122,6 +123,14 @@ public class Data implements Serializable {
 
 	public void addBook(Book book) {
 		this.books.add(book);
+	}
+
+	public Vector<Request> getRequests() {
+		return requests;
+	}
+
+	public void addRequest(Request request) {
+		this.requests.add(request);
 	}
 	
 	

@@ -4,6 +4,6 @@ import education.*;
 
 public interface Administrationable {
   //boolean disciplineRegistration(Courses discipline);
-    boolean addDropDiscipline();
+    void addDropDiscipline();
  
 }

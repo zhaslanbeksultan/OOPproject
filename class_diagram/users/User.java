@@ -45,9 +45,7 @@ public abstract class User implements Serializable{
 		this.nationality = nationality;
 		this.citizenship = citizenship;
 	}
-	public User() {
-		
-	}
+
     public String getFirstName() {
         return this.firstName;
     }
@@ -161,21 +159,28 @@ public abstract class User implements Serializable{
         this.citizenship = citizenship;
     }
 
-    public News getNews() {
-        return this.news;
-    }
-
-    public void setNews(News news) {
-        this.news = news;
-    }
-
-    public Request getRequest() {
-        return this.request;
-    }
-
-    public void setRequest(Request request) {
-        this.request = request;
-    }
+	public void viewRequests() {
+		while(true) {
+			System.out.println("----REQUESTS WINDOW----");
+			System.out.println("Enter '0' to exit.");
+			System.out.println("1. Add Request\n2. Update");
+			for(Request request: Data.getInstance().getRequests()) {
+				if(this.username.equals(request.getRequester())) {
+					System.out.println(request);
+				}
+			}
+			String choice = commonBuffer.readInput();
+			switch(choice) {
+				case("0"):
+					break;
+				case("1"):
+					;
+				case("2"):
+					continue;
+			}
+		}
+	}
+	abstract void addRequest();
 
     public void editPersonalData() {
     	//Отдельный для Админа и Юзера

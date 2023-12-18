@@ -1,7 +1,9 @@
 package app;
 import common.*;
+import enums.Language;
 
 public class Login {
+	public static Language language = Language.ENGLISH;//пока что
 	private String inputl;
 	private String inputp;
 	private String testl;
