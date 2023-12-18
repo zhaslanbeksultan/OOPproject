@@ -5,7 +5,7 @@ import java.util.Date;
 import communication.*;
 import enums.Gender;
 
-public class TechSupportSpecialist extends EmployeeBase {
+public class TechSupportSpecialist extends Employee {
 
     private String complaintType;
 

@@ -2,7 +2,7 @@ package communication;
 
 import java.util.HashMap;
 import java.util.Vector;
-import users.EmployeeBase;
+import users.Employee;
 import users.Student;
 import users.User;
 
@@ -33,7 +33,7 @@ public class Request {
         return null;
     }
     
-    public HashMap<EmployeeBase, String> getEmployeeRequests() {
+    public HashMap<Employee, String> getEmployeeRequests() {
         return null;
     }
     

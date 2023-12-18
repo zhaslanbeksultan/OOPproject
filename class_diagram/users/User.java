@@ -234,7 +234,7 @@ public abstract class User implements Serializable{
 		
 		    	}
 	    	}
-	    	if(this instanceof EmployeeBase) {
+	    	if(this instanceof Employee) {
 		    	for(News post: Data.getInstance().getNews()) {
 		    		if(post.getRecipients().equals("Employees"))
 		    			System.out.println(post);

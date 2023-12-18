@@ -7,7 +7,7 @@ import common.commonBuffer;
 import enums.Gender;
 import communication.*;
 
-public class Librarian extends EmployeeBase {
+public class Librarian extends Employee {
 
 	public Librarian(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,

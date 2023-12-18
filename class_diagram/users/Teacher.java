@@ -11,18 +11,18 @@ import education.*;
 import enums.*;
 import userCapabilities.*;
 
-public class Teacher extends EmployeeDecorator implements Managable,CanBorrowBook {
+public class Teacher extends Employee implements Managable,CanBorrowBook {
 
     private Set<Course> courses;
     private GraduateStudent graduateStudent;
     private Course course;
-
-    public Teacher(String firstName, String lastName, Date birthDay, String id, String username, String password,
+    
+	public Teacher(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
-			String nationality, String citizenship, Set<Course> courses, GraduateStudent graduateStudent,
-			Course course) {
+			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber,
+			Set<Course> courses, GraduateStudent graduateStudent, Course course) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
-				pasportNumber, gender, nationality, citizenship);
+				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
 		this.courses = courses;
 		this.graduateStudent = graduateStudent;
 		this.course = course;

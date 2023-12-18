@@ -1,7 +1,7 @@
 package communication;
 import java.util.Date;
 import enums.*;
-import users.EmployeeBase;
+import users.Employee;
 
 
 public class Message {

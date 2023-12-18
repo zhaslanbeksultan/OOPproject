@@ -12,18 +12,21 @@ import enums.*;
 import userCapabilities.*;
 
 
-public class Manager extends EmployeeDecorator implements Managable, Administrationable {
+public class Manager extends Employee implements Managable, Administrationable {
 	
     private ManagerPosition managerPosition;
     private Vector coursesRegisterTo;
     private Vector requests;
 
-    public Manager(String firstName, String lastName, Date birthDay, String id, String username, String password,
+	public Manager(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
-			String nationality, String citizenship, ManagerPosition managerPosition) {
+			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber,
+			ManagerPosition managerPosition, Vector coursesRegisterTo, Vector requests) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
-				pasportNumber, gender, nationality, citizenship);
+				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
 		this.managerPosition = managerPosition;
+		this.coursesRegisterTo = coursesRegisterTo;
+		this.requests = requests;
 	}
 
 	public ManagerPosition getManagerPosition() {
