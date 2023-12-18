@@ -84,6 +84,12 @@ public class ResarchDecorator extends User implements Researcher {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	void addRequest() {
+		// TODO Auto-generated method stub
+		
+	}
     
     
     

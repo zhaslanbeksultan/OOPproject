@@ -202,11 +202,6 @@ public class Manager extends Employee implements Managable, Administrationable {
 		
 	}
 
-	@Override
-	public String getEmployeeId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void sentComplaintMessage() {
@@ -222,6 +217,18 @@ public class Manager extends Employee implements Managable, Administrationable {
 
 	@Override
 	public void showMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addDropDiscipline() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void addRequest() {
 		// TODO Auto-generated method stub
 		
 	}

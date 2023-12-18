@@ -37,6 +37,10 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 		this.organizations = organizations;
 	}
 
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
+
 	private void setGpa(double gpa) {
         this.gpa = gpa;
     }
@@ -175,9 +179,32 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	}
 	@Override
 	public void addRequest() {
-		
-		Request request = new Request();
-		Data.getInstance().addRequest(null);
+		while(true) {
+			System.out.println("----ADD REQUEST WINDOW----");
+			System.out.println("Select the Form: 'Paper', 'Electronic'");
+			String form = commonBuffer.readInput(); 
+			System.out.println("Select the Type:\nREQUEST_FOR_ACADEMIC_MOBILITY\nCOORDINATION_OF_THE_TOPIC_OF_THE_DIPLOMA\nWORKAROUND_SHEET"
+					+ "\nCERTIFICATE_OF_EDUCATION_IN_ENGLISH\nRESTORING_ONAY_CARD\nHELP_FOR_THE_DEPARTMENT_OF_DEFENSE_AFFAIRS"
+					+ "\nHELP_FOR_THE_MANUAL_FOR_LARGE_FAMILIES\nHELP_FOR_THE_MANUAL_FOR_ON_THE_LOSS_OF_THE_BREADWINNER"
+					+ "\nHELP_FOR_FINANCING_KAZENERGY\nINFORMATION_ABOUT_THE_PLACE_OF_REQUIREMENT\nTRANSCRIPT_FOR_THE_ENTIRE_PERIOD_OF_STUDY"
+					+ "\nTRANSCRIPT_FOR_THE_YEAR\nTRANSCRIPT_FOR_THE_SEMESTER");
+			String type = commonBuffer.readInput();
+			System.out.println("Select the Language: 'EN', 'RU', 'KZ'");
+			String language = commonBuffer.readInput();
+			Request request = new Request(this.getUsername(), form, type, language, this.getFaculty());
+			System.out.println("'0' - Cancel");
+			System.out.println("'1' - If You Want Add Additionally Information");
+			System.out.println("'2' - Save");
+			String choice = commonBuffer.readInput();
+			if(choice.equals("0")) break;
+			if(choice.equals("1")) {
+				String info = commonBuffer.readInput();
+				request.setAdditionallyInfo(info);
+				choice = commonBuffer.readInput();}
+			if(choice.equals("2"))
+				Data.getInstance().addRequest(request);
+				break;
+		}
 	}
 	public void viewJournal() {}
 	public void attendanceMark() {}

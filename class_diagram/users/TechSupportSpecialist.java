@@ -27,6 +27,18 @@ public class TechSupportSpecialist extends Employee {
     public boolean FixComplaintType() {
         return false;
     }
+
+	@Override
+	void addRequest() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showMenu() {
+		// TODO Auto-generated method stub
+		
+	}
     
     
 }

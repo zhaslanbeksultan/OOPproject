@@ -28,6 +28,7 @@ public abstract class User implements Serializable{
     private String citizenship;
     private Request request;
     private News news;
+    public User() {}
 	public User(String firstName, String lastName, Date birthDay, String id, String username, String password, String email,
 			Date registrationDate, String phoneNumber, String pasportNumber, Gender gender, String nationality,
 			String citizenship) {
@@ -174,7 +175,7 @@ public abstract class User implements Serializable{
 				case("0"):
 					break;
 				case("1"):
-					;
+					this.addRequest();;
 				case("2"):
 					continue;
 			}
