@@ -147,6 +147,10 @@ public class Data implements Serializable {
 	public void addRequest(Request request) {
 		this.requests.add(request);
 	}
+	public HashMap getLogs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
