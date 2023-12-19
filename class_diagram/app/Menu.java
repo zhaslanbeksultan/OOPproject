@@ -2,7 +2,7 @@ package app;
 import common.*;
 import users.*;
 public class Menu {
-	public Menu(int n) {
+	public Menu(User user) {
 		System.out.println("Welcome");
 		if(n==0) {
 			admin();

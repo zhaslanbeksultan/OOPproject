@@ -16,21 +16,15 @@ public class Data implements Serializable {
     private Vector<Employee> employee = new Vector<>();
     private Vector<Admin> admins = new Vector<>();
     private Vector<Researcher> researchers = new Vector<>();
-    
+    private Vector<Book> books;
+    private Vector<Request> requests;
+    private Map<String, User> users = new HashMap<>();
     private Vector<Course> courses = new Vector<>();
     private Vector<Lesson> lessons = new Vector<>();
     private Vector<Specialty> specialities = new Vector<>();
     private Vector<Message> messages = new Vector<>();
     private Vector<News> news = new Vector<>();
-    private static Data DATA;
-
-    
-    private Vector<Book> books;
-    private Vector<Request> requests;
-    private HashMap<String, String> logs;
-
-    
-    
+    private static Data DATA;  
     static {
 		if(new File("data.txt").exists()) {
 			try {
@@ -147,10 +141,15 @@ public class Data implements Serializable {
 	public void addRequest(Request request) {
 		this.requests.add(request);
 	}
-	public HashMap getLogs() {
-		// TODO Auto-generated method stub
-		return null;
+	public Map getUsers() {
+		return this.users;
 	}
-	
+	public void addUser(String logname, User user) {
+		this.users.put(logname, user);
+		
+	}
+	public void addAdmin(Admin admin)  {
+		this.admins.add(admin);
+	}
 	
 }
