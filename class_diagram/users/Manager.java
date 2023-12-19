@@ -46,23 +46,10 @@ public class Manager extends Employee implements Managable, Administrationable {
         this.coursesRegisterTo = coursesRegisterTo;
     }
 
-    public Vector getRequests() {
-        return this.requests;
-    }
-
-    public void setRequests(Vector requests) {
-        this.requests = requests;
-    }
-
     public Vector getManagerDuties() {
         return null;
     }
 
-    public boolean isCapableToPostNews() {
-        return false;
-    }
-
-	
 	public boolean disciplineRegistration(String discipline) {
 		return false;
 	}
@@ -123,14 +110,6 @@ public class Manager extends Employee implements Managable, Administrationable {
     	String newsWording = commonBuffer.readInput(); 
     	News post = new News(recipients, newsType, newsTitle, newsWording);
     	Data.getInstance().setNews(post);
-	}
-
-	public void manageNewsWording(String newsTitle, String newWording) {
-		
-	}
-
-	public boolean accessRespondsFromNews() {
-		return false;
 	}
 
 	public String answerToComplaints(String complaint) {

@@ -10,15 +10,18 @@ import users.Teacher;
 
 public interface Educationable {
 
-    HashMap<Lesson, Integer> viewAttestation();
+    void viewAttestation();
 
-    HashMap<Lesson, WeekDays> viewLessonSchedule();
+    void viewLessonSchedule();
 
-    HashMap<Teacher, WeekDays> viewOfficeHourSchedule();
-
-    HashMap<String, Vector<Mark>> viewMarks();
+    void viewOfficeHourSchedule();
     
     void viewExamsSchedule();
+    
+    void viewJournal();
+    
+    void attendanceMark();
+    
+    void viewDisciplineSchedule();
 
-    String getReport();
 }

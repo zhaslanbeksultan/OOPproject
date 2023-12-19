@@ -16,15 +16,15 @@ public class Data implements Serializable {
     private Vector<Employee> employee = new Vector<>();
     private Vector<Admin> admins = new Vector<>();
     private Vector<Researcher> researchers = new Vector<>();
-    private Vector<Book> books;
-    private Vector<Request> requests;
+    private Vector<Book> books = new Vector<>();
+    private Vector<Request> requests = new Vector<>();
     private Map<String, User> users = new HashMap<>();
     private Vector<Course> courses = new Vector<>();
     private Vector<Lesson> lessons = new Vector<>();
     private Vector<Specialty> specialities = new Vector<>();
     private Vector<Message> messages = new Vector<>();
     private Vector<News> news = new Vector<>();
-	private Vector<Order> orders;
+	private Vector<Order> orders = new Vector<>();
 
     private static Data DATA;  
 

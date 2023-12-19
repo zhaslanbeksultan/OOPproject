@@ -234,11 +234,11 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 				case "4":
 					this.viewRequests();
 				case "5":
-					System.out.println(this);;
+					System.out.println(this);
 				case "6":
 					this.viewNews();
 				case "7":
-					this.attendanceMark();;
+					this.attendanceMark();
 				case "8":
 					this.viewAttestation();
 				case "9":

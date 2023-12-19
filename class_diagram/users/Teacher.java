@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
 
 import common.Data;
 import common.commonBuffer;
@@ -13,7 +14,7 @@ import education.*;
 import enums.*;
 import userCapabilities.*;
 
-public class Teacher extends Employee implements Managable,CanBorrowBook {
+public class Teacher extends Employee implements Managable,CanBorrowBook,Educationable {
 
     private Set<Course> courses;
     private GraduateStudent graduateStudent;
@@ -175,8 +176,39 @@ public class Teacher extends Employee implements Managable,CanBorrowBook {
 
 	@Override
 	public void showMenu() {
-		// TODO Auto-generated method stub
-		
+		while(true) {
+			System.out.println("----MAIN WINDOW----");
+			System.out.println("1. Journal\n2. Requests\n3. Personal Datas\n4. News\n5. Attendance Mark"
+					+ "\n6. View Attestation\n7. Discipline Schedule\n8. Lesson Schedule\n9. Exams Schedule"
+					+ "\n10. Social Transcript\n11. View Office Hours Schedule\n0.Log Out");
+			String choice = commonBuffer.readInput();
+			switch(choice) {
+				case "0":
+					break;
+				case "1":
+					this.viewJournal();
+				case "2":
+					this.viewRequests();
+				case "3":
+					System.out.println(this);
+				case "4":
+					this.viewNews();
+				case "5":
+					this.attendanceMark();
+				case "6":
+					this.viewAttestation();
+				case "7":
+					this.viewDisciplineSchedule();
+				case "8":
+					this.viewLessonSchedule();
+				case "9":
+					this.viewExamsSchedule();
+				case "10":
+					this.viewSocialTranscript();
+				case "11":
+					this.viewOfficeHourSchedule();
+			}
+		}
 	}
 
 	@Override
@@ -206,6 +238,31 @@ public class Teacher extends Employee implements Managable,CanBorrowBook {
 				Data.getInstance().addRequest(request);
 				break;
 		}
+	}
+
+
+	@Override
+	public void viewExamsSchedule() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewJournal() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void attendanceMark() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewDisciplineSchedule() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
