@@ -26,7 +26,9 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
 		this.courses = courses;
 	}
-
+	public Teacher() {
+		
+	}
 	public Set<Course> getCourses() {
         return courses;
     }

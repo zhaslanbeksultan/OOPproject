@@ -9,7 +9,7 @@ import userCapabilities.*;
 import education.*;
 
 public class Data implements Serializable {
-
+	private static final long serialVersionUID = 1L;
 	private Vector<Student> students = new Vector<>();
 	private Vector<GraduateStudent> graduateStudents = new Vector<>();
     private Vector<Teacher> teachers = new Vector<>();
@@ -79,8 +79,8 @@ public class Data implements Serializable {
 		return teachers;
 	}
 
-	public void setTeachers(Vector<Teacher> teachers) {
-		this.teachers = teachers;
+	public void addTeacher(Teacher teacher) {
+		this.teachers.add(teacher);
 	}
 
 	public Vector<News> getNews() {
