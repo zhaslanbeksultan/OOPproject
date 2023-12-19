@@ -29,7 +29,9 @@ public class Teacher extends Employee implements Managable,CanBorrowBook {
 		this.graduateStudent = graduateStudent;
 		this.course = course;
 	}
-
+	public Teacher() {
+		
+	}
 	public Set<Course> getCourses() {
         return courses;
     }

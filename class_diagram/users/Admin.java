@@ -29,21 +29,48 @@ public class Admin extends Employee{
     	System.out.println("Successfully added!");
     	save();
     }
-
+    public void createTeacher() throws IOException {
+    	Teacher teacher = new Teacher();
+    	System.out.println("Enter login");
+    	String logname=commonBuffer.readInput();
+    	teacher.setUsername(logname);
+    	System.out.println("Enter password");
+    	String password=commonBuffer.readInput();
+    	teacher.setPassword(password);
+    	d.addUser(logname, teacher);
+    	d.addTeacher(teacher);
+    	System.out.println("Successfully added!");
+    	save();	
+    }
+   
     public void showMenu(){
-    	System.out.println("Welcome!\n Please choose:\n 1.Add student\n 2.Log out");
-    	String input=commonBuffer.readInput();
-    	switch(input) {
-    		case "1":
-    			try {
-    			createStudent();
-    			} catch(IOException e){
-    				e.printStackTrace();
-    			}
-    		    break;
-    		case "2":
-    			break;
+    	System.out.println("Welcome!");
+    	boolean c= true;
+    	while(c) {
+    		System.out.println("Please choose:\n1.Add student\n2.Add teacher\n0.Log out");
+	    	String input=commonBuffer.readInput();
+	    	switch(input) {
+	    		case "1":
+	    			try {
+	    			createStudent();
+	    			} catch(IOException e){
+	    				e.printStackTrace();
+	    			}
+	    		    break;
+	    		case "2":
+	    			try {
+	        			createTeacher();
+	        			} catch(IOException e){
+	        				e.printStackTrace();
+	        			}
+	    			break;
+	    		case "0":
+	    			c=false;
+	    		default:
+	                System.out.println("Invalid choice. Please try again.");
+	    	}
     	}
+    	Main.main(null);
     }
 	@Override
 	void addRequest() {

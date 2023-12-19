@@ -17,6 +17,8 @@ public class Dean extends Teacher{
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber, pasportNumber,
 				gender, nationality, citizenship, salary, hireDate, insuranceNumber, courses, graduateStudent, course);
 	}
-	
+	public Dean() {
+		
+	}
 
 }
