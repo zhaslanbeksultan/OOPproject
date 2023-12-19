@@ -90,7 +90,7 @@ public abstract class User implements Serializable{
         this.username = username;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return this.password;
     }
 
@@ -278,9 +278,12 @@ public abstract class User implements Serializable{
     public String getUserInformation() {
         return toString();
     }
-
-    public abstract void showMenu();
-    
+    public void showMenu() {
+    	System.out.println("Welcome!");
+    };
+    public void save() throws IOException {
+		Data.write();
+	}
     public void showMessages() {
 
     	System.out.println("Enter '0' to exit.");
@@ -349,8 +352,8 @@ public abstract class User implements Serializable{
 	public String toString() {
 		return " FirstName = " + firstName + "\n LastName = " + lastName + "\n Birth Day = " + birthDay + "\n Id = " + id
 				+ username + "\n Email = " + email + "\n RegistrationDate = "
-				+ registrationDate + "/n Phone Number = " + phoneNumber + ", PasportNumber = " + pasportNumber + "\n Gender = "
-				+ gender + "\n Nationality = " + nationality + "\n Citizenship = " + citizenship;
+				+ registrationDate + "\n Phone Number = " + phoneNumber + ", PasportNumber = " + pasportNumber + "\n Gender = "
+				+ gender + "\n Nationality = " + nationality + "\n Citizenship = " + citizenship+" Password="+password;
 	}
 
     

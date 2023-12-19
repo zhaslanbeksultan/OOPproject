@@ -25,6 +25,9 @@ public abstract class Employee extends User{
 		this.hireDate = hireDate;
 		this.insuranceNumber = insuranceNumber;
 	}
+	public Employee() {
+		
+	}
 	public double getSalary() {
         return this.salary;
     }

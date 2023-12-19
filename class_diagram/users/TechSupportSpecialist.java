@@ -17,7 +17,9 @@ public class TechSupportSpecialist extends Employee {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
 	}
-
+	public TechSupportSpecialist() {
+		
+	}
 	public String getComplaintType() {
         return this.complaintType;
     }
