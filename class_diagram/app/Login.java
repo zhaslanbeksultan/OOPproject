@@ -4,7 +4,7 @@ import enums.Language;
 import users.*;
 
 public class Login {
-	public  Language language = Language.ENGLISH;//пока что
+	public static Language language = Language.ENGLISH;//пока что
 	private String username;
 	private String password;
 	public Login(){
