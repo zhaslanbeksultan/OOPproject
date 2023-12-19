@@ -5,7 +5,7 @@ import users.User;
 
 public class Login {
 	public  Language language = Language.ENGLISH;//пока что
-	private String inputl;
+	private String username;
 	private String inputp;
 	private String testl;
 	private String testp;
@@ -22,8 +22,8 @@ public class Login {
     public void login() {
     	while(true) {
     		System.out.println("Enter your email: ");
-            inputl=commonBuffer.readInput();
-            if(!Data.getInstance().getUsers().containsKey(inputl)) {
+            username=commonBuffer.readInput();
+            if(!Data.getInstance().getUsers().containsKey(username)) {
             	 System.out.println("Incorrect input");
             }
             else {
@@ -32,7 +32,7 @@ public class Login {
             }
     	}
     }
-    User user = (User) Data.getInstance().getUsers().get(inputl);
+    User user = Data.getInstance().getUsers().get(username);
     public void password() {
     	System.out.println("Enter your password: ");
         inputp=commonBuffer.readInput();
