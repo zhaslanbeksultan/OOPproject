@@ -13,7 +13,7 @@ public class Order {
 	private String executor;//TechSupportSpecialist
 	private String orderInfo;
 	
-	public Order(String sender, OrderStatus orderStatus, String executor, String orderInfo) {
+	public Order(String sender, String orderInfo) {
     	this.orderId = cnt++;
 		this.sender = sender;
 		this.orderDate = new Date();

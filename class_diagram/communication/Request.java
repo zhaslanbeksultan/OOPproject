@@ -11,13 +11,55 @@ public class Request {
 	private HelpForm helpForm;
 	private HelpType helpType;
 	private Language language;
-	private Faculty faculty;
+	private Faculty faculty;//deans faculty who
 	private String additionallyInfo;
 	private RequestStatus requestStatus;
 	private RequestType requestType;
 	private Date requestDate;
+	private ManagerPosition handler;//type of manager who processes request
 	
 	public Request(String requester, String helpForm, String helpType, String language, Faculty faculty) {
+		this.requester = requester;
+		if(helpForm.equals("Paper"))
+			this.helpForm = HelpForm.PAPER;
+		if(helpForm.equals("Electronic"))
+			this.helpForm = HelpForm.ELECTRONIC;
+		if(helpType.equals("REQUEST_FOR_ACADEMIC_MOBILITY"))
+			this.helpType = HelpType.REQUEST_FOR_ACADEMIC_MOBILITY;
+		if(helpType.equals("COORDINATION_OF_THE_TOPIC_OF_THE_DIPLOMA"))
+			this.helpType = HelpType.COORDINATION_OF_THE_TOPIC_OF_THE_DIPLOMA;
+		if(helpType.equals("WORKAROUND_SHEET"))
+			this.helpType = HelpType.WORKAROUND_SHEET;
+		if(helpType.equals("CERTIFICATE_OF_EDUCATION_IN_ENGLISH"))
+			this.helpType = HelpType.CERTIFICATE_OF_EDUCATION_IN_ENGLISH;
+		if(helpType.equals("RESTORING_ONAY_CARD"))
+			this.helpType = HelpType.RESTORING_ONAY_CARD;
+		if(helpType.equals("HELP_FOR_THE_DEPARTMENT_OF_DEFENSE_AFFAIRS"))
+			this.helpType = HelpType.HELP_FOR_THE_DEPARTMENT_OF_DEFENSE_AFFAIRS;
+		if(helpType.equals("HELP_FOR_THE_MANUAL_FOR_LARGE_FAMILIES"))
+			this.helpType = HelpType.HELP_FOR_THE_MANUAL_FOR_LARGE_FAMILIES;
+		if(helpType.equals("HELP_FOR_THE_MANUAL_FOR_ON_THE_LOSS_OF_THE_BREADWINNER"))
+			this.helpType = HelpType.HELP_FOR_THE_MANUAL_FOR_ON_THE_LOSS_OF_THE_BREADWINNER;
+		if(helpType.equals("HELP_FOR_FINANCING_KAZENERGY"))
+			this.helpType = HelpType.HELP_FOR_FINANCING_KAZENERGY;
+		if(helpType.equals("INFORMATION_ABOUT_THE_PLACE_OF_REQUIREMENT"))
+			this.helpType = HelpType.INFORMATION_ABOUT_THE_PLACE_OF_REQUIREMENT;
+		if(helpType.equals("TRANSCRIPT_FOR_THE_ENTIRE_PERIOD_OF_STUDY"))
+			this.helpType = HelpType.TRANSCRIPT_FOR_THE_ENTIRE_PERIOD_OF_STUDY;
+		if(helpType.equals("TRANSCRIPT_FOR_THE_YEAR"))
+			this.helpType = HelpType.TRANSCRIPT_FOR_THE_YEAR;
+		if(helpType.equals("TRANSCRIPT_FOR_THE_SEMESTER"))
+			this.helpType = HelpType.TRANSCRIPT_FOR_THE_SEMESTER;
+		if(language.equals("EN"))
+			this.language = Language.ENGLISH;
+		if(language.equals("RU"))
+			this.language = Language.RUSSIAN;
+		if(language.equals("KZ"))
+			this.language = Language.KAZAKH;
+		this.faculty = faculty;
+		this.requestDate = new Date();
+	}
+	public Request(String requester, String helpForm, String helpType, String language) {
 		this.requester = requester;
 		if(helpForm.equals("Paper"))
 			this.helpForm = HelpForm.PAPER;

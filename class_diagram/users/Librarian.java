@@ -32,11 +32,12 @@ public class Librarian extends Employee {
 	@Override
 	public void showMenu() {
 		System.out.println("----MAIN WINDOW----");
-		System.out.println("Choose:\n1.Add New Books To Library\n2.Remove Books From Library\n3.Notify All Readers");
+		System.out.println("Choose:\n1.Add New Books To Library\n2.Remove Books From Library\n3.Notify All Readers\n4.Add Order");
     	String choose = commonBuffer.readInput();
   		if(choose=="1") {addBook();}
 		else if(choose=="2") {removeBook();}
 		else if(choose=="3") {notifyReaders();}
+		else if(choose=="4") {addOrder();}
 		else {System.out.println("The wrong character is entered!");}
 		
 	}
@@ -75,8 +76,30 @@ public class Librarian extends Employee {
 	}
 
 	@Override
-	void addRequest() {
-		// TODO Auto-generated method stub
-		
+	public void addRequest() {
+		while(true) {
+			System.out.println("----ADD REQUEST WINDOW----");
+			System.out.println("Select the Form: 'Paper', 'Electronic'");
+			String form = commonBuffer.readInput(); 
+			System.out.println("Select the Type:\nHELP_FOR_THE_DEPARTMENT_OF_DEFENSE_AFFAIRS"
+					+ "\nHELP_FOR_THE_MANUAL_FOR_LARGE_FAMILIES\nHELP_FOR_THE_MANUAL_FOR_ON_THE_LOSS_OF_THE_BREADWINNER"
+					+ "\nINFORMATION_ABOUT_THE_PLACE_OF_REQUIREMENT");
+			String type = commonBuffer.readInput();
+			System.out.println("Select the Language: 'EN', 'RU', 'KZ'");
+			String language = commonBuffer.readInput();
+			Request request = new Request(this.getUsername(), form, type, language);
+			System.out.println("'0' - Cancel");
+			System.out.println("'1' - If You Want Add Additionally Information");
+			System.out.println("'2' - Save");
+			String choice = commonBuffer.readInput();
+			if(choice.equals("0")) break;
+			if(choice.equals("1")) {
+				String info = commonBuffer.readInput();
+				request.setAdditionallyInfo(info);
+				choice = commonBuffer.readInput();}
+			if(choice.equals("2"))
+				Data.getInstance().addRequest(request);
+				break;
+		}
 	}
 }

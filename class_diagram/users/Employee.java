@@ -49,7 +49,13 @@ public abstract class Employee extends User{
     public void setMessage(Message message) {
         this.message = message;
     }
-    
+    public void addOrder() {
+    	System.out.println("----THE ORDER WINDOW----");
+    	System.out.println("Please Write Order Details: ");
+    	String info = commonBuffer.readInput();
+    	Order order = new Order(this.getUsername(), info);
+    	Data.getInstance().getOrders().add(order);
+    }
     
     public void sentComplaintMessage() {
        
