@@ -12,7 +12,7 @@ public class ResearchProject {
     private Vector<String> publishedPapers;
     private Date publishedDate;
     private String supervisor;
-    private Vector<String> researchPapers;
+    private Vector<ResearchPaper> researchPapers;
     private String reviewCritique;
     private Researcher researcher;
 
@@ -56,11 +56,11 @@ public class ResearchProject {
         this.supervisor = supervisor;
     }
 
-    private Vector<String> getResearchPapers() {
+    private Vector<ResearchPaper> getResearchPapers() {
         return this.researchPapers;
     }
 
-    private void setResearchPapers(Vector<String> researchPapers) {
+    private void setResearchPapers(Vector<ResearchPaper> researchPapers) {
         this.researchPapers = researchPapers;
     }
 

@@ -11,20 +11,19 @@ public class StudentResearcher extends Student implements Researcher {
 
     private int hindex;
     private ResarchDecorator resarchDecorator;
-    
+
     public StudentResearcher(String firstName, String lastName, Date birthDay, String id, String username,
 			String password, String email, Date registrationDate, String phoneNumber, String pasportNumber,
 			Gender gender, String nationality, String citizenship, double gpa, int studyYear, Faculty faculty,
-			Date enrollmentDate, Vector<Course> coursesEnrolled, String major, Vector<Organization> organizations,
-			int hindex, ResarchDecorator resarchDecorator) {
+			Date enrollmentDate, Category category, Vector<Course> coursesEnrolled, String major,
+			Vector<Organization> organizations, ResarchDecorator resarchDecorator) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
-				pasportNumber, gender, nationality, citizenship, gpa, studyYear, faculty, enrollmentDate,
+				pasportNumber, gender, nationality, citizenship, gpa, studyYear, faculty, enrollmentDate, category,
 				coursesEnrolled, major, organizations);
-		this.hindex = hindex;
 		this.resarchDecorator = resarchDecorator;
 	}
 
-    public int getHindex() {
+	public int getHindex() {
         return this.hindex;
     }
 

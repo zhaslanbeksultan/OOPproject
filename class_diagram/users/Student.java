@@ -16,6 +16,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     private int studyYear;
     private Faculty faculty;
     private Date enrollmentDate;
+    private Category category;
     private Vector<Course> coursesEnrolled;
     private String major;    
     private Vector<Organization> organizations;
@@ -24,13 +25,14 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 
     public Student(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
-			String nationality, String citizenship, double gpa, int studyYear, Faculty faculty, Date enrollmentDate,
+			String nationality, String citizenship, double gpa, int studyYear, Faculty faculty, Date enrollmentDate, Category category,
 			Vector<Course> coursesEnrolled, String major, Vector<Organization> organizations) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship);
 		this.gpa = gpa;
 		this.studyYear = studyYear;
 		this.faculty = faculty;
+		this.category = category;
 		this.enrollmentDate = enrollmentDate;
 		this.coursesEnrolled = coursesEnrolled;
 		this.major = major;
@@ -39,6 +41,13 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 
 	public Student() {
 		// TODO Auto-generated constructor stub
+	}
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	private void setGpa(double gpa) {
@@ -107,36 +116,6 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
-	
-	public HashMap<Lesson, Integer> viewAttestation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	
-	public HashMap<Lesson, WeekDays> viewLessonSchedule() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	
-	public HashMap<Teacher, WeekDays> viewOfficeHourSchedule() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	
-	public HashMap<String, Vector<Mark>> viewMarks() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 	
 	public void borrowBook(String bookName) {
 		if(Book.isBookAvailable(bookName)) {
@@ -409,6 +388,24 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	public String toString() {
 		return super.toString() + "\n Study Year = " + studyYear + "\n Faculty="
 				+ faculty + "\n enrollmentDate=" + enrollmentDate + "\n Major=" + major + "\n Organizations = " + organizations;
+	}
+
+	@Override
+	public void viewAttestation() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewLessonSchedule() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewOfficeHourSchedule() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

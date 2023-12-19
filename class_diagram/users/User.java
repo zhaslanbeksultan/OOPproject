@@ -26,6 +26,7 @@ public abstract class User implements Serializable{
     private Gender gender;
     private String nationality;
     private String citizenship;
+    private Vector<String> socialTranscript;
     public User() {}
 	public User(String firstName, String lastName, Date birthDay, String id, String username, String password, String email,
 			Date registrationDate, String phoneNumber, String pasportNumber, Gender gender, String nationality,
@@ -89,8 +90,13 @@ public abstract class User implements Serializable{
     public void setUsername(String username) {
         this.username = username;
     }
-
-    public String getPassword() {
+    public Vector<String> getSocialTranscript() {
+		return socialTranscript;
+	}
+	public void setSocialTranscript(String event) {
+		this.socialTranscript.add(event);
+	}
+	public String getPassword() {
         return this.password;
     }
 
@@ -223,7 +229,23 @@ public abstract class User implements Serializable{
     public String accesingFeedback() {
         return "";
     }
-    public void viewSocialTranscript() {}
+    public void viewSocialTranscript() {
+    	System.out.println("----WINDOW SOCIAL TRANSCRIPT----");
+    	System.out.println("'0' - to exit.\n'1' - to add.");   
+    	for(String item: this.getSocialTranscript()) {
+    		System.out.println(item);
+    	}
+    	String choice = commonBuffer.readInput();
+    	switch(choice) {
+    	case("0"):
+    		break;
+    	case("1"):
+    		System.out.println("Write:\n   1.Details of Event\n   2.Contribution\n   3.Level\n   4.Type of Direction"
+    				+ "\n   5.Role\n   6.Event Start Date\n   7.The End Date Of The Event");
+    		String info = commonBuffer.readInput();
+    		this.setSocialTranscript(info);
+    	}
+    }
 
     public void viewNews() {
     	System.out.println("Enter '0' to exit.");

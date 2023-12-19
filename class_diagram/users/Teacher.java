@@ -17,8 +17,6 @@ import userCapabilities.*;
 public class Teacher extends Employee implements Managable,CanBorrowBook,Educationable {
 
     private Set<Course> courses;
-    private GraduateStudent graduateStudent;
-    private Course course;
     
 	public Teacher(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
@@ -27,8 +25,6 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
 		this.courses = courses;
-		this.graduateStudent = graduateStudent;
-		this.course = course;
 	}
 
 	public Set<Course> getCourses() {
@@ -37,22 +33,6 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 
     public void setCourses(Set<Course> courses) {
         this.courses = courses;
-    }
-
-    public GraduateStudent getGraduateStudent() {
-        return graduateStudent;
-    }
-
-    public void setGraduateStudent(GraduateStudent graduateStudent) {
-        this.graduateStudent = graduateStudent;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
     }
 
 	@Override
@@ -112,66 +92,6 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 				book.setReader(null);
 			}
 		}
-	}
-
-	@Override
-	public double getSalary() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setSalary(double salary) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Date getHireDate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setHireDate(Date hireDate) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getInsuranceNumber() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setInsuranceNumber(String insuranceNumber) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Message getMessage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setMessage(Message message) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void sentComplaintMessage() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String performInsuranceNumber() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -261,6 +181,24 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 
 	@Override
 	public void viewDisciplineSchedule() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewAttestation() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewLessonSchedule() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewOfficeHourSchedule() {
 		// TODO Auto-generated method stub
 		
 	}
