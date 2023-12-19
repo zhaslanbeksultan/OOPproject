@@ -53,11 +53,16 @@ public abstract class Employee extends User{
         this.message = message;
     }
     
+    
     public void sentComplaintMessage() {
        
     }
     public String performInsuranceNumber() {
         return "";
     }
-     
+	@Override
+	public String toString() {
+		return super.toString() + "Salary=" + salary + "\n Hire Date=" + hireDate + "\n Insurance Number=" + insuranceNumber;
+	}
+    
 }

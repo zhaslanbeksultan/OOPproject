@@ -24,7 +24,10 @@ public class Data implements Serializable {
     private Vector<Specialty> specialities = new Vector<>();
     private Vector<Message> messages = new Vector<>();
     private Vector<News> news = new Vector<>();
+	private Vector<Order> orders;
+
     private static Data DATA;  
+
     static {
 		if(new File("data.txt").exists()) {
 			try {
@@ -35,8 +38,10 @@ public class Data implements Serializable {
 		}
 		else DATA = new Data();
 	}
+    
     private Data() {
     }
+    
     public static Data read() throws IOException, ClassNotFoundException{
 		FileInputStream fis = new FileInputStream("data.txt");
 		ObjectInputStream oin = new ObjectInputStream(fis);
@@ -134,6 +139,14 @@ public class Data implements Serializable {
 		this.books.add(book);
 	}
 
+	public Vector<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Order order) {
+		this.orders.add(order);
+	}
+
 	public Vector<Request> getRequests() {
 		return requests;
 	}
@@ -141,7 +154,7 @@ public class Data implements Serializable {
 	public void addRequest(Request request) {
 		this.requests.add(request);
 	}
-	public Map getUsers() {
+	public Map<String, User> getUsers() {
 		return this.users;
 	}
 	public void addUser(String logname, User user) {

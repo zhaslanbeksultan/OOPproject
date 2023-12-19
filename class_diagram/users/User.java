@@ -26,8 +26,6 @@ public abstract class User implements Serializable{
     private Gender gender;
     private String nationality;
     private String citizenship;
-    private Request request;
-    private News news;
     public User() {}
 	public User(String firstName, String lastName, Date birthDay, String id, String username, String password, String email,
 			Date registrationDate, String phoneNumber, String pasportNumber, Gender gender, String nationality,
@@ -225,6 +223,7 @@ public abstract class User implements Serializable{
     public String accesingFeedback() {
         return "";
     }
+    public void viewSocialTranscript() {}
 
     public void viewNews() {
     	System.out.println("Enter '0' to exit.");
@@ -354,7 +353,7 @@ public abstract class User implements Serializable{
 		return " FirstName = " + firstName + "\n LastName = " + lastName + "\n Birth Day = " + birthDay + "\n Id = " + id
 				+ username + "\n Email = " + email + "\n RegistrationDate = "
 				+ registrationDate + "\n Phone Number = " + phoneNumber + ", PasportNumber = " + pasportNumber + "\n Gender = "
-				+ gender + "\n Nationality = " + nationality + "\n Citizenship = " + citizenship;
+				+ gender + "\n Nationality = " + nationality + "\n Citizenship = " + citizenship+" Password="+password;
 	}
 
     

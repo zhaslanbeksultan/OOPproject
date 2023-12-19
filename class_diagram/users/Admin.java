@@ -3,8 +3,9 @@ import java.util.Date;
 import java.io.*;
 import common.*;
 import communication.*;
+import app.*;
 import enums.Gender;
-public class Admin extends TechSupportSpecialist{
+public class Admin extends Employee{
     public Admin(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
 			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber) {
@@ -28,9 +29,28 @@ public class Admin extends TechSupportSpecialist{
     	System.out.println("Successfully added!");
     	save();
     }
-    public void showMenu() {
+
+    public void showMenu(){
     	System.out.println("Welcome!\n Please choose:\n 1.Add student\n 2.Log out");
+    	String input=commonBuffer.readInput();
+    	switch(input) {
+    		case "1":
+    			try {
+    			createStudent();
+    			} catch(IOException e){
+    				e.printStackTrace();
+    			}
+    		    break;
+    		case "2":
+    			break;
+    	}
     }
+	@Override
+	void addRequest() {
+		// TODO Auto-generated method stub
+		
+	}
+
                                
     
     

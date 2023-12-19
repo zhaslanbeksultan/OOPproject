@@ -1,23 +1,18 @@
 package app;
 import common.*;
 import enums.Language;
-import users.User;
+import users.*;
 
 public class Login {
 	public  Language language = Language.ENGLISH;//пока что
 	private String username;
-	private String inputp;
-	private String testl;
-	private String testp;
-	private User type;
-	private Menu m;
+	private String password;
 	public Login(){
     	
     }
 	public void menu() {
 		login();
     	password();
-    	System.out.println("Correct");
 	}
     public void login() {
     	while(true) {
@@ -32,14 +27,20 @@ public class Login {
             }
     	}
     }
-    User user = Data.getInstance().getUsers().get(username);
+    
     public void password() {
-    	System.out.println("Enter your password: ");
-        inputp=commonBuffer.readInput();
-        if (inputp!=user.getPassword()) {
-        	System.out.println("Incorrect input");
-        	password();
-        }
+    	User user = Data.getInstance().getUsers().get(username);
+    	while(true) {
+    		System.out.println("Enter your password: ");
+    		password=commonBuffer.readInput();
+    		if (!password.equals(user.getPassword())) {
+    			System.out.println("Incorrect input");
+    		}
+    		else {
+    			break;
+    		}
+    	}
+    	user.showMenu();
     }
 
     
