@@ -26,8 +26,6 @@ public class News {
 		return recipients;
 	}
 
-
-
 	public void setRecipients(String recipients) {
 		this.recipients = recipients;
 	}
@@ -54,14 +52,6 @@ public class News {
 
     public void setNewsComments(String username, String comment) {
         this.newsComments.put(username, comment);
-    }
-
-    public boolean viewNews() {
-        return false;
-    }
-
-    public String respondToNews() {
-        return "";
     }
 
 	@Override

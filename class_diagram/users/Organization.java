@@ -7,7 +7,7 @@ import java.util.Vector;
 /**
 * @generated
 */
-public class Organizations implements Serializable{
+public class Organization implements Serializable{
     
     /**
     * @generated

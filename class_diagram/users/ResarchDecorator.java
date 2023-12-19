@@ -3,131 +3,61 @@ package users;
 import communication.ResearchProject;
 import userCapabilities.Researcher;
 
-/**
-* @generated
-*/
-public class ResarchDecorator implements Researcher {
+public class ResarchDecorator extends User implements Researcher {
     
-    /**
-    * @generated
-    */
     private int hindex;
-    
-    /**
-    * @generated
-    */
     private Researcher researcher;
-    
-    
-    /**
-    * @generated
-    */
     private Professor professor;
-    
-    /**
-    * @generated
-    */
     private StudentResearcher studentResearcher;
-    
-    /**
-    * @generated
-    */
     private TeacherResearcher teacherResearcher;
-    
-    /**
-    * @generated
-    */
     private EmployeeResearcher employeeResearcher;
     
     
-
-    /**
-    * @generated
-    */
     public int getHindex() {
         return this.hindex;
     }
-    
-    /**
-    * @generated
-    */
-    public int setHindex(Integer hindex) {
+
+    public void setHindex(Integer hindex) {
         this.hindex = hindex;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     public Researcher getResearcher() {
         return this.researcher;
     }
-    
-    /**
-    * @generated
-    */
-    public Researcher setResearcher(Researcher researcher) {
+
+    public void setResearcher(Researcher researcher) {
         this.researcher = researcher;
     }
     
-    
-    
-    /**
-    * @generated
-    */
     public StudentResearcher getStudentResearcher() {
         return this.studentResearcher;
     }
-    
-    /**
-    * @generated
-    */
-    public StudentResearcher setStudentResearcher(StudentResearcher studentResearcher) {
+
+    public void setStudentResearcher(StudentResearcher studentResearcher) {
         this.studentResearcher = studentResearcher;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     public Professor getProfessor() {
         return this.professor;
     }
-    
-    /**
-    * @generated
-    */
-    public Professor setProfessor(Professor professor) {
+
+    public void setProfessor(Professor professor) {
         this.professor = professor;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     public TeacherResearcher getTeacherResearcher() {
         return this.teacherResearcher;
     }
-    
-    /**
-    * @generated
-    */
-    public TeacherResearcher setTeacherResearcher(TeacherResearcher teacherResearcher) {
+
+    public void setTeacherResearcher(TeacherResearcher teacherResearcher) {
         this.teacherResearcher = teacherResearcher;
     }
-    
-    
-    /**
-    * @generated
-    */
+
     public EmployeeResearcher getEmployeeResearcher() {
         return this.employeeResearcher;
     }
-    
-    /**
-    * @generated
-    */
-    public EmployeeResearcher setEmployeeResearcher(EmployeeResearcher employeeResearcher) {
+
+    public void setEmployeeResearcher(EmployeeResearcher employeeResearcher) {
         this.employeeResearcher = employeeResearcher;
     }
 
@@ -145,6 +75,18 @@ public class ResarchDecorator implements Researcher {
 
 	@Override
 	public void conductResearch(String researchTopic) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void addRequest() {
 		// TODO Auto-generated method stub
 		
 	}

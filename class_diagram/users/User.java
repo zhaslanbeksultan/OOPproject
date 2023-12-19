@@ -28,6 +28,7 @@ public abstract class User implements Serializable{
     private String citizenship;
     private Request request;
     private News news;
+    public User() {}
 	public User(String firstName, String lastName, Date birthDay, String id, String username, String password, String email,
 			Date registrationDate, String phoneNumber, String pasportNumber, Gender gender, String nationality,
 			String citizenship) {
@@ -45,9 +46,7 @@ public abstract class User implements Serializable{
 		this.nationality = nationality;
 		this.citizenship = citizenship;
 	}
-	public User() {
-		
-	}
+
     public String getFirstName() {
         return this.firstName;
     }
@@ -161,54 +160,66 @@ public abstract class User implements Serializable{
         this.citizenship = citizenship;
     }
 
-    public News getNews() {
-        return this.news;
-    }
-
-    public void setNews(News news) {
-        this.news = news;
-    }
-
-    public Request getRequest() {
-        return this.request;
-    }
-
-    public void setRequest(Request request) {
-        this.request = request;
-    }
+	public void viewRequests() {
+		while(true) {
+			System.out.println("----REQUESTS WINDOW----");
+			System.out.println("Enter '0' to exit.");
+			System.out.println("1. Add Request\n2. Update");
+			for(Request request: Data.getInstance().getRequests()) {
+				if(this.username.equals(request.getRequester())) {
+					System.out.println(request);
+				}
+			}
+			String choice = commonBuffer.readInput();
+			switch(choice) {
+				case("0"):
+					break;
+				case("1"):
+					this.addRequest();;
+				case("2"):
+					continue;
+			}
+		}
+	}
+	abstract void addRequest();
 
     public void editPersonalData() {
-    	String choose = commonBuffer.readInput();
     	//Отдельный для Админа и Юзера
-    	if(this instanceof Admin) {
-    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship\n10.Set Id\n11.Set Username\n12.Set Email");
-    		if(choose=="1") {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
-    		else if(choose=="2") {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
-    		else if(choose=="3") {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
-    		else if(choose=="4") {System.out.println("Write a Birth Day: "); setBirthDay(commonBuffer.readInput());}
-    		else if(choose=="5") {System.out.println("Write a Phone Number: "); setPhoneNumber(commonBuffer.readInput());}
-    		else if(choose=="6") {System.out.println("Write a Pasport Number: "); setPasportNumber(commonBuffer.readInput());}
-    		else if(choose=="7") {System.out.println("Write a Gender: "); setGender(commonBuffer.readInput());}
-    		else if(choose=="8") {System.out.println("Write a Nationality: "); setNationality(commonBuffer.readInput());}
-    		else if(choose=="9") {System.out.println("Write a Citizenship: "); setCitizenship(commonBuffer.readInput());}
-    		else if(choose=="10") {System.out.println("Write an Id: "); setId(commonBuffer.readInput());}
-    		else if(choose=="11") {System.out.println("Write a username: "); setUsername(commonBuffer.readInput());}
-    		else if(choose=="12") {System.out.println("Write a email: "); setEmail(commonBuffer.readInput());}
-    		else {System.out.println("The wrong character is entered!");}
-    	}
-    	if(this instanceof User) {
-    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship");
-    		if(choose=="1") {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
-    		else if(choose=="2") {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
-    		else if(choose=="3") {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
-    		else if(choose=="4") {System.out.println("Write a Birth Day: "); setBirthDay(commonBuffer.readInput());}
-    		else if(choose=="5") {System.out.println("Write a Phone Number: "); setPhoneNumber(commonBuffer.readInput());}
-    		else if(choose=="6") {System.out.println("Write a Pasport Number: "); setPasportNumber(commonBuffer.readInput());}
-    		else if(choose=="7") {System.out.println("Write a Gender: "); setGender(commonBuffer.readInput());}
-    		else if(choose=="8") {System.out.println("Write a Nationality: "); setNationality(commonBuffer.readInput());}
-    		else if(choose=="9") {System.out.println("Write a Citizenship: "); setCitizenship(commonBuffer.readInput());}
-    		else {System.out.println("The wrong character is entered!");}
-    	}
+    	while(true) {
+	    	if(this instanceof Admin) {
+	    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship\n10.Set Id\n11.Set Username\n12.Set Email");
+	    		String choose = commonBuffer.readInput();
+	    		if(choose=="0") {break;}
+	    		else if(choose=="1") {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
+	    		else if(choose=="2") {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
+	    		else if(choose=="3") {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
+	    		else if(choose=="4") {System.out.println("Write a Birth Day: "); setBirthDay(commonBuffer.readInput());}
+	    		else if(choose=="5") {System.out.println("Write a Phone Number: "); setPhoneNumber(commonBuffer.readInput());}
+	    		else if(choose=="6") {System.out.println("Write a Pasport Number: "); setPasportNumber(commonBuffer.readInput());}
+	    		else if(choose=="7") {System.out.println("Write a Gender: "); setGender(commonBuffer.readInput());}
+	    		else if(choose=="8") {System.out.println("Write a Nationality: "); setNationality(commonBuffer.readInput());}
+	    		else if(choose=="9") {System.out.println("Write a Citizenship: "); setCitizenship(commonBuffer.readInput());}
+	    		else if(choose=="10") {System.out.println("Write an Id: "); setId(commonBuffer.readInput());}
+	    		else if(choose=="11") {System.out.println("Write a username: "); setUsername(commonBuffer.readInput());}
+	    		else if(choose=="12") {System.out.println("Write a email: "); setEmail(commonBuffer.readInput());}
+	    		else {System.out.println("The wrong character is entered!");}
+	    	}
+	    	if(this instanceof User) {
+	    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship");
+	    		String choose = commonBuffer.readInput();
+	    		if(choose=="0") {break;}
+	    		else if(choose=="1") {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
+	    		else if(choose=="2") {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
+	    		else if(choose=="3") {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
+	    		else if(choose=="4") {System.out.println("Write a Birth Day: "); setBirthDay(commonBuffer.readInput());}
+	    		else if(choose=="5") {System.out.println("Write a Phone Number: "); setPhoneNumber(commonBuffer.readInput());}
+	    		else if(choose=="6") {System.out.println("Write a Pasport Number: "); setPasportNumber(commonBuffer.readInput());}
+	    		else if(choose=="7") {System.out.println("Write a Gender: "); setGender(commonBuffer.readInput());}
+	    		else if(choose=="8") {System.out.println("Write a Nationality: "); setNationality(commonBuffer.readInput());}
+	    		else if(choose=="9") {System.out.println("Write a Citizenship: "); setCitizenship(commonBuffer.readInput());}
+	    		else {System.out.println("The wrong character is entered!");}
+	    	}
+	    }
     }
 
     public String accesingFeedback() {
@@ -269,9 +280,7 @@ public abstract class User implements Serializable{
         return toString();
     }
 
-    public void showMenu() {
-        
-    }
+    public abstract void showMenu();
     
     public void showMessages() {
 

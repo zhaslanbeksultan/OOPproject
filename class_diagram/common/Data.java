@@ -23,6 +23,12 @@ public class Data implements Serializable {
     private Vector<Message> messages = new Vector<>();
     private Vector<News> news = new Vector<>();
     private static Data DATA;
+
+    
+    private Vector<Book> books;
+    private Vector<Request> requests;
+    private HashMap<String, String> logs;
+
     
     
     static {
@@ -126,9 +132,20 @@ public class Data implements Serializable {
 		
 	}
 
-	public Book[] getBooks() {
-		// TODO Auto-generated method stub
-		return null;
+	public Vector<Book> getBooks() {
+		return books;
+	}
+
+	public void addBook(Book book) {
+		this.books.add(book);
+	}
+
+	public Vector<Request> getRequests() {
+		return requests;
+	}
+
+	public void addRequest(Request request) {
+		this.requests.add(request);
 	}
 	
 	

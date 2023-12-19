@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import common.Data;
+import communication.Message;
 import education.*;
 import enums.*;
 import userCapabilities.*;
@@ -15,15 +16,19 @@ public class Teacher extends Employee implements Managable,CanBorrowBook {
     private Set<Course> courses;
     private GraduateStudent graduateStudent;
     private Course course;
+    
+	public Teacher(String firstName, String lastName, Date birthDay, String id, String username, String password,
+			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
+			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber,
+			Set<Course> courses, GraduateStudent graduateStudent, Course course) {
+		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
+				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
+		this.courses = courses;
+		this.graduateStudent = graduateStudent;
+		this.course = course;
+	}
 
-    public Teacher(String name, String subject) {
-        super();
-        this.courses = new HashSet<>();
-    }
-    public Teacher() {
-    	
-    }
-    public Set<Course> getCourses() {
+	public Set<Course> getCourses() {
         return courses;
     }
 
@@ -104,6 +109,78 @@ public class Teacher extends Employee implements Managable,CanBorrowBook {
 				book.setReader(null);
 			}
 		}
+	}
+
+	@Override
+	public double getSalary() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setSalary(double salary) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Date getHireDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setHireDate(Date hireDate) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getInsuranceNumber() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setInsuranceNumber(String insuranceNumber) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Message getMessage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setMessage(Message message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sentComplaintMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String performInsuranceNumber() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void showMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void addRequest() {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

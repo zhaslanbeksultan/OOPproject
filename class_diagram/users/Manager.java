@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import common.Data;
 import common.commonBuffer;
+import communication.Message;
 import communication.News;
 import education.Courses;
 import enums.*;
@@ -17,15 +18,18 @@ public class Manager extends Employee implements Managable, Administrationable {
     private Vector coursesRegisterTo;
     private Vector requests;
 
-    public Manager(String firstName, String lastName, Date birthDay, String id, String username, String password,
+	public Manager(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
-			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber) {
-		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber, pasportNumber,
-				gender, nationality, citizenship, salary, hireDate, insuranceNumber);
+			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber,
+			ManagerPosition managerPosition, Vector coursesRegisterTo, Vector requests) {
+		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
+				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
 		this.managerPosition = managerPosition;
+		this.coursesRegisterTo = coursesRegisterTo;
+		this.requests = requests;
 	}
 
-    public ManagerPosition getManagerPosition() {
+	public ManagerPosition getManagerPosition() {
         return this.managerPosition;
     }
 
@@ -148,6 +152,85 @@ public class Manager extends Employee implements Managable, Administrationable {
 	public HashMap<String, HashMap<WeekDays, Teacher>> getLessonSchedule() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public double getSalary() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setSalary(double salary) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Date getHireDate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setHireDate(Date hireDate) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getInsuranceNumber() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setInsuranceNumber(String insuranceNumber) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Message getMessage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setMessage(Message message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void sentComplaintMessage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String performInsuranceNumber() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void showMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addDropDiscipline() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void addRequest() {
+		// TODO Auto-generated method stub
+		
 	}
     
     
