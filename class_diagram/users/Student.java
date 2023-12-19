@@ -210,7 +210,6 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	public void attendanceMark() {}
 	public void viewDisciplineSchedule() {}
 	public void registrationForFx() {}
-	public void viewSocialTranscript() {}
 	public void viewTranscript() {}
 	@Override
 	public void viewExamsSchedule() {}
@@ -401,7 +400,15 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	        	System.out.println(element);
 	        }
 	    }
+        
 //courseList.clear();
         	
- }
+    }
+
+	@Override
+	public String toString() {
+		return super.toString() + "\n Study Year = " + studyYear + "\n Faculty="
+				+ faculty + "\n enrollmentDate=" + enrollmentDate + "\n Major=" + major + "\n Organizations = " + organizations;
+	}
+	
 }

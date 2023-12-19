@@ -4,7 +4,7 @@ import java.util.Date;
 import common.*;
 import communication.*;
 import enums.Gender;
-public class Admin extends TechSupportSpecialist{
+public class Admin extends Employee{
     public Admin(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
 			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber) {
@@ -24,6 +24,16 @@ public class Admin extends TechSupportSpecialist{
     	d.addStudent(beks);
     	System.out.println("Successfully added!");
     }
+	@Override
+	void addRequest() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void showMenu() {
+		// TODO Auto-generated method stub
+		
+	}
     
                                
     

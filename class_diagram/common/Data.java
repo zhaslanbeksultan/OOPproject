@@ -25,8 +25,9 @@ public class Data implements Serializable {
     private static Data DATA;
 
     
-    private Vector<Book> books;
-    private Vector<Request> requests;
+    private Vector<Book> books = new Vector<>();
+    private Vector<Request> requests = new Vector<>();
+    private Vector<Order> orders = new Vector<>();
     private HashMap<String, String> logs;
 
     
@@ -41,8 +42,10 @@ public class Data implements Serializable {
 		}
 		else DATA = new Data();
 	}
+    
     private Data() {
     }
+    
     public static Data read() throws IOException, ClassNotFoundException{
 		FileInputStream fis = new FileInputStream("data.txt");
 		ObjectInputStream oin = new ObjectInputStream(fis);
@@ -138,6 +141,14 @@ public class Data implements Serializable {
 
 	public void addBook(Book book) {
 		this.books.add(book);
+	}
+
+	public Vector<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Order order) {
+		this.orders.add(order);
 	}
 
 	public Vector<Request> getRequests() {
