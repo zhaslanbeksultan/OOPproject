@@ -1,5 +1,5 @@
 package common;
-import java.io.Serializable;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -10,40 +10,50 @@ import education.*;
 
 public class Data implements Serializable {
 
-    private Vector<Student> students;
-    private Vector<Teacher> teachers;
+	private Vector<Student> students = new Vector<>();
+	private Vector<GraduateStudent> graduateStudents = new Vector<>();
+    private Vector<Teacher> teachers = new Vector<>();
+    private Vector<Employee> employee = new Vector<>();
+    private Vector<Admin> admins = new Vector<>();
+    private Vector<Researcher> researchers = new Vector<>();
     
-    private Vector<News> news;
-    private Vector<Researcher> researchers;
-    private Vector<Course> courses;
-    private Vector<Lesson> lessons;
-    private Vector<Specialty> specialities;
-    private Vector<Message> messages;
-    private HashMap<String, String> logs;
+    private Vector<Course> courses = new Vector<>();
+    private Vector<Lesson> lessons = new Vector<>();
+    private Vector<Specialty> specialities = new Vector<>();
+    private Vector<Message> messages = new Vector<>();
+    private Vector<News> news = new Vector<>();
+    private static Data DATA;
     
-    private static final Data DATA = new Data();
     
+    static {
+		if(new File("data.txt").exists()) {
+			try {
+				DATA = read();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else DATA = new Data();
+	}
     private Data() {
-        students = new Vector<>();
-        teachers = new Vector<>();
-        news = new Vector<>();
-        researchers = new Vector<>();
-        courses = new Vector<>();
-        lessons = new Vector<>();
-        specialities = new Vector<>();
-        messages = new Vector<>();
-        logs = new HashMap<String, String>();
     }
-
+    public static Data read() throws IOException, ClassNotFoundException{
+		FileInputStream fis = new FileInputStream("data.txt");
+		ObjectInputStream oin = new ObjectInputStream(fis);
+		return (Data) oin.readObject();
+	}
+	public static void write()throws IOException{
+		FileOutputStream fos = new FileOutputStream("data.txt");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(DATA);
+		oos.close();
+	}
+    
+    
     public static Data getInstance() {
     	return DATA;
     }
-    public void setLogs(String login, String password) {
-    	logs.put(login, password);
-    }
-    public HashMap<String, String> getLogs() {
-    	return logs;
-    }
+    
     public Vector<Message> getMessages() {
 		return messages;
 	}
