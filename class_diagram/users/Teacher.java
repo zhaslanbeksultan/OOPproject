@@ -14,7 +14,7 @@ import education.*;
 import enums.*;
 import userCapabilities.*;
 
-public class Teacher extends Employee implements Managable,CanBorrowBook,Educationable {
+public class Teacher extends Employee implements Managable,CanBorrowBook,Educationable,Subscriber {
 
     private Set<Course> courses;
     
@@ -129,6 +129,8 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 					this.viewSocialTranscript();
 				case "11":
 					this.viewOfficeHourSchedule();
+				case "12":
+					this.researchCabinet();
 			}
 		}
 	}
@@ -203,6 +205,12 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 	public void viewOfficeHourSchedule() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void notifySubscriber(String journalName, String projectTopic, String paperTitle) {	
+    	Message message = new Message("A New Article Has Been Published About" + projectTopic, journalName, this.getUsername()
+    			, "The New Article Is Already In The Research Cabinet. The new article is already in the study room. You can read it");
+    	Data.getInstance().getMessages().add(message);
 	}
 }
 

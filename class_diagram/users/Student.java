@@ -11,7 +11,7 @@ import communication.*;
 import education.*;
 import enums.*;
 import userCapabilities.*;
-public class Student extends User implements CanBorrowBook, Educationable, Administrationable, Serializable {
+public class Student extends User implements CanBorrowBook, Educationable, Administrationable, Serializable, Subscriber	{
     private double gpa;
     private int studyYear;
     private Faculty faculty;
@@ -234,6 +234,8 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 					this.viewSocialTranscript();
 				case "15":
 					this.viewOfficeHourSchedule();
+				case "16":
+					this.researchCabinet();
 			}
 		}
 	}
@@ -406,6 +408,13 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	public void viewOfficeHourSchedule() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void notifySubscriber(String journalName, String projectTopic, String paperTitle) {	
+    	Message message = new Message("A New Article Has Been Published About" + projectTopic, journalName, this.getUsername()
+    			, "The New Article Is Already In The Research Cabinet. The new article is already in the study room. You can read it");
+    	Data.getInstance().getMessages().add(message);
 	}
 	
 }

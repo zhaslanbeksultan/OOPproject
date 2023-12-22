@@ -5,9 +5,10 @@ import java.util.Date;
 import common.Data;
 import common.commonBuffer;
 import enums.Gender;
+import userCapabilities.Subscriber;
 import communication.*;
 
-public class Librarian extends Employee {
+public class Librarian extends Employee implements Subscriber{
 
 	public Librarian(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
@@ -101,5 +102,12 @@ public class Librarian extends Employee {
 				Data.getInstance().addRequest(request);
 				break;
 		}
+	}
+
+	@Override
+	public void notifySubscriber(String journalName, String projectTopic, String paperTitle) {	
+    	Message message = new Message("A New Article Has Been Published About" + projectTopic, journalName, this.getUsername()
+    			, "The New Article Is Already In The Research Cabinet. The new article is already in the study room. You can read it");
+    	Data.getInstance().getMessages().add(message);
 	}
 }

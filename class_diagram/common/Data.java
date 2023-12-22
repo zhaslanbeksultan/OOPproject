@@ -13,7 +13,7 @@ public class Data implements Serializable {
 	private Vector<Student> students = new Vector<>();
 	private Vector<GraduateStudent> graduateStudents = new Vector<>();
     private Vector<Teacher> teachers = new Vector<>();
-    private Vector<Employee> employee = new Vector<>();
+    private Vector<Employee> employees = new Vector<>();
     private Vector<Admin> admins = new Vector<>();
     private Vector<Researcher> researchers = new Vector<>();
     private Vector<Book> books = new Vector<>();
@@ -25,6 +25,8 @@ public class Data implements Serializable {
     private Vector<Message> messages = new Vector<>();
     private Vector<News> news = new Vector<>();
 	private Vector<Order> orders = new Vector<>();
+	private Vector<ResearchProject> researchProjects = new Vector<>();
+	private Vector<ResearchPaper> researchPapers = new Vector<>();
 
     private static Data DATA;  
 
@@ -163,6 +165,38 @@ public class Data implements Serializable {
 	}
 	public void addAdmin(Admin admin)  {
 		this.admins.add(admin);
+	}
+
+	public Vector<GraduateStudent> getGraduateStudents() {
+		return graduateStudents;
+	}
+
+	public void setGraduateStudents(Vector<GraduateStudent> graduateStudents) {
+		this.graduateStudents = graduateStudents;
+	}
+
+	public Vector<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(Vector<Employee> employees) {
+		this.employees = employees;
+	}
+
+	public Vector<ResearchPaper> getResearchPapers() {
+		return researchPapers;
+	}
+
+	public void setResearchPapers(Vector<ResearchPaper> researchPapers) {
+		this.researchPapers = researchPapers;
+	}
+
+	public Vector<ResearchProject> getResearchProjects() {
+		return researchProjects;
+	}
+
+	public void setResearchProjects(Vector<ResearchProject> researchProjects) {
+		this.researchProjects = researchProjects;
 	}
 	
 }

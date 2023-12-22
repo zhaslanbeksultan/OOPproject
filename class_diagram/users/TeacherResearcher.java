@@ -3,6 +3,8 @@ package users;
 import java.util.Date;
 import java.util.Set;
 
+import common.Data;
+import communication.Message;
 import communication.ResearchProject;
 import education.Course;
 import enums.Gender;
@@ -57,6 +59,12 @@ public class TeacherResearcher extends Teacher implements Researcher {
 
 	@Override
 	public void conductResearch(String researchTopic) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void printPapers() {
 		// TODO Auto-generated method stub
 		
 	}
