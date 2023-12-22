@@ -2,114 +2,148 @@ package education;
 
 import enums.WeekDays;
 import users.Teacher;
+import enums.Language;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
+import java.util.List;
 
 public class Mark implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int percentageOfMark;
-    private Vector<Integer> lessonMarks;
+    private static final long serialVersionUID = 1L;
+    private Integer percentageOfMark;
+    private List<Integer> lessonMarks;
     private HashMap<Lesson, Integer> attestationResults;
-    private HashMap<Lesson, Map.Entry<WeekDays, Integer>> lessonAndMarks;
-    private Vector<String> downloadedFiles;
-    private HashMap<Lesson, WeekDays> lessonSchedule;
+    private HashMap<Lesson, ScheduleEntry> lessonSchedule;
     private HashMap<Teacher, WeekDays> officeHourSchedule;
-    private HashMap<String, Vector<Mark>> marks;
-    private String report;
-
     public Mark() {
-        this.setPercentageOfMark(0);
-        this.lessonMarks = new Vector<>();
-        this.setAttestationResults(new HashMap<>());
-        this.lessonAndMarks = new HashMap<>();
-        this.setDownloadedFiles(new Vector<>());
-        this.setLessonSchedule(new HashMap<>());
-        this.setOfficeHourSchedule(new HashMap<>());
-        this.setMarks(new HashMap<>());
-        this.setReport("");
+        this.percentageOfMark = 0;
+        this.lessonMarks = new ArrayList<>();
+        this.attestationResults = new HashMap<>();
+        this.lessonSchedule = new HashMap<>();
+        this.officeHourSchedule = new HashMap<>();
     }
 
     public void addLessonMark(Lesson lesson, int mark, WeekDays lessonTime) {
         lessonMarks.add(mark);
-        lessonAndMarks.put(lesson, Map.entry(lessonTime, mark));
+        attestationResults.put(lesson, mark);
     }
 
     public String calculateFinalGrade() {
-        int totalMarks = lessonMarks.stream().mapToInt(Integer::intValue).sum();
-        int averageMark = totalMarks / lessonMarks.size();
+        if (lessonMarks.isEmpty() && attestationResults.isEmpty()) {
+            return "No grades available";
+        }
 
-        if (averageMark >= 90) {
+        int totalLessonMarks = lessonMarks.stream().mapToInt(Integer::intValue).sum();
+        int totalAttestationMarks = attestationResults.values().stream().mapToInt(Integer::intValue).sum();
+        int totalMarks = totalLessonMarks + totalAttestationMarks;
+        int averageMark = totalMarks / (lessonMarks.size() + attestationResults.size());
+
+        if (averageMark >= 95) {
             return "A";
+        } else if (averageMark >= 90) {
+            return "A-";
+        } else if (averageMark >= 85) {
+            return "B+";
         } else if (averageMark >= 80) {
             return "B";
+        } else if (averageMark >= 75) {
+            return "B-";
         } else if (averageMark >= 70) {
+            return "C+";
+        } else if (averageMark >= 65) {
             return "C";
         } else if (averageMark >= 60) {
+            return "C-";
+        } else if (averageMark >= 55) {
             return "D";
+        } else if (averageMark >= 50) {
+            return "D-";
         } else {
             return "F";
         }
     }
 
-	public int getPercentageOfMark() {
-		return percentageOfMark;
-	}
+    public void addScheduleEntry(Lesson lesson, WeekDays dayOfWeek, String classroom, String time) {
+        ScheduleEntry scheduleEntry = new ScheduleEntry(lesson, dayOfWeek, classroom, time);
+        lessonSchedule.put(lesson, scheduleEntry);
+    }
 
-	public void setPercentageOfMark(int percentageOfMark) {
-		this.percentageOfMark = percentageOfMark;
-	}
+    public HashMap<Lesson, ScheduleEntry> getLessonScheduleEntries() {
+        return lessonSchedule;
+    }
 
-	public HashMap<Lesson, Integer> getAttestationResults() {
-		return attestationResults;
-	}
+    public Integer getPercentageOfMark() {
+        return percentageOfMark;
+    }
 
-	public void setAttestationResults(HashMap<Lesson, Integer> attestationResults) {
-		this.attestationResults = attestationResults;
-	}
+    public void setPercentageOfMark(Integer percentageOfMark) {
+        this.percentageOfMark = percentageOfMark;
+    }
 
-	public Vector<String> getDownloadedFiles() {
-		return downloadedFiles;
-	}
+    public HashMap<Lesson, Integer> getAttestationResults() {
+        return attestationResults;
+    }
 
-	public void setDownloadedFiles(Vector<String> downloadedFiles) {
-		this.downloadedFiles = downloadedFiles;
-	}
+    public void setAttestationResults(HashMap<Lesson, Integer> attestationResults) {
+        this.attestationResults = attestationResults;
+    }
 
-	public HashMap<Lesson, WeekDays> getLessonSchedule() {
-		return lessonSchedule;
-	}
+    public HashMap<Lesson, ScheduleEntry> getLessonSchedule() {
+        return lessonSchedule;
+    }
 
-	public void setLessonSchedule(HashMap<Lesson, WeekDays> lessonSchedule) {
-		this.lessonSchedule = lessonSchedule;
-	}
+    public void setLessonSchedule(HashMap<Lesson, ScheduleEntry> lessonSchedule) {
+        this.lessonSchedule = lessonSchedule;
+    }
 
-	public HashMap<Teacher, WeekDays> getOfficeHourSchedule() {
-		return officeHourSchedule;
-	}
+    public HashMap<Teacher, WeekDays> getOfficeHourSchedule() {
+        return officeHourSchedule;
+    }
 
-	public void setOfficeHourSchedule(HashMap<Teacher, WeekDays> officeHourSchedule) {
-		this.officeHourSchedule = officeHourSchedule;
-	}
+    public void setOfficeHourSchedule(HashMap<Teacher, WeekDays> officeHourSchedule) {
+        this.officeHourSchedule = officeHourSchedule;
+    }
 
-	public HashMap<String, Vector<Mark>> getMarks() {
-		return marks;
-	}
+    public String getReport(Language language) {
+        String averageMark = calculateFinalGrade();
 
-	public void setMarks(HashMap<String, Vector<Mark>> marks) {
-		this.marks = marks;
-	}
+        String excellent, good, satisfactory, unsatisfactory;
 
-	public String getReport() {
-		return report;
-	}
+        switch (language) {
+            case KAZAKH:
+                excellent = "O`te jaqsy ";
+                good = "Jaqsy ";
+                satisfactory = "Qanag`attandylarlyq ";
+                unsatisfactory = "Qanag`attandylaryq emes ";
+                break;
+            case RUSSIAN:
+                excellent = "Отлично";
+                good = "Хорошо";
+                satisfactory = "Удовлетворительно";
+                unsatisfactory = "Неудовлетворительно";
+                break;
+            case ENGLISH:
+                excellent = "Excellent";
+                good = "Good";
+                satisfactory = "Satisfactory";
+                unsatisfactory = "Unsatisfactory";
+                break;
+            default:
+                return "Unsupported Language";
+        }
 
-	public void setReport(String report) {
-		this.report = report;
-	}
+        if (averageMark.equals("A") || averageMark.equals("A-")) {
+            return excellent;
+        } else if (averageMark.equals("B+") || averageMark.equals("B") || averageMark.equals("B-")) {
+            return good;
+        } else if (averageMark.equals("C+") || averageMark.equals("C") || averageMark.equals("C-")) {
+            return satisfactory;
+        } else {
+            return unsatisfactory;
+        }
+    }
+
+    public void setReport(String report) {
+    }
 }
