@@ -2,11 +2,11 @@ package education;
 
 public class Courses {
     private String courseName;
-    private static int numberOfCredits;
+    private int numberOfCredits;
 
     public Courses(String courseName, int numberOfCredits) {
         this.courseName = courseName;
-        Courses.numberOfCredits = numberOfCredits;
+        this.numberOfCredits = numberOfCredits;
     }
 
     public String getCourseName() {
@@ -18,7 +18,7 @@ public class Courses {
     }
 
    
-    public static int getDisciplineCredits() {
+    public int getDisciplineCredits() {
         return numberOfCredits;
     }
 
@@ -27,6 +27,6 @@ public class Courses {
     }
 
     public void setNumberOfCredits(int numberOfCredits) {
-        Courses.numberOfCredits = numberOfCredits;
-    }
-}
+        this.numberOfCredits = numberOfCredits;
+    }}
+

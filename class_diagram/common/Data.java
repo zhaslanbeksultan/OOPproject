@@ -12,7 +12,7 @@ public class Data implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Vector<Student> students = new Vector<>();
 	private Vector<GraduateStudent> graduateStudents = new Vector<>();
-    private static Vector<Teacher> teachers = new Vector<>();
+    private Vector<Teacher> teachers = new Vector<>();
     private Vector<Employee> employee = new Vector<>();
     private Vector<Admin> admins = new Vector<>();
     private Vector<Researcher> researchers = new Vector<>();
@@ -75,7 +75,7 @@ public class Data implements Serializable {
 		this.students = students;
 	}
 
-	public static Vector<Teacher> getTeachers() {
+	public  Vector<Teacher> getTeachers() {
 		return teachers;
 	}
 

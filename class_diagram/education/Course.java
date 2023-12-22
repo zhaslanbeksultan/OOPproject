@@ -21,7 +21,7 @@ public abstract class Course implements Administrationable {
     private Set<Teacher> teachers;
     private Lesson lesson;
     private Specialty specialty;
-    private List<Lesson> lessons; // Изменил на List<Lesson>
+    private List<Lesson> lessons; 
 
     public Course(String courseId, String courseName, int numberOfCredits, DisciplineType disciplineType,
             String specialtyId) {
@@ -31,7 +31,7 @@ public abstract class Course implements Administrationable {
         Course.disciplineType = disciplineType;
         this.specialtyId = specialtyId;
         this.teachers = new HashSet<>();
-        this.lessons = new ArrayList<>(); // Инициализировал список уроков
+        this.lessons = new ArrayList<>(); 
     }
 
     public String getCourseId() {
@@ -58,7 +58,7 @@ public abstract class Course implements Administrationable {
         List<Teacher> teachersForCourse = new ArrayList<>();
         for (Lesson lesson : lessons) {
             Teacher instructor = lesson.getInstructor();
-            if (instructor != null && Data.getTeachers().contains(instructor) && !teachersForCourse.contains(instructor)) {
+            if (instructor != null && Data.getInstance().getTeachers().contains(instructor) && !teachersForCourse.contains(instructor)) {
                 teachersForCourse.add(instructor);
             }
         }
@@ -87,7 +87,7 @@ public abstract class Course implements Administrationable {
 
     public boolean addDiscipline(Courses discipline) {
         int totalECTS = 0;
-        int disciplineECTS = Courses.getDisciplineCredits();
+        int disciplineECTS = discipline.getDisciplineCredits();
 
         if (totalECTS + disciplineECTS > 30) {
             System.out.println("Adding discipline " + discipline + " to your schedule has failed. Exceeds maximum credits.");
