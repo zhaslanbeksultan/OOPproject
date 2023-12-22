@@ -370,6 +370,11 @@ public abstract class User implements Serializable{
     	Message message = new Message(theme, this.username, recipient, messageWording, answer);
     	Data.getInstance().getMessages().add(message);
     }
+    
+    public void researchCabinet() {
+    	System.out.println("----RESEARCH CABINET----");
+    }
+    
 	@Override
 	public String toString() {
 		return " FirstName = " + firstName + "\n LastName = " + lastName + "\n Birth Day = " + birthDay + "\n Id = " + id

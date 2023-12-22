@@ -5,9 +5,10 @@ import java.util.Set;
 import java.util.Vector;
 import education.Course;
 import enums.Gender;
+import userCapabilities.Subscriber;
 
 
-public class Advisor extends Teacher {
+public class Advisor extends Teacher implements Subscriber{
 	
 	private String areaOfConsulting;
 

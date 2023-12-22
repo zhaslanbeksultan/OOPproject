@@ -16,7 +16,7 @@ public abstract class Course implements Administrationable {
     private String courseId;
     private String courseName;
     private int numberOfCredits;
-    protected static DisciplineType disciplineType;
+    protected DisciplineType disciplineType;
     private String specialtyId;
     private Set<Teacher> teachers;
     private Lesson lesson;
@@ -28,7 +28,7 @@ public abstract class Course implements Administrationable {
         this.courseId = courseId;
         this.courseName = courseName;
         this.numberOfCredits = numberOfCredits;
-        Course.disciplineType = disciplineType;
+       this.disciplineType = disciplineType;
         this.specialtyId = specialtyId;
         this.teachers = new HashSet<>();
         this.lessons = new ArrayList<>(); 
