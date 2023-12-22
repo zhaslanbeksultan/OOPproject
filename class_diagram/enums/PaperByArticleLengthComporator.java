@@ -1,10 +1,10 @@
 package enums;
 
 import java.util.Comparator;
-import Communication.ResearchPaper;
+import communication.ResearchPaper;
 
 
-public class PaperByArticleLengthComparator implements Comparator<ResearchPaper> {
+public class PaperByArticleLengthComporator implements Comparator<ResearchPaper> {
 
     @Override
     public int compare(ResearchPaper paper1, ResearchPaper paper2) {

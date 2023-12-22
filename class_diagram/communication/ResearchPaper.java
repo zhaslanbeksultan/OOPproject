@@ -8,26 +8,28 @@ import enums.*;
 public class ResearchPaper {
 	private int cnt = 1;
     private int paperId;
+    private String researchProject;
     private String paperTitle;
     private String paperWording;
-    private Vector<String> paperAuthors;
+    private String paperAuthor;
     private Date publishedDate;
     private Vector<String> references;//links to the papers Researcher used
     private Vector<String> citations;//links to papers that cited this paper
     
-    public ResearchPaper(int paperId, String paperTitle, String paperWording,
-			Vector<String> paperAuthors, Vector<String> references, Vector<String> citations) {
+    public ResearchPaper(String researchProject, String paperTitle, String paperWording,
+			String paperAuthor) {
 		this.paperId = cnt++;
+		this.researchProject = researchProject;
 		this.paperTitle = paperTitle;
 		this.paperWording = paperWording;
-		this.paperAuthors = paperAuthors;
-		this.references = references;
-		this.citations = citations;
+		this.paperAuthor = paperAuthor;
 		this.publishedDate = new Date();
 	}
 
-	void printPaper() {
-    	System.out.println(toString());
+	public void printPaper() {
+    	System.out.println(toString() + "Paper Authors = " + paperAuthor
+    			+ "Paper wording = " + paperWording + "References of Papers Cited In This Paper = " + references
+    			+ "Papers Cited This Paper: " + citations);
     }
 	public String toCite(PaperFormat format) {
 		return "";
@@ -45,10 +47,10 @@ public class ResearchPaper {
 		return references;
 	}
 
-	public void setReferences(Vector<String> references) {
-		this.references = references;
+	public void setReferences(String references) {
+		this.references.add(references);
 	}
-
+	
 	public Vector<String> getCitations() {
 		return citations;
 	}
@@ -81,12 +83,12 @@ public class ResearchPaper {
         this.paperWording = paperWording;
     }
 
-    public Vector<String> getPaperAuthors() {
-        return this.paperAuthors;
+    public String getPaperAuthor() {
+        return this.paperAuthor;
     }
 
-    public void setPaperAuthors(Vector<String> paperAuthors) {
-        this.paperAuthors = paperAuthors;
+    public void setPaperAuthor(String paperAuthors) {
+        this.paperAuthor = paperAuthors;
     }
 
     public Date getpublishedDate() {
@@ -103,10 +105,15 @@ public class ResearchPaper {
 
 	@Override
 	public String toString() {
-		return "Paper Id = " + paperId + "\n Title = " + paperTitle
-				+ "\n Wording = " + paperWording + "\n Authors = " + paperAuthors
-				+ "\n Published Date = " + publishedDate + "\n References = " + references
-				+ "\n Citations = " + citations;
+		return "Paper Id = " + paperId + "\n Title = " + paperTitle + "\n Published Date = " + publishedDate;
+	}
+
+	public String getResearchProject() {
+		return researchProject;
+	}
+
+	public void setResearchProject(String researchProject) {
+		this.researchProject = researchProject;
 	}
     
     

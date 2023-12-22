@@ -13,11 +13,7 @@ public class Data implements Serializable {
 	private Vector<Student> students = new Vector<>();
 	private Vector<GraduateStudent> graduateStudents = new Vector<>();
     private Vector<Teacher> teachers = new Vector<>();
-<<<<<<< HEAD
-=======
     private Vector<Employee> employees = new Vector<>();
->>>>>>> 710da60ae29b1e04d9d65b3be078046fa79d2343
-    private Vector<Employee> employee = new Vector<>();
     private Vector<Admin> admins = new Vector<>();
     private Vector<Researcher> researchers = new Vector<>();
     private Vector<Book> books = new Vector<>();
@@ -81,11 +77,7 @@ public class Data implements Serializable {
 		this.students = students;
 	}
 
-<<<<<<< HEAD
-	public  Vector<Teacher> getTeachers() {
-=======
 	public	 Vector<Teacher> getTeachers() {
->>>>>>> 710da60ae29b1e04d9d65b3be078046fa79d2343
 		return teachers;
 	}
 
@@ -195,8 +187,8 @@ public class Data implements Serializable {
 		return researchPapers;
 	}
 
-	public void setResearchPapers(Vector<ResearchPaper> researchPapers) {
-		this.researchPapers = researchPapers;
+	public void setResearchPapers(ResearchPaper paper) {
+		this.researchPapers.add(paper);
 	}
 
 	public Vector<ResearchProject> getResearchProjects() {

@@ -8,16 +8,19 @@ import userCapabilities.*;
 public class ResearchProject {
     private String journalName;
     private String topic;
-    private Vector<Researcher> participants;
+    private Vector<String> participants;
     private Vector<ResearchPaper> publishedPapers;
     private String supervisor;
     private Vector<Subscriber> subscribers;
     
-    public void notifySubscribers(String paperTitle) {
+    public ResearchProject(String journalName, String topic, String supervisor) {
+		this.journalName = journalName;
+		this.topic = topic;
+		this.supervisor = supervisor;
+	}
+
+	public void notifySubscribers(String paperTitle) {
     	this.subscribers.stream().forEach(s -> s.notifySubscriber(this.journalName, paperTitle, paperTitle));
-//    	for(Subscriber s: this.subscribers) {
-//    		s.notifySubscriber(this.journalName, paperTitle, paperTitle);
-//    	}
     }
 
     public String getTopic() {
@@ -28,20 +31,20 @@ public class ResearchProject {
         this.topic = topic;
     }
 
-    public Vector<Researcher> getParticipants() {
+    public Vector<String> getParticipants() {
         return this.participants;
     }
 
-    public void setParticipants(Vector<Researcher> participants) {
-        this.participants = participants;
+    public void setParticipants(String participant) {
+        this.participants.add(participant);
     }
 
     public Vector<ResearchPaper> getPublishedPapers() {
         return this.publishedPapers;
     }
 
-    public void setPublishedPapers(Vector<ResearchPaper> publishedPapers) {
-        this.publishedPapers = publishedPapers;
+    public void setPublishedPapers(ResearchPaper publishedPaper) {
+        this.publishedPapers.add(publishedPaper);
     }
 
     public String getSupervisor() {
@@ -54,10 +57,6 @@ public class ResearchProject {
 
     public String getResearchProjectTopic() {
         return this.topic;
-    }
-
-    public Vector<Researcher> getWritersOfResearch() {
-        return this.participants;
     }
 
     public String getSupervisorName() {
@@ -92,4 +91,11 @@ public class ResearchProject {
 	public void setJournalName(String journalName) {
 		this.journalName = journalName;
 	}
+
+	@Override
+	public String toString() {
+		return "Journal Name = " + journalName + ", Topic = " + topic + ", Participants = " + participants
+				+ ", Supervisor = " + supervisor;
+	}
+	
 }
