@@ -14,6 +14,7 @@ public class Data implements Serializable {
 	private Vector<GraduateStudent> graduateStudents = new Vector<>();
     private Vector<Teacher> teachers = new Vector<>();
     private Vector<Employee> employees = new Vector<>();
+    private Vector<Employee> employee = new Vector<>();
     private Vector<Admin> admins = new Vector<>();
     private Vector<Researcher> researchers = new Vector<>();
     private Vector<Book> books = new Vector<>();
@@ -77,7 +78,7 @@ public class Data implements Serializable {
 		this.students = students;
 	}
 
-	public Vector<Teacher> getTeachers() {
+	public	 Vector<Teacher> getTeachers() {
 		return teachers;
 	}
 
@@ -200,3 +201,42 @@ public class Data implements Serializable {
 	}
 	
 }
+
+/*public String getSelectedFileContent(String selectedFileName) {
+    int selectedIndex = downloadedFiles.indexOf(selectedFileName);
+
+    if (selectedIndex != -1) {
+        try {
+            String filePath = downloadedFiles.get(selectedIndex);
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            StringBuilder content = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+
+            reader.close();
+            return content.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error reading the file.";
+        }
+    } else {
+        return "File not found.";
+    }
+}
+
+/ Метод для сохранения файла
+    public void saveFile(String fileName, String content) {
+        try {
+            FileWriter writer = new FileWriter(fileName);
+            writer.write(content);
+            writer.close();
+
+            // Добавляем файл в вектор скачанных файлов
+            downloadedFiles.add(fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    } */

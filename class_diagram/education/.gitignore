@@ -10,3 +10,5 @@
 /Courses.class
 /TestMain.class
 /GraduateStudent.class
+/ScheduleEntry.class
+/InvalidMarkException.class

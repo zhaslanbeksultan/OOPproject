@@ -10,14 +10,10 @@ import enums.DisciplineType;
 
 public class Lesson implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int lessonId;
+    private static final long serialVersionUID = 1L;
+    private int lessonId;
     private String lessonName;
     private Teacher instructor;
-    private DisciplineType lessonType;
     private WeekDays lessonTime;
     private String room;
     private Course course;
@@ -28,7 +24,6 @@ public class Lesson implements Serializable {
         this.lessonId = lessonId;
         this.lessonName = lessonName;
         this.instructor = instructor;
-        this.lessonType = lessonType;
         this.lessonTime = lessonTime;
         this.room = room;
         this.course = course;
@@ -73,12 +68,23 @@ public class Lesson implements Serializable {
     public void setMark(Mark mark) {
         this.mark = mark;
     }
-    
+
     public void registerStudent(Student student, int mark) {
-        Mark studentMark = new Mark();
-        WeekDays lessonTime = getLessonTime();
-        studentMark.addLessonMark(this, mark, lessonTime);
-        student.addMark(this, studentMark);
+        if (mark >= 0 && mark <= 100) {
+            Mark studentMark = new Mark();
+            WeekDays lessonTime = getLessonTime();
+            studentMark.addLessonMark(this, mark, lessonTime);
+            student.addMark(this, studentMark);
+        } else {
+            throw new IllegalArgumentException("Invalid mark: " + mark);
+        }
     }
 
+    public Teacher getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Teacher instructor) {
+        this.instructor = instructor;
+    }
 }
