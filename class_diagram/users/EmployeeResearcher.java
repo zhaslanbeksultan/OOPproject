@@ -74,4 +74,10 @@ public class EmployeeResearcher extends Employee implements Subscriber{
 	public void setBiography(String biography) {
 		this.biography = biography;
 	}
+
+	@Override
+	public void showMenu() {
+		// TODO Auto-generated method stub
+		
+	}
 }

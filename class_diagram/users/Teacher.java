@@ -15,15 +15,16 @@ import enums.*;
 import userCapabilities.*;
 
 public class Teacher extends Employee implements Managable,CanBorrowBook,Educationable,Subscriber {
-
+	private boolean isAdvisor;
     private Set<Course> courses;
     
 	public Teacher(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
 			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber,
-			Set<Course> courses, GraduateStudent graduateStudent, Course course) {
+			boolean isAdvisor, Set<Course> courses) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
+		this.isAdvisor = isAdvisor;
 		this.courses = courses;
 	}
 	public Teacher() {
@@ -211,6 +212,12 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
     	Message message = new Message("A New Article Has Been Published About" + projectTopic, journalName, this.getUsername()
     			, "The New Article Is Already In The Research Cabinet. The new article is already in the study room. You can read it");
     	Data.getInstance().getMessages().add(message);
+	}
+	public boolean isAdvisor() {
+		return isAdvisor;
+	}
+	public void setAdvisor(boolean isAdvisor) {
+		this.isAdvisor = isAdvisor;
 	}
 }
 

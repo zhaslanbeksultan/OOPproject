@@ -5,6 +5,8 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import enums.*;
+import userCapabilities.Researcher;
+import userCapabilities.Subscriber;
 import communication.*;
 
 
@@ -296,9 +298,7 @@ public abstract class User implements Serializable{
     public String getUserInformation() {
         return toString();
     }
-    public void showMenu() {
-    	System.out.println("Welcome!");
-    };
+    public abstract void showMenu();
     public void save() throws IOException {
 		Data.write();
 	}
@@ -382,14 +382,56 @@ public abstract class User implements Serializable{
     		case "2":
     			this.showAllJournals();
     		case "3":
-    			this.showMyPapers();
+    			this.showPapersOfSubscribedJournals();
     		case "4":
+    			this.showMyPapers();
+    		case "5":
     			this.addResearchPaper();
     		}
     	}
     }
     
+    public void showPapersOfSubscribedJournals() {
+    	System.out.println("----WINDOW SUBSCRIBED JOURNALS----");
+    	System.out.println("'0' - to exit.");
+    	System.out.println("Choose sorting order: 'Length', 'Citations', 'Date'");
+    	String choice = commonBuffer.readInput();
+    	switch(choice) {
+    	case("0"):
+    		return;
+    	case("Length"):
+    		Data.getInstance().getResearchProjects().stream()
+    		.filter(p -> p.getSubscribers().contains(this.getUsername()))
+    		.forEach(p -> p.getPublishedPapers().stream()
+    				.sorted(new PaperByArticleLengthComparator())
+    				.forEach(System.out::println));
+    		this.readPaper();
+    	case("Citations"):
+    		Data.getInstance().getResearchProjects().stream()
+    		.filter(p -> p.getSubscribers().contains(this.getUsername()))
+    		.forEach(p -> p.getPublishedPapers().stream()
+    				.sorted(new PaperByCitationComparator())
+    				.forEach(System.out::println));
+    		this.readPaper();
+    	case("Date"):
+    		Data.getInstance().getResearchProjects().stream()
+    		.filter(p -> p.getSubscribers().contains(this.getUsername()))
+    		.forEach(p -> p.getPublishedPapers().stream()
+    				.sorted(new PaperByDateComparator())
+    				.forEach(System.out::println));
+    		this.readPaper();
+    	}
+    }
+    
     public void addResearchPaper() {
+    	try {
+	    	if(!(this instanceof Researcher)) {
+	    		throw new InvalidResearcherException("Only Researchers Can Add Research Papers!");
+	    	}
+    	}catch(InvalidResearcherException e) {
+            System.err.println(e.getMessage());
+            return;
+    	}
     	System.out.println("----WINDOW FOR RESEARCHING----");
     	while(true) {
         	System.out.println("'0' - to exit.'1' - Add Paper.");
@@ -424,8 +466,18 @@ public abstract class User implements Serializable{
     
     public void showAllJournals() {
     	System.out.println("----ALL JOURNALS----");
-    	System.out.println("'0' - to exit.");
+    	System.out.println("'0' - to exit.'1' - to subscribe. '2' - to unsubscribe.");
     	Data.getInstance().getResearchProjects().stream().forEach(System.out::println);
+    	String choice = commonBuffer.readInput();
+    	if(choice.equals("0")) return;
+    	else if(choice.equals("1")) {
+    		System.out.println("Enter id: ");
+    		int id = Integer.parseInt(commonBuffer.readInput());
+    		Data.getInstance().getResearchProjects().get(id-1).setSubscribers((Subscriber)this);}
+    	else {
+    		System.out.println("Enter id: ");
+    		int id = Integer.parseInt(commonBuffer.readInput());
+    		Data.getInstance().getResearchProjects().get(id-1).removeSubscribers((Subscriber)this);}
     }
     
     private void readPaper() {
@@ -444,13 +496,13 @@ public abstract class User implements Serializable{
     	case("Length"):
     		Data.getInstance().getResearchPapers().stream()
     		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
-    		.sorted(new PaperByArticleLengthComporator())
+    		.sorted(new PaperByArticleLengthComparator())
     		.forEach(System.out::println);
     		this.readPaper();
     	case("Citations"):
     		Data.getInstance().getResearchPapers().stream()
     		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
-    		.sorted(new PaperByCitationComporator())
+    		.sorted(new PaperByCitationComparator())
     		.forEach(System.out::println);
     		this.readPaper();
     	case("Date"):

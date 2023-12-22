@@ -3,6 +3,7 @@ package communication;
 import java.util.Date;
 import java.util.Vector;
 
+import common.DateStringFormat;
 import enums.*;
 
 public class ResearchPaper {
@@ -31,8 +32,16 @@ public class ResearchPaper {
     			+ "Paper wording = " + paperWording + "References of Papers Cited In This Paper = " + references
     			+ "Papers Cited This Paper: " + citations);
     }
-	public String toCite(PaperFormat format) {
-		return "";
+	public String getCitation(PaperFormat format) {
+		if(format.equals(PaperFormat.PLAIN_TEXT)) {
+			return "Title: " + paperTitle + "\nAuthor: " + paperAuthor + "\nJournal: " + researchProject
+					+ "\nPublished Date: " + publishedDate;
+		}
+		else {
+			return "@research paper{" + paperAuthor + DateStringFormat.year(publishedDate)
+			+ "\nauthor = {" + paperAuthor + "},\ntitle = {" + paperTitle + "},\njournal = {" + researchProject
+			+ "},\nyear = {" + DateStringFormat.year(publishedDate) +"}\n}";
+		}
 	}
 
     public Date getPublishedDate() {
@@ -100,7 +109,7 @@ public class ResearchPaper {
     }
 
     public int getArticleLength() {
-        return 0;
+    	return this.paperWording.length();
     }
 
 	@Override

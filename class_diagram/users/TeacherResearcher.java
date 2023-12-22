@@ -16,11 +16,9 @@ public class TeacherResearcher extends Teacher implements Researcher {
 	public TeacherResearcher(String firstName, String lastName, Date birthDay, String id, String username,
 			String password, String email, Date registrationDate, String phoneNumber, String pasportNumber,
 			Gender gender, String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber,
-			Set<Course> courses, GraduateStudent graduateStudent, Course course, int hindex,
-			ResarchDecorator resarchDecorator) {
+			boolean isAdvisor, Set<Course> courses, int hindex, ResarchDecorator resarchDecorator) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
-				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber, courses,
-				graduateStudent, course);
+				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber, isAdvisor, courses);
 		this.hindex = hindex;
 		this.resarchDecorator = resarchDecorator;
 	}

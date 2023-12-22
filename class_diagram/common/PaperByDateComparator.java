@@ -1,4 +1,4 @@
-package enums;
+package common;
 
 import java.util.Comparator;
 import communication.ResearchPaper; 

@@ -1,9 +1,9 @@
-package enums;
+package common;
 
 import java.util.Comparator;
 import communication.ResearchPaper; 
 
-public class PaperByCitationComporator implements Comparator<ResearchPaper> {
+public class PaperByCitationComparator implements Comparator<ResearchPaper> {
 
     @Override
     public int compare(ResearchPaper paper1, ResearchPaper paper2) {

@@ -64,9 +64,5 @@ public class StudentResearcher extends Student implements Researcher {
 	}
 	public void researchCabinet() {}
     
-	@Override
-    public void showMenu() {
-    	super.showMenu();
-    }
     
 }
