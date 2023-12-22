@@ -47,7 +47,7 @@ public abstract class Course implements Administrationable {
     }
 
     public DisciplineType getDisciplineType() {
-        return Course.disciplineType;
+        return disciplineType;
     }
 
     public String getSpecialtyId() {
