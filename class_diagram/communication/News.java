@@ -5,7 +5,7 @@ import java.util.Vector;
 import users.User;
 import java.util.HashMap;
 
-public class News {
+public class News implements Comparable<News>{
 	private static int cnt = 1;
 	private int newsId;
 	private String recipients;
@@ -14,7 +14,7 @@ public class News {
     private Date postSentDate;
     private HashMap<String,String> newsComments;
 
-    public News(String recipients, String newsType, String newsTitle, String newsWording) {
+    public News(String recipients, String newsTitle, String newsWording) {
     	this.recipients = recipients;
 		this.newsTitle = newsTitle;
 		this.newsWording = newsWording;
@@ -59,6 +59,16 @@ public class News {
 		return "Post Id=" + newsId + ", newsTitle="
 				+ newsTitle + ", postSentDate=" + postSentDate;
 	}
+	@Override
+    public int compareTo(News other) {
+        if (this.newsTitle.equals("Research") && !other.newsTitle.equals("Research")) {
+            return -1;
+        } else if (!this.newsTitle.equals("Research") && other.newsTitle.equals("Research")) {
+            return 1; 
+        } else {
+        	return this.postSentDate.compareTo(other.postSentDate);
+        }
+    }
     
     
 }

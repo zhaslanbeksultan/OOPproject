@@ -63,6 +63,10 @@ public class ResearchPaper {
 	public Vector<String> getCitations() {
 		return citations;
 	}
+	
+	public int getCitationsNumber() {
+		return this.citations.size();
+	}
 
 	public void setCitations(Vector<String> citations) {
 		this.citations = citations;

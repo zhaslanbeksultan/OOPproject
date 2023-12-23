@@ -1,9 +1,10 @@
 package userCapabilities;
-import communication.ResearchProject;
+
+import java.util.Comparator;
+import communication.ResearchPaper;
 
 public interface Researcher {
-	void printPapers();
-    void writeNewResearch(ResearchProject research);
-    double findGIndex(String researcherId);
-    void conductResearch(String researchTopic);
+    void showMyPapers();
+    void addResearchPaper();
+    void createResearchProject();
 }

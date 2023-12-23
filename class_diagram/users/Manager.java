@@ -13,7 +13,7 @@ import enums.*;
 import userCapabilities.*;
 
 
-public class Manager extends Employee implements Managable, Administrationable {
+public class Manager extends Employee implements Managable, Administrationable, Subscriber {
 	
     private ManagerPosition managerPosition;
     private Vector coursesRegisterTo;
@@ -100,15 +100,13 @@ public class Manager extends Employee implements Managable, Administrationable {
 			return;
 		}
 		System.out.println("----WINDOW POST NEWS----");
-    	System.out.print("Recipients 'Students' or 'Employees': ");
+    	System.out.print("Recipients 'Students', 'Employees', 'All': ");
     	String recipients = commonBuffer.readInput();
-    	System.out.print("News Type: "); 
-    	String newsType = commonBuffer.readInput();
     	System.out.print("News Wording: ");
     	String newsTitle = commonBuffer.readInput();
     	System.out.print("News Title: ");
     	String newsWording = commonBuffer.readInput(); 
-    	News post = new News(recipients, newsType, newsTitle, newsWording);
+    	News post = new News(recipients, newsTitle, newsWording);
     	Data.getInstance().setNews(post);
 	}
 
@@ -235,6 +233,11 @@ public class Manager extends Employee implements Managable, Administrationable {
 				break;
 		}
 	}
-    
+	@Override
+	public void notifySubscriber(String journalName, String projectTopic, String paperTitle) {	
+    	Message message = new Message("A New Article Has Been Published About" + projectTopic, journalName, this.getUsername()
+    			, "The New Article Is Already In The Research Cabinet. The new article is already in the study room. You can read it");
+    	Data.getInstance().getMessages().add(message);
+	}
     
 }

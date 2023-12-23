@@ -5,12 +5,11 @@ import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import enums.*;
-import userCapabilities.Researcher;
-import userCapabilities.Subscriber;
+import userCapabilities.*;
 import communication.*;
 
 
-public abstract class User implements Serializable{
+public abstract class User implements Serializable, CanViewResearches{
     private String firstName;
     private String lastName;
     private Date birthDay;
@@ -183,6 +182,50 @@ public abstract class User implements Serializable{
 			}
 		}
 	}
+	public void topCitedResearcher(){
+		Map<String, Integer> citationsByAuthor = new HashMap<>();
+
+		for (ResearchPaper paper : Data.getInstance().getResearchPapers()) {
+		    String author = paper.getPaperAuthor();
+		    int citations = paper.getCitationsNumber();
+
+		    citationsByAuthor.put(author, citationsByAuthor.getOrDefault(author, 0) + citations);
+		}
+
+		String topCitedResearcher = null;
+		int maxCitations = 0;
+
+		for (Map.Entry<String, Integer> entry : citationsByAuthor.entrySet()) {
+		    if (entry.getValue() > maxCitations) {
+		        topCitedResearcher = entry.getKey();
+		        maxCitations = entry.getValue();
+		    }
+		}
+		if (topCitedResearcher != null) {
+		    System.out.println("Top Cited Researcher: " + topCitedResearcher);
+		} else {
+		    System.out.println("No research papers found.");
+		}
+	}
+	
+	public int findHIndex() {
+		System.out.println("----H-INDEX----");
+		System.out.println("Write Researcher's Username: ");
+		String input = commonBuffer.readInput();
+		int[] citationsSizes = Data.getInstance().getResearchPapers().stream()
+		        .filter(p -> p.getPaperAuthor().equals(input))
+		        .mapToInt(ResearchPaper::getCitationsNumber)
+		        .toArray();
+		int n = citationsSizes.length;
+		int j = 1;
+        for (int i = 0; i < n; i++) {
+            if (!(citationsSizes[i] >= j)) {
+                return j-1;
+            }
+        }
+        return 0;
+	}
+	
 	abstract void addRequest();
 
     public void editPersonalData() {
@@ -224,9 +267,6 @@ public abstract class User implements Serializable{
 	    }
     }
 
-    public String accesingFeedback() {
-        return "";
-    }
     public void viewSocialTranscript() {
     	System.out.println("----WINDOW SOCIAL TRANSCRIPT----");
     	System.out.println("'0' - to exit.\n'1' - to add.");   
@@ -253,18 +293,16 @@ public abstract class User implements Serializable{
     		System.out.println("----WINDOW FOLLOW THE NEWS----");
 	    	System.out.println("'Comment' or 'Read', then Enter Post Id");
 	    	if(this instanceof Student) {
-		    	for(News post: Data.getInstance().getNews()) {
-		    		if(post.getRecipients().equals("Students"))
-		    			System.out.println(post);
-		
-		    	}
+	    		Data.getInstance().getNews().stream()
+	    	    .filter(post -> post.getRecipients().equals("Students") || post.getRecipients().equals("All"))
+	    	    .sorted(new NewsSortComparator())
+	    	    .forEach(System.out::println);
 	    	}
 	    	if(this instanceof Employee) {
-		    	for(News post: Data.getInstance().getNews()) {
-		    		if(post.getRecipients().equals("Employees"))
-		    			System.out.println(post);
-		
-		    	}
+	    		Data.getInstance().getNews().stream()
+	    	    .filter(post -> post.getRecipients().equals("Employees") || post.getRecipients().equals("All"))
+	    	    .sorted(new NewsSortComparator())
+	    	    .forEach(System.out::println);
 	    	}
 	    	choose = commonBuffer.readInput();
 	    	if(choose.equals("0")) break;
@@ -367,12 +405,12 @@ public abstract class User implements Serializable{
     	Data.getInstance().getMessages().add(message);
     }
     
+    @Override
     public void researchCabinet() {
     	while(true) {
     		System.out.println("----RESEARCH CABINET----");
     		System.out.println("'0' - to exit.\n'1' - Show All Research Papers\n'2' - Show All Research Journals"
-    				+ "\n'3' - Show Papers Of Subscribed Journals\n'4' - Show My Research Papers"
-    				+ "\n'5' - Add Research Paper");
+    				+ "\n'3' - Show Papers Of Subscribed Journals\n'4' - View Researcher's H-Index\n'5' - Top Cited Researcher");
     		String choice = commonBuffer.readInput();
     		switch(choice) {
     		case "0":
@@ -384,9 +422,9 @@ public abstract class User implements Serializable{
     		case "3":
     			this.showPapersOfSubscribedJournals();
     		case "4":
-    			this.showMyPapers();
+    			this.findHIndex();
     		case "5":
-    			this.addResearchPaper();
+    			this.topCitedResearcher();
     		}
     	}
     }
@@ -423,47 +461,6 @@ public abstract class User implements Serializable{
     	}
     }
     
-    public void addResearchPaper() {
-    	try {
-	    	if(!(this instanceof Researcher)) {
-	    		throw new InvalidResearcherException("Only Researchers Can Add Research Papers!");
-	    	}
-    	}catch(InvalidResearcherException e) {
-            System.err.println(e.getMessage());
-            return;
-    	}
-    	System.out.println("----WINDOW FOR RESEARCHING----");
-    	while(true) {
-        	System.out.println("'0' - to exit.'1' - Add Paper.");
-    		String choice = commonBuffer.readInput();
-    		switch(choice) {
-    		case "0":
-    			break;
-    		case "1":
-    			System.out.println("Research Project Name: ");
-    			String researchProject = commonBuffer.readInput();
-    			System.out.println("Paper Title: ");
-    			String title = commonBuffer.readInput();
-    			System.out.println("Paper Wording: ");
-    			String wording = commonBuffer.readInput();
-    			ResearchPaper paper = new ResearchPaper(researchProject, title, wording, this.getUsername());
-    			System.out.println("Links To The Papers Used In Research: ");
-    			while(true) {
-    				System.out.println("'0' - end adding references.");
-    				if(choice.equals("0")) break;
-    				paper.setReferences(choice);
-    			}
-    			Data.getInstance().setResearchPapers(paper);
-    			Data.getInstance().getResearchProjects().stream()
-    				.filter(p->p.getJournalName().equals(paper.getResearchProject()))
-    				.forEach(p->p.setPublishedPapers(paper));
-    			Data.getInstance().getResearchProjects().stream()
-				.filter(p->p.getJournalName().equals(paper.getResearchProject()))
-				.forEach(p->p.setParticipants(this.getUsername()));
-    		}
-    	}
-    }
-    
     public void showAllJournals() {
     	System.out.println("----ALL JOURNALS----");
     	System.out.println("'0' - to exit.'1' - to subscribe. '2' - to unsubscribe.");
@@ -480,38 +477,12 @@ public abstract class User implements Serializable{
     		Data.getInstance().getResearchProjects().get(id-1).removeSubscribers((Subscriber)this);}
     }
     
-    private void readPaper() {
+    public void readPaper() {
     	System.out.println("'0' - to exit. 'id' - to read paper.");
     	String choice = commonBuffer.readInput();
     	if(choice.equals("0")) return;
     	else Data.getInstance().getResearchPapers().stream()
     			.filter(p->p.getPaperId()==Integer.parseInt(choice)-1).forEach(p->p.printPaper());
-    }
-    
-    public void showMyPapers() {
-    	System.out.println("----MY RESEARCH PAPERS----");
-    	System.out.println("Choose sorting order: 'Length', 'Citations', 'Date'");
-    	String choice = commonBuffer.readInput();
-    	switch(choice) {
-    	case("Length"):
-    		Data.getInstance().getResearchPapers().stream()
-    		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
-    		.sorted(new PaperByArticleLengthComparator())
-    		.forEach(System.out::println);
-    		this.readPaper();
-    	case("Citations"):
-    		Data.getInstance().getResearchPapers().stream()
-    		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
-    		.sorted(new PaperByCitationComparator())
-    		.forEach(System.out::println);
-    		this.readPaper();
-    	case("Date"):
-    		Data.getInstance().getResearchPapers().stream()
-    		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
-    		.sorted(new PaperByDateComparator())
-    		.forEach(System.out::println);
-    		this.readPaper();
-    	}
     }
     
     public void showAllResearchPapers() {
@@ -529,6 +500,4 @@ public abstract class User implements Serializable{
 				+ gender + "\n Nationality = " + nationality + "\n Citizenship = " + citizenship+" Password="+password;
 	}
 
-    
-    
 }

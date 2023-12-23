@@ -10,7 +10,7 @@ import enums.Faculty;
 import enums.Gender;
 import userCapabilities.Researcher;
 
-public class GraduateStudent extends StudentResearcher {
+public class GraduateStudent extends Student {
     
     private Date graduatingDate;
     private String diplomaTytle;
@@ -21,11 +21,11 @@ public class GraduateStudent extends StudentResearcher {
 			String password, String email, Date registrationDate, String phoneNumber, String pasportNumber,
 			Gender gender, String nationality, String citizenship, double gpa, int studyYear, Faculty faculty,
 			Date enrollmentDate, Category category, Vector<Course> coursesEnrolled, String major,
-			Vector<Organization> organizations, ResarchDecorator resarchDecorator, Date graduatingDate,
+			Vector<Organization> organizations, Date graduatingDate,
 			String diplomaTytle, DegreeType degreeType, Researcher supervisor) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship, gpa, studyYear, faculty, enrollmentDate, category,
-				coursesEnrolled, major, organizations, resarchDecorator);
+				coursesEnrolled, major, organizations);
 		this.graduatingDate = graduatingDate;
 		this.diplomaTytle = diplomaTytle;
 		this.degreeType = degreeType;

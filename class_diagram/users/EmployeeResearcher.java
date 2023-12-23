@@ -1,17 +1,14 @@
 package users;
 
+import java.util.Comparator;
 import java.util.Date;
 
-import common.Data;
-import common.commonBuffer;
-import communication.Message;
-import communication.Request;
+import common.*;
+import communication.*;
 import enums.Gender;
-import userCapabilities.Subscriber;
+import userCapabilities.*;
 
-public class EmployeeResearcher extends Employee implements Subscriber{
-
-    private int hindex;
+public class EmployeeResearcher extends Employee implements Subscriber,Researcher{
     private String biography;
 
     public EmployeeResearcher(String firstName, String lastName, Date birthDay, String id, String username,
@@ -20,16 +17,7 @@ public class EmployeeResearcher extends Employee implements Subscriber{
 			int hindex) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
-		this.hindex = hindex;
 	}
-
-	public int getHindex() {
-        return this.hindex;
-    }
- 
-    public void setHindex(int hindex) {
-        this.hindex = hindex;
-    }
 
 	@Override
 	public void notifySubscriber(String journalName, String projectTopic, String paperTitle) {	
@@ -80,4 +68,127 @@ public class EmployeeResearcher extends Employee implements Subscriber{
 		// TODO Auto-generated method stub
 		
 	}
+
+    @Override
+    public void researchCabinet() {
+    	while(true) {
+    		System.out.println("----RESEARCH CABINET----");
+    		System.out.println("'0' - to exit.\n'1' - Show All Research Papers\n'2' - Show All Research Journals"
+    				+ "\n'3' - Show Papers Of Subscribed Journals\n'5' - Top Cited Researcher\n'6' - Show My Research Papers"
+    				+ "\n'7' - Add Research Paper\n'8' - Create Research Project");
+    		String choice = commonBuffer.readInput();
+    		switch(choice) {
+    		case "0":
+    			break;
+    		case "1":
+    			this.showAllResearchPapers();
+    		case "2":
+    			this.showAllJournals();
+    		case "3":
+    			this.showPapersOfSubscribedJournals();
+    		case "4":
+    			this.findHIndex();
+    		case "5":
+    			this.topCitedResearcher();
+    		case "6":
+    			this.showMyPapers();
+    		case "7":
+    			this.addResearchPaper();
+    		case "8":
+    			this.createResearchProject();
+    		}
+    	}
+    }
+    
+    @Override
+    public void createResearchProject() {
+		try {
+			if (this.findHIndex() < 3)
+				throw new LowHIndexException("Supervisor's h-index is less than 3.");
+		}catch(LowHIndexException e){
+			System.out.println(e.getMessage());
+			return;
+		}
+    	System.out.println("----WINDOW FOR CREATING RESEARCH PROJECT");
+    	System.out.println("Write Journal Name: ");
+    	String journalName = commonBuffer.readInput();
+    	System.out.println("Write Project Topic: ");
+    	String topic = commonBuffer.readInput();
+    	ResearchProject project = new ResearchProject(journalName, topic, this.getUsername());
+    	Data.getInstance().setResearchProjects(project);
+    }
+    
+    @Override
+    public void addResearchPaper() {
+    	try {
+	    	if(!(this instanceof Researcher)) {
+	    		throw new InvalidResearcherException("Only Researchers Can Add Research Papers!");
+	    	}
+    	}catch(InvalidResearcherException e) {
+            System.err.println(e.getMessage());
+            return;
+    	}
+    	System.out.println("----WINDOW FOR RESEARCHING----");
+    	while(true) {
+        	System.out.println("'0' - to exit.'1' - Add Paper.");
+    		String choice = commonBuffer.readInput();
+    		switch(choice) {
+    		case "0":
+    			break;
+    		case "1":
+    			System.out.println("Research Project Name: ");
+    			String researchProject = commonBuffer.readInput();
+    			System.out.println("Paper Title: ");
+    			String title = commonBuffer.readInput();
+    			System.out.println("Paper Wording: ");
+    			String wording = commonBuffer.readInput();
+    			ResearchPaper paper = new ResearchPaper(researchProject, title, wording, this.getUsername());
+    			System.out.println("Links To The Papers Used In Research: ");
+    			while(true) {
+    				System.out.println("'0' - end adding references.");
+    				if(choice.equals("0")) break;
+    				paper.setReferences(choice);
+    			}
+    			Data.getInstance().setResearchPapers(paper);
+    			Data.getInstance().getResearchProjects().stream()
+    				.filter(p->p.getJournalName().equals(paper.getResearchProject()))
+    				.forEach(p->p.setPublishedPapers(paper));
+    			Data.getInstance().getResearchProjects().stream()
+				.filter(p->p.getJournalName().equals(paper.getResearchProject()))
+				.forEach(p->p.setParticipants(this.getUsername()));
+    			News post = new News("All", "Research", "A New Research Article From: " + this.getUsername() + "Research Title: " + title);
+    			Data.getInstance().getNews().add(post);
+    		}
+    	}
+    }
+    @Override
+    public void showMyPapers() {
+    	System.out.println("----MY RESEARCH PAPERS----");
+    	System.out.println("Choose sorting order: 'Length', 'Citations', 'Date'");
+    	String choice = commonBuffer.readInput();
+    	switch(choice) {
+    	case("Length"):
+    		Data.getInstance().getResearchPapers().stream()
+    		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
+    		.sorted(new PaperByArticleLengthComparator())
+    		.forEach(System.out::println);
+    		this.readPaper();
+    	case("Citations"):
+    		Data.getInstance().getResearchPapers().stream()
+    		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
+    		.sorted(new PaperByCitationComparator())
+    		.forEach(System.out::println);
+    		this.readPaper();
+    	case("Date"):
+    		Data.getInstance().getResearchPapers().stream()
+    		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
+    		.sorted(new PaperByDateComparator())
+    		.forEach(System.out::println);
+    		this.readPaper();
+    	}
+    }
+
+
+
+
 }

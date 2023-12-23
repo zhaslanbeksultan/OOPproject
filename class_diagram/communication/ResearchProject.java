@@ -2,6 +2,9 @@ package communication;
 
 import java.util.Date;
 import java.util.Vector;
+
+import common.Data;
+import common.LowHIndexException;
 import userCapabilities.*;
 
 

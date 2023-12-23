@@ -195,8 +195,8 @@ public class Data implements Serializable {
 		return researchProjects;
 	}
 
-	public void setResearchProjects(Vector<ResearchProject> researchProjects) {
-		this.researchProjects = researchProjects;
+	public void setResearchProjects(ResearchProject researchProject) {
+		this.researchProjects.add(researchProject);
 	}
 	
 }
