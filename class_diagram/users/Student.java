@@ -530,13 +530,14 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	}
 
 	@Override
+
 	public void notifySubscriber(String journalName, String projectTopic, String paperTitle) {	
     	Message message = new Message("A New Article Has Been Published About" + projectTopic, journalName, this.getUsername()
     			, "The New Article Is Already In The Research Cabinet. The new article is already in the study room. You can read it");
     	Data.getInstance().getMessages().add(message);
 	}
 
-	@Override
+
 	public boolean addDiscipline(Courses discipline) {
 		// TODO Auto-generated method stub
 		return false;
