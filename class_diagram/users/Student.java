@@ -407,5 +407,11 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean addDiscipline(Courses discipline) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

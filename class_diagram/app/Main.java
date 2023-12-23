@@ -6,6 +6,11 @@ import users.*;
 import enums.*;
 public class Main {
 	public static void main(String[] args) {
+//		Admin admin = new Admin();
+//		admin.setUsername("steve_jobs");
+//		admin.setPassword("pass");
+//		Data.getInstance().addAdmin(admin);
+//		Data.getInstance().addUser("steve_jobs", admin);
 		Login login = new Login();
 		login.menu();
 	}
