@@ -1,7 +1,7 @@
-package enums;
+package common;
 
 import java.util.Comparator;
-import Communication.ResearchPaper;
+import communication.ResearchPaper;
 
 
 public class PaperByArticleLengthComparator implements Comparator<ResearchPaper> {

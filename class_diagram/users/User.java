@@ -1,14 +1,12 @@
 package users;
-
-import java.util.Date;
-import java.util.HashMap;
-
 import common.*;
-import java.util.Vector;
+import java.util.*;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import enums.*;
+import userCapabilities.Researcher;
+import userCapabilities.Subscriber;
 import communication.*;
 
 
@@ -300,9 +298,7 @@ public abstract class User implements Serializable{
     public String getUserInformation() {
         return toString();
     }
-    public void showMenu() {
-    	System.out.println("Welcome!");
-    };
+    public abstract void showMenu();
     public void save() throws IOException {
 		Data.write();
 	}
@@ -370,6 +366,161 @@ public abstract class User implements Serializable{
     	Message message = new Message(theme, this.username, recipient, messageWording, answer);
     	Data.getInstance().getMessages().add(message);
     }
+    
+    public void researchCabinet() {
+    	while(true) {
+    		System.out.println("----RESEARCH CABINET----");
+    		System.out.println("'0' - to exit.\n'1' - Show All Research Papers\n'2' - Show All Research Journals"
+    				+ "\n'3' - Show Papers Of Subscribed Journals\n'4' - Show My Research Papers"
+    				+ "\n'5' - Add Research Paper");
+    		String choice = commonBuffer.readInput();
+    		switch(choice) {
+    		case "0":
+    			break;
+    		case "1":
+    			this.showAllResearchPapers();
+    		case "2":
+    			this.showAllJournals();
+    		case "3":
+    			this.showPapersOfSubscribedJournals();
+    		case "4":
+    			this.showMyPapers();
+    		case "5":
+    			this.addResearchPaper();
+    		}
+    	}
+    }
+    
+    public void showPapersOfSubscribedJournals() {
+    	System.out.println("----WINDOW SUBSCRIBED JOURNALS----");
+    	System.out.println("'0' - to exit.");
+    	System.out.println("Choose sorting order: 'Length', 'Citations', 'Date'");
+    	String choice = commonBuffer.readInput();
+    	switch(choice) {
+    	case("0"):
+    		return;
+    	case("Length"):
+    		Data.getInstance().getResearchProjects().stream()
+    		.filter(p -> p.getSubscribers().contains(this.getUsername()))
+    		.forEach(p -> p.getPublishedPapers().stream()
+    				.sorted(new PaperByArticleLengthComparator())
+    				.forEach(System.out::println));
+    		this.readPaper();
+    	case("Citations"):
+    		Data.getInstance().getResearchProjects().stream()
+    		.filter(p -> p.getSubscribers().contains(this.getUsername()))
+    		.forEach(p -> p.getPublishedPapers().stream()
+    				.sorted(new PaperByCitationComparator())
+    				.forEach(System.out::println));
+    		this.readPaper();
+    	case("Date"):
+    		Data.getInstance().getResearchProjects().stream()
+    		.filter(p -> p.getSubscribers().contains(this.getUsername()))
+    		.forEach(p -> p.getPublishedPapers().stream()
+    				.sorted(new PaperByDateComparator())
+    				.forEach(System.out::println));
+    		this.readPaper();
+    	}
+    }
+    
+    public void addResearchPaper() {
+    	try {
+	    	if(!(this instanceof Researcher)) {
+	    		throw new InvalidResearcherException("Only Researchers Can Add Research Papers!");
+	    	}
+    	}catch(InvalidResearcherException e) {
+            System.err.println(e.getMessage());
+            return;
+    	}
+    	System.out.println("----WINDOW FOR RESEARCHING----");
+    	while(true) {
+        	System.out.println("'0' - to exit.'1' - Add Paper.");
+    		String choice = commonBuffer.readInput();
+    		switch(choice) {
+    		case "0":
+    			break;
+    		case "1":
+    			System.out.println("Research Project Name: ");
+    			String researchProject = commonBuffer.readInput();
+    			System.out.println("Paper Title: ");
+    			String title = commonBuffer.readInput();
+    			System.out.println("Paper Wording: ");
+    			String wording = commonBuffer.readInput();
+    			ResearchPaper paper = new ResearchPaper(researchProject, title, wording, this.getUsername());
+    			System.out.println("Links To The Papers Used In Research: ");
+    			while(true) {
+    				System.out.println("'0' - end adding references.");
+    				if(choice.equals("0")) break;
+    				paper.setReferences(choice);
+    			}
+    			Data.getInstance().setResearchPapers(paper);
+    			Data.getInstance().getResearchProjects().stream()
+    				.filter(p->p.getJournalName().equals(paper.getResearchProject()))
+    				.forEach(p->p.setPublishedPapers(paper));
+    			Data.getInstance().getResearchProjects().stream()
+				.filter(p->p.getJournalName().equals(paper.getResearchProject()))
+				.forEach(p->p.setParticipants(this.getUsername()));
+    		}
+    	}
+    }
+    
+    public void showAllJournals() {
+    	System.out.println("----ALL JOURNALS----");
+    	System.out.println("'0' - to exit.'1' - to subscribe. '2' - to unsubscribe.");
+    	Data.getInstance().getResearchProjects().stream().forEach(System.out::println);
+    	String choice = commonBuffer.readInput();
+    	if(choice.equals("0")) return;
+    	else if(choice.equals("1")) {
+    		System.out.println("Enter id: ");
+    		int id = Integer.parseInt(commonBuffer.readInput());
+    		Data.getInstance().getResearchProjects().get(id-1).setSubscribers((Subscriber)this);}
+    	else {
+    		System.out.println("Enter id: ");
+    		int id = Integer.parseInt(commonBuffer.readInput());
+    		Data.getInstance().getResearchProjects().get(id-1).removeSubscribers((Subscriber)this);}
+    }
+    
+    private void readPaper() {
+    	System.out.println("'0' - to exit. 'id' - to read paper.");
+    	String choice = commonBuffer.readInput();
+    	if(choice.equals("0")) return;
+    	else Data.getInstance().getResearchPapers().stream()
+    			.filter(p->p.getPaperId()==Integer.parseInt(choice)-1).forEach(p->p.printPaper());
+    }
+    
+    public void showMyPapers() {
+    	System.out.println("----MY RESEARCH PAPERS----");
+    	System.out.println("Choose sorting order: 'Length', 'Citations', 'Date'");
+    	String choice = commonBuffer.readInput();
+    	switch(choice) {
+    	case("Length"):
+    		Data.getInstance().getResearchPapers().stream()
+    		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
+    		.sorted(new PaperByArticleLengthComparator())
+    		.forEach(System.out::println);
+    		this.readPaper();
+    	case("Citations"):
+    		Data.getInstance().getResearchPapers().stream()
+    		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
+    		.sorted(new PaperByCitationComparator())
+    		.forEach(System.out::println);
+    		this.readPaper();
+    	case("Date"):
+    		Data.getInstance().getResearchPapers().stream()
+    		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
+    		.sorted(new PaperByDateComparator())
+    		.forEach(System.out::println);
+    		this.readPaper();
+    	}
+    }
+    
+    public void showAllResearchPapers() {
+    	System.out.println("----ALL RESEARCH PAPERS----");
+    	System.out.println("'0' - to exit.'id' - to read paper.");
+    	Data.getInstance().getResearchPapers().forEach(System.out::println);
+    	this.readPaper();
+    }
+    
 	@Override
 	public String toString() {
 		return " FirstName = " + firstName + "\n LastName = " + lastName + "\n Birth Day = " + birthDay + "\n Id = " + id

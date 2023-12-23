@@ -56,7 +56,13 @@ public class StudentResearcher extends Student implements Researcher {
 		// TODO Auto-generated method stub
 		
 	}
-    
+
+	@Override
+	public void printPapers() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void researchCabinet() {}
     
     
 }

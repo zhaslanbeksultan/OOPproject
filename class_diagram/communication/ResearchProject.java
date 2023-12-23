@@ -2,90 +2,61 @@ package communication;
 
 import java.util.Date;
 import java.util.Vector;
+import userCapabilities.*;
 
-import userCapabilities.Researcher;
 
 public class ResearchProject {
-    
+    private String journalName;
     private String topic;
     private Vector<String> participants;
-    private Vector<String> publishedPapers;
-    private Date publishedDate;
+    private Vector<ResearchPaper> publishedPapers;
     private String supervisor;
-    private Vector<ResearchPaper> researchPapers;
-    private String reviewCritique;
-    private Researcher researcher;
+    private Vector<Subscriber> subscribers;
+    
+    public ResearchProject(String journalName, String topic, String supervisor) {
+		this.journalName = journalName;
+		this.topic = topic;
+		this.supervisor = supervisor;
+	}
 
-    private String getTopic() {
+	public void notifySubscribers(String paperTitle) {
+    	this.subscribers.stream().forEach(s -> s.notifySubscriber(this.journalName, paperTitle, paperTitle));
+    }
+
+    public String getTopic() {
         return this.topic;
     }
 
-    private void setTopic(String topic) {
+    public void setTopic(String topic) {
         this.topic = topic;
     }
 
-    private Vector<String> getParticipants() {
+    public Vector<String> getParticipants() {
         return this.participants;
     }
 
-    private void setParticipants(Vector<String> participants) {
-        this.participants = participants;
+    public void setParticipants(String participant) {
+        this.participants.add(participant);
     }
 
-    private Vector<String> getPublishedPapers() {
+    public Vector<ResearchPaper> getPublishedPapers() {
         return this.publishedPapers;
     }
 
-    private void setPublishedPapers(Vector<String> publishedPapers) {
-        this.publishedPapers = publishedPapers;
+    public void setPublishedPapers(ResearchPaper publishedPaper) {
+        this.publishedPapers.add(publishedPaper);
     }
 
-    private Date getPublishedDate() {
-        return this.publishedDate;
-    }
-
-    private void setPublishedDate(Date publishedDate) {
-        this.publishedDate = publishedDate;
-    }
-
-    private String getSupervisor() {
+    public String getSupervisor() {
         return this.supervisor;
     }
 
-    private void setSupervisor(String supervisor) {
+    public void setSupervisor(String supervisor) {
         this.supervisor = supervisor;
-    }
-
-    private Vector<ResearchPaper> getResearchPapers() {
-        return this.researchPapers;
-    }
-
-    private void setResearchPapers(Vector<ResearchPaper> researchPapers) {
-        this.researchPapers = researchPapers;
-    }
-
-    private String getReviewCritique() {
-        return this.reviewCritique;
-    }
-
-    private void setReviewCritique(String reviewCritique) {
-        this.reviewCritique = reviewCritique;
-    }
-
-    public Researcher getResearcher() {
-        return this.researcher;
-    }
-
-    public void setResearcher(Researcher researcher) {
-        this.researcher = researcher;
     }
 
     public String getResearchProjectTopic() {
         return this.topic;
-    }
-
-    public Vector<String> getWritersOfResearch() {
-        return this.participants;
     }
 
     public String getSupervisorName() {
@@ -96,12 +67,35 @@ public class ResearchProject {
         return null;
     }
 
-    public String getReview() {
-        return this.reviewCritique;
-    }
-
     public boolean checkSupervisorEligibility() {
     	
         return false;
     }
+
+	public Vector<Subscriber> getSubscribers() {
+		return subscribers;
+	}
+
+	public void setSubscribers(Subscriber subscriber) {
+		this.subscribers.add(subscriber);
+	}
+	
+	public void removeSubscribers(Subscriber subscriber) {
+		this.subscribers.remove(subscriber);
+	}
+
+	public String getJournalName() {
+		return journalName;
+	}
+
+	public void setJournalName(String journalName) {
+		this.journalName = journalName;
+	}
+
+	@Override
+	public String toString() {
+		return "Journal Name = " + journalName + ", Topic = " + topic + ", Participants = " + participants
+				+ ", Supervisor = " + supervisor;
+	}
+	
 }

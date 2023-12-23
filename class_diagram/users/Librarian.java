@@ -5,9 +5,10 @@ import java.util.Date;
 import common.Data;
 import common.commonBuffer;
 import enums.Gender;
+import userCapabilities.Subscriber;
 import communication.*;
 
-public class Librarian extends Employee {
+public class Librarian extends Employee implements Subscriber{
 
 	public Librarian(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
@@ -32,12 +33,13 @@ public class Librarian extends Employee {
 	@Override
 	public void showMenu() {
 		System.out.println("----MAIN WINDOW----");
-		System.out.println("Choose:\n1.Add New Books To Library\n2.Remove Books From Library\n3.Notify All Readers\n4.Add Order");
+		System.out.println("Choose:\n1.Add New Books To Library\n2.Remove Books From Library\n3.Notify All Readers\n4.Add Order\n5.Research Cabinet");
     	String choose = commonBuffer.readInput();
   		if(choose=="1") {addBook();}
 		else if(choose=="2") {removeBook();}
 		else if(choose=="3") {notifyReaders();}
 		else if(choose=="4") {addOrder();}
+		else if(choose=="5") {researchCabinet();}
 		else {System.out.println("The wrong character is entered!");}
 		
 	}
@@ -101,5 +103,12 @@ public class Librarian extends Employee {
 				Data.getInstance().addRequest(request);
 				break;
 		}
+	}
+
+	@Override
+	public void notifySubscriber(String journalName, String projectTopic, String paperTitle) {	
+    	Message message = new Message("A New Article Has Been Published About" + projectTopic, journalName, this.getUsername()
+    			, "The New Article Is Already In The Research Cabinet. The new article is already in the study room. You can read it");
+    	Data.getInstance().getMessages().add(message);
 	}
 }

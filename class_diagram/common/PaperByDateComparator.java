@@ -1,12 +1,12 @@
-package enums;
+package common;
 
 import java.util.Comparator;
-import Communication.ResearchPaper; 
+import communication.ResearchPaper; 
 
 public class PaperByDateComparator implements Comparator<ResearchPaper> {
 
     @Override
     public int compare(ResearchPaper paper1, ResearchPaper paper2) {
-        return paper2.getPublishDate().compareTo(paper1.getPublishDate());
+        return paper1.getPublishedDate().compareTo(paper2.getPublishedDate());
     }
 }
