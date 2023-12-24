@@ -3,11 +3,15 @@ package users;
 import java.util.Date;
 import java.util.Set;
 import java.util.Vector;
+
+import common.commonBuffer;
 import education.*;
 import enums.*;
 import communication.*;
 
 public class Dean extends Teacher{
+
+	private static final long serialVersionUID = 1L;
 	private Vector<Request> incomingRequests;
 
 	public Dean(String firstName, String lastName, Date birthDay, String id, String username, String password,
@@ -23,5 +27,5 @@ public class Dean extends Teacher{
 	public Dean() {
 		
 	}
-
-}
+	
+	}

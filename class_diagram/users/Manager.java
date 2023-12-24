@@ -15,8 +15,9 @@ import userCapabilities.*;
 
 
 public class Manager extends Employee implements Managable, Administrationable, Subscriber {
-	
-    private ManagerPosition managerPosition;
+
+	private static final long serialVersionUID = 1L;
+	private ManagerPosition managerPosition;
     private Vector<Course> coursesRegisterTo;
 
 	public Manager(String firstName, String lastName, Date birthDay, String id, String username, String password,
@@ -128,111 +129,67 @@ public class Manager extends Employee implements Managable, Administrationable, 
 	}
 
 	@Override
-	public double getSalary() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setSalary(double salary) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Date getHireDate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setHireDate(Date hireDate) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getInsuranceNumber() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setInsuranceNumber(String insuranceNumber) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Message getMessage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setMessage(Message message) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void sentComplaintMessage() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String performInsuranceNumber() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void showMenu() {
 		while(true) {
 			System.out.println("----MAIN WINDOW----");
-			System.out.println("1. \n2. \n3. \n4. \n5. \n6. \n7. "
+			System.out.println("1. View Academic Statistics\n2. Add/Drop Discipline\n3. \n4. \n5. \n6. \n7. "
 					+ "\n8. \n9. \n10. \n11. \n12. "
 					+ "\n13. \n14. \n15. \n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
-					break;
+					return;
 				case "1":
-					this.viewTranscript();
+					this.viewAcademicStatistics();
+					break;
 				case "2":
 					this.addDropDiscipline();
+					break;
 				case "3":
 					this.viewJournal();
+					break;
 				case "4":
 					this.viewRequests();
+					break;
 				case "5":
-					System.out.println(this);
+					editPersonalData();
+					break;
 				case "6":
 					this.viewNews();
+					break;
 				case "7":
 					this.attendanceMark();
+					break;
 				case "8":
 					this.viewAttestation();
+					break;
 				case "9":
 					this.viewDisciplineSchedule();
+					break;
 				case "10":
 					this.viewLessonSchedule();
+					break;
 				case "11":
 					this.viewExamsSchedule();
+					break;
 				case "12":
 					this.registrationForFx();
+					break;
 				case "13":
 					this.disciplineRegistration(choice, false);
+					break;
 				case "14":
 					this.viewSocialTranscript();
+					break;
 				case "15":
 					this.viewOfficeHourSchedule();
+					break;
 				case "16":
 					this.researchCabinet();
+					break;
 				case "17":
 					this.viewOrganizations();
+					break;
 			}
 		}
 	}
@@ -242,6 +199,7 @@ public class Manager extends Employee implements Managable, Administrationable, 
 		// TODO Auto-generated method stub
 		
 	}
+
 
 	@Override
 	public void addRequest() {
@@ -276,6 +234,11 @@ public class Manager extends Employee implements Managable, Administrationable, 
     	Message message = new Message("A New Article Has Been Published About" + projectTopic, journalName, this.getUsername()
     			, "The New Article Is Already In The Research Cabinet. The new article is already in the study room. You can read it");
     	Data.getInstance().getMessages().add(message);
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "\nManager Position" + managerPosition;
 	}
     
 }

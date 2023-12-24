@@ -24,6 +24,8 @@ import enums.*;
 import userCapabilities.*;
 
 public class Teacher extends Employee implements Managable,CanBorrowBook,Educationable,Subscriber,Researcher {
+
+	private static final long serialVersionUID = 1L;
 	private boolean isAdvisor;
     private Set<Course> courses;
     
@@ -105,6 +107,7 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 		}
 	}
 
+
 	@Override
 	public void showMenu() {
 		while(true) {
@@ -118,28 +121,40 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 					break;
 				case "1":
 					this.viewJournal();
+					break;
 				case "2":
 					this.viewRequests();
+					break;
 				case "3":
-					System.out.println(this);
+					editPersonalData();
+					break;
 				case "4":
 					this.viewNews();
+					break;
 				case "5":
 					this.attendanceMark();
+					break;
 				case "6":
 					this.viewAttestation();
+					break;
 				case "7":
 					this.viewDisciplineSchedule();
+					break;
 				case "8":
 					this.viewLessonSchedule();
+					break;
 				case "9":
 					this.viewExamsSchedule();
+					break;
 				case "10":
 					this.viewSocialTranscript();
+					break;
 				case "11":
 					this.viewOfficeHourSchedule();
+					break;
 				case "12":
 					this.researchCabinet();
+					break;
 			}
 		}
 	}
@@ -186,20 +201,28 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
     			break;
     		case "1":
     			this.showAllResearchPapers();
+    			break;
     		case "2":
     			this.showAllJournals();
+    			break;
     		case "3":
     			this.showPapersOfSubscribedJournals();
+    			break;
     		case "4":
     			this.findHIndex();
+    			break;
     		case "5":
     			this.topCitedResearcher();
+    			break;
     		case "6":
     			this.showMyPapers();
+    			break;
     		case "7":
     			this.addResearchPaper();
+    			break;
     		case "8":
     			this.createResearchProject();
+    			break;
     		}
     	}
     }
@@ -236,7 +259,7 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
     		String choice = commonBuffer.readInput();
     		switch(choice) {
     		case "0":
-    			break;
+    			return;
     		case "1":
     			System.out.println("Research Project Name: ");
     			String researchProject = commonBuffer.readInput();
@@ -260,6 +283,7 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 				.forEach(p->p.setParticipants(this.getUsername()));
     			News post = new News("All", "Research", "A New Research Article From: " + this.getUsername() + "Research Title: " + title);
     			Data.getInstance().getNews().add(post);
+    			break;
     		}
     	}
     }
@@ -275,18 +299,21 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
     		.sorted(new PaperByArticleLengthComparator())
     		.forEach(System.out::println);
     		this.readPaper();
+    		break;
     	case("Citations"):
     		Data.getInstance().getResearchPapers().stream()
     		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
     		.sorted(new PaperByCitationComparator())
     		.forEach(System.out::println);
     		this.readPaper();
+    		break;
     	case("Date"):
     		Data.getInstance().getResearchPapers().stream()
     		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
     		.sorted(new PaperByDateComparator())
     		.forEach(System.out::println);
     		this.readPaper();
+    		break;
     	}
     }
     
@@ -344,6 +371,10 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 	
 	public void setAdvisor(boolean isAdvisor) {
 		this.isAdvisor = isAdvisor;
+	}
+	@Override
+	public String toString() {
+		return super.toString() + "\n isAdvisor = " + isAdvisor;
 	}
 	
 }

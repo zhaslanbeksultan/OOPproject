@@ -179,8 +179,9 @@ public abstract class User implements Serializable, CanViewResearches{
 					return;
 				case("1"):
 					this.addRequest();;
+					break;
 				case("2"):
-					continue;
+					break;
 			}
 		}
 	}
@@ -228,44 +229,27 @@ public abstract class User implements Serializable, CanViewResearches{
         return 0;
 	}
 	
-	abstract void addRequest();
+	public abstract void addRequest();
 
     public void editPersonalData() {
-    	//Отдельный для Админа и Юзера
     	while(true) {
-	    	if(this instanceof Admin) {
-	    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship\n10.Set Id\n11.Set Username\n12.Set Email");
-	    		String choose = commonBuffer.readInput();
-	    		if(choose=="0") {break;}
-	    		else if(choose=="1") {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
-	    		else if(choose=="2") {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
-	    		else if(choose=="3") {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
-	    		else if(choose=="4") {System.out.println("Write a Birth Day: "); setBirthDay(commonBuffer.readInput());}
-	    		else if(choose=="5") {System.out.println("Write a Phone Number: "); setPhoneNumber(commonBuffer.readInput());}
-	    		else if(choose=="6") {System.out.println("Write a Pasport Number: "); setPasportNumber(commonBuffer.readInput());}
-	    		else if(choose=="7") {System.out.println("Write a Gender: "); setGender(commonBuffer.readInput());}
-	    		else if(choose=="8") {System.out.println("Write a Nationality: "); setNationality(commonBuffer.readInput());}
-	    		else if(choose=="9") {System.out.println("Write a Citizenship: "); setCitizenship(commonBuffer.readInput());}
-	    		else if(choose=="10") {System.out.println("Write an Id: "); setId(commonBuffer.readInput());}
-	    		else if(choose=="11") {System.out.println("Write a username: "); setUsername(commonBuffer.readInput());}
-	    		else if(choose=="12") {System.out.println("Write a email: "); setEmail(commonBuffer.readInput());}
-	    		else {System.out.println("The wrong character is entered!");}
-	    	}
-	    	if(this instanceof User) {
-	    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship");
-	    		String choose = commonBuffer.readInput();
-	    		if(choose=="0") {break;}
-	    		else if(choose=="1") {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
-	    		else if(choose=="2") {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
-	    		else if(choose=="3") {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
-	    		else if(choose=="4") {System.out.println("Write a Birth Day: "); setBirthDay(commonBuffer.readInput());}
-	    		else if(choose=="5") {System.out.println("Write a Phone Number: "); setPhoneNumber(commonBuffer.readInput());}
-	    		else if(choose=="6") {System.out.println("Write a Pasport Number: "); setPasportNumber(commonBuffer.readInput());}
-	    		else if(choose=="7") {System.out.println("Write a Gender: "); setGender(commonBuffer.readInput());}
-	    		else if(choose=="8") {System.out.println("Write a Nationality: "); setNationality(commonBuffer.readInput());}
-	    		else if(choose=="9") {System.out.println("Write a Citizenship: "); setCitizenship(commonBuffer.readInput());}
-	    		else {System.out.println("The wrong character is entered!");}
-	    	}
+    		System.out.println(this);
+    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship\n10.Set Id\n11.Set Username\n12.Set Email");
+    		String choose = commonBuffer.readInput();
+    		if(choose.equals("0")) {break;}
+    		else if(choose.equals("1")) {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
+    		else if(choose.equals("2")) {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
+    		else if(choose.equals("3")) {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
+    		else if(choose.equals("4")) {System.out.println("Write a Birth Day: "); setBirthDay(commonBuffer.readInput());}
+    		else if(choose.equals("5")) {System.out.println("Write a Phone Number: "); setPhoneNumber(commonBuffer.readInput());}
+    		else if(choose.equals("6")) {System.out.println("Write a Pasport Number: "); setPasportNumber(commonBuffer.readInput());}
+    		else if(choose.equals("7")) {System.out.println("Write a Gender: "); setGender(commonBuffer.readInput());}
+    		else if(choose.equals("8")) {System.out.println("Write a Nationality: "); setNationality(commonBuffer.readInput());}
+    		else if(choose.equals("9")) {System.out.println("Write a Citizenship: "); setCitizenship(commonBuffer.readInput());}
+    		else if(choose.equals("10")) {System.out.println("Write an Id: "); setId(commonBuffer.readInput());}
+    		else if(choose.equals("11")) {System.out.println("Write a username: "); setUsername(commonBuffer.readInput());}
+    		else if(choose.equals("12")) {System.out.println("Write a email: "); setEmail(commonBuffer.readInput());}
+    		else {System.out.println("The wrong character is entered!");}
 	    }
     }
 
@@ -284,6 +268,7 @@ public abstract class User implements Serializable, CanViewResearches{
     				+ "\n   5.Role\n   6.Event Start Date\n   7.The End Date Of The Event");
     		String info = commonBuffer.readInput();
     		this.setSocialTranscript(info);
+    		break;
     	}
     }
 
@@ -416,17 +401,22 @@ public abstract class User implements Serializable, CanViewResearches{
     		String choice = commonBuffer.readInput();
     		switch(choice) {
     		case "0":
-    			break;
+    			return;
     		case "1":
     			this.showAllResearchPapers();
+    			break;
     		case "2":
     			this.showAllJournals();
+    			break;
     		case "3":
     			this.showPapersOfSubscribedJournals();
+    			break;
     		case "4":
     			this.findHIndex();
+    			break;
     		case "5":
     			this.topCitedResearcher();
+    			break;
     		}
     	}
     }
@@ -446,6 +436,7 @@ public abstract class User implements Serializable, CanViewResearches{
     				.sorted(new PaperByArticleLengthComparator())
     				.forEach(System.out::println));
     		this.readPaper();
+    		break;
     	case("Citations"):
     		Data.getInstance().getResearchProjects().stream()
     		.filter(p -> p.getSubscribers().contains(this.getUsername()))
@@ -453,6 +444,7 @@ public abstract class User implements Serializable, CanViewResearches{
     				.sorted(new PaperByCitationComparator())
     				.forEach(System.out::println));
     		this.readPaper();
+    		break;
     	case("Date"):
     		Data.getInstance().getResearchProjects().stream()
     		.filter(p -> p.getSubscribers().contains(this.getUsername()))
@@ -460,6 +452,7 @@ public abstract class User implements Serializable, CanViewResearches{
     				.sorted(new PaperByDateComparator())
     				.forEach(System.out::println));
     		this.readPaper();
+    		break;
     	}
     }
     

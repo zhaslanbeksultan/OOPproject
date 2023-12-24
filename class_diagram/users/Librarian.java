@@ -10,6 +10,8 @@ import communication.*;
 
 public class Librarian extends Employee implements Subscriber{
 
+	private static final long serialVersionUID = 1L;
+
 	public Librarian(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
 			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber) {
@@ -37,16 +39,18 @@ public class Librarian extends Employee implements Subscriber{
 	@Override
 	public void showMenu() {
 		System.out.println("----MAIN WINDOW----");
-		System.out.println("Choose:\n1.Add New Books To Library\n2.Remove Books From Library\n3.Notify All Readers\n4.Add Order\n5.Research Cabinet");
+		System.out.println("Choose:\n1.Add New Books To Library\n2.Remove Books From Library\n3.Notify All Readers\n4.Add Order\n5.Research Cabinet\n6.Edit Personal Data");
     	String choose = commonBuffer.readInput();
   		if(choose=="1") {addBook();}
 		else if(choose=="2") {removeBook();}
 		else if(choose=="3") {notifyReaders();}
 		else if(choose=="4") {addOrder();}
 		else if(choose=="5") {researchCabinet();}
+		else if(choose=="6") {editPersonalData();}
 		else {System.out.println("The wrong character is entered!");}
 		
 	}
+	
 
 	public void addBook() {
 		while(true) {

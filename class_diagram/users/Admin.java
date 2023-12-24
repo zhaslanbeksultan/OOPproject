@@ -1,5 +1,6 @@
 package users;
 import java.util.Date;
+import java.util.Map;
 import java.io.*;
 import common.*;
 import communication.*;
@@ -147,14 +148,31 @@ public class Admin extends Employee{
 	    		return;
 	    	case "1":
 	    		this.createUser();
+	    		break;
 	    	case "2":
 	    		this.viewRequests();
+	    		break;
 	    	case "3":
-	    		this.editPersonalData();
+	    		this.editUserPersonalData();
+	    		break;
 	    	}
 	   }
     }
    
+   public void editUserPersonalData() {
+	   System.out.println("----WINDOW FOR EDITING DATAS----");
+	   System.out.println("Enter Username: ");
+	   String input = commonBuffer.readInput();
+	   Data.getInstance().getUsers().entrySet().stream()
+       .filter(entry -> entry.getKey().equals(input))
+       .map(Map.Entry::getValue)
+       .findFirst()
+       .ifPresent(user -> user.editPersonalData());
+
+   }
+   
+
+   		
    public void createUser() {
    	while(true) {
    		System.out.println("----WINDOW CREATE USERS----");
@@ -260,5 +278,6 @@ public class Admin extends Employee{
 				break;
 		}
 	}
+	
 
 }
