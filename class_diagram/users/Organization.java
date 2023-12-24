@@ -4,129 +4,58 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Vector;
 
-/**
-* @generated
-*/
 public class Organization implements Serializable{
-    
-    /**
-    * @generated
-    */
-    private String organizationName;
-    
-    /**
-    * @generated
-    */
-    private Vector members;
-    
-    /**
-    * @generated
-    */
-    private Student head;
-    
-    
-    /**
-    * @generated
-    */
-    private Student student;
-    
-    /**
-    * @generated
-    */
-    
-    
 
-    /**
-    * @generated
-    */
-    private String getOrganizationName() {
+    private String organizationName;
+    private Vector<String> members;
+    private String orgaizationInfo;
+    private String head;
+
+    public Organization(String organizationName, String orgaizationInfo, String head) {
+		this.organizationName = organizationName;
+		this.orgaizationInfo = orgaizationInfo;
+		this.head = head;
+	}
+
+	public String getOrganizationName() {
         return this.organizationName;
     }
-    
-    /**
-    * @generated
-    */
-    private void setOrganizationName(String organizationName) {
+
+    public void setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector getMembers() {
+
+    public Vector<String> getMembers() {
         return this.members;
     }
-    
-    /**
-    * @generated
-    */
-    private void setMembers(Vector members) {
-        this.members = members;
+
+    public void setMembers(String member) {
+        this.members.add(member);
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Student getHead() {
+    public void removeMembers(String member) {
+        this.members.remove(member);
+    }
+
+    public String getHead() {
         return this.head;
     }
-    
-    /**
-    * @generated
-    */
-    private void setHead(Student head) {
+
+    public void setHead(String head) {
         this.head = head;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-    
-    
- 
-    
-    
-    
 
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public HashMap organiseEvents() {
-        //TODO
-        return null;
-    }
-    
-    /**
-    * @generated
-    */
-    public String announceCasting() {
-        //TODO
-        return "";
-    }
-    
-    /**
-    * @generated
-    */
-    public int manageBudget() {
-        //TODO
-        return 0;
-    }
+	public String getOrgaizationInfo() {
+		return orgaizationInfo;
+	}
+
+	public void setOrgaizationInfo(String orgaizationInfo) {
+		this.orgaizationInfo = orgaizationInfo;
+	}
+
+	@Override
+	public String toString() {
+		return "Organization Name = " + organizationName + ", Orgaization Info = " + orgaizationInfo + ", Head = " + head;
+	}
     
     
 }

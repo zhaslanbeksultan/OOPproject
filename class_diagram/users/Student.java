@@ -236,8 +236,73 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 					this.viewOfficeHourSchedule();
 				case "16":
 					this.researchCabinet();
+				case "17":
+					this.viewOrganizations();
 			}
 		}
+	}
+	
+	public void viewOrganizations() {
+		while(true) {
+			System.out.println("----ORGANIZATIONS----");
+			System.out.println("'0' - to exit. '1' - Create Organization. '2' - Organize Event. '3' - Remove Member. 'Organization Name' - to join.");
+			Data.getInstance().getOrganizations().forEach(System.out::println);
+			String choice = commonBuffer.readInput();
+			if(choice.equals("0")) return;
+			else if(choice.equals("1")) {
+				boolean hasApprovedRequest = Data.getInstance().getRequests().stream()
+					    .filter(f -> f.getRequester().equals(this.getUsername()) && 
+					                 f.getHelpType().equals(HelpType.REQUEST_FOR_CREATING_ORGAIZATION) &&
+					                 f.getRequestStatus().equals(RequestStatus.APPROVED))
+					    .anyMatch(request -> true);
+				if(!hasApprovedRequest) {
+					System.out.println("Organizations are created only with the consent of the dean!");
+					continue;
+				}
+				System.out.println("Enter Organization Name: ");
+				String name = commonBuffer.readInput();
+				System.out.println("Enter Information About Organization: ");
+				String info = commonBuffer.readInput();
+				Organization organization = new Organization(name, info, this.getUsername());
+				Data.getInstance().setOrganizations(organization);
+			}
+			else if(choice.equals("2")) {
+				boolean head = Data.getInstance().getOrganizations().stream()
+					    .filter(f -> f.getHead().equals(this.getUsername()))
+					    .anyMatch(request -> true);
+				if(!head) {
+					System.out.println("Only the head of the organization can organize events!");
+					continue;
+				}
+				System.out.println("Enter Announcment Title: ");
+				String title = commonBuffer.readInput();
+				System.out.println("Enter Announcment Words: ");
+				String text = commonBuffer.readInput();
+				System.out.println("Recipient 'All', 'Employees', 'Students': ");
+				String recipient = commonBuffer.readInput();
+				News post = new News(recipient, title, text);
+				Data.getInstance().setNews(post);
+			}
+			else if(choice.equals("3")) {
+				boolean head = Data.getInstance().getOrganizations().stream()
+					    .filter(f -> f.getHead().equals(this.getUsername()))
+					    .anyMatch(request -> true);
+				if(!head) {
+					System.out.println("Only the head of the organization can remove members!");
+					continue;
+				}
+				System.out.println("Enter Member Username: ");
+				String username = commonBuffer.readInput();
+				Data.getInstance().getOrganizations().stream()
+				.filter(h->h.getHead().equals(this.getUsername()))
+				.forEach(h->h.removeMembers(username));;
+			}
+			else {Data.getInstance().getOrganizations().stream()
+				.filter(o -> o.getOrganizationName().equals(choice))
+				.forEach(o -> o.setMembers(this.getUsername()));
+			}
+		}
+
 	}
 	
     @Override

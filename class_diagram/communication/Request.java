@@ -34,6 +34,8 @@ public class Request {
 			this.helpType = HelpType.CERTIFICATE_OF_EDUCATION_IN_ENGLISH;
 		if(helpType.equals("RESTORING_ONAY_CARD"))
 			this.helpType = HelpType.RESTORING_ONAY_CARD;
+		if(helpType.equals("REQUEST_FOR_CREATING_ORGAIZATION"))
+			this.helpType = HelpType.REQUEST_FOR_CREATING_ORGAIZATION;
 		if(helpType.equals("HELP_FOR_THE_DEPARTMENT_OF_DEFENSE_AFFAIRS"))
 			this.helpType = HelpType.HELP_FOR_THE_DEPARTMENT_OF_DEFENSE_AFFAIRS;
 		if(helpType.equals("HELP_FOR_THE_MANUAL_FOR_LARGE_FAMILIES"))
@@ -77,6 +79,8 @@ public class Request {
 			this.helpType = HelpType.RESTORING_ONAY_CARD;
 		if(helpType.equals("HELP_FOR_THE_DEPARTMENT_OF_DEFENSE_AFFAIRS"))
 			this.helpType = HelpType.HELP_FOR_THE_DEPARTMENT_OF_DEFENSE_AFFAIRS;
+		if(helpType.equals("REQUEST_FOR_CREATING_ORGAIZATION"))
+			this.helpType = HelpType.REQUEST_FOR_CREATING_ORGAIZATION;
 		if(helpType.equals("HELP_FOR_THE_MANUAL_FOR_LARGE_FAMILIES"))
 			this.helpType = HelpType.HELP_FOR_THE_MANUAL_FOR_LARGE_FAMILIES;
 		if(helpType.equals("HELP_FOR_THE_MANUAL_FOR_ON_THE_LOSS_OF_THE_BREADWINNER"))
@@ -97,7 +101,6 @@ public class Request {
 			this.language = Language.RUSSIAN;
 		if(language.equals("KZ"))
 			this.language = Language.KAZAKH;
-		this.faculty = faculty;
 		this.requestDate = new Date();
 	}
 	public HelpForm getHelpForm() {

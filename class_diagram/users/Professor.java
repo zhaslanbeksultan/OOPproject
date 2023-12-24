@@ -2,11 +2,14 @@ package users;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.Vector;
 
 import education.Course;
 import enums.Gender;
 
 public class Professor extends Teacher {
+	private String biography;
+	private Vector<GraduateStudent> assistants;
 
 	public Professor(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
@@ -15,5 +18,22 @@ public class Professor extends Teacher {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber, pasportNumber,
 				gender, nationality, citizenship, salary, hireDate, insuranceNumber, isAdvisor, courses);
 	}
+
+	public Vector<GraduateStudent> getAssistants() {
+		return assistants;
+	}
+
+	public void setAssistants(Vector<GraduateStudent> assistants) {
+		this.assistants = assistants;
+	}
+
+	public String getBiography() {
+		return biography;
+	}
+
+	public void setBiography(String biography) {
+		this.biography = biography;
+	}
+	
     
 }

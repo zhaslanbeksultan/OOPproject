@@ -27,6 +27,7 @@ public class Data implements Serializable {
 	private Vector<Order> orders = new Vector<>();
 	private Vector<ResearchProject> researchProjects = new Vector<>();
 	private Vector<ResearchPaper> researchPapers = new Vector<>();
+	private Vector<Organization> organizations = new Vector<>();
 
     private static Data DATA;  
 
@@ -197,6 +198,14 @@ public class Data implements Serializable {
 
 	public void setResearchProjects(ResearchProject researchProject) {
 		this.researchProjects.add(researchProject);
+	}
+
+	public Vector<Organization> getOrganizations() {
+		return organizations;
+	}
+
+	public void setOrganizations(Organization organization) {
+		this.organizations.add(organization);
 	}
 	
 }
