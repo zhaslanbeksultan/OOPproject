@@ -18,16 +18,16 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     private Faculty faculty;
     private Date enrollmentDate;
     private Category category;
-    private Vector<Course> coursesEnrolled;
+    private Vector<Course> CourseEnrolled;
     private String major;    
     private Vector<Organization> organizations;
     private HashMap<Lesson, Mark> marks;
-	private Vector<Courses> courseList;
+	private Vector<Course> courseList;
 
     public Student(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
 			String nationality, String citizenship, double gpa, int studyYear, Faculty faculty, Date enrollmentDate, Category category,
-			Vector<Course> coursesEnrolled, String major, Vector<Organization> organizations) {
+			Vector<Course> CourseEnrolled, String major, Vector<Organization> organizations) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship);
 		this.gpa = gpa;
@@ -35,7 +35,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 		this.faculty = faculty;
 		this.category = category;
 		this.enrollmentDate = enrollmentDate;
-		this.coursesEnrolled = coursesEnrolled;
+		this.CourseEnrolled = CourseEnrolled;
 		this.major = major;
 		this.organizations = organizations;
 	}
@@ -73,11 +73,11 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     private void setEnrollmentDate(Date enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
     }
-    private Vector<Course> getCoursesEnrolled() {
-        return this.coursesEnrolled;
+    private Vector<Course> getCourseEnrolled() {
+        return this.CourseEnrolled;
     }
-    private void setCoursesEnrolled(Course course) {
-        this.coursesEnrolled.add(course);
+    private void setCourseEnrolled(Course course) {
+        this.CourseEnrolled.add(course);
     }
 
     private String getMajor() {
@@ -154,7 +154,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 		int semester = Integer.parseInt(commonBuffer.readInput());
 		System.out.println("Enter an ECTS: ");
 		int ects = Integer.parseInt(commonBuffer.readInput());
-		this.viewAvailableCourses(this.faculty, semester, ects);//Надо узнать подробнее. Потом сделать.
+		this.viewAvailableCourse(this.faculty, semester, ects);//Надо узнать подробнее. Потом сделать.
 	}
 	@Override
 	public void addRequest() {
@@ -424,129 +424,129 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     	}
     }
 	
-	public void viewAvailableCourses(Faculty faculty, int semester, int ects) {
-		this.courseList = new Vector<Courses>();
+	public void viewAvailableCourse(Faculty faculty, int semester, int ects) {
+		this.courseList = new Vector<Course>();
 		if (faculty == Faculty.SITE) {
         	if(semester==1) {
-	        	courseList.add(new Courses( "Programming Principles I", 6));
-	            courseList.add(new Courses( "Calculus I", 5));
-	            courseList.add(new Courses("Discrete Structures", 5));
-	            courseList.add(new Courses("English", 10));
+	        	courseList.add(new Course( "Programming Principles I", 6));
+	            courseList.add(new Course( "Calculus I", 5));
+	            courseList.add(new Course("Discrete Structures", 5));
+	            courseList.add(new Course("English", 10));
             }
         	else if(semester == 2) {
-	        	courseList.add(new Courses( "Programming Principles II", 6));
-        	    courseList.add(new Courses( "Calculus II", 5));
-        	    courseList.add(new Courses( "Physics I", 5));
-        	    courseList.add(new Courses( "Statistics ", 5));
-        	    courseList.add(new Courses( "Merging Personal and Global Evolution", 8));
-        	    courseList.add(new Courses( "Linear Algebra", 5));
+	        	courseList.add(new Course( "Programming Principles II", 6));
+        	    courseList.add(new Course( "Calculus II", 5));
+        	    courseList.add(new Course( "Physics I", 5));
+        	    courseList.add(new Course( "Statistics ", 5));
+        	    courseList.add(new Course( "Merging Personal and Global Evolution", 8));
+        	    courseList.add(new Course( "Linear Algebra", 5));
             }
             else if(semester == 3) {
-        	    courseList.add(new Courses( "Databases", 5));
-        	    courseList.add(new Courses( "Algorithms and Data Structure", 5));
-        	    courseList.add(new Courses( "Computer Architecture", 5));
-        	    courseList.add(new Courses( "Object-Oriented Programming and Design", 5));
-        	    courseList.add(new Courses( "Physical Education I", 4));
-        	    courseList.add(new Courses( "Kazakh/Russian Language", 5));
+        	    courseList.add(new Course( "Databases", 5));
+        	    courseList.add(new Course( "Algorithms and Data Structure", 5));
+        	    courseList.add(new Course( "Computer Architecture", 5));
+        	    courseList.add(new Course( "Object-Oriented Programming and Design", 5));
+        	    courseList.add(new Course( "Physical Education I", 4));
+        	    courseList.add(new Course( "Kazakh/Russian Language", 5));
             }
             else if (semester == 4) {
-        	    courseList.add(new Courses( "WEB Development ", 6));
-        	    courseList.add(new Courses( "Computer NetWorks", 6));
-        	    courseList.add(new Courses( "Introduction to Business Management", 5));
-        	    courseList.add(new Courses( "Elective", 5));
-        	    courseList.add(new Courses( "Physical Education II", 4));
-        	    courseList.add(new Courses( "Kazakh Language", 5));
+        	    courseList.add(new Course( "WEB Development ", 6));
+        	    courseList.add(new Course( "Computer NetWorks", 6));
+        	    courseList.add(new Course( "Introduction to Business Management", 5));
+        	    courseList.add(new Course( "Elective", 5));
+        	    courseList.add(new Course( "Physical Education II", 4));
+        	    courseList.add(new Course( "Kazakh Language", 5));
             }
             else if(semester == 5) {
-        	    courseList.add(new Courses( "Software Engineering", 5));
-        	    courseList.add(new Courses( "Fundamentals of Business for Information Systems", 5));
-        	    courseList.add(new Courses( "Basics of Information Systems", 5));
-        	    courseList.add(new Courses( "Elective", 5));
-        	    courseList.add(new Courses( "Information and Communication Technology", 5));
-        	    courseList.add(new Courses( "History of Kazakhstan", 5));
+        	    courseList.add(new Course( "Software Engineering", 5));
+        	    courseList.add(new Course( "Fundamentals of Business for Information Systems", 5));
+        	    courseList.add(new Course( "Basics of Information Systems", 5));
+        	    courseList.add(new Course( "Elective", 5));
+        	    courseList.add(new Course( "Information and Communication Technology", 5));
+        	    courseList.add(new Course( "History of Kazakhstan", 5));
             }
             else if(semester == 6) {
-        	    courseList.add(new Courses( "Fields Projects for Information Systems", 5));
-        	    courseList.add(new Courses( "Cyber Security Fundamentals", 5));
-        	    courseList.add(new Courses( "Elective", 5));
-        	    courseList.add(new Courses( "Elective", 5));
-        	    courseList.add(new Courses( "Elective", 5));
-        	    courseList.add(new Courses( "Philosophy", 5));
+        	    courseList.add(new Course( "Fields Projects for Information Systems", 5));
+        	    courseList.add(new Course( "Cyber Security Fundamentals", 5));
+        	    courseList.add(new Course( "Elective", 5));
+        	    courseList.add(new Course( "Elective", 5));
+        	    courseList.add(new Course( "Elective", 5));
+        	    courseList.add(new Course( "Philosophy", 5));
             }
             else if(semester == 7) {
-        	    courseList.add(new Courses( "IT Project Management ", 5));
-        	    courseList.add(new Courses( "Elective", 5));
-        	    courseList.add(new Courses( "Elective", 5));
-        	    courseList.add(new Courses( "Elective", 5));
-        	    courseList.add(new Courses( "Elective", 5));
-        	    courseList.add(new Courses( "Elective", 5));	   
+        	    courseList.add(new Course( "IT Project Management ", 5));
+        	    courseList.add(new Course( "Elective", 5));
+        	    courseList.add(new Course( "Elective", 5));
+        	    courseList.add(new Course( "Elective", 5));
+        	    courseList.add(new Course( "Elective", 5));
+        	    courseList.add(new Course( "Elective", 5));	   
            }
             else if (semester == 8) {
-        	    courseList.add(new Courses( "Research Tools and Methods", 4));
-        	    courseList.add(new Courses( "Pre-diploma Internship", 5));
-        	    courseList.add(new Courses( "Final attestation", 8));
-        	    courseList.add(new Courses( "Elective", 5));
+        	    courseList.add(new Course( "Research Tools and Methods", 4));
+        	    courseList.add(new Course( "Pre-diploma Internship", 5));
+        	    courseList.add(new Course( "Final attestation", 8));
+        	    courseList.add(new Course( "Elective", 5));
             }
         }
         else if (faculty == Faculty.SEOGI) {
         	if(semester==1) {
-        		courseList.add(new Courses( "Kazakh/Russian Language", 5));
-	        	courseList.add(new Courses( "English language", 10));
-	        	courseList.add(new Courses("Modern history of Kazakhstan", 5));
-	        	courseList.add(new Courses("Physical Education I", 4));
-	        	courseList.add(new Courses("Introducation to petroleum engineering", 5));
+        		courseList.add(new Course( "Kazakh/Russian Language", 5));
+	        	courseList.add(new Course( "English language", 10));
+	        	courseList.add(new Course("Modern history of Kazakhstan", 5));
+	        	courseList.add(new Course("Physical Education I", 4));
+	        	courseList.add(new Course("Introducation to petroleum engineering", 5));
 	        	}
             else if(semester == 2) {
-             	courseList.add(new Courses( "Kazakh/Russian Language", 5));
-             	courseList.add(new Courses( "Physics I", 5));
-             	courseList.add(new Courses( "Physical education II", 4));
-             	courseList.add(new Courses( "Merging Personal and Global Evolution", 8));
-             	courseList.add(new Courses( "Calculus I", 5));
+             	courseList.add(new Course( "Kazakh/Russian Language", 5));
+             	courseList.add(new Course( "Physics I", 5));
+             	courseList.add(new Course( "Physical education II", 4));
+             	courseList.add(new Course( "Merging Personal and Global Evolution", 8));
+             	courseList.add(new Course( "Calculus I", 5));
             }
             else if(semester == 3) {
-             	courseList.add(new Courses( "Petroleum Chemistry", 5));
-             	courseList.add(new Courses( "Calculus II ", 6));
-             	courseList.add(new Courses( "Teoretical and Applied Mechanics", 5));
-             	courseList.add(new Courses( "Physics II ", 5));
-             	courseList.add(new Courses( "Information and Communication Technologies ", 4));
-             	courseList.add(new Courses( "Descriptive geometry and engineering graphics", 4));
+             	courseList.add(new Course( "Petroleum Chemistry", 5));
+             	courseList.add(new Course( "Calculus II ", 6));
+             	courseList.add(new Course( "Teoretical and Applied Mechanics", 5));
+             	courseList.add(new Course( "Physics II ", 5));
+             	courseList.add(new Course( "Information and Communication Technologies ", 4));
+             	courseList.add(new Course( "Descriptive geometry and engineering graphics", 4));
             }
             else if (semester == 4) {
-             	courseList.add(new Courses( "Strength of materials", 5));
-             	courseList.add(new Courses( "Differential equations", 5));
-             	courseList.add(new Courses( "Physical Geology", 5));
-             	courseList.add(new Courses( "Philosophy", 5));
-             	courseList.add(new Courses( "Drilling oil ang gas wells ", 5));
-             	courseList.add(new Courses( "Introductory Internship", 4));
+             	courseList.add(new Course( "Strength of materials", 5));
+             	courseList.add(new Course( "Differential equations", 5));
+             	courseList.add(new Course( "Physical Geology", 5));
+             	courseList.add(new Course( "Philosophy", 5));
+             	courseList.add(new Course( "Drilling oil ang gas wells ", 5));
+             	courseList.add(new Course( "Introductory Internship", 4));
                 }
             else if(semester == 5) {
-         	    courseList.add(new Courses( "Production Technology(with practice) ", 5));
-         	    courseList.add(new Courses( "Numerical methods. Matlab", 5));
-         	    courseList.add(new Courses( "Fluid Mechanics", 5));
-         	    courseList.add(new Courses( "Reservoir Engineering", 5));
-         	    courseList.add(new Courses( "Petroleum Geology", 5));
-         	    courseList.add(new Courses( "Specialization discipline ", 5));
+         	    courseList.add(new Course( "Production Technology(with practice) ", 5));
+         	    courseList.add(new Course( "Numerical methods. Matlab", 5));
+         	    courseList.add(new Course( "Fluid Mechanics", 5));
+         	    courseList.add(new Course( "Reservoir Engineering", 5));
+         	    courseList.add(new Course( "Petroleum Geology", 5));
+         	    courseList.add(new Course( "Specialization discipline ", 5));
             }
             else if(semester == 6) {
-         	    courseList.add(new Courses( "Pipeline Engineering(with practice)", 5));
-         	    courseList.add(new Courses( "Well logging", 5));
-         	    courseList.add(new Courses( "Thermodynamics and heat engineering ", 5));
-         	    courseList.add(new Courses( "Specialization discipline", 5));
-         	    courseList.add(new Courses( "Elective", 5));
-         	    courseList.add(new Courses( "Specialization discipline", 5));
+         	    courseList.add(new Course( "Pipeline Engineering(with practice)", 5));
+         	    courseList.add(new Course( "Well logging", 5));
+         	    courseList.add(new Course( "Thermodynamics and heat engineering ", 5));
+         	    courseList.add(new Course( "Specialization discipline", 5));
+         	    courseList.add(new Course( "Elective", 5));
+         	    courseList.add(new Course( "Specialization discipline", 5));
             }
             else if(semester == 7) {
-         	    courseList.add(new Courses( "Industrial safety", 5));
-         	    courseList.add(new Courses( "Fundamentals of financial analysis", 5));
-         	    courseList.add(new Courses( "Gathering and Preparation Well Production", 5));
-         	    courseList.add(new Courses( "Workover", 5));
-         	    courseList.add(new Courses( "Specialization discipline", 5));
-         	    courseList.add(new Courses( "Elective", 5));	   
+         	    courseList.add(new Course( "Industrial safety", 5));
+         	    courseList.add(new Course( "Fundamentals of financial analysis", 5));
+         	    courseList.add(new Course( "Gathering and Preparation Well Production", 5));
+         	    courseList.add(new Course( "Workover", 5));
+         	    courseList.add(new Course( "Specialization discipline", 5));
+         	    courseList.add(new Course( "Elective", 5));	   
             }
             else if (semester == 8) {
-         	    courseList.add(new Courses( "Industrial  Internship", 8));
-         	    courseList.add(new Courses( "Graduation Project Internship", 5));
-         	    courseList.add(new Courses( "Preparation and Defense of the graduation work", 12));
+         	    courseList.add(new Course( "Industrial  Internship", 8));
+         	    courseList.add(new Course( "Graduation Project Internship", 5));
+         	    courseList.add(new Course( "Preparation and Defense of the graduation work", 12));
             }
         }
         if(courseList.isEmpty()) {
@@ -561,7 +561,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	        }
 	    }
 	    else {
-	        for (Courses element : courseList) {
+	        for (Course element : courseList) {
 	        	System.out.println(element);
 	        }
 	    }
@@ -603,7 +603,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	}
 
 
-	public boolean addDiscipline(Courses discipline) {
+	public boolean addDiscipline(Course discipline) {
 		// TODO Auto-generated method stub
 		return false;
 	}
