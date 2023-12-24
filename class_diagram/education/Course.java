@@ -9,6 +9,7 @@ import java.util.Vector;
 import common.Data;
 import enums.DisciplineType;
 import userCapabilities.Administrationable;
+import users.Student;
 import users.Teacher;
 
 public class Course implements Administrationable {
@@ -20,7 +21,7 @@ public class Course implements Administrationable {
     private Teacher teacher;
     private Specialty specialty;
     private ArrayList<Lesson> lessons;
-	private Vector<Course> registeredDisciplines; 
+	private Vector<Student> students; 
 
     public Course(String courseId, String courseName, int numberOfCredits,
             String specialtyId, Teacher teacher) {
@@ -56,6 +57,7 @@ public class Course implements Administrationable {
 
     public void setTeacher(Teacher teacher) {
         this.teacher=teacher;
+        teacher.addCourse(this);
         
     }
 
@@ -66,60 +68,74 @@ public class Course implements Administrationable {
     public void setSpecialty(Specialty specialty) {
         this.specialty = specialty;
     }
-
-    public boolean addDiscipline(Course discipline) {
-        int totalECTS = 0;
-        int disciplineECTS = discipline.getNumberOfCredits();
-
-        if (totalECTS + disciplineECTS > 30) {
-            System.out.println("Adding discipline " + discipline + " to your schedule has failed. Exceeds maximum credits.");
-            return false;
-        }
-
-        switch (disciplineType) {
-            case MAJOR:
-                totalECTS += disciplineECTS;
-                registeredDisciplines.add(discipline);
-                System.out.println("Discipline " + discipline + " added successfully. Congratulations!");
-                return true;
-            case MINOR:
-                if (hasMinorDisciplineInSchedule(discipline)) {
-                    System.out.println(
-                            "Adding discipline " + discipline + " to your schedule has failed. You can have only one minor discipline in your schedule.");
-                    return false;
-                } else {
-                    totalECTS += disciplineECTS;
-                    registeredDisciplines.add(discipline);
-                    System.out.println("Discipline " + discipline + " added successfully. Congratulations!");
-                    return true;
-                }
-            case FREE:
-                totalECTS += disciplineECTS;
-                registeredDisciplines.add(discipline);
-                System.out.println("Discipline " + discipline + " added successfully. Congratulations!");
-                return true;
-            default:
-                System.out.println(
-                        "Adding discipline " + discipline + " to your schedule has failed. Unsupported discipline type, please check the instructions again!");
-                return false;
-        }
+    public void addStudent(Student student) {
+    	students.add(student);
     }
-
-    public boolean dropDiscipline(Course discipline) {
-//        if (disciplineType != DisciplineType.MAJOR) {
-//            System.out.println("Discipline " + discipline + " dropped successfully.");
-//            return true;
-//        } else {
-//            System.out.println("Dropping major discipline " + discipline + " is not allowed.");
+    public void deleteStudent(Student student) {
+    	students.remove(student);
+    }
+    public Vector<Student> getStudents(){
+    	return students;
+    }
+//    public boolean addDiscipline(Course discipline) {
+//        int totalECTS = 0;
+//        int disciplineECTS = discipline.getNumberOfCredits();
+//
+//        if (totalECTS + disciplineECTS > 30) {
+//            System.out.println("Adding discipline " + discipline + " to your schedule has failed. Exceeds maximum credits.");
 //            return false;
 //        }
-    	return true;
-    }
+//
+//        switch (disciplineType) {
+//            case MAJOR:
+//                totalECTS += disciplineECTS;
+//                registeredDisciplines.add(discipline);
+//                System.out.println("Discipline " + discipline + " added successfully. Congratulations!");
+//                return true;
+//            case MINOR:
+//                if (hasMinorDisciplineInSchedule(discipline)) {
+//                    System.out.println(
+//                            "Adding discipline " + discipline + " to your schedule has failed. You can have only one minor discipline in your schedule.");
+//                    return false;
+//                } else {
+//                    totalECTS += disciplineECTS;
+//                    registeredDisciplines.add(discipline);
+//                    System.out.println("Discipline " + discipline + " added successfully. Congratulations!");
+//                    return true;
+//                }
+//            case FREE:
+//                totalECTS += disciplineECTS;
+//                registeredDisciplines.add(discipline);
+//                System.out.println("Discipline " + discipline + " added successfully. Congratulations!");
+//                return true;
+//            default:
+//                System.out.println(
+//                        "Adding discipline " + discipline + " to your schedule has failed. Unsupported discipline type, please check the instructions again!");
+//                return false;
+//        }
+//    }
+
+//    public boolean dropDiscipline(Course discipline) {
+//        if (disciplineType != DisciplineType.MAJOR) {
+//            System.out.println("Discipline " + discipline + " dropped successfully.");
+//           return true;
+//       } else {
+//            System.out.println("Dropping major discipline " + discipline + " is not allowed.");
+//            return false;
+//       }
+//    	return true;
+//    }
 
 	@Override
 	public void addDropDiscipline() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean addDiscipline(Course discipline) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	
