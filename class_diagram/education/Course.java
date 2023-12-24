@@ -1,6 +1,7 @@
 package education;
 
 import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,16 +9,15 @@ import java.util.Vector;
 
 import common.Data;
 import enums.DisciplineType;
-import userCapabilities.Administrationable;
 import users.Student;
 import users.Teacher;
 
-public class Course implements Administrationable {
+public class Course {
 
     private String courseId;
     private String courseName;
     private int numberOfCredits;
-    private String specialtyId;
+    private DisciplineType specialtyId;
     private Teacher teacher;
     private Specialty specialty;
     private ArrayList<Lesson> lessons;
