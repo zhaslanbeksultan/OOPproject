@@ -1,6 +1,7 @@
 package users;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 import common.Data;
@@ -15,8 +16,9 @@ import userCapabilities.*;
 
 
 public class Manager extends Employee implements Managable, Administrationable, Subscriber {
-	
-    private ManagerPosition managerPosition;
+
+	private static final long serialVersionUID = 1L;
+	private ManagerPosition managerPosition;
     private Vector<Course> coursesRegisterTo;
 
 	public Manager(String firstName, String lastName, Date birthDay, String id, String username, String password,
@@ -110,6 +112,71 @@ public class Manager extends Employee implements Managable, Administrationable, 
     	Data.getInstance().setNews(post);
 	}
 	
+	public void viewRequestsFromUsers() {
+		while(true){
+			System.out.println("----WINDOW FOR PROCESSING REQUESTS----");
+			System.out.println("0 - to exit. 'requestId' - to process.");
+			if(this.managerPosition.equals(ManagerPosition.OR)) {
+				Data.getInstance().getRequests().stream().filter(r->
+						r.getHelpType().equals(HelpType.TRANSCRIPT_FOR_THE_ENTIRE_PERIOD_OF_STUDY) ||
+						r.getHelpType().equals(HelpType.TRANSCRIPT_FOR_THE_SEMESTER) ||
+						r.getHelpType().equals(HelpType.CERTIFICATE_OF_EDUCATION_IN_ENGLISH) ||
+						!r.getRequestStatus().equals(RequestStatus.NOT_ACCEPTED) ||
+						r.getHelpType().equals(HelpType.TRANSCRIPT_FOR_THE_YEAR))
+				.forEach(System.out::println);
+				String choice = commonBuffer.readInput();
+				if(choice.equals("0")) return;
+				else processRequest(Integer.parseInt(choice)-1, false);
+			}
+			if(this.managerPosition.equals(ManagerPosition.DEANS_OFFICE)) {
+				Data.getInstance().getRequests().stream().filter(r->
+						r.getHelpType().equals(HelpType.COORDINATION_OF_THE_TOPIC_OF_THE_DIPLOMA) ||
+						r.getHelpType().equals(HelpType.HELP_FOR_FINANCING_KAZENERGY) ||
+						r.getHelpType().equals(HelpType.WORKAROUND_SHEET) ||
+						r.getHelpType().equals(HelpType.REQUEST_FOR_CREATING_ORGAIZATION) ||
+						!r.getRequestStatus().equals(RequestStatus.NOT_ACCEPTED) ||
+						r.getHelpType().equals(HelpType.REQUEST_FOR_ACADEMIC_MOBILITY))
+				.forEach(System.out::println);
+				String choice = commonBuffer.readInput();
+				if(choice.equals("0")) return;
+				else processRequest(Integer.parseInt(choice)-1, true);
+			}
+			if(this.managerPosition.equals(ManagerPosition.DEPARTMENT)) {
+				Data.getInstance().getRequests().stream().filter(r->
+						r.getHelpType().equals(HelpType.RESTORING_ONAY_CARD) ||
+						r.getHelpType().equals(HelpType.INFORMATION_ABOUT_THE_PLACE_OF_REQUIREMENT) ||
+						r.getHelpType().equals(HelpType.HELP_FOR_THE_DEPARTMENT_OF_DEFENSE_AFFAIRS) ||
+						r.getHelpType().equals(HelpType.HELP_FOR_THE_MANUAL_FOR_LARGE_FAMILIES) ||
+						!r.getRequestStatus().equals(RequestStatus.NOT_ACCEPTED) ||
+						r.getHelpType().equals(HelpType.HELP_FOR_THE_MANUAL_FOR_ON_THE_LOSS_OF_THE_BREADWINNER))
+				.forEach(System.out::println);
+				String choice = commonBuffer.readInput();
+				if(choice.equals("0")) return;
+				else processRequest(Integer.parseInt(choice)-1, false);
+			}
+		}
+	}
+	public void processRequest(int id, boolean needSign) {
+		System.out.println(Data.getInstance().getRequests().get(id));
+		if(needSign) {	
+			Faculty faculty = Data.getInstance().getRequests().get(id).getFaculty();
+			Data.getInstance().getDeans().stream()
+			.filter(d->d.getFaculty().equals(faculty))
+			.forEach(d->d.setIncomingRequests(Data.getInstance().getRequests().get(id)));
+			Data.getInstance().getRequests().get(id).setRequestStatus(RequestStatus.ACCEPTED);
+		}
+		else {
+			System.out.println("'0' - ACCEPTED, '1' - APPROVED, '2' - NOT_APPROVED");
+			String choose = commonBuffer.readInput();
+			if(choose.equals("0"))
+				Data.getInstance().getRequests().get(id).setRequestStatus(RequestStatus.ACCEPTED);
+			if(choose.equals("1"))
+				Data.getInstance().getRequests().get(id).setRequestStatus(RequestStatus.APPROVED);
+			if(choose.equals("2"))
+				Data.getInstance().getRequests().get(id).setRequestStatus(RequestStatus.NOT_APPROVED);
+		}
+	}
+	
 	public boolean dropDiscipline(Courses discipline) {
 		// TODO Auto-generated method stub
 		return false;
@@ -126,122 +193,98 @@ public class Manager extends Employee implements Managable, Administrationable, 
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public double getSalary() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setSalary(double salary) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Date getHireDate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setHireDate(Date hireDate) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String getInsuranceNumber() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setInsuranceNumber(String insuranceNumber) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Message getMessage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setMessage(Message message) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void sentComplaintMessage() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public String performInsuranceNumber() {
-		// TODO Auto-generated method stub
-		return null;
+	public void viewLessonSchedule() {}
+	public void viewUserPersonalData() {
+		System.out.println("----WINDOW FOR VIEWING PERSON'S DATA----");
+		System.out.println("'0' - to exit. 'username' - to check info.");
+		String choice = commonBuffer.readInput();
+		if(choice.equals("0")) return;
+		else {
+			Data.getInstance().getUsers().entrySet().stream()
+	        .filter(entry -> entry.getKey().equals(choice))
+	        .map(Map.Entry::getValue)
+	        .findFirst()
+	        .ifPresent(user -> user.getUserInformation());
+		}
 	}
 
 	@Override
 	public void showMenu() {
 		while(true) {
 			System.out.println("----MAIN WINDOW----");
-			System.out.println("1. \n2. \n3. \n4. \n5. \n6. \n7. "
-					+ "\n8. \n9. \n10. \n11. \n12. "
-					+ "\n13. \n14. \n15. \n0.Log Out");
+			System.out.println("1. View Academic Statistics\n2. Add/Drop Discipline\n3. View Student/Teacher Lesson Schedule"
+					+ "\n4. View My Requests\n5. Edit My Personal Datas\n6. View Newa\n7. View User's Personal Datas"
+					+ "\n8. View Requests From Users\n9. View Discipline Schedule\n10. View Student Exam Schedule"
+					+ "\n11. Discipline Registration\n12. View My Social Transcript"
+					+ "\n13. View Office Hour Schedule\n14. Research Cabinet\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
-					break;
+					return;
 				case "1":
-					this.viewTranscript();
+					this.viewAcademicStatistics();
+					break;
 				case "2":
 					this.addDropDiscipline();
+					break;
 				case "3":
-					this.viewJournal();
+					this.viewLessonSchedule();
+					break;
 				case "4":
-					this.viewRequests();
+					this.viewRequests();//done
+					break;
 				case "5":
-					System.out.println(this);
+					this.editPersonalData();//done
+					break;
 				case "6":
-					this.viewNews();
+					this.viewNews();//done
+					break;
 				case "7":
-					this.attendanceMark();
+					this.viewUserPersonalData();//done
+					break;
 				case "8":
-					this.viewAttestation();
+					this.viewRequestsFromUsers();//done
+					break;
 				case "9":
 					this.viewDisciplineSchedule();
+					break;
 				case "10":
-					this.viewLessonSchedule();
+					this.viewStudentExamSchedule();
+					break;
 				case "11":
-					this.viewExamsSchedule();
-				case "12":
-					this.registrationForFx();
-				case "13":
 					this.disciplineRegistration(choice, false);
-				case "14":
-					this.viewSocialTranscript();
-				case "15":
+					break;
+				case "12":
+					this.viewSocialTranscript();//done
+					break;
+				case "13":
 					this.viewOfficeHourSchedule();
-				case "16":
-					this.researchCabinet();
-				case "17":
-					this.viewOrganizations();
+					break;
+				case "14":
+					this.researchCabinet();//done
+					break;
 			}
 		}
 	}
+	private void viewStudentExamSchedule() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void viewDisciplineSchedule() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void viewOrganizations() {}
+	public void viewOfficeHourSchedule() {}
 
 	@Override
 	public void addDropDiscipline() {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 	@Override
 	public void addRequest() {
@@ -276,6 +319,11 @@ public class Manager extends Employee implements Managable, Administrationable, 
     	Message message = new Message("A New Article Has Been Published About" + projectTopic, journalName, this.getUsername()
     			, "The New Article Is Already In The Research Cabinet. The new article is already in the study room. You can read it");
     	Data.getInstance().getMessages().add(message);
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "\nManager Position" + managerPosition;
 	}
     
 }

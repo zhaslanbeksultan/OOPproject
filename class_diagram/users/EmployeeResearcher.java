@@ -9,7 +9,9 @@ import enums.Gender;
 import userCapabilities.*;
 
 public class EmployeeResearcher extends Employee implements Subscriber,Researcher{
-    private String biography;
+
+	private static final long serialVersionUID = 1L;
+	private String biography;
 
     public EmployeeResearcher(String firstName, String lastName, Date birthDay, String id, String username,
 			String password, String email, Date registrationDate, String phoneNumber, String pasportNumber,
@@ -83,23 +85,31 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
     		String choice = commonBuffer.readInput();
     		switch(choice) {
     		case "0":
-    			break;
+    			return;
     		case "1":
     			this.showAllResearchPapers();
+    			break;
     		case "2":
     			this.showAllJournals();
+    			break;
     		case "3":
     			this.showPapersOfSubscribedJournals();
+    			break;
     		case "4":
     			this.findHIndex();
+    			break;
     		case "5":
     			this.topCitedResearcher();
+    			break;
     		case "6":
     			this.showMyPapers();
+    			break;
     		case "7":
     			this.addResearchPaper();
+    			break;
     		case "8":
     			this.createResearchProject();
+    			break;
     		}
     	}
     }
@@ -138,7 +148,7 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
     		String choice = commonBuffer.readInput();
     		switch(choice) {
     		case "0":
-    			break;
+    			return;
     		case "1":
     			System.out.println("Research Project Name: ");
     			String researchProject = commonBuffer.readInput();
@@ -162,6 +172,7 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
 				.forEach(p->p.setParticipants(this.getUsername()));
     			News post = new News("All", "Research", "A New Research Article From: " + this.getUsername() + "Research Title: " + title);
     			Data.getInstance().getNews().add(post);
+    			break;
     		}
     	}
     }
@@ -177,20 +188,28 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
     		.sorted(new PaperByArticleLengthComparator())
     		.forEach(System.out::println);
     		this.readPaper();
+    		break;
     	case("Citations"):
     		Data.getInstance().getResearchPapers().stream()
     		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
     		.sorted(new PaperByCitationComparator())
     		.forEach(System.out::println);
     		this.readPaper();
+    		break;
     	case("Date"):
     		Data.getInstance().getResearchPapers().stream()
     		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
     		.sorted(new PaperByDateComparator())
     		.forEach(System.out::println);
     		this.readPaper();
+    		break;
     	}
     }
+
+	@Override
+	public String toString() {
+		return super.toString() + "\n Biography=" + biography ;
+	}
 
 
 

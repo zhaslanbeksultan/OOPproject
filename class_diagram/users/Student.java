@@ -13,7 +13,9 @@ import education.*;
 import enums.*;
 import userCapabilities.*;
 public class Student extends User implements CanBorrowBook, Educationable, Administrationable, Serializable, Subscriber, Researcher	{
-    private double gpa;
+
+	private static final long serialVersionUID = 1L;
+	private double gpa;
     private int studyYear;
     private Faculty faculty;
     private Date enrollmentDate;
@@ -203,41 +205,58 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
-					break;
+					return;
 				case "1":
 					this.viewTranscript();
+					break;
 				case "2":
 					this.addDropDiscipline();
+					break;
 				case "3":
 					this.viewJournal();
+					break;
 				case "4":
 					this.viewRequests();
+					break;
 				case "5":
-					System.out.println(this);
+					editPersonalData();
+					break;
 				case "6":
 					this.viewNews();
+					break;
 				case "7":
 					this.attendanceMark();
+					break;
 				case "8":
 					this.viewAttestation();
+					break;
 				case "9":
 					this.viewDisciplineSchedule();
+					break;
 				case "10":
 					this.viewLessonSchedule();
+					break;
 				case "11":
 					this.viewExamsSchedule();
+					break;
 				case "12":
 					this.registrationForFx();
+					break;
 				case "13":
 					this.disciplineRegistration(choice, false);
+					break;
 				case "14":
 					this.viewSocialTranscript();
+					break;
 				case "15":
 					this.viewOfficeHourSchedule();
+					break;
 				case "16":
 					this.researchCabinet();
+					break;
 				case "17":
 					this.viewOrganizations();
+					break;
 			}
 		}
 	}
@@ -315,23 +334,31 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     		String choice = commonBuffer.readInput();
     		switch(choice) {
     		case "0":
-    			break;
+    			return;
     		case "1":
     			this.showAllResearchPapers();
+    			break;
     		case "2":
     			this.showAllJournals();
+    			break;
     		case "3":
     			this.showPapersOfSubscribedJournals();
+    			break;
     		case "4":
     			this.findHIndex();
+    			break;
     		case "5":
     			this.topCitedResearcher();
+    			break;
     		case "6":
     			this.showMyPapers();
+    			break;
     		case "7":
     			this.addResearchPaper();
+    			break;
     		case "8":
     			this.createResearchProject();
+    			break;
     		}
     	}
     }
@@ -370,7 +397,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     		String choice = commonBuffer.readInput();
     		switch(choice) {
     		case "0":
-    			break;
+    			return;
     		case "1":
     			System.out.println("Research Project Name: ");
     			String researchProject = commonBuffer.readInput();
@@ -394,6 +421,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 				.forEach(p->p.setParticipants(this.getUsername()));
     			News post = new News("All", "Research", "A New Research Article From: " + this.getUsername() + "Research Title: " + title);
     			Data.getInstance().getNews().add(post);
+    			break;
     		}
     	}
     }
@@ -409,18 +437,21 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
     		.sorted(new PaperByArticleLengthComparator())
     		.forEach(System.out::println);
     		this.readPaper();
+    		break;
     	case("Citations"):
     		Data.getInstance().getResearchPapers().stream()
     		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
     		.sorted(new PaperByCitationComparator())
     		.forEach(System.out::println);
     		this.readPaper();
+    		break;
     	case("Date"):
     		Data.getInstance().getResearchPapers().stream()
     		.filter(p -> p.getPaperAuthor().equals(this.getUsername()))
     		.sorted(new PaperByDateComparator())
     		.forEach(System.out::println);
     		this.readPaper();
+    		break;
     	}
     }
 	

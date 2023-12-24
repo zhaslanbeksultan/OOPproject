@@ -13,6 +13,5 @@ public class Main {
 		Data.getInstance().addUser("steve_jobs", admin);
 		Login login = new Login();
 		login.menu();
-		Data.write();
 	}
 }

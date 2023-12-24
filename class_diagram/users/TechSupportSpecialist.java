@@ -9,7 +9,8 @@ import enums.*;
 
 public class TechSupportSpecialist extends Employee {
 
-    private String complaintType;
+	private static final long serialVersionUID = 1L;
+	private String complaintType;
 
 	public TechSupportSpecialist(String firstName, String lastName, Date birthDay, String id, String username,
 			String password, String email, Date registrationDate, String phoneNumber, String pasportNumber,
@@ -31,6 +32,7 @@ public class TechSupportSpecialist extends Employee {
     public boolean FixComplaintType() {
         return false;
     }
+    
 
 	@Override
 	public void addRequest() {
@@ -69,11 +71,13 @@ public class TechSupportSpecialist extends Employee {
 		case("1"):
 			Data.getInstance().getOrders().get(orderId).setOrderStatus(OrderStatus.ACCEPTED);
 			Data.getInstance().getOrders().get(orderId).setExecutor(this.getUsername());
+			break;
 		case("2"):
 			if(Data.getInstance().getOrders().get(orderId).getOrderStatus().equals(OrderStatus.ACCEPTED))
 				Data.getInstance().getOrders().get(orderId).setOrderStatus(OrderStatus.DONE);
 			else
 				System.out.println("The order has not been accepted yet!");
+			break;
 		}
 		
 		
@@ -90,11 +94,12 @@ public class TechSupportSpecialist extends Employee {
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 			case("0"):
-				break;
+				return;
 			case("1"):
 				System.out.println("Enter Order ID");
 				int orderId = Integer.parseInt(commonBuffer.readInput());
 				viewOrders(orderId-1);
+				break;
 			}
 		}
 	}
@@ -107,19 +112,25 @@ public class TechSupportSpecialist extends Employee {
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
-					break;
+					return;
 				case "1":
-					System.out.println(this);;
+					editPersonalData();
+					break;
 				case "2":
-					this.viewRequests();;
+					this.viewRequests();
+					break;
 				case "3":
 					this.viewNews();
+					break;
 				case "4":
-					this.viewSocialTranscript();;
+					this.viewSocialTranscript();
+					break;
 				case "5":
 					this.viewOrders();
+					break;
 				case "6":
 					this.viewNews();
+					break;
 			}
 		}
 	}
