@@ -24,13 +24,13 @@ public class Course implements Administrationable {
 	private Vector<Student> students; 
 
     public Course(String courseId, String courseName, int numberOfCredits,
-            String specialtyId, Teacher teacher) {
+            DisciplineType disciplineType, String specialtyId2) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.numberOfCredits = numberOfCredits;
 
-        this.specialtyId = specialtyId;
-        this.teacher = teacher;
+        this.specialtyId = disciplineType;
+        this.teacher = specialtyId2;
         this.lessons = new ArrayList<>(32); 
     }
 

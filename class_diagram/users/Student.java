@@ -1,9 +1,8 @@
 package users;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Vector;
 
 import app.Login;
@@ -609,9 +608,29 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 
 	@Override
 	public void viewAttestation() {
-		// TODO Auto-generated method stub
-		
-	}
+        System.out.println("---- ATTESTATION RESULTS ----");
+
+        if (marks.isEmpty()) {
+            System.out.println("No attestation results available.");
+            return;
+        }
+
+        for (Entry<Lesson, Mark> entry : marks.entrySet()) {
+            Lesson lesson = entry.getKey();
+            Mark mark = entry.getValue();
+
+            System.out.println("Lesson: " + lesson.getLessonName());
+
+            int firstHalf = mark.calculateAutomaticFirstHalf();
+            int secondHalf = mark.calculateAutomaticSecondHalf();
+
+            mark.setFirstHalf(lesson, firstHalf);
+            mark.setSecondHalf(lesson, secondHalf);
+
+            System.out.println("Total Attestation Result: " + mark.calculateFinalGrade());
+            System.out.println("-----");
+        }
+    }
 
 	@Override
 	public void viewLessonSchedule() {
