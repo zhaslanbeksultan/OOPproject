@@ -12,10 +12,10 @@ import communication.*;
 import education.*;
 import enums.*;
 import userCapabilities.*;
-public class Student extends User implements CanBorrowBook, Educationable, Administrationable, Serializable, Subscriber, Researcher	{
+public class Student extends User implements CanBorrowBook, Educationable, Serializable, Subscriber, Researcher	{
 
 	private static final long serialVersionUID = 1L;
-	private double gpa;
+	private double[] gpa;
     private int studyYear;
     private Faculty faculty;
     private Date enrollmentDate;
@@ -28,18 +28,15 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 
     public Student(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
-			String nationality, String citizenship, double gpa, int studyYear, Faculty faculty, Date enrollmentDate, Category category,
-			Vector<Course> CourseEnrolled, String major, Vector<Organization> organizations) {
+			String nationality, String citizenship, int studyYear, Faculty faculty, Date enrollmentDate, Category category, String major) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship);
-		this.gpa = gpa;
 		this.studyYear = studyYear;
 		this.faculty = faculty;
 		this.category = category;
 		this.enrollmentDate = enrollmentDate;
-		this.CourseEnrolled = CourseEnrolled;
 		this.major = major;
-		this.organizations = organizations;
+		this.gpa = new double[4];
 	}
 
 	public Student() {
@@ -53,7 +50,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 	}
 
 	private void setGpa(double gpa) {
-        this.gpa = gpa;
+        this.gpa[studyYear-1] = gpa;
     }
     private int getStudyYear() {
         return this.studyYear;
@@ -96,7 +93,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
         this.organizations.add(organization);
     }
 
-    public double getGpa() {
+    public double[] getGpa() {
         return this.gpa;
     }
     public String getReport() {
@@ -149,7 +146,6 @@ public class Student extends User implements CanBorrowBook, Educationable, Admin
 			marks.put(lesson, mark);
 	    }
 	
-	@Override
 	public void addDropDiscipline() {
 		System.out.println("ADD/DROP WINDOW");
 		System.out.println("Enter a semester: ");
