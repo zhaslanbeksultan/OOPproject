@@ -19,6 +19,10 @@ public class Professor extends Teacher {
 				gender, nationality, citizenship, salary, hireDate, insuranceNumber, isAdvisor, courses);
 	}
 
+	public Professor() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Vector<GraduateStudent> getAssistants() {
 		return assistants;
 	}

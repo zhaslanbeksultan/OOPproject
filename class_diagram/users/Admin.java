@@ -6,7 +6,9 @@ import communication.*;
 import app.*;
 import enums.Gender;
 public class Admin extends Employee{
-    public Admin(String firstName, String lastName, Date birthDay, String id, String username, String password,
+
+	private static final long serialVersionUID = 1L;
+	public Admin(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
 			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber, pasportNumber,
@@ -52,7 +54,7 @@ public class Admin extends Employee{
     	String password=commonBuffer.readInput();
     	dean.setPassword(password);
     	d.addUser(logname, dean);
-    	d.addDean(dean);
+    	d.setDeans(dean);
     	System.out.println("Successfully added!");
     	save();	
     }
@@ -65,83 +67,104 @@ public class Admin extends Employee{
     	String password=commonBuffer.readInput();
     	graduateStudent.setPassword(password);
     	d.addUser(logname, graduateStudent);
-    	d.addTeacher(graduateStudent);
+    	d.setGraduateStudents(graduateStudent);
     	System.out.println("Successfully added!");
     	save();	
     }
     public void createLibrarian() throws IOException {
-    	Teacher teacher = new Teacher();
+    	Librarian librarian = new Librarian();
     	System.out.println("Enter login");
     	String logname=commonBuffer.readInput();
-    	teacher.setUsername(logname);
+    	librarian.setUsername(logname);
     	System.out.println("Enter password");
     	String password=commonBuffer.readInput();
-    	teacher.setPassword(password);
-    	d.addUser(logname, teacher);
-    	d.addTeacher(teacher);
+    	librarian.setPassword(password);
+    	d.addUser(logname, librarian);
+    	d.setLibriarians(librarian);
     	System.out.println("Successfully added!");
     	save();	
     }
     public void createManager() throws IOException {
-    	Teacher teacher = new Teacher();
+    	Manager manager = new Manager();
     	System.out.println("Enter login");
     	String logname=commonBuffer.readInput();
-    	teacher.setUsername(logname);
+    	manager.setUsername(logname);
     	System.out.println("Enter password");
     	String password=commonBuffer.readInput();
-    	teacher.setPassword(password);
-    	d.addUser(logname, teacher);
-    	d.addTeacher(teacher);
+    	manager.setPassword(password);
+    	d.addUser(logname, manager);
+    	d.setManagers(manager);
     	System.out.println("Successfully added!");
     	save();	
     }
     public void createProfessor() throws IOException {
-    	Teacher teacher = new Teacher();
+    	Professor professor = new Professor();
     	System.out.println("Enter login");
     	String logname=commonBuffer.readInput();
-    	teacher.setUsername(logname);
+    	professor.setUsername(logname);
     	System.out.println("Enter password");
     	String password=commonBuffer.readInput();
-    	teacher.setPassword(password);
-    	d.addUser(logname, teacher);
-    	d.addTeacher(teacher);
+    	professor.setPassword(password);
+    	d.addUser(logname, professor);
+    	d.setProfessors(professor);
     	System.out.println("Successfully added!");
     	save();	
     }
     public void createTechSupportSpecialist() throws IOException {
-    	Teacher teacher = new Teacher();
+    	TechSupportSpecialist techSupportSpecialist = new TechSupportSpecialist();
     	System.out.println("Enter login");
     	String logname=commonBuffer.readInput();
-    	teacher.setUsername(logname);
+    	techSupportSpecialist.setUsername(logname);
     	System.out.println("Enter password");
     	String password=commonBuffer.readInput();
-    	teacher.setPassword(password);
-    	d.addUser(logname, teacher);
-    	d.addTeacher(teacher);
+    	techSupportSpecialist.setPassword(password);
+    	d.addUser(logname, techSupportSpecialist);
+    	d.setTechSupportSpecialists(techSupportSpecialist);
     	System.out.println("Successfully added!");
     	save();	
     }
-    public void EmployeeResearcher() throws IOException {
-    	Teacher teacher = new Teacher();
+    public void createEmployeeResearcher() throws IOException {
+    	EmployeeResearcher employeeResearcher = new EmployeeResearcher();
     	System.out.println("Enter login");
     	String logname=commonBuffer.readInput();
-    	teacher.setUsername(logname);
+    	employeeResearcher.setUsername(logname);
     	System.out.println("Enter password");
     	String password=commonBuffer.readInput();
-    	teacher.setPassword(password);
-    	d.addUser(logname, teacher);
-    	d.addTeacher(teacher);
+    	employeeResearcher.setPassword(password);
+    	d.addUser(logname, employeeResearcher);
+    	d.setEmployeeResearchers(employeeResearcher);
     	System.out.println("Successfully added!");
     	save();	
+    }
+   @Override
+    public void showMenu(){
+	   while(true) {
+	    	System.out.println("----MAIN WINDOW----");
+	    	System.out.println("1. Create User\n2. Requests Window\n3. Edit User Personal Datas\n0. Log Out");
+	    	String choice = commonBuffer.readInput();
+	    	switch(choice) {
+	    	case "0":
+	    		return;
+	    	case "1":
+	    		this.createUser();
+	    	case "2":
+	    		this.viewRequests();
+	    	case "3":
+	    		this.editPersonalData();
+	    	}
+	   }
     }
    
-    public void showMenu(){
-    	System.out.println("Welcome!");
-    	boolean c= true;
-    	while(c) {
-    		System.out.println("Please choose:\n1.Add student\n2.Add teacher\n0.Log out");
+   public void createUser() {
+   	while(true) {
+   		System.out.println("----WINDOW CREATE USERS----");
+   		System.out.println("Please choose:\n1.Add Student\n2.Add Teacher\n3.Add Manager\n4.Add Dean"
+   				+ "\n5.Add Employee Researcher\n6.Add Graduate Student"
+   				+ "\n7.Add Tech Support Specialist\n8.Add Professor\n9.Add Librarian\n0.to exit");
 	    	String input=commonBuffer.readInput();
 	    	switch(input) {
+	    		case "0":
+	    			return;
 	    		case "1":
 	    			try {
 	    			createStudent();
@@ -156,14 +179,59 @@ public class Admin extends Employee{
 	        				e.printStackTrace();
 	        			}
 	    			break;
-	    		case "0":
-	    			c=false;
-	    		default:
-	                System.out.println("Invalid choice. Please try again.");
+	    		case "3":
+	    			try {
+	        			createManager();
+	        			} catch(IOException e){
+	        				e.printStackTrace();
+	        			}
+	    			break;
+	    		case "4":
+	    			try {
+	        			createDean();
+	        			} catch(IOException e){
+	        				e.printStackTrace();
+	        			}
+	    			break;
+	    		case "5":
+	    			try {
+	        			createEmployeeResearcher();
+	        			} catch(IOException e){
+	        				e.printStackTrace();
+	        			}
+	    			break;
+	    		case "6":
+	    			try {
+	        			createGraduateStudent();
+	        			} catch(IOException e){
+	        				e.printStackTrace();
+	        			}
+	    			break;
+	    		case "7":
+	    			try {
+	        			createTechSupportSpecialist();
+	        			} catch(IOException e){
+	        				e.printStackTrace();
+	        			}
+	    			break;
+	    		case "8":
+	    			try {
+	        			createProfessor();
+	        			} catch(IOException e){
+	        				e.printStackTrace();
+	        			}
+	    			break;
+	    		case "9":
+	    			try {
+	        			createLibrarian();
+	        			} catch(IOException e){
+	        				e.printStackTrace();
+	        			}
+	    			break;
 	    	}
-    	}
-    	Main.main(null);
-    }
+   	}
+   }
+   
 	@Override
 	public void addRequest() {
 		while(true) {

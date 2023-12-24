@@ -15,6 +15,7 @@ public class Data implements Serializable {
     private Vector<Teacher> teachers = new Vector<>();
     private Vector<Manager> managers = new Vector<>();
     private Vector<Admin> admins = new Vector<>();
+    private Vector<Dean> deans = new Vector<>();
     private Vector<Professor> professors = new Vector<>();
     private Vector<Librarian> libriarians = new Vector<>();
     private Vector<TechSupportSpecialist> techSupportSpecialists = new Vector<>();
@@ -101,8 +102,8 @@ public class Data implements Serializable {
 		return researcherEmployees;
 	}
 
-	public void setEmployeeResearchers(Vector<Researcher> researchers) {
-		this.researcherEmployees = researchers;
+	public void setEmployeeResearchers(Researcher researchers) {
+		this.researcherEmployees.add(researchers);
 	}
 
 	public Vector<Course> getCourses() {
@@ -175,8 +176,8 @@ public class Data implements Serializable {
 		return graduateStudents;
 	}
 
-	public void setGraduateStudents(Vector<GraduateStudent> graduateStudents) {
-		this.graduateStudents = graduateStudents;
+	public void setGraduateStudents(GraduateStudent graduateStudent) {
+		this.graduateStudents.add(graduateStudent);
 	}
 
 	public Vector<ResearchPaper> getResearchPapers() {
@@ -207,32 +208,40 @@ public class Data implements Serializable {
 		return managers;
 	}
 
-	public void setManagers(Vector<Manager> managers) {
-		this.managers = managers;
+	public void setManagers(Manager managers) {
+		this.managers.add(managers);
 	}
 
 	public Vector<Professor> getProfessors() {
 		return professors;
 	}
 
-	public void setProfessors(Vector<Professor> professors) {
-		this.professors = professors;
+	public void setProfessors(Professor professors) {
+		this.professors.add(professors);
 	}
 
 	public Vector<TechSupportSpecialist> getTechSupportSpecialists() {
 		return techSupportSpecialists;
 	}
 
-	public void setTechSupportSpecialists(Vector<TechSupportSpecialist> techSupportSpecialists) {
-		this.techSupportSpecialists = techSupportSpecialists;
+	public void setTechSupportSpecialists(TechSupportSpecialist techSupportSpecialists) {
+		this.techSupportSpecialists.add(techSupportSpecialists);
 	}
 
 	public Vector<Librarian> getLibriarians() {
 		return libriarians;
 	}
 
-	public void setLibriarians(Vector<Librarian> libriarians) {
-		this.libriarians = libriarians;
+	public void setLibriarians(Librarian libriarians) {
+		this.libriarians.add(libriarians);
+	}
+
+	public Vector<Dean> getDeans() {
+		return deans;
+	}
+
+	public void setDeans(Dean dean) {
+		this.deans.add(dean);
 	}
 	
 }

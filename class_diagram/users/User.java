@@ -10,7 +10,9 @@ import communication.*;
 
 
 public abstract class User implements Serializable, CanViewResearches{
-    private String firstName;
+
+	private static final long serialVersionUID = 1L;
+	private String firstName;
     private String lastName;
     private Date birthDay;
     private String id;
@@ -174,7 +176,7 @@ public abstract class User implements Serializable, CanViewResearches{
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case("0"):
-					break;
+					return;
 				case("1"):
 					this.addRequest();;
 				case("2"):

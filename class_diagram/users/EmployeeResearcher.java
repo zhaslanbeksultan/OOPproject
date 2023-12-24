@@ -19,6 +19,10 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
 				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
 	}
 
+	public EmployeeResearcher() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void notifySubscriber(String journalName, String projectTopic, String paperTitle) {	
     	Message message = new Message("A New Article Has Been Published About" + projectTopic, journalName, this.getUsername()

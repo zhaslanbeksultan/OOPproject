@@ -29,6 +29,11 @@ public class Manager extends Employee implements Managable, Administrationable, 
 		this.coursesRegisterTo = coursesRegisterTo;
 	}
 
+	public Manager() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public ManagerPosition getManagerPosition() {
         return this.managerPosition;
     }

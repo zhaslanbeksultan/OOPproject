@@ -17,6 +17,10 @@ public class Librarian extends Employee implements Subscriber{
 				gender, nationality, citizenship, salary, hireDate, insuranceNumber);
 	}
 	
+	public Librarian() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void notifyReaders() {
 		String messageWording = "Please return the book before the end of this semester. Book you must return is: ";
 

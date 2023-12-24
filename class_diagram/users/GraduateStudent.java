@@ -41,6 +41,10 @@ public class GraduateStudent extends Student {
 		this.degreeType = degreeType;
 		this.supervisor = supervisor;
 	}
+	public GraduateStudent() {
+		// TODO Auto-generated constructor stub
+	}
+
 	private Date getGraduatingDate() {
         return this.graduatingDate;
     }
