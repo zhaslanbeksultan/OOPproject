@@ -126,7 +126,7 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 					this.viewRequests();
 					break;
 				case "3":
-					editPersonalData();
+					this.editPersonalData();
 					break;
 				case "4":
 					this.viewNews();

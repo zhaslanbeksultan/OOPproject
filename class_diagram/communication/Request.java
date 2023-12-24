@@ -7,6 +7,8 @@ import enums.*;
 import users.User;
 
 public class Request {
+	private static int cnt = 1;
+	private int requestId;
 	private String requester;
 	private HelpForm helpForm;
 	private HelpType helpType;
@@ -14,9 +16,7 @@ public class Request {
 	private Faculty faculty;//deans faculty who
 	private String additionallyInfo;
 	private RequestStatus requestStatus;
-	private RequestType requestType;
 	private Date requestDate;
-	private ManagerPosition handler;//type of manager who processes request
 	
 	public Request(String requester, String helpForm, String helpType, String language, Faculty faculty) {
 		this.requester = requester;
@@ -60,6 +60,8 @@ public class Request {
 			this.language = Language.KAZAKH;
 		this.faculty = faculty;
 		this.requestDate = new Date();
+		this.requestId = cnt++;
+		this.requestStatus = RequestStatus.NOT_ACCEPTED;
 	}
 	public Request(String requester, String helpForm, String helpType, String language) {
 		this.requester = requester;
@@ -102,18 +104,14 @@ public class Request {
 		if(language.equals("KZ"))
 			this.language = Language.KAZAKH;
 		this.requestDate = new Date();
+		this.requestId = cnt++;
+		this.requestStatus = RequestStatus.NOT_ACCEPTED;
 	}
 	public HelpForm getHelpForm() {
 		return helpForm;
 	}
 	public void setHelpForm(HelpForm helpForm) {
 		this.helpForm = helpForm;
-	}
-	public RequestType getRequestType() {
-		return requestType;
-	}
-	public void setRequestType(RequestType requestType) {
-		this.requestType = requestType;
 	}
 	public Language getLanguage() {
 		return language;
@@ -154,7 +152,7 @@ public class Request {
 	}
 	@Override
 	public String toString() {
-		return "Help Form = " + helpForm + ", Help Type = " + helpType + ", Language = "
+		return "Request Id = " + requestId + "Help Form = " + helpForm + ", Help Type = " + helpType + ", Language = "
 				+ language + ", Status = " + requestStatus + ", Date = " + requestDate;
 	}
 	
