@@ -50,39 +50,15 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 
 	@Override
 	public void viewAcademicStatistics() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
-	@Override
 	public void makeOfficeHoursSchedule() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void obtainingProgressStatistics() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void gettingPassingStatistics() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void viewRegisteredSchedule() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public HashMap<String, HashMap<WeekDays, Teacher>> getLessonSchedule() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void borrowBook(String bookName) {
