@@ -1,5 +1,6 @@
 package education;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,9 +13,11 @@ import userCapabilities.Administrationable;
 import users.Student;
 import users.Teacher;
 
-public class Course implements Administrationable {
+public class Course implements Administrationable, Serializable {
 
-    private String courseId;
+    
+	private static final long serialVersionUID = 1L;
+	private String courseId;
     private String courseName;
     private int numberOfCredits;
     private String specialtyId;
@@ -33,19 +36,27 @@ public class Course implements Administrationable {
         this.teacher = teacher;
         this.lessons = new ArrayList<>(32); 
     }
-
+    public Course() {
+    	
+    }
     public String getCourseId() {
         return courseId;
     }
-
+    public void setCourseId(String courseId) {
+        this.courseId=courseId;
+    }
     public String getCourseName() {
         return courseName;
     }
-
+    public void setCourseName(String courseName) {
+        this.courseName=courseName;
+    }
     public int getNumberOfCredits() {
         return numberOfCredits;
     }
-
+    public void setNumberOfCredits(int noc) {
+         this.numberOfCredits=noc;
+    }
 
     public String getSpecialtyId() {
         return specialtyId;

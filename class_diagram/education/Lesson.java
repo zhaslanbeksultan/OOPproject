@@ -5,6 +5,7 @@ import users.Student;
 import users.Teacher;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import enums.DisciplineType;
 
@@ -17,7 +18,7 @@ public class Lesson implements Serializable {
     private WeekDays lessonTime;
     private String room;
     private Course course;
-    private Mark mark;
+    private Map<Student, Mark> marks;
 
     public Lesson(int lessonId, String lessonName, Teacher instructor, DisciplineType lessonType, WeekDays lessonTime,
                   String room, Course course) {
@@ -61,8 +62,8 @@ public class Lesson implements Serializable {
         return course;
     }
 
-    public Mark getMark() {
-        return mark;
+    public Map<Student, Mark> getMarks() {
+        return marks;
     }
 
     public void setMark(Mark mark) {

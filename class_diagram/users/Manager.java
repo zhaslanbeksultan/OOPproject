@@ -1,4 +1,5 @@
 package users;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +11,6 @@ import communication.Message;
 import communication.News;
 import communication.Request;
 import education.Course;
-import education.Courses;
 import enums.*;
 import userCapabilities.*;
 
@@ -51,7 +51,31 @@ public class Manager extends Employee implements Managable, Administrationable, 
     public void setCoursesRegisterTo(Vector<Course> coursesRegisterTo) {
         this.coursesRegisterTo = coursesRegisterTo;
     }
-
+    public void createCourse() {
+    	Course course = new Course();
+    	System.out.println("Enter name of the course:");
+    	String input=commonBuffer.readInput();
+    	course.setCourseName(input);
+    	System.out.println("Enter ID of the course:");
+    	input=commonBuffer.readInput();
+    	course.setCourseId(input);
+    	System.out.println("Enter ECTS of the course:");
+    	input=commonBuffer.readInput();
+    	course.setNumberOfCredits(Integer.parseInt(input));
+//    	System.out.println("Choose faculty: SITE, SEOGI, SG, SNSS, BS, ISE, KMA, SAM, SMSGT, SCE");
+//    	input=commonBuffer.readInput();
+//    	Faculty faculty;
+//    	if(input.equals("SITE")) {
+//    		faculty=Faculty.SITE;
+//    	}
+    	Data.getInstance().addCourse(course);
+    	try {
+			save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	System.out.println("New course added to the system");
+    }
 	public boolean disciplineRegistration(String discipline) {
 		return false;
 	}
@@ -177,16 +201,13 @@ public class Manager extends Employee implements Managable, Administrationable, 
 		}
 	}
 	
-	public boolean dropDiscipline(Courses discipline) {
+	public boolean dropDiscipline(Course discipline) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	
-	public boolean addDiscipline(Courses discipline) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 
 	
 	public HashMap<String, HashMap<WeekDays, Teacher>> getLessonSchedule() {
@@ -216,7 +237,7 @@ public class Manager extends Employee implements Managable, Administrationable, 
 					+ "\n4. View My Requests\n5. Edit My Personal Datas\n6. View Newa\n7. View User's Personal Datas"
 					+ "\n8. View Requests From Users\n9. View Discipline Schedule\n10. View Student Exam Schedule"
 					+ "\n11. Discipline Registration\n12. View My Social Transcript"
-					+ "\n13. View Office Hour Schedule\n14. Research Cabinet\n0.Log Out");
+					+ "\n13. View Office Hour Schedule\n14. Research Cabinet\n15. Create new Course\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -263,6 +284,8 @@ public class Manager extends Employee implements Managable, Administrationable, 
 				case "14":
 					this.researchCabinet();//done
 					break;
+				case "15":
+					this.createCourse();
 			}
 		}
 	}
@@ -324,6 +347,12 @@ public class Manager extends Employee implements Managable, Administrationable, 
 	@Override
 	public String toString() {
 		return super.toString() + "\nManager Position" + managerPosition;
+	}
+
+	@Override
+	public boolean addDiscipline(Course discipline) {
+		// TODO Auto-generated method stub
+		return false;
 	}
     
 }
