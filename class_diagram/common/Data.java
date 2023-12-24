@@ -13,9 +13,12 @@ public class Data implements Serializable {
 	private Vector<Student> students = new Vector<>();
 	private Vector<GraduateStudent> graduateStudents = new Vector<>();
     private Vector<Teacher> teachers = new Vector<>();
-    private Vector<Employee> employees = new Vector<>();
+    private Vector<Manager> managers = new Vector<>();
     private Vector<Admin> admins = new Vector<>();
-    private Vector<Researcher> researchers = new Vector<>();
+    private Vector<Professor> professors = new Vector<>();
+    private Vector<Librarian> libriarians = new Vector<>();
+    private Vector<TechSupportSpecialist> techSupportSpecialists = new Vector<>();
+    private Vector<Researcher> researcherEmployees = new Vector<>();
     private Vector<Book> books = new Vector<>();
     private Vector<Request> requests = new Vector<>();
     private Map<String, User> users = new HashMap<>();
@@ -44,7 +47,7 @@ public class Data implements Serializable {
     
     private Data() {
     }
-    
+
     public static Data read() throws IOException, ClassNotFoundException{
 		FileInputStream fis = new FileInputStream("data.txt");
 		ObjectInputStream oin = new ObjectInputStream(fis);
@@ -94,12 +97,12 @@ public class Data implements Serializable {
 		news.add(post);
 	}
 
-	public Vector<Researcher> getResearchers() {
-		return researchers;
+	public Vector<Researcher> getEmployeeResearchers() {
+		return researcherEmployees;
 	}
 
-	public void setResearchers(Vector<Researcher> researchers) {
-		this.researchers = researchers;
+	public void setEmployeeResearchers(Vector<Researcher> researchers) {
+		this.researcherEmployees = researchers;
 	}
 
 	public Vector<Course> getCourses() {
@@ -176,14 +179,6 @@ public class Data implements Serializable {
 		this.graduateStudents = graduateStudents;
 	}
 
-	public Vector<Employee> getEmployees() {
-		return employees;
-	}
-
-	public void setEmployees(Vector<Employee> employees) {
-		this.employees = employees;
-	}
-
 	public Vector<ResearchPaper> getResearchPapers() {
 		return researchPapers;
 	}
@@ -206,6 +201,38 @@ public class Data implements Serializable {
 
 	public void setOrganizations(Organization organization) {
 		this.organizations.add(organization);
+	}
+
+	public Vector<Manager> getManagers() {
+		return managers;
+	}
+
+	public void setManagers(Vector<Manager> managers) {
+		this.managers = managers;
+	}
+
+	public Vector<Professor> getProfessors() {
+		return professors;
+	}
+
+	public void setProfessors(Vector<Professor> professors) {
+		this.professors = professors;
+	}
+
+	public Vector<TechSupportSpecialist> getTechSupportSpecialists() {
+		return techSupportSpecialists;
+	}
+
+	public void setTechSupportSpecialists(Vector<TechSupportSpecialist> techSupportSpecialists) {
+		this.techSupportSpecialists = techSupportSpecialists;
+	}
+
+	public Vector<Librarian> getLibriarians() {
+		return libriarians;
+	}
+
+	public void setLibriarians(Vector<Librarian> libriarians) {
+		this.libriarians = libriarians;
 	}
 	
 }

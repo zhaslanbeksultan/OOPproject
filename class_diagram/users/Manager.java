@@ -8,6 +8,7 @@ import common.commonBuffer;
 import communication.Message;
 import communication.News;
 import communication.Request;
+import education.Course;
 import education.Courses;
 import enums.*;
 import userCapabilities.*;
@@ -16,18 +17,16 @@ import userCapabilities.*;
 public class Manager extends Employee implements Managable, Administrationable, Subscriber {
 	
     private ManagerPosition managerPosition;
-    private Vector coursesRegisterTo;
-    private Vector requests;
+    private Vector<Course> coursesRegisterTo;
 
 	public Manager(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
 			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber,
-			ManagerPosition managerPosition, Vector coursesRegisterTo, Vector requests) {
+			ManagerPosition managerPosition, Vector<Course> coursesRegisterTo) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
 		this.managerPosition = managerPosition;
 		this.coursesRegisterTo = coursesRegisterTo;
-		this.requests = requests;
 	}
 
 	public ManagerPosition getManagerPosition() {
@@ -38,16 +37,12 @@ public class Manager extends Employee implements Managable, Administrationable, 
         this.managerPosition = managerPosition;
     }
 
-    public Vector getCoursesRegisterTo() {
+    public Vector<Course> getCoursesRegisterTo() {
         return this.coursesRegisterTo;
     }
 
-    public void setCoursesRegisterTo(Vector coursesRegisterTo) {
+    public void setCoursesRegisterTo(Vector<Course> coursesRegisterTo) {
         this.coursesRegisterTo = coursesRegisterTo;
-    }
-
-    public Vector getManagerDuties() {
-        return null;
     }
 
 	public boolean disciplineRegistration(String discipline) {
@@ -109,11 +104,6 @@ public class Manager extends Employee implements Managable, Administrationable, 
     	News post = new News(recipients, newsTitle, newsWording);
     	Data.getInstance().setNews(post);
 	}
-
-	public String answerToComplaints(String complaint) {
-		return null;
-	}
-
 	
 	public boolean dropDiscipline(Courses discipline) {
 		// TODO Auto-generated method stub
@@ -195,8 +185,51 @@ public class Manager extends Employee implements Managable, Administrationable, 
 
 	@Override
 	public void showMenu() {
-		// TODO Auto-generated method stub
-		
+		while(true) {
+			System.out.println("----MAIN WINDOW----");
+			System.out.println("1. \n2. \n3. \n4. \n5. \n6. \n7. "
+					+ "\n8. \n9. \n10. \n11. \n12. "
+					+ "\n13. \n14. \n15. \n0.Log Out");
+			String choice = commonBuffer.readInput();
+			switch(choice) {
+				case "0":
+					break;
+				case "1":
+					this.viewTranscript();
+				case "2":
+					this.addDropDiscipline();
+				case "3":
+					this.viewJournal();
+				case "4":
+					this.viewRequests();
+				case "5":
+					System.out.println(this);
+				case "6":
+					this.viewNews();
+				case "7":
+					this.attendanceMark();
+				case "8":
+					this.viewAttestation();
+				case "9":
+					this.viewDisciplineSchedule();
+				case "10":
+					this.viewLessonSchedule();
+				case "11":
+					this.viewExamsSchedule();
+				case "12":
+					this.registrationForFx();
+				case "13":
+					this.disciplineRegistration(choice, false);
+				case "14":
+					this.viewSocialTranscript();
+				case "15":
+					this.viewOfficeHourSchedule();
+				case "16":
+					this.researchCabinet();
+				case "17":
+					this.viewOrganizations();
+			}
+		}
 	}
 
 	@Override
