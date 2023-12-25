@@ -1,6 +1,8 @@
 package education;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,46 +10,55 @@ import java.util.Vector;
 
 import common.Data;
 import enums.DisciplineType;
-import userCapabilities.Administrationable;
 import users.Student;
 import users.Teacher;
 
-public class Course implements Administrationable {
+public class Course implements  Serializable {
 
-    private String courseId;
+    
+	private static final long serialVersionUID = 1L;
+	private String courseId;
     private String courseName;
     private int numberOfCredits;
-    private String specialtyId;
+    private DisciplineType specialtyId;
     private Teacher teacher;
     private Specialty specialty;
     private ArrayList<Lesson> lessons;
 	private Vector<Student> students; 
 
     public Course(String courseId, String courseName, int numberOfCredits,
-            String specialtyId, Teacher teacher) {
+            DisciplineType disciplineType, Teacher teacher) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.numberOfCredits = numberOfCredits;
 
-        this.specialtyId = specialtyId;
+        this.specialtyId = disciplineType;
         this.teacher = teacher;
         this.lessons = new ArrayList<>(32); 
     }
-
+    public Course() {
+    	
+    }
     public String getCourseId() {
         return courseId;
     }
-
+    public void setCourseId(String courseId) {
+        this.courseId=courseId;
+    }
     public String getCourseName() {
         return courseName;
     }
-
+    public void setCourseName(String courseName) {
+        this.courseName=courseName;
+    }
     public int getNumberOfCredits() {
         return numberOfCredits;
     }
+    public void setNumberOfCredits(int noc) {
+         this.numberOfCredits=noc;
+    }
 
-
-    public String getSpecialtyId() {
+    public DisciplineType getSpecialtyId() {
         return specialtyId;
     }
 
@@ -126,17 +137,6 @@ public class Course implements Administrationable {
 //    	return true;
 //    }
 
-	@Override
-	public void addDropDiscipline() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean addDiscipline(Course discipline) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	
 }

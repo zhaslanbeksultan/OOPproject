@@ -1,9 +1,8 @@
 package users;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Vector;
 
 import app.Login;
@@ -75,9 +74,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     private Vector<Course> getCourseEnrolled() {
         return this.CourseEnrolled;
     }
-    private void setCourseEnrolled(Course course) {
-        this.CourseEnrolled.add(course);
-    }
+  
 
     private String getMajor() {
         return this.major;
@@ -111,9 +108,10 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 	}
 	
 	
-	public boolean disciplineRegistration(String discipline, boolean isRegistrationAllowed) {//isRegistrationAllowed is a static method in Admin
-		// TODO Auto-generated method stub
-		return false;
+	public void disciplineRegistration(String discipline, boolean isRegistrationAllowed) {//isRegistrationAllowed is a static method in Admin
+		this.viewAvailableCourses();
+		System.out.println("Please choose:\n1.Major\n2.Minor");
+		String input=commonBuffer.readInput();
 	}
 	
 	public void borrowBook(String bookName) {
@@ -450,7 +448,26 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     		break;
     	}
     }
-	
+    public void viewAvailableCourses() {
+    	Vector<Course> availableMajor = new Vector<>();
+    	Vector<Course> availableMinor = new Vector<>();
+    	for(int i=0; i<Data.getInstance().getCourses().size();i++) {
+    		if(Data.getInstance().getCourses().elementAt(i).getSpecialty().getFaculty().equals(this.getFaculty())) {
+    			availableMajor.add(Data.getInstance().getCourses().elementAt(i));
+    		}
+    		else {
+    			availableMinor.add(Data.getInstance().getCourses().elementAt(i));
+    		}
+    	}
+    	System.out.println("Available Majors:");
+    	for(Course course: availableMajor) {
+    		System.out.println(course.getCourseName() + " "+ course.getCourseId() + " "+ course.getNumberOfCredits());
+    	}
+    	System.out.println("Available Minors:");
+    	for(Course course: availableMinor) {
+    		System.out.println(course.getCourseName() + " "+ course.getCourseId() + " "+ course.getNumberOfCredits());
+    	}
+    }
 //	public void viewAvailableCourse(Faculty faculty, int semester, int ects) {
 //		this.courseList = new Vector<Course>();
 //		if (faculty == Faculty.SITE) {
@@ -605,9 +622,29 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 
 	@Override
 	public void viewAttestation() {
-		// TODO Auto-generated method stub
-		
-	}
+        System.out.println("---- ATTESTATION RESULTS ----");
+
+        if (marks.isEmpty()) {
+            System.out.println("No attestation results available.");
+            return;
+        }
+
+        for (Entry<Lesson, Mark> entry : marks.entrySet()) {
+            Lesson lesson = entry.getKey();
+            Mark mark = entry.getValue();
+
+            System.out.println("Lesson: " + lesson.getLessonName());
+
+            int firstHalf = mark.calculateAutomaticFirstHalf();
+            int secondHalf = mark.calculateAutomaticSecondHalf();
+
+            mark.setFirstHalf(lesson, firstHalf);
+            mark.setSecondHalf(lesson, secondHalf);
+
+            System.out.println("Total Attestation Result: " + mark.calculateFinalGrade());
+            System.out.println("-----");
+        }
+    }
 
 	@Override
 	public void viewLessonSchedule() {

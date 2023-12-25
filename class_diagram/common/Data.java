@@ -134,7 +134,7 @@ public class Data implements Serializable {
 	}
 
 	public void addCourse(Course course) {
-		// TODO Auto-generated method stub
+		courses.add(course);
 		
 	}
 

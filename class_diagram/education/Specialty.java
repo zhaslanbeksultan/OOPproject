@@ -30,7 +30,9 @@ public class Specialty implements Comparable<Specialty>, Serializable {
         this.minorCourses = new Vector<>();
         this.freeCourses = new Vector<>();
     }
-
+    public Specialty() {
+    	
+    }
     public String getSpecialtyId() {
         return specialtyId;
     }

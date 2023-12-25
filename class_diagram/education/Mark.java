@@ -13,9 +13,10 @@ public class Mark implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer percentageOfMark;
     private List<Integer> lessonMarks;
-    private HashMap<Lesson, Integer> attestationResults;
+    private HashMap<Lesson, AttestationResult> attestationResults;
     private HashMap<Lesson, ScheduleEntry> lessonSchedule;
     private HashMap<Teacher, WeekDays> officeHourSchedule;
+
     public Mark() {
         this.percentageOfMark = 0;
         this.lessonMarks = new ArrayList<>();
@@ -26,16 +27,56 @@ public class Mark implements Serializable {
 
     public void addLessonMark(Lesson lesson, int mark, WeekDays lessonTime) {
         lessonMarks.add(mark);
-        attestationResults.put(lesson, mark);
+
+        AttestationResult result = attestationResults.getOrDefault(lesson, new AttestationResult(0, 0));
+        result.setFirstHalf(mark);
+        attestationResults.put(lesson, result);
     }
 
+    public void setFirstHalf(Lesson lesson, int firstHalf) {
+        AttestationResult result = attestationResults.getOrDefault(lesson, new AttestationResult(0, 0));
+        result.setFirstHalf(firstHalf);
+        attestationResults.put(lesson, result);
+    }
+
+    public void setSecondHalf(Lesson lesson, int secondHalf) {
+        AttestationResult result = attestationResults.getOrDefault(lesson, new AttestationResult(0, 0));
+        result.setSecondHalf(secondHalf);
+        attestationResults.put(lesson, result);
+    }
+
+    public int calculateAutomaticFirstHalf() {
+        if (attestationResults.isEmpty()) {
+            return 0;
+        }
+
+        int totalFirstHalfMarks = attestationResults.values().stream()
+                .mapToInt(AttestationResult::getFirstHalf)
+                .sum();
+
+        return totalFirstHalfMarks / attestationResults.size();
+    }
+
+    public int calculateAutomaticSecondHalf() {
+        if (attestationResults.isEmpty()) {
+            return 0;
+        }
+
+        int totalSecondHalfMarks = attestationResults.values().stream()
+                .mapToInt(AttestationResult::getSecondHalf)
+                .sum();
+
+        return totalSecondHalfMarks / attestationResults.size();
+    }
     public String calculateFinalGrade() {
         if (lessonMarks.isEmpty() && attestationResults.isEmpty()) {
             return "No grades available";
         }
 
         int totalLessonMarks = lessonMarks.stream().mapToInt(Integer::intValue).sum();
-        int totalAttestationMarks = attestationResults.values().stream().mapToInt(Integer::intValue).sum();
+        int totalAttestationMarks = attestationResults.values().stream()
+                .mapToInt(result -> result.getFirstHalf() + result.getSecondHalf())
+                .sum();
         int totalMarks = totalLessonMarks + totalAttestationMarks;
         int averageMark = totalMarks / (lessonMarks.size() + attestationResults.size());
 
@@ -64,6 +105,7 @@ public class Mark implements Serializable {
         }
     }
 
+
     public void addScheduleEntry(Lesson lesson, WeekDays dayOfWeek, String classroom, String time) {
         ScheduleEntry scheduleEntry = new ScheduleEntry(lesson, dayOfWeek, classroom, time);
         lessonSchedule.put(lesson, scheduleEntry);
@@ -81,11 +123,11 @@ public class Mark implements Serializable {
         this.percentageOfMark = percentageOfMark;
     }
 
-    public HashMap<Lesson, Integer> getAttestationResults() {
+    public HashMap<Lesson, AttestationResult> getAttestationResults() {
         return attestationResults;
     }
 
-    public void setAttestationResults(HashMap<Lesson, Integer> attestationResults) {
+    public void setAttestationResults(HashMap<Lesson, AttestationResult> attestationResults) {
         this.attestationResults = attestationResults;
     }
 
@@ -147,3 +189,4 @@ public class Mark implements Serializable {
     public void setReport(String report) {
     }
 }
+
