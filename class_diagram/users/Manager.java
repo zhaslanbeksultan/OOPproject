@@ -49,7 +49,6 @@ public class Manager extends Employee implements Managable, Subscriber {
     public void setCoursesRegisterTo(Vector<Course> coursesRegisterTo) {
         this.coursesRegisterTo = coursesRegisterTo;
     }
-<<<<<<< HEAD
     public void createCourse() {
     	Course course = new Course();
     	System.out.println("Enter name of the course:");
@@ -94,8 +93,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 		return false;
 	}
 
-=======
->>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
+
 	
 	public void viewAcademicStatistics() {
 		
@@ -181,26 +179,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 				Data.getInstance().getRequests().get(id).setRequestStatus(RequestStatus.NOT_APPROVED);
 		}
 	}
-<<<<<<< HEAD
-	
-	public boolean dropDiscipline(Course discipline) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-=======
->>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
 
-<<<<<<< HEAD
-	
-	
-
-	
-	public HashMap<String, HashMap<WeekDays, Teacher>> getLessonSchedule() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public void viewLessonSchedule() {}
-=======
 	public void viewLessonSchedule() {
 		System.out.println("----WINDOW STUDENT'S/TEACHER'S LESSON SCHEDULE");
 		System.out.println("'0' - to exit. 'Student', 'Teacher' - to check Schedule.");
@@ -219,7 +198,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 			}
 		}
 	}
->>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
+
 	public void viewUserPersonalData() {
 		System.out.println("----WINDOW FOR VIEWING PERSON'S DATA----");
 		System.out.println("'0' - to exit. 'username' - to check info.");
@@ -283,13 +262,12 @@ public class Manager extends Employee implements Managable, Subscriber {
 				case "12":
 					this.researchCabinet();//done
 					break;
-<<<<<<< HEAD
+
 				case "15":
 					this.createCourse();
-=======
+					break;
 				case "13":
 					this.postNews();//done
->>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
 			}
 		}
 	}
@@ -373,10 +351,6 @@ public class Manager extends Employee implements Managable, Subscriber {
 		return super.toString() + "\nManager Position" + managerPosition;
 	}
 
-	@Override
-	public boolean addDiscipline(Course discipline) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
     
 }

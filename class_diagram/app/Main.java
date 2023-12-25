@@ -12,10 +12,12 @@ public class Main {
 //		admin.setPassword("pass");
 //		Data.getInstance().addAdmin(admin);
 //		Data.getInstance().addUser("steve_jobs", admin);
-//		System.out.println(Data.getInstance().getCourses());
+		Data.getInstance().getCourses().remove(1);
+		System.out.println(Data.getInstance().getCourses());
 		Specialty spec = new Specialty();
 		spec.setFaculty(Faculty.SITE);
 		Data.getInstance().getCourses().elementAt(0).setSpecialty(spec);
+		Data.getInstance().getStudents().elementAt(0).setAvailiableECTS(21);
 		Login login = new Login();
 		login.menu();
 		Data.write();

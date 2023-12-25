@@ -25,7 +25,9 @@ public class Course implements  Serializable {
     private Specialty specialty;
     private ArrayList<Lesson> lessons;
 	private Vector<Student> students; 
-
+	{
+		students= new Vector<Student>();
+	}
     public Course(String courseId, String courseName, int numberOfCredits,
             DisciplineType disciplineType, Teacher teacher) {
         this.courseId = courseId;

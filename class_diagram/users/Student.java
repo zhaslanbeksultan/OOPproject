@@ -25,6 +25,9 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     private HashMap<Lesson, Mark> marks;
 	private int availableECTS;
 
+	{
+		CourseEnrolled= new Vector<Course>();
+	}
     public Student(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
 			String nationality, String citizenship, int studyYear, Faculty faculty, Date enrollmentDate, Category category, String major) {
@@ -35,10 +38,14 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 		this.category = category;
 		this.enrollmentDate = enrollmentDate;
 		this.major = major;
+		this.availableECTS=21;
 		this.gpa = new double[4];
 	}
 
 	public Student() {
+	}
+	public void setAvailiableECTS(int num) {
+		this.availableECTS=num;
 	}
 	public Category getCategory() {
 		return category;
@@ -112,6 +119,23 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 		this.viewAvailableCourses();
 		System.out.println("Please choose:\n1.Major\n2.Minor");
 		String input=commonBuffer.readInput();
+		System.out.println("Please enter course's ID:");
+    	input = commonBuffer.readInput();
+    	for(Course course:Data.getInstance().getCourses()) {
+    		if(course.getCourseId().equals(input)) {
+    			if(this.availableECTS<course.getNumberOfCredits()) {
+    				System.out.println("Not enough credits!\nPress any key");
+    				input = commonBuffer.readInput();
+    			}
+    			else {
+    				this.availableECTS-=course.getNumberOfCredits();
+    				this.CourseEnrolled.add(course);
+    				course.addStudent(this);
+    			}
+    		}
+    	}
+    	
+    	
 	}
 	
 	public void borrowBook(String bookName) {
