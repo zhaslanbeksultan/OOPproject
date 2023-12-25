@@ -47,6 +47,7 @@ public class Librarian extends Employee implements Subscriber{
 		else if(choose=="4") {addOrder();}
 		else if(choose=="5") {researchCabinet();}
 		else if(choose=="6") {editPersonalData();}
+		else if(choose=="7") {sendMessage();}
 		else {System.out.println("The wrong character is entered!");}
 		
 	}

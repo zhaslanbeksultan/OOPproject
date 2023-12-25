@@ -377,6 +377,9 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     		case "8":
     			this.createResearchProject();
     			break;
+    		case "9":
+    			this.sendMessage();
+    			break;
     		}
     	}
     }

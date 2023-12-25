@@ -335,11 +335,11 @@ public abstract class User implements Serializable, CanViewResearches{
     	while(!choose.equals("0")) {
     		System.out.println("----WINDOW SHOW MESSAGES----");
 	    	System.out.println("'Answer' or 'Read', then Enter Message Id");
-	    	for(Message message: Data.getInstance().getMessages()) {
-	    		if(username.equals(message.getRecipient()))
-	    			System.out.println(message);
-	
-	    	}
+	    	Data.getInstance().getMessages().stream()
+	        	.filter(message -> username.equals(message.getRecipient()))
+	        	.sorted(new UrgencyLevelComparator())
+	        	.forEach(System.out::println);
+
 	    	choose = commonBuffer.readInput();
 	    	if(choose.equals("0")) break;
 	    	else if(choose.equals("Answer")) {

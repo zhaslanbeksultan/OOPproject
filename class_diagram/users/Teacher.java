@@ -131,6 +131,9 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 				case "12":
 					this.researchCabinet();
 					break;
+				case "13":
+					this.sendMessage();
+					break;
 			}
 		}
 	}

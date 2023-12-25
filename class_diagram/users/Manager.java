@@ -232,7 +232,8 @@ public class Manager extends Employee implements Managable, Subscriber {
 			System.out.println("1. View Academic Statistics\n2. View Student/Teacher Lesson Schedule"
 					+ "\n3. View My Requests\n4. Edit My Personal Datas\n5. View News\n6. View User's Personal Datas"
 					+ "\n7. View Requests From Users\n8. View Discipline Schedule\n9. View Student Exam Schedule"
-					+ "\n10. View My Social Transcript\n11. View Office Hour Schedule\n12. Research Cabinet\n13. Create new Course\n0.Log Out");
+					+ "\n10. View My Social Transcript\n11. View Office Hour Schedule\n12. Research Cabinet\n13. Create new Course"
+					+ "\n14. Post News\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -273,18 +274,15 @@ public class Manager extends Employee implements Managable, Subscriber {
 				case "12":
 					this.researchCabinet();//done
 					break;
-
-				case "15":
-
-					this.createCourse();
-					break;//done
-
-
 				case "13":
+					this.createCourse();//done
+					break;
+				case "14":
 					this.postNews();//done
-
-
-
+					break;
+				case "15":
+					this.sendMessage();//done
+					break;
 			}
 		}
 	}

@@ -110,6 +110,9 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
     		case "8":
     			this.createResearchProject();
     			break;
+    		case "9":
+    			this.sendMessage();
+    			break;
     		}
     	}
     }

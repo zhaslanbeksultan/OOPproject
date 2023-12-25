@@ -26,7 +26,6 @@ public class Message implements Comparable<Message> {
 		if(urgencyLevel.equals("LOW")) {
 			this.urgencyLevel = UrgencyLevel.LOW;
 		}
-		
 		if(urgencyLevel.equals("MEDIUM")) {
 			this.urgencyLevel = UrgencyLevel.MEDIUM;
 		}

@@ -131,6 +131,9 @@ public class TechSupportSpecialist extends Employee {
 				case "6":
 					this.viewNews();
 					break;
+				case "7":
+					this.sendMessage();
+					break;
 			}
 		}
 	}
