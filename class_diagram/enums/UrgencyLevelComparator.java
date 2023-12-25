@@ -1,12 +1,12 @@
 package enums;
 
 import java.util.Comparator;
-import Communication.Request;
+import communication.Message;
 
-public class UrgencyLevelComparator implements Comparator<Request> {
+public class UrgencyLevelComparator implements Comparator<Message> {
 
     @Override
-    public int compare(Request request1, Request request2) {
-        return request2.getUrgencyLevel().compareTo(request1.getUrgencyLevel());
+    public int compare(Message message1, Message message2) {
+        return message1.getUrgencyLevel().compareTo(message2.getUrgencyLevel());
     }
 }
