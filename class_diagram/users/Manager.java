@@ -49,7 +49,6 @@ public class Manager extends Employee implements Managable, Subscriber {
     public void setCoursesRegisterTo(Vector<Course> coursesRegisterTo) {
         this.coursesRegisterTo = coursesRegisterTo;
     }
-<<<<<<< HEAD
     public void createCourse() {
     	Course course = new Course();
     	System.out.println("Enter name of the course:");
@@ -93,9 +92,6 @@ public class Manager extends Employee implements Managable, Subscriber {
 	public boolean disciplineRegistration(String discipline, boolean isRegistrationAllowed) {
 		return false;
 	}
-
-=======
->>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
 	
 	public void viewAcademicStatistics() {
 		
@@ -181,26 +177,17 @@ public class Manager extends Employee implements Managable, Subscriber {
 				Data.getInstance().getRequests().get(id).setRequestStatus(RequestStatus.NOT_APPROVED);
 		}
 	}
-<<<<<<< HEAD
 	
 	public boolean dropDiscipline(Course discipline) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-=======
->>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
 
-<<<<<<< HEAD
-	
-	
-
-	
 	public HashMap<String, HashMap<WeekDays, Teacher>> getLessonSchedule() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public void viewLessonSchedule() {}
-=======
+
 	public void viewLessonSchedule() {
 		System.out.println("----WINDOW STUDENT'S/TEACHER'S LESSON SCHEDULE");
 		System.out.println("'0' - to exit. 'Student', 'Teacher' - to check Schedule.");
@@ -219,7 +206,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 			}
 		}
 	}
->>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
+
 	public void viewUserPersonalData() {
 		System.out.println("----WINDOW FOR VIEWING PERSON'S DATA----");
 		System.out.println("'0' - to exit. 'username' - to check info.");
@@ -238,11 +225,10 @@ public class Manager extends Employee implements Managable, Subscriber {
 	public void showMenu() {
 		while(true) {
 			System.out.println("----MAIN WINDOW----");
-			System.out.println("1. View Academic Statistics\n2. Add/Drop Discipline\n3. View Student/Teacher Lesson Schedule"
-					+ "\n4. View My Requests\n5. Edit My Personal Datas\n6. View Newa\n7. View User's Personal Datas"
-					+ "\n8. View Requests From Users\n9. View Discipline Schedule\n10. View Student Exam Schedule"
-					+ "\n11. Discipline Registration\n12. View My Social Transcript"
-					+ "\n13. View Office Hour Schedule\n14. Research Cabinet\n15. Create new Course\n0.Log Out");
+			System.out.println("1. View Academic Statistics\n2. View Student/Teacher Lesson Schedule"
+					+ "\n3. View My Requests\n4. Edit My Personal Datas\n5. View News\n6. View User's Personal Datas"
+					+ "\n7. View Requests From Users\n8. View Discipline Schedule\n9. View Student Exam Schedule"
+					+ "\n10. View My Social Transcript\n11. View Office Hour Schedule\n12. Research Cabinet\n13. Create new Course\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -283,13 +269,13 @@ public class Manager extends Employee implements Managable, Subscriber {
 				case "12":
 					this.researchCabinet();//done
 					break;
-<<<<<<< HEAD
+
 				case "15":
-					this.createCourse();
-=======
+					this.createCourse();//done
+
 				case "13":
 					this.postNews();//done
->>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
+
 			}
 		}
 	}
@@ -371,12 +357,6 @@ public class Manager extends Employee implements Managable, Subscriber {
 	@Override
 	public String toString() {
 		return super.toString() + "\nManager Position" + managerPosition;
-	}
-
-	@Override
-	public boolean addDiscipline(Course discipline) {
-		// TODO Auto-generated method stub
-		return false;
 	}
     
 }
