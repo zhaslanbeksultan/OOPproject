@@ -66,15 +66,6 @@ public class ResearchProject {
         return this.supervisor;
     }
 
-    public ResearchPaper toReferenceToPapers() {
-        return null;
-    }
-
-    public boolean checkSupervisorEligibility() {
-    	
-        return false;
-    }
-
 	public Vector<Subscriber> getSubscribers() {
 		return subscribers;
 	}

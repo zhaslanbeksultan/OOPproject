@@ -435,8 +435,8 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     				.filter(p->p.getJournalName().equals(paper.getResearchProject()))
     				.forEach(p->p.setPublishedPapers(paper));
     			Data.getInstance().getResearchProjects().stream()
-				.filter(p->p.getJournalName().equals(paper.getResearchProject()))
-				.forEach(p->p.setParticipants(this.getUsername()));
+					.filter(p->p.getJournalName().equals(paper.getResearchProject()))
+					.forEach(p->p.setParticipants(this.getUsername()));
     			News post = new News("All", "Research", "A New Research Article From: " + this.getUsername() + "Research Title: " + title);
     			Data.getInstance().getNews().add(post);
     			break;

@@ -93,7 +93,6 @@ public class Manager extends Employee implements Managable, Subscriber {
 		return false;
 	}
 
-
 	
 	public void viewAcademicStatistics() {
 		
@@ -180,6 +179,19 @@ public class Manager extends Employee implements Managable, Subscriber {
 		}
 	}
 
+	
+	public boolean dropDiscipline(Course discipline) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	public HashMap<String, HashMap<WeekDays, Teacher>> getLessonSchedule() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	public void viewLessonSchedule() {
 		System.out.println("----WINDOW STUDENT'S/TEACHER'S LESSON SCHEDULE");
 		System.out.println("'0' - to exit. 'Student', 'Teacher' - to check Schedule.");
@@ -217,11 +229,10 @@ public class Manager extends Employee implements Managable, Subscriber {
 	public void showMenu() {
 		while(true) {
 			System.out.println("----MAIN WINDOW----");
-			System.out.println("1. View Academic Statistics\n2. Add/Drop Discipline\n3. View Student/Teacher Lesson Schedule"
-					+ "\n4. View My Requests\n5. Edit My Personal Datas\n6. View Newa\n7. View User's Personal Datas"
-					+ "\n8. View Requests From Users\n9. View Discipline Schedule\n10. View Student Exam Schedule"
-					+ "\n11. Discipline Registration\n12. View My Social Transcript"
-					+ "\n13. View Office Hour Schedule\n14. Research Cabinet\n15. Create new Course\n0.Log Out");
+			System.out.println("1. View Academic Statistics\n2. View Student/Teacher Lesson Schedule"
+					+ "\n3. View My Requests\n4. Edit My Personal Datas\n5. View News\n6. View User's Personal Datas"
+					+ "\n7. View Requests From Users\n8. View Discipline Schedule\n9. View Student Exam Schedule"
+					+ "\n10. View My Social Transcript\n11. View Office Hour Schedule\n12. Research Cabinet\n13. Create new Course\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -264,13 +275,20 @@ public class Manager extends Employee implements Managable, Subscriber {
 					break;
 
 				case "15":
+
 					this.createCourse();
-					break;
+					break;//done
+
+
 				case "13":
 					this.postNews();//done
+
+
+
 			}
 		}
 	}
+
 	private void viewStudentExamSchedule() {
 		System.out.println("----WINDOW STUDENT'S EXAM SCHEDULE");
 		System.out.println("'0' - to exit. 'username' - to check info.");
@@ -351,6 +369,5 @@ public class Manager extends Employee implements Managable, Subscriber {
 		return super.toString() + "\nManager Position" + managerPosition;
 	}
 
-	
     
 }
