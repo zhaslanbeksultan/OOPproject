@@ -12,6 +12,11 @@ public class Main {
 		Data.getInstance().addAdmin(admin);
 		Data.getInstance().addUser("steve_jobs", admin);
 		Login login = new Login();
-		login.menu();
+		while(true) {
+			login.menu();
+			System.out.println("Enter '0' to close app. '1' - to Login");
+			String input = commonBuffer.readInput();
+			if(input.equals("0")) break;
+		}
 	}
 }
