@@ -219,7 +219,8 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 			System.out.println("----MAIN WINDOW----");
 			System.out.println("1. Transcript\n2. ADD/DROP Disciplines\n3. Journal\n4. Requests\n5. Personal Datas\n6. News\n7. Attendance Mark"
 					+ "\n8. View Attestation\n9. Discipline Schedule\n10. Lesson Schedule\n11. Exams Schedule\n12. Registration For FX"
-					+ "\n13. Registration For Disciplines\n14. Social Transcript\n15. View Office Hours Schedule\n0.Log Out");
+					+ "\n13. Registration For Disciplines\n14. Social Transcript\n15. View Office Hours Schedule\n16. Research Cabinet"
+					+ "\n17. View Organizations\n18. Send Message\n19. Show Incoming Messages\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -237,7 +238,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 					this.viewRequests();
 					break;
 				case "5":
-					editPersonalData();
+					this.editPersonalData();
 					break;
 				case "6":
 					this.viewNews();
@@ -275,6 +276,12 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 				case "17":
 					this.viewOrganizations();
 					break;
+	    		case "18":
+	    			this.sendMessage();
+	    			break;
+	    		case "19":
+	    			this.showMessages();
+	    			break;
 			}
 		}
 	}
@@ -376,9 +383,6 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     			break;
     		case "8":
     			this.createResearchProject();
-    			break;
-    		case "9":
-    			this.sendMessage();
     			break;
     		}
     	}

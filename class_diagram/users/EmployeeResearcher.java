@@ -71,8 +71,37 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
 
 	@Override
 	public void showMenu() {
-		// TODO Auto-generated method stub
-		
+		while(true) {
+			System.out.println("----MAIN WINDOW----");
+			System.out.println("1. Research Cabinet\n2. View Requests\n3. Send Message\n4. Show Messages\n5. Personal Datas"
+					+ "\n6. News\n7. Social Transcript\n0.Log Out");
+			String choice = commonBuffer.readInput();
+			switch(choice) {
+				case "0":
+					return;
+				case "1":
+					this.researchCabinet();
+					break;
+				case "2":
+					this.viewRequests();
+					break;
+				case "3":
+					this.sendMessage();
+					break;
+				case "4":
+					this.showMessages();
+					break;
+				case "5":
+					this.editPersonalData();
+					break;
+				case "6":
+					this.viewNews();
+					break;
+				case "7":
+					this.viewSocialTranscript();
+					break;
+			}
+		}
 	}
 
     @Override
@@ -81,7 +110,7 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
     		System.out.println("----RESEARCH CABINET----");
     		System.out.println("'0' - to exit.\n'1' - Show All Research Papers\n'2' - Show All Research Journals"
     				+ "\n'3' - Show Papers Of Subscribed Journals\n'5' - Top Cited Researcher\n'6' - Show My Research Papers"
-    				+ "\n'7' - Add Research Paper\n'8' - Create Research Project");
+    				+ "\n'7' - Add Research Paper\n'8' - Create Research Project\n'9' - Send Message\n'10' - Show Incoming Messages");
     		String choice = commonBuffer.readInput();
     		switch(choice) {
     		case "0":
@@ -112,6 +141,9 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
     			break;
     		case "9":
     			this.sendMessage();
+    			break;
+    		case "10":
+    			this.showMessages();
     			break;
     		}
     	}

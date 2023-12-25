@@ -152,7 +152,7 @@ public class Request {
 	}
 	@Override
 	public String toString() {
-		return "Request Id = " + requestId + "Help Form = " + helpForm + ", Help Type = " + helpType + ", Language = "
+		return "Request Id = " + requestId + ", Help Form = " + helpForm + ", Help Type = " + helpType + ", Language = "
 				+ language + ", Status = " + requestStatus + ", Date = " + requestDate;
 	}
 	

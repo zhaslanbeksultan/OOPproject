@@ -38,8 +38,13 @@ public class Manager extends Employee implements Managable, Subscriber {
         return this.managerPosition;
     }
 
-    public void setManagerPosition(ManagerPosition managerPosition) {
-        this.managerPosition = managerPosition;
+    public void setManagerPosition(String managerPosition) {
+    	if(managerPosition.equals("OR")) {
+        	this.managerPosition = ManagerPosition.OR;}
+    	if(managerPosition.equals("DEANS_OFFICE")) {
+        	this.managerPosition = ManagerPosition.DEANS_OFFICE;}
+    	if(managerPosition.equals("DEPARTMENT")) {
+        	this.managerPosition = ManagerPosition.DEPARTMENT;}
     }
 
     public Vector<Course> getCoursesRegisterTo() {
@@ -233,7 +238,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 					+ "\n3. View My Requests\n4. Edit My Personal Datas\n5. View News\n6. View User's Personal Datas"
 					+ "\n7. View Requests From Users\n8. View Discipline Schedule\n9. View Student Exam Schedule"
 					+ "\n10. View My Social Transcript\n11. View Office Hour Schedule\n12. Research Cabinet\n13. Create new Course"
-					+ "\n14. Post News\n0.Log Out");
+					+ "\n14. Post News\n'15' - Send Message\n'16' - Show Incoming Messages\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -283,9 +288,36 @@ public class Manager extends Employee implements Managable, Subscriber {
 				case "15":
 					this.sendMessage();//done
 					break;
+	    		case "16":
+	    			this.showMessages();//done
+	    			break;
 			}
 		}
 	}
+	@Override
+    public void editPersonalData() {
+    	while(true) {
+    		System.out.println(this);
+    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number"
+    				+ "\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship\n10.Set Id\n11.Set Username\n12.Set Email\n13.Set Manager Position");
+    		String choose = commonBuffer.readInput();
+    		if(choose.equals("0")) {break;}
+    		else if(choose.equals("1")) {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
+    		else if(choose.equals("2")) {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
+    		else if(choose.equals("3")) {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
+    		else if(choose.equals("4")) {System.out.println("Write a Birth Day: "); setBirthDay(commonBuffer.readInput());}
+    		else if(choose.equals("5")) {System.out.println("Write a Phone Number: "); setPhoneNumber(commonBuffer.readInput());}
+    		else if(choose.equals("6")) {System.out.println("Write a Pasport Number: "); setPasportNumber(commonBuffer.readInput());}
+    		else if(choose.equals("7")) {System.out.println("Write a Gender: "); setGender(commonBuffer.readInput());}
+    		else if(choose.equals("8")) {System.out.println("Write a Nationality: "); setNationality(commonBuffer.readInput());}
+    		else if(choose.equals("9")) {System.out.println("Write a Citizenship: "); setCitizenship(commonBuffer.readInput());}
+    		else if(choose.equals("10")) {System.out.println("Write an Id: "); setId(commonBuffer.readInput());}
+    		else if(choose.equals("11")) {System.out.println("Write a username: "); setUsername(commonBuffer.readInput());}
+    		else if(choose.equals("12")) {System.out.println("Write a email: "); setEmail(commonBuffer.readInput());}
+    		else if(choose.equals("13")) {System.out.println("Write a Manager Position: "); setManagerPosition(commonBuffer.readInput());}
+    		else {System.out.println("The wrong character is entered!");}
+	    }
+    }
 
 	private void viewStudentExamSchedule() {
 		System.out.println("----WINDOW STUDENT'S EXAM SCHEDULE");

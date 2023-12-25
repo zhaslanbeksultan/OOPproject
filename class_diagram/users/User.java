@@ -100,9 +100,13 @@ public abstract class User implements Serializable, CanViewResearches{
     }
 
     public void setPassword(String password) {
-        if(this.password != password)
-        	this.password = password;
-        else System.out.println("The password must not match the previous one");
+	        if(this.password != password) {
+	        	this.password = password;
+	        	Data.getInstance().getUsers().entrySet().stream()
+	            .filter(entry -> username.equals(entry.getKey()))
+	            .forEach(entry -> entry.getValue().setPassword(password));
+	        	return;
+	        }
     }
 
     private String getEmail() {
@@ -373,10 +377,17 @@ public abstract class User implements Serializable, CanViewResearches{
     	System.out.print("Theme: "); 
     	String theme = commonBuffer.readInput();
     	System.out.print("Message Wording: ");
-    	String messageWording = commonBuffer.readInput(); 
-    	
-    	Message message = new Message(theme, this.username, recipient, messageWording);
-    	Data.getInstance().getMessages().add(message);
+    	String messageWording = commonBuffer.readInput();
+    	if(this instanceof Teacher) {
+        	System.out.print("Urgency Level 'LOW', 'MEDIUM, 'HIGH': ");
+        	String level = commonBuffer.readInput();
+        	Message message = new Message(theme, this.username, recipient, messageWording, level);
+        	Data.getInstance().getMessages().add(message);
+    	}
+    	else {
+	    	Message message = new Message(theme, this.username, recipient, messageWording);
+	    	Data.getInstance().getMessages().add(message);
+    	}
     }
     
     public void sendMessage(int answer) {
@@ -489,10 +500,10 @@ public abstract class User implements Serializable, CanViewResearches{
     
 	@Override
 	public String toString() {
-		return " FirstName = " + firstName + "\n LastName = " + lastName + "\n Birth Day = " + birthDay + "\n Id = " + id
-				+ username + "\n Email = " + email + "\n RegistrationDate = "
-				+ registrationDate + "\n Phone Number = " + phoneNumber + ", PasportNumber = " + pasportNumber + "\n Gender = "
-				+ gender + "\n Nationality = " + nationality + "\n Citizenship = " + citizenship+" Password="+password;
+		return " First Name = " + firstName + "\n Last Name = " + lastName + "\n Birth Day = " + birthDay + "\n Id = " + id
+				+ username + "\n Email = " + email + "\n Registration Date = "
+				+ registrationDate + "\n Phone Number = " + phoneNumber + "\n Pasport Number = " + pasportNumber + "\n Gender = "
+				+ gender + "\n Nationality = " + nationality + "\n Citizenship = " + citizenship + "\n Password = " + password;
 	}
 
 }

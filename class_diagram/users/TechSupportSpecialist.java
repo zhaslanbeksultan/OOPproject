@@ -10,7 +10,6 @@ import enums.*;
 public class TechSupportSpecialist extends Employee {
 
 	private static final long serialVersionUID = 1L;
-	private String complaintType;
 
 	public TechSupportSpecialist(String firstName, String lastName, Date birthDay, String id, String username,
 			String password, String email, Date registrationDate, String phoneNumber, String pasportNumber,
@@ -21,18 +20,6 @@ public class TechSupportSpecialist extends Employee {
 	public TechSupportSpecialist() {
 		
 	}
-	public String getComplaintType() {
-        return this.complaintType;
-    }
-
-    public void setComplaintType(String complaintType) {
-        this.complaintType = complaintType;
-    }
-
-    public boolean FixComplaintType() {
-        return false;
-    }
-    
 
 	@Override
 	public void addRequest() {
@@ -108,7 +95,8 @@ public class TechSupportSpecialist extends Employee {
 	public void showMenu() {
 		while(true) {
 			System.out.println("----MAIN WINDOW----");
-			System.out.println("1. Personal Datas\n2. Requests\n3. News\n4. Social Transcript\n5. Orders\n0.Log Out");
+			System.out.println("1. Personal Datas\n2. Requests\n3. News\n4. Social Transcript"
+					+ "\n5. Orders\n6. View News\n7. Send Message\n8. Show Incoming Messages\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -134,6 +122,9 @@ public class TechSupportSpecialist extends Employee {
 				case "7":
 					this.sendMessage();
 					break;
+	    		case "8":
+	    			this.showMessages();
+	    			break;
 			}
 		}
 	}
