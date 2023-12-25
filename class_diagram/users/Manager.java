@@ -5,17 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-import common.Data;
-import common.commonBuffer;
-import communication.Message;
-import communication.News;
-import communication.Request;
-import education.Course;
+
+import common.*;
+import communication.*;
+import education.*;
 import enums.*;
 import userCapabilities.*;
 
 
-public class Manager extends Employee implements Managable, Administrationable, Subscriber {
+public class Manager extends Employee implements Managable, Subscriber {
 
 	private static final long serialVersionUID = 1L;
 	private ManagerPosition managerPosition;
@@ -51,6 +49,7 @@ public class Manager extends Employee implements Managable, Administrationable, 
     public void setCoursesRegisterTo(Vector<Course> coursesRegisterTo) {
         this.coursesRegisterTo = coursesRegisterTo;
     }
+<<<<<<< HEAD
     public void createCourse() {
     	Course course = new Course();
     	System.out.println("Enter name of the course:");
@@ -95,28 +94,10 @@ public class Manager extends Employee implements Managable, Administrationable, 
 		return false;
 	}
 
+=======
+>>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
 	
 	public void viewAcademicStatistics() {
-		
-	}
-
-	
-	public void makeOfficeHoursSchedule() {
-		
-	}
-
-	
-	public void obtainingProgressStatistics() {
-		
-	}
-
-	
-	public void gettingPassingStatistics() {
-		
-	}
-
-	
-	public void viewRegisteredSchedule() {
 		
 	}
 
@@ -200,12 +181,16 @@ public class Manager extends Employee implements Managable, Administrationable, 
 				Data.getInstance().getRequests().get(id).setRequestStatus(RequestStatus.NOT_APPROVED);
 		}
 	}
+<<<<<<< HEAD
 	
 	public boolean dropDiscipline(Course discipline) {
 		// TODO Auto-generated method stub
 		return false;
 	}
+=======
+>>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
 
+<<<<<<< HEAD
 	
 	
 
@@ -215,6 +200,26 @@ public class Manager extends Employee implements Managable, Administrationable, 
 		return null;
 	}
 	public void viewLessonSchedule() {}
+=======
+	public void viewLessonSchedule() {
+		System.out.println("----WINDOW STUDENT'S/TEACHER'S LESSON SCHEDULE");
+		System.out.println("'0' - to exit. 'Student', 'Teacher' - to check Schedule.");
+		String choice = commonBuffer.readInput();
+		if(choice.equals("0")) return;
+		else {
+			if(choice.equals("Student")) {
+				System.out.println("Student Username: ");
+				String name = commonBuffer.readInput();
+				Data.getInstance().getStudents().stream().filter(s->s.getUsername().equals(name)).forEach(s->s.viewLessonSchedule());
+			}
+			if(choice.equals("Teacher")) {
+				System.out.println("Teacher Username: ");
+				String name = commonBuffer.readInput();
+				Data.getInstance().getStudents().stream().filter(s->s.getUsername().equals(name)).forEach(s->s.viewLessonSchedule());
+			}
+		}
+	}
+>>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
 	public void viewUserPersonalData() {
 		System.out.println("----WINDOW FOR VIEWING PERSON'S DATA----");
 		System.out.println("'0' - to exit. 'username' - to check info.");
@@ -246,68 +251,87 @@ public class Manager extends Employee implements Managable, Administrationable, 
 					this.viewAcademicStatistics();
 					break;
 				case "2":
-					this.addDropDiscipline();
+					this.viewLessonSchedule();//done
 					break;
 				case "3":
-					this.viewLessonSchedule();
-					break;
-				case "4":
 					this.viewRequests();//done
 					break;
-				case "5":
+				case "4":
 					this.editPersonalData();//done
 					break;
-				case "6":
+				case "5":
 					this.viewNews();//done
 					break;
-				case "7":
+				case "6":
 					this.viewUserPersonalData();//done
 					break;
-				case "8":
+				case "7":
 					this.viewRequestsFromUsers();//done
 					break;
+				case "8":
+					this.viewDisciplineSchedule();//done
+					break;
 				case "9":
-					this.viewDisciplineSchedule();
+					this.viewStudentExamSchedule();//done
 					break;
 				case "10":
-					this.viewStudentExamSchedule();
-					break;
-				case "11":
-					this.disciplineRegistration(choice, false);
-					break;
-				case "12":
 					this.viewSocialTranscript();//done
 					break;
-				case "13":
-					this.viewOfficeHourSchedule();
+				case "11":
+					this.viewOfficeHourSchedule();//done
 					break;
-				case "14":
+				case "12":
 					this.researchCabinet();//done
 					break;
+<<<<<<< HEAD
 				case "15":
 					this.createCourse();
+=======
+				case "13":
+					this.postNews();//done
+>>>>>>> branch 'main' of https://github.com/zhaslanbeksultan/OOPproject.git
 			}
 		}
 	}
 	private void viewStudentExamSchedule() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("----WINDOW STUDENT'S EXAM SCHEDULE");
+		System.out.println("'0' - to exit. 'username' - to check info.");
+		String choice = commonBuffer.readInput();
+		if(choice.equals("0")) return;
+		else {
+			Data.getInstance().getStudents().stream().filter(s->s.getUsername().equals(choice)).forEach(s->s.viewExamsSchedule());
+		}
 	}
 
 	private void viewDisciplineSchedule() {
-		// TODO Auto-generated method stub
+		System.out.println("----WINDOW STUDENT'S DISCIPLINE SCHEDULE");
+		System.out.println("'0' - to exit. 'username' - to check info.");
+		String choice = commonBuffer.readInput();
+		if(choice.equals("0")) return;
+		else {
+			Data.getInstance().getStudents().stream().filter(s->s.getUsername().equals(choice)).forEach(s->s.viewDisciplineSchedule());
+		}
 		
 	}
 
-	public void viewOrganizations() {}
-	public void viewOfficeHourSchedule() {}
-
-	@Override
-	public void addDropDiscipline() {
-		// TODO Auto-generated method stub
-		
+	public void viewOrganizations() {
+		System.out.println("----WINDOW ORGANIZATIONS");
+		System.out.println("'0' - to exit.");
+		String choice = commonBuffer.readInput();
+		if(choice.equals("0")) return;
+		else {
+			Data.getInstance().getStudents().forEach(System.out::println);
+		}
 	}
-
+	public void viewOfficeHourSchedule() {
+		System.out.println("----WINDOW TEACHER'S OFFICE HOUR SCHEDULE");
+		System.out.println("'0' - to exit. 'username' - to check info.");
+		String choice = commonBuffer.readInput();
+		if(choice.equals("0")) return;
+		else {
+			Data.getInstance().getTeachers().stream().filter(s->s.getUsername().equals(choice)).forEach(s->s.viewOfficeHourSchedule());
+		}
+	}
 
 	@Override
 	public void addRequest() {

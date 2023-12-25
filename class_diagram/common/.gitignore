@@ -1,3 +1,10 @@
 /Data.class
 /Main.class
 /commonBuffer.class
+/DateStringFormat.class
+/InvalidResearcherException.class
+/PaperByArticleLengthComparator.class
+/PaperByCitationComparator.class
+/PaperByDateComparator.class
+/LowHIndexException.class
+/NewsSortComparator.class

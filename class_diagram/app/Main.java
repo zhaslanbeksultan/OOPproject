@@ -5,7 +5,7 @@ import common.*;
 import education.Specialty;
 import users.*;
 import enums.*;
-public class Main {
+public class Main {   
 	public static void main(String[] args) throws IOException {
 //		Admin admin = new Admin();
 //		admin.setUsername("steve_jobs");
@@ -18,5 +18,6 @@ public class Main {
 		Data.getInstance().getCourses().elementAt(0).setSpecialty(spec);
 		Login login = new Login();
 		login.menu();
+		Data.write();
 	}
 }
