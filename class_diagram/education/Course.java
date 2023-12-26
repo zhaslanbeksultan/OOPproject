@@ -45,6 +45,18 @@ public class Course implements  Serializable {
     public Course() {
     	
     }
+    public void viewStudentAttestation(Student student) {
+    	int att1=0;
+		int att2=0;
+		for(int i=0; i<32;i++) {
+			if(i<16) {
+				att1+=lessons.get(i).getMarks().get(student);
+			} else {
+				att2+=lessons.get(i).getMarks().get(student);
+			}
+		}
+		System.out.println(this.getCourseName()+" First Attestation:"+att1+" Second Attestation:"+att2);
+    }
     public void viewAttestation() {
     	for(Student student: students) {
     		int att1=0;
@@ -76,6 +88,9 @@ public class Course implements  Serializable {
 			Lesson lesson = new Lesson(lt, this, i);
 			lessons.add(lesson);
 		}
+    	System.out.println("You just started "+ this.getCourseName()+" Course!");
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     }
     public String getCourseId() {
         return courseId;

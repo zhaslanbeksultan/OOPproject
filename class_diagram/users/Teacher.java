@@ -1,10 +1,9 @@
 package users;
 
-<<<<<<< HEAD
-=======
+
 import java.io.IOException;
 import java.util.Comparator;
->>>>>>> 685efe2f1f46b791673797fc1a3edbcd7801166a
+
 import java.util.Date;
 import java.util.Vector;
 
