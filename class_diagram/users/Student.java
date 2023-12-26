@@ -21,7 +21,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     private Category category;
     private Vector<Course> CourseEnrolled;
     private String major;    
-    private Vector<Organization> organizations;
+    private Vector<Organization> organizations = new Vector<>();
     private HashMap<Lesson, Mark> marks;
 	private int availableECTS;
 
@@ -100,12 +100,8 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     public double[] getGpa() {
         return this.gpa;
     }
-    public String getReport() {
-        //TODO
-        return "";
-    }
+    
     public String getTranscipt() {
-        //TODO
         return null;
     }
 

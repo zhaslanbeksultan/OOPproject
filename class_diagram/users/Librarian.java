@@ -20,7 +20,6 @@ public class Librarian extends Employee implements Subscriber{
 	}
 	
 	public Librarian() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public void notifyReaders() {

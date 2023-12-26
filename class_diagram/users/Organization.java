@@ -1,12 +1,12 @@
 package users;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Vector;
 
 public class Organization implements Serializable{
 
-    private String organizationName;
+	private static final long serialVersionUID = 1L;
+	private String organizationName;
     private Vector<String> members;
     private String orgaizationInfo;
     private String head;
@@ -15,6 +15,7 @@ public class Organization implements Serializable{
 		this.organizationName = organizationName;
 		this.orgaizationInfo = orgaizationInfo;
 		this.head = head;
+		this.members = new Vector<>();
 	}
 
 	public String getOrganizationName() {

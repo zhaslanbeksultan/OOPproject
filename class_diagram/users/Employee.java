@@ -1,16 +1,15 @@
 package users;
 
 import java.util.Date;
-import java.util.HashMap;
-
 import common.Data;
 import common.commonBuffer;
 import communication.*;
 import enums.*;
 
 public abstract class Employee extends User{
-	
-    private double salary;
+
+	private static final long serialVersionUID = 1L;
+	private double salary;
     private Date hireDate;
     private String insuranceNumber;
     private Message message;

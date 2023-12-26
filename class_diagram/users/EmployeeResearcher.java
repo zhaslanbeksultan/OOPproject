@@ -1,6 +1,5 @@
 package users;
 
-import java.util.Comparator;
 import java.util.Date;
 
 import common.*;
@@ -22,7 +21,6 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
 	}
 
 	public EmployeeResearcher() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

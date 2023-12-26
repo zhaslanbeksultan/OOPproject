@@ -1,7 +1,6 @@
 package users;
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
@@ -17,7 +16,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 
 	private static final long serialVersionUID = 1L;
 	private ManagerPosition managerPosition;
-    private Vector<Course> coursesRegisterTo;
+    private Vector<Course> coursesRegisterTo = new Vector<>();
 
 	public Manager(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
@@ -30,7 +29,6 @@ public class Manager extends Employee implements Managable, Subscriber {
 	}
 
 	public Manager() {
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -184,19 +182,6 @@ public class Manager extends Employee implements Managable, Subscriber {
 		}
 	}
 
-	
-	public boolean dropDiscipline(Course discipline) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	public HashMap<String, HashMap<WeekDays, Teacher>> getLessonSchedule() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 	public void viewLessonSchedule() {
 		System.out.println("----WINDOW STUDENT'S/TEACHER'S LESSON SCHEDULE");
 		System.out.println("'0' - to exit. 'Student', 'Teacher' - to check Schedule.");
@@ -302,6 +287,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 			System.out.println("Available courses to edit:");
 			for(Course course: Data.getInstance().getCourses()) {
 				System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getNumberOfCredits()+" "+course.getStudents().size());
+
 			}
 			System.out.println("Enter courseID or type 0 to exit:");
 			

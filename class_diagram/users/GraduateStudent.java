@@ -1,9 +1,6 @@
 package users;
 
 import java.util.Date;
-import java.util.Vector;
-
-import education.Course;
 import enums.Category;
 import enums.DegreeType;
 import enums.Faculty;
@@ -11,8 +8,9 @@ import enums.Gender;
 import userCapabilities.Researcher;
 
 public class GraduateStudent extends Student {
-    
-    private Date graduatingDate;
+
+	private static final long serialVersionUID = 1L;
+	private Date graduatingDate;
     private String diplomaTytle;
     private DegreeType degreeType;
     private Researcher supervisor;
@@ -32,7 +30,6 @@ public class GraduateStudent extends Student {
 	}
 
 	public GraduateStudent() {
-		// TODO Auto-generated constructor stub
 	}
 
 	private Date getGraduatingDate() {
@@ -65,6 +62,12 @@ public class GraduateStudent extends Student {
     public void setSupervisor(Researcher supervisor) {
         this.supervisor = supervisor;
     }
+
+	@Override
+	public String toString() {
+		return super.toString() + "\n Graduating Date = " + graduatingDate + "\n Diploma Tytle = " + diplomaTytle + "\n Degree Type = "
+				+ degreeType + "\n Supervisor = " + supervisor;
+	}
 
 
 

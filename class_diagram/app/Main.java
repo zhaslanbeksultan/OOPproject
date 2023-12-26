@@ -1,12 +1,9 @@
 package app;
 import java.io.IOException;
-import java.util.Date;
 import common.*;
-import education.Specialty;
-import users.*;
-import enums.*;
 public class Main {   
 	public static void main(String[] args) throws IOException {
+
 
 //		Admin admin = new Admin();
 //		admin.setUsername("steve_jobs");
@@ -19,6 +16,7 @@ public class Main {
 //		spec.setFaculty(Faculty.SITE);
 //		Data.getInstance().getCourses().elementAt(0).setSpecialty(spec);
 //		Data.getInstance().getStudents().elementAt(0).setAvailiableECTS(21);
+
 
 		Login login = new Login();
 		while(true) {

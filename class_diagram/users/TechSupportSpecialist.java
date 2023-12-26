@@ -96,7 +96,8 @@ public class TechSupportSpecialist extends Employee {
 		while(true) {
 			System.out.println("----MAIN WINDOW----");
 			System.out.println("1. Personal Datas\n2. Requests\n3. News\n4. Social Transcript"
-					+ "\n5. Orders\n6. View News\n7. Send Message\n8. Show Incoming Messages\n0.Log Out");
+					+ "\n5. Orders\n6. View News\n7. Send Message\n8. Show Incoming Messages"
+					+ "\n9. Research Cabinet\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -125,6 +126,8 @@ public class TechSupportSpecialist extends Employee {
 	    		case "8":
 	    			this.showMessages();
 	    			break;
+	    		case "9":
+	    			this.researchCabinet();
 			}
 		}
 	}
