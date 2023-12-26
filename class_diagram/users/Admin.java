@@ -141,7 +141,7 @@ public class Admin extends Employee{
     public void showMenu(){
 	   while(true) {
 	    	System.out.println("----MAIN WINDOW----");
-	    	System.out.println("1. Create User\n2. Requests Window\n3. Edit User Personal Datas\n0. Log Out");
+	    	System.out.println("1. Create User\n2. Requests Window\n3. Edit User Personal Datas\n4. Delete User\n0. Log Out");
 	    	String choice = commonBuffer.readInput();
 	    	switch(choice) {
 	    	case "0":
@@ -155,7 +155,11 @@ public class Admin extends Employee{
 	    	case "3":
 	    		this.editUserPersonalData();
 	    		break;
+	    	case "4":
+	    		this.deleteUser();
+	    		break;
 	    	}
+	    	
 	   }
     }
    
@@ -248,8 +252,25 @@ public class Admin extends Employee{
 	    			break;
 	    	}
    	}
-   }
-   
+    }
+   	public void deleteUser() {
+   	
+   	   		System.out.println("----WINDOW DELETE USERS----");
+   		    System.out.println("Enter username:");
+   		    String username=commonBuffer.readInput();
+   		    User user = Data.getInstance().getUsers().get(username);
+   		    System.out.println("WARNING!\nYou are deleting user from the system!\nPlease confirm it:\n1.Confirm\nAny key.Cancel");
+   		    String input = commonBuffer.readInput();
+   		    if(input.equals("1")) {
+   		    	Data.getInstance().getUsers().remove(username);
+   	   		    Data.getInstance().deleteUser(user);
+   	   		System.out.println("User is deleted");
+   		    }
+   		    else {
+   		    	System.out.println("Canceled");
+   		    }
+   	   	
+   	}
 	@Override
 	public void addRequest() {
 		while(true) {

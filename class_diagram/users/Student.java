@@ -113,7 +113,9 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 		this.CourseEnrolled.add(course);
 		course.addStudent(this);
 	}
-	
+	public void dropCourse(Course course) {
+		this.CourseEnrolled.remove(course);
+	}
 	
 	public void disciplineRegistration(String discipline, boolean isRegistrationAllowed) {//isRegistrationAllowed is a static method in Admin
 		this.viewAvailableCourses();
