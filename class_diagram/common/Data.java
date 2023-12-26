@@ -243,44 +243,28 @@ public class Data implements Serializable {
 	public void setDeans(Dean dean) {
 		this.deans.add(dean);
 	}
-	
+	public void deleteUser(User user) {
+        if (user instanceof Student) {
+            students.remove(user);
+        } else if (user instanceof GraduateStudent) {
+            graduateStudents.remove(user);
+        } else if (user instanceof Teacher) {
+            teachers.remove(user);
+        } else if (user instanceof Manager) {
+            managers.remove(user);
+        } else if (user instanceof Admin) {
+            admins.remove(user);
+        } else if (user instanceof Dean) {
+            deans.remove(user);
+        } else if (user instanceof Professor) {
+            professors.remove(user);
+        } else if (user instanceof Librarian) {
+            libriarians.remove(user);
+        } else if (user instanceof TechSupportSpecialist) {
+            techSupportSpecialists.remove(user);
+        } else if (user instanceof Researcher) {
+            researcherEmployees.remove(user);
+        }
+	}
 }
 
-/*public String getSelectedFileContent(String selectedFileName) {
-    int selectedIndex = downloadedFiles.indexOf(selectedFileName);
-
-    if (selectedIndex != -1) {
-        try {
-            String filePath = downloadedFiles.get(selectedIndex);
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            StringBuilder content = new StringBuilder();
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                content.append(line).append("\n");
-            }
-
-            reader.close();
-            return content.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "Error reading the file.";
-        }
-    } else {
-        return "File not found.";
-    }
-}
-
-/ Метод для сохранения файла
-    public void saveFile(String fileName, String content) {
-        try {
-            FileWriter writer = new FileWriter(fileName);
-            writer.write(content);
-            writer.close();
-
-            // Добавляем файл в вектор скачанных файлов
-            downloadedFiles.add(fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    } */
