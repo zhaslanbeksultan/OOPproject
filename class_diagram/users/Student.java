@@ -22,7 +22,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     private Vector<Course> CourseEnrolled;
     private String major;    
     private Vector<Organization> organizations = new Vector<>();
-    private HashMap<Lesson, Mark> marks;
+
 	private int availableECTS;
 
 	{
@@ -202,14 +202,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 		}
 	}
     
-	public HashMap<Lesson, Mark> getMarks() {
-	        return getMarks();
-	    }
 
-	public void addMark(Lesson lesson, Mark mark) {
-			marks.put(lesson, mark);
-	    }
-	
 	public void addDropDiscipline() {
 		System.out.println("ADD/DROP WINDOW");
 		System.out.println("Enter a semester: ");
@@ -262,7 +255,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 			System.out.println("1. Transcript\n2. ADD/DROP Disciplines\n3. Journal\n4. Requests\n5. Personal Datas\n6. News\n7. Attendance Mark"
 					+ "\n8. View Attestation\n9. Discipline Schedule\n10. Lesson Schedule\n11. Exams Schedule\n12. Registration For FX"
 					+ "\n13. Registration For Disciplines\n14. Social Transcript\n15. View Office Hours Schedule\n16. Research Cabinet"
-					+ "\n17. View Organizations\n18. Send Message\n19. Show Incoming Messages\n0.Log Out");
+					+ "\n17. View Organizations\n18. Send Message\n19. Show Incoming Messages\n20. View All Books\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -324,7 +317,29 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 	    		case "19":
 	    			this.showMessages();
 	    			break;
+	    		case "20":
+	    			this.viewAllBooks();
+	    			break;
 			}
+		}
+	}
+	
+	@Override
+	public void viewAllBooks() {
+		while(true) {
+			System.out.println("----WINDOW ALL BOOKS----");
+			System.out.println("'0' - to exit.'1' - to borrow book. '2' - to return book.");
+			Data.getInstance().getBooks().forEach(System.out::println);
+			String choice = commonBuffer.readInput();
+			if(choice.equals("0")) {return;}
+			else if(choice.equals("1")) {
+				System.out.println("Write Book Name: ");
+				String bookName = commonBuffer.readInput();
+				this.borrowBook(bookName);}
+			else if(choice.equals("2")) {
+				System.out.println("Write Book Name: ");
+				String bookName = commonBuffer.readInput();
+				this.returnBook(bookName);}
 		}
 	}
 	
@@ -542,151 +557,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     		System.out.println(course.getCourseName() + " "+ course.getCourseId() + " "+ course.getNumberOfCredits());
     	}
     }
-//	public void viewAvailableCourse(Faculty faculty, int semester, int ects) {
-//		this.courseList = new Vector<Course>();
-//		if (faculty == Faculty.SITE) {
-//        	if(semester==1) {
-//	        	courseList.add(new Course( "Programming Principles I", 6));
-//	            courseList.add(new Course( "Calculus I", 5));
-//	            courseList.add(new Course("Discrete Structures", 5));
-//	            courseList.add(new Course("English", 10));
-//            }
-//        	else if(semester == 2) {
-//	        	courseList.add(new Course( "Programming Principles II", 6));
-//        	    courseList.add(new Course( "Calculus II", 5));
-//        	    courseList.add(new Course( "Physics I", 5));
-//        	    courseList.add(new Course( "Statistics ", 5));
-//        	    courseList.add(new Course( "Merging Personal and Global Evolution", 8));
-//        	    courseList.add(new Course( "Linear Algebra", 5));
-//            }
-//            else if(semester == 3) {
-//        	    courseList.add(new Course( "Databases", 5));
-//        	    courseList.add(new Course( "Algorithms and Data Structure", 5));
-//        	    courseList.add(new Course( "Computer Architecture", 5));
-//        	    courseList.add(new Course( "Object-Oriented Programming and Design", 5));
-//        	    courseList.add(new Course( "Physical Education I", 4));
-//        	    courseList.add(new Course( "Kazakh/Russian Language", 5));
-//            }
-//            else if (semester == 4) {
-//        	    courseList.add(new Course( "WEB Development ", 6));
-//        	    courseList.add(new Course( "Computer NetWorks", 6));
-//        	    courseList.add(new Course( "Introduction to Business Management", 5));
-//        	    courseList.add(new Course( "Elective", 5));
-//        	    courseList.add(new Course( "Physical Education II", 4));
-//        	    courseList.add(new Course( "Kazakh Language", 5));
-//            }
-//            else if(semester == 5) {
-//        	    courseList.add(new Course( "Software Engineering", 5));
-//        	    courseList.add(new Course( "Fundamentals of Business for Information Systems", 5));
-//        	    courseList.add(new Course( "Basics of Information Systems", 5));
-//        	    courseList.add(new Course( "Elective", 5));
-//        	    courseList.add(new Course( "Information and Communication Technology", 5));
-//        	    courseList.add(new Course( "History of Kazakhstan", 5));
-//            }
-//            else if(semester == 6) {
-//        	    courseList.add(new Course( "Fields Projects for Information Systems", 5));
-//        	    courseList.add(new Course( "Cyber Security Fundamentals", 5));
-//        	    courseList.add(new Course( "Elective", 5));
-//        	    courseList.add(new Course( "Elective", 5));
-//        	    courseList.add(new Course( "Elective", 5));
-//        	    courseList.add(new Course( "Philosophy", 5));
-//            }
-//            else if(semester == 7) {
-//        	    courseList.add(new Course( "IT Project Management ", 5));
-//        	    courseList.add(new Course( "Elective", 5));
-//        	    courseList.add(new Course( "Elective", 5));
-//        	    courseList.add(new Course( "Elective", 5));
-//        	    courseList.add(new Course( "Elective", 5));
-//        	    courseList.add(new Course( "Elective", 5));	   
-//           }
-//            else if (semester == 8) {
-//        	    courseList.add(new Course( "Research Tools and Methods", 4));
-//        	    courseList.add(new Course( "Pre-diploma Internship", 5));
-//        	    courseList.add(new Course( "Final attestation", 8));
-//        	    courseList.add(new Course( "Elective", 5));
-//            }
-//        }
-//        else if (faculty == Faculty.SEOGI) {
-//        	if(semester==1) {
-//        		courseList.add(new Course( "Kazakh/Russian Language", 5));
-//	        	courseList.add(new Course( "English language", 10));
-//	        	courseList.add(new Course("Modern history of Kazakhstan", 5));
-//	        	courseList.add(new Course("Physical Education I", 4));
-//	        	courseList.add(new Course("Introducation to petroleum engineering", 5));
-//	        	}
-//            else if(semester == 2) {
-//             	courseList.add(new Course( "Kazakh/Russian Language", 5));
-//             	courseList.add(new Course( "Physics I", 5));
-//             	courseList.add(new Course( "Physical education II", 4));
-//             	courseList.add(new Course( "Merging Personal and Global Evolution", 8));
-//             	courseList.add(new Course( "Calculus I", 5));
-//            }
-//            else if(semester == 3) {
-//             	courseList.add(new Course( "Petroleum Chemistry", 5));
-//             	courseList.add(new Course( "Calculus II ", 6));
-//             	courseList.add(new Course( "Teoretical and Applied Mechanics", 5));
-//             	courseList.add(new Course( "Physics II ", 5));
-//             	courseList.add(new Course( "Information and Communication Technologies ", 4));
-//             	courseList.add(new Course( "Descriptive geometry and engineering graphics", 4));
-//            }
-//            else if (semester == 4) {
-//             	courseList.add(new Course( "Strength of materials", 5));
-//             	courseList.add(new Course( "Differential equations", 5));
-//             	courseList.add(new Course( "Physical Geology", 5));
-//             	courseList.add(new Course( "Philosophy", 5));
-//             	courseList.add(new Course( "Drilling oil ang gas wells ", 5));
-//             	courseList.add(new Course( "Introductory Internship", 4));
-//                }
-//            else if(semester == 5) {
-//         	    courseList.add(new Course( "Production Technology(with practice) ", 5));
-//         	    courseList.add(new Course( "Numerical methods. Matlab", 5));
-//         	    courseList.add(new Course( "Fluid Mechanics", 5));
-//         	    courseList.add(new Course( "Reservoir Engineering", 5));
-//         	    courseList.add(new Course( "Petroleum Geology", 5));
-//         	    courseList.add(new Course( "Specialization discipline ", 5));
-//            }
-//            else if(semester == 6) {
-//         	    courseList.add(new Course( "Pipeline Engineering(with practice)", 5));
-//         	    courseList.add(new Course( "Well logging", 5));
-//         	    courseList.add(new Course( "Thermodynamics and heat engineering ", 5));
-//         	    courseList.add(new Course( "Specialization discipline", 5));
-//         	    courseList.add(new Course( "Elective", 5));
-//         	    courseList.add(new Course( "Specialization discipline", 5));
-//            }
-//            else if(semester == 7) {
-//         	    courseList.add(new Course( "Industrial safety", 5));
-//         	    courseList.add(new Course( "Fundamentals of financial analysis", 5));
-//         	    courseList.add(new Course( "Gathering and Preparation Well Production", 5));
-//         	    courseList.add(new Course( "Workover", 5));
-//         	    courseList.add(new Course( "Specialization discipline", 5));
-//         	    courseList.add(new Course( "Elective", 5));	   
-//            }
-//            else if (semester == 8) {
-//         	    courseList.add(new Course( "Industrial  Internship", 8));
-//         	    courseList.add(new Course( "Graduation Project Internship", 5));
-//         	    courseList.add(new Course( "Preparation and Defense of the graduation work", 12));
-//            }
-//        }
-//        if(courseList.isEmpty()) {
-//	        if(Login.language == Language.ENGLISH ) {
-//	        	System.out.println("No available disciplines to register! ");
-//	        }
-//	        else if(Login.language == Language.KAZAKH ) {
-//	        	System.out.println("Registras`iyag`a mumkin bolatyn sabaq joq!");	
-//	        }
-//	        else {
-//	        	System.out.println("Нет доступных дисциплин для регистрации !");
-//	        }
-//	    }
-//	    else {
-//	        for (Course element : courseList) {
-//	        	System.out.println(element);
-//	        }
-//	    }
-        
-//courseList.clear();
-        	
-//    }
+
 
 	@Override
 	public String toString() {

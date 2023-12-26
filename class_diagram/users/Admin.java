@@ -30,6 +30,8 @@ public class Admin extends Employee{
     	d.addUser(logname, student);
     	d.addStudent(student);
     	System.out.println("Successfully added!");
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     	save();
     }
     public void createTeacher() throws IOException {
@@ -43,6 +45,8 @@ public class Admin extends Employee{
     	d.addUser(logname, teacher);
     	d.addTeacher(teacher);
     	System.out.println("Successfully added!");
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     	save();	
     }
     
@@ -57,6 +61,8 @@ public class Admin extends Employee{
     	d.addUser(logname, dean);
     	d.setDeans(dean);
     	System.out.println("Successfully added!");
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     	save();	
     }
     public void createGraduateStudent() throws IOException {
@@ -70,6 +76,8 @@ public class Admin extends Employee{
     	d.addUser(logname, graduateStudent);
     	d.setGraduateStudents(graduateStudent);
     	System.out.println("Successfully added!");
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     	save();	
     }
     public void createLibrarian() throws IOException {
@@ -83,6 +91,8 @@ public class Admin extends Employee{
     	d.addUser(logname, librarian);
     	d.setLibriarians(librarian);
     	System.out.println("Successfully added!");
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     	save();	
     }
     public void createManager() throws IOException {
@@ -96,6 +106,8 @@ public class Admin extends Employee{
     	d.addUser(logname, manager);
     	d.setManagers(manager);
     	System.out.println("Successfully added!");
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     	save();	
     }
     public void createProfessor() throws IOException {
@@ -109,6 +121,8 @@ public class Admin extends Employee{
     	d.addUser(logname, professor);
     	d.setProfessors(professor);
     	System.out.println("Successfully added!");
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     	save();	
     }
     public void createTechSupportSpecialist() throws IOException {
@@ -122,6 +136,8 @@ public class Admin extends Employee{
     	d.addUser(logname, techSupportSpecialist);
     	d.setTechSupportSpecialists(techSupportSpecialist);
     	System.out.println("Successfully added!");
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     	save();	
     }
     public void createEmployeeResearcher() throws IOException {
@@ -135,6 +151,8 @@ public class Admin extends Employee{
     	d.addUser(logname, employeeResearcher);
     	d.setEmployeeResearchers(employeeResearcher);
     	System.out.println("Successfully added!");
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     	save();	
     }
    @Override

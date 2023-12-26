@@ -91,16 +91,7 @@ public class Lesson implements Serializable {
     	this.marks.put(student, mark);
     }
 
-    public void registerStudent(Student student, int mark) {
-        if (mark >= 0 && mark <= 100) {
-            Mark studentMark = new Mark();
-            WeekDays lessonTime = getLessonTime();
-            studentMark.addLessonMark(this, mark, lessonTime);
-            student.addMark(this, studentMark);
-        } else {
-            throw new IllegalArgumentException("Invalid mark: " + mark);
-        }
-    }
+    
 
     public Teacher getInstructor() {
         return instructor;

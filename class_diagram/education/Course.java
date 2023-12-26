@@ -48,27 +48,33 @@ public class Course implements  Serializable {
     public void viewStudentAttestation(Student student) {
     	int att1=0;
 		int att2=0;
-		for(int i=0; i<32;i++) {
+		int fin=0;
+		for(int i=0; i<33;i++) {
 			if(i<16) {
 				att1+=lessons.get(i).getMarks().get(student);
-			} else {
+			}  if(i>=16&&i<32) {
 				att2+=lessons.get(i).getMarks().get(student);
+			} if (i==32) {
+				fin+=lessons.get(i).getMarks().get(student);
 			}
 		}
-		System.out.println(this.getCourseName()+" First Attestation:"+att1+" Second Attestation:"+att2);
+		System.out.println(this.getCourseName()+" First Attestation:"+att1+" Second Attestation:"+att2 +" Final:"+fin);
     }
     public void viewAttestation() {
     	for(Student student: students) {
     		int att1=0;
     		int att2=0;
-    		for(int i=0; i<32;i++) {
+    		int fin=0;
+    		for(int i=0; i<33;i++) {
     			if(i<16) {
     				att1+=lessons.get(i).getMarks().get(student);
-    			} else {
+    			}  if(i>=16&&i<32) {
     				att2+=lessons.get(i).getMarks().get(student);
+    			} if (i==32) {
+    				fin+=lessons.get(i).getMarks().get(student);
     			}
     		}
-    		System.out.println(student.getFirstName()+" First Attestation:"+att1+" Second Attestation:"+att2);
+    		System.out.println(student.getFirstName()+" First Attestation:"+att1+" Second Attestation:"+att2 +" Final:"+fin);
     	}
     	System.out.println("Press any key to continue:");
     	String fake=commonBuffer.readInput();
@@ -77,13 +83,16 @@ public class Course implements  Serializable {
     	return lessons;
     }
     public void startCourse() {
-    	for(int i=0; i<32;i++) {
+    	for(int i=0; i<33;i++) {
 			LessonType lt;
 			if(i%2==0) {
 				lt=LessonType.LECTURE;
 			}
 			else {
 				lt=LessonType.PRACTICE;
+			}
+			if(i==32) {
+				lt=LessonType.FINAL;
 			}
 			Lesson lesson = new Lesson(lt, this, i);
 			lessons.add(lesson);
@@ -190,54 +199,6 @@ public class Course implements  Serializable {
         	}
     	}
     }
-//    public boolean addDiscipline(Course discipline) {
-//        int totalECTS = 0;
-//        int disciplineECTS = discipline.getNumberOfCredits();
-//
-//        if (totalECTS + disciplineECTS > 30) {
-//            System.out.println("Adding discipline " + discipline + " to your schedule has failed. Exceeds maximum credits.");
-//            return false;
-//        }
-//
-//        switch (disciplineType) {
-//            case MAJOR:
-//                totalECTS += disciplineECTS;
-//                registeredDisciplines.add(discipline);
-//                System.out.println("Discipline " + discipline + " added successfully. Congratulations!");
-//                return true;
-//            case MINOR:
-//                if (hasMinorDisciplineInSchedule(discipline)) {
-//                    System.out.println(
-//                            "Adding discipline " + discipline + " to your schedule has failed. You can have only one minor discipline in your schedule.");
-//                    return false;
-//                } else {
-//                    totalECTS += disciplineECTS;
-//                    registeredDisciplines.add(discipline);
-//                    System.out.println("Discipline " + discipline + " added successfully. Congratulations!");
-//                    return true;
-//                }
-//            case FREE:
-//                totalECTS += disciplineECTS;
-//                registeredDisciplines.add(discipline);
-//                System.out.println("Discipline " + discipline + " added successfully. Congratulations!");
-//                return true;
-//            default:
-//                System.out.println(
-//                        "Adding discipline " + discipline + " to your schedule has failed. Unsupported discipline type, please check the instructions again!");
-//                return false;
-//        }
-//    }
-
-//    public boolean dropDiscipline(Course discipline) {
-//        if (disciplineType != DisciplineType.MAJOR) {
-//            System.out.println("Discipline " + discipline + " dropped successfully.");
-//           return true;
-//       } else {
-//            System.out.println("Dropping major discipline " + discipline + " is not allowed.");
-//            return false;
-//       }
-//    	return true;
-//    }
 
 
 	

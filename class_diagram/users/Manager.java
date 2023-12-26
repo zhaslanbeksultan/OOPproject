@@ -75,7 +75,9 @@ public class Manager extends Employee implements Managable, Subscriber {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    	System.out.println("New course added to the system");
+    	System.out.println("New course added to the system!");
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     }
 	public boolean disciplineRegistration(String discipline) {
 		return false;
@@ -223,7 +225,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 					+ "\n3. View My Requests\n4. Edit My Personal Datas\n5. View News\n6. View User's Personal Datas"
 					+ "\n7. View Requests From Users\n8. View Discipline Schedule\n9. View Student Exam Schedule"
 					+ "\n10. View My Social Transcript\n11. View Office Hour Schedule\n12. Research Cabinet\n13. Create new Course"
-					+ "\n14. Post News\n'15' - Send Message\n'16' - Show Incoming Messages\n17.Edit Courses\n0.Log Out");
+					+ "\n14. Post News\n15. Send Message\n16. Show Incoming Messages\n17. Edit Courses\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -283,30 +285,35 @@ public class Manager extends Employee implements Managable, Subscriber {
 		}
 	}
 	public void editCourses() {
-		while(true) {
+		
 			System.out.println("Available courses to edit:");
 			for(Course course: Data.getInstance().getCourses()) {
 				System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getNumberOfCredits()+" "+course.getStudents().size());
 
 			}
-			System.out.println("Enter courseID or type 0 to exit:");
-			
-			String courseID = commonBuffer.readInput();
-			if(courseID.equals("0")) {
-				break;
-			}
-			Course course;
-			for(Course course1: Data.getInstance().getCourses()) {
-				if(course1.getCourseId().equals(courseID)) {
-					course1.editCourse();;
+			while(true) {
+				System.out.println("Enter courseID or type 0 to exit:");
+				
+				String courseID = commonBuffer.readInput();
+				if(courseID.equals("0")) {
+					break;
 				}
+				Course course;
+				for(Course course1: Data.getInstance().getCourses()) {
+				
+					if(course1.getCourseId().equals(courseID)) {
+						course1.editCourse();
+						break;
+					}
+				}
+				System.out.println("There is no course with this ID!");
 			}
 			try {
 				save();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
+		
 	}
 	@Override
     public void editPersonalData() {

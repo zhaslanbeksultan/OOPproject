@@ -1,7 +1,6 @@
 package userCapabilities;
 
 import education.Lesson;
-import education.Mark;
 import enums.WeekDays;
 import users.Teacher;
 
