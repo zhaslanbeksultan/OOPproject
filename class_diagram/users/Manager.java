@@ -225,7 +225,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 					+ "\n3. View My Requests\n4. Edit My Personal Datas\n5. View News\n6. View User's Personal Datas"
 					+ "\n7. View Requests From Users\n8. View Discipline Schedule\n9. View Student Exam Schedule"
 					+ "\n10. View My Social Transcript\n11. View Office Hour Schedule\n12. Research Cabinet\n13. Create new Course"
-					+ "\n14. Post News\n15. Send Message\n16. Show Incoming Messages\n 17.Edit Courses\n0.Log Out");
+					+ "\n14. Post News\n15. Send Message\n16. Show Incoming Messages\n17. Edit Courses\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -285,7 +285,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 		}
 	}
 	public void editCourses() {
-		while(true) {
+		
 			System.out.println("Available courses to edit:");
 			for(Course course: Data.getInstance().getCourses()) {
 				System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getNumberOfCredits()+" "+course.getStudents().size());
@@ -313,7 +313,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
+		
 	}
 	@Override
     public void editPersonalData() {
