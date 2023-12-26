@@ -93,7 +93,7 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 			System.out.println("1. Journal\n2. Requests\n3. Personal Datas\n4. News\n5. Attendance Mark"
 					+ "\n6. View Attestation\n7. Discipline Schedule\n8. Lesson Schedule\n9. Exams Schedule"
 					+ "\n10. Social Transcript\n11. View Office Hours Schedule\n12. Research Cabinet"
-					+ "\n13. Send Message\n14. Show Incoming Messages\n15. Put marks\n0.Log Out");
+					+ "\n13. Send Message\n14. Show Incoming Messages\n15. Put marks\n0. Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -148,7 +148,7 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 	}
 	public void putMarks() {
 		while(true) {
-			System.out.print("Courses that you teach:");
+			System.out.println("Courses that you teach:");
 			for(Course course: courses) {
 				System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getStudents().size());
 			}
