@@ -9,6 +9,7 @@ import users.Admin;
  * It contains the main method to start the application and provides initializations and configurations.
  */
 public class Main {   
+
    
     /**
      * The main entry point for the application.
@@ -18,9 +19,12 @@ public class Main {
      * @param args Command line arguments (not used).
      * @throws IOException Signals that an I/O exception has occurred.
      */
-    public static void main(String[] args) throws IOException {
 
 //      Uncomment the following lines to create and add an admin to the system.
+
+	public static void main(String[] args) throws IOException {
+
+
 //		Admin admin = new Admin();
 //		admin.setUsername("steve_jobs");
 //		admin.setPassword("pass");
@@ -46,4 +50,14 @@ public class Main {
         // Save data before closing the application
         Data.write();
     }
+
+		/*Login login = new Login()
+		while(true) {
+			login.menu();
+			System.out.println("Enter '0' to close app. '1' - to Login");
+			String input = commonBuffer.readInput();
+			if(input.equals("0")) break;
+		}
+		Data.write();
+	}*/
 }

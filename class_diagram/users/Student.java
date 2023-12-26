@@ -697,27 +697,11 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 	@Override
 	public void viewAttestation() {
         System.out.println("---- ATTESTATION RESULTS ----");
-
-        if (marks.isEmpty()) {
-            System.out.println("No attestation results available.");
-            return;
+        for(Course course: this.getCourseEnrolled()) {
+        	course.viewStudentAttestation(this);
         }
-
-        for (Entry<Lesson, Mark> entry : marks.entrySet()) {
-            Lesson lesson = entry.getKey();
-            Mark mark = entry.getValue();
-
-            System.out.println("Lesson: " + lesson.getLessonName());
-
-            int firstHalf = mark.calculateAutomaticFirstHalf();
-            int secondHalf = mark.calculateAutomaticSecondHalf();
-
-            mark.setFirstHalf(lesson, firstHalf);
-            mark.setSecondHalf(lesson, secondHalf);
-
-            System.out.println("Total Attestation Result: " + mark.calculateFinalGrade());
-            System.out.println("-----");
-        }
+        System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     }
 	
 	@Override
