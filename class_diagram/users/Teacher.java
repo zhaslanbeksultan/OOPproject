@@ -93,7 +93,7 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 			System.out.println("1. Journal\n2. Requests\n3. Personal Datas\n4. News\n5. Attendance Mark"
 					+ "\n6. View Attestation\n7. Discipline Schedule\n8. Lesson Schedule\n9. Exams Schedule"
 					+ "\n10. Social Transcript\n11. View Office Hours Schedule\n12. Research Cabinet"
-					+ "\n13. Send Message\n14. Show Incoming Messages\n0.Log Out");
+					+ "\n13. Send Message\n14. Show Incoming Messages\n15. Put marks\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -140,10 +140,32 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 	    		case "14":
 	    			this.showMessages();
 	    			break;
+	    		case "15":
+	    			
 			}
 		}
 	}
-
+	public void putMarks() {
+		System.out.print("Courses that you teach:");
+		for(Course course: courses) {
+			System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getStudents().size());
+		}
+		System.out.print("Enter course's ID:");
+		String input = commonBuffer.readInput();
+		Course course = null;
+		for(Course course1: courses) {
+			if(course1.getCourseId().equals(input)) {
+				course=course1;
+			}
+		}
+		System.out.print("Enter week:");
+		String week = commonBuffer.readInput();
+		System.out.print("Enter lesson:\n1.Lecture\n2.Practice");
+		String type = commonBuffer.readInput();
+		int index=Integer.parseInt(week)+Integer.parseInt(type)-2;
+		course.getLessons().get(index).putMarks(null, null);
+		
+	}
 	@Override
 	public void addRequest() {
 		while(true) {
