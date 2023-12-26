@@ -283,21 +283,29 @@ public class Manager extends Employee implements Managable, Subscriber {
 		}
 	}
 	public void editCourses() {
-		System.out.println("Available courses to edit:");
-		for(Course course: Data.getInstance().getCourses()) {
-			System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getNumberOfCredits()+" "+course.getStudents().size());
-		}
-		System.out.println("Enter courseID:");
-		String courseID = commonBuffer.readInput();
-		for(Course course1: Data.getInstance().getCourses()) {
-			if(course1.getCourseId().equals(courseID)) {
-				course1.editCourse();;
+		while(true) {
+			System.out.println("Available courses to edit:");
+			for(Course course: Data.getInstance().getCourses()) {
+				System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getNumberOfCredits()+" "+course.getStudents().size());
+
 			}
-		}
-		try {
-			save();
-		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Enter courseID or type 0 to exit:");
+			
+			String courseID = commonBuffer.readInput();
+			if(courseID.equals("0")) {
+				break;
+			}
+			Course course;
+			for(Course course1: Data.getInstance().getCourses()) {
+				if(course1.getCourseId().equals(courseID)) {
+					course1.editCourse();;
+				}
+			}
+			try {
+				save();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	@Override
