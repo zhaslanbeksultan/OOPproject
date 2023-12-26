@@ -123,7 +123,7 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
     			this.showPapersOfSubscribedJournals();
     			break;
     		case "4":
-    			this.findHIndex();
+    			System.out.println(this.findHIndex()); 
     			break;
     		case "5":
     			this.topCitedResearcher();
@@ -149,13 +149,7 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
     
     @Override
     public void createResearchProject() {
-		try {
-			if (this.findHIndex() < 3)
-				throw new LowHIndexException("Supervisor's h-index is less than 3.");
-		}catch(LowHIndexException e){
-			System.out.println(e.getMessage());
-			return;
-		}
+
     	System.out.println("----WINDOW FOR CREATING RESEARCH PROJECT");
     	System.out.println("Write Journal Name: ");
     	String journalName = commonBuffer.readInput();
@@ -193,8 +187,9 @@ public class EmployeeResearcher extends Employee implements Subscriber,Researche
     			System.out.println("Links To The Papers Used In Research: ");
     			while(true) {
     				System.out.println("'0' - end adding references.");
-    				if(choice.equals("0")) break;
-    				paper.setReferences(choice);
+    				String reference = commonBuffer.readInput();
+    				if(reference.equals("0")) break;
+    				paper.setReferences(reference);
     			}
     			Data.getInstance().setResearchPapers(paper);
     			Data.getInstance().getResearchProjects().stream()

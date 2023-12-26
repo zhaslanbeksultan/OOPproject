@@ -1,10 +1,14 @@
 package education;
 
+import java.io.Serializable;
+
 import enums.Faculty;
 
-public class SpecialtyFactory {
+public class SpecialtyFactory implements Serializable{
 
-    public static Specialty createSpecialty(String specialtyId, String specialtyName, Faculty faculty) {
+	private static final long serialVersionUID = 1L;
+
+	public static Specialty createSpecialty(String specialtyId, String specialtyName, Faculty faculty) {
         validateInputParameters(specialtyId, specialtyName, faculty);
 
         Specialty specialty = new Specialty(specialtyId, specialtyName, faculty);

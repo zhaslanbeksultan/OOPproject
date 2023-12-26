@@ -1,10 +1,12 @@
 package communication;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import enums.*;
 
-public class Order {
+public class Order implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private static int cnt = 1;
 	private int orderId;
 	private String sender;

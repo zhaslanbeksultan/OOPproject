@@ -443,7 +443,7 @@ public abstract class User implements Serializable, CanViewResearches{
     			this.showPapersOfSubscribedJournals();
     			break;
     		case "4":
-    			this.findHIndex();
+    			System.out.println(this.findHIndex()); 
     			break;
     		case "5":
     			this.topCitedResearcher();
@@ -462,7 +462,7 @@ public abstract class User implements Serializable, CanViewResearches{
     		return;
     	case("Length"):
     		Data.getInstance().getResearchProjects().stream()
-    		.filter(p -> p.getSubscribers().contains(this.getUsername()))
+    		.filter(p -> p.getSubscribers().contains((Subscriber)this))
     		.forEach(p -> p.getPublishedPapers().stream()
     				.sorted(new PaperByArticleLengthComparator())
     				.forEach(System.out::println));
@@ -470,7 +470,7 @@ public abstract class User implements Serializable, CanViewResearches{
     		break;
     	case("Citations"):
     		Data.getInstance().getResearchProjects().stream()
-    		.filter(p -> p.getSubscribers().contains(this.getUsername()))
+    		.filter(p -> p.getSubscribers().contains((Subscriber)this))
     		.forEach(p -> p.getPublishedPapers().stream()
     				.sorted(new PaperByCitationComparator())
     				.forEach(System.out::println));
@@ -478,7 +478,7 @@ public abstract class User implements Serializable, CanViewResearches{
     		break;
     	case("Date"):
     		Data.getInstance().getResearchProjects().stream()
-    		.filter(p -> p.getSubscribers().contains(this.getUsername()))
+    		.filter(p -> p.getSubscribers().contains((Subscriber)this))
     		.forEach(p -> p.getPublishedPapers().stream()
     				.sorted(new PaperByDateComparator())
     				.forEach(System.out::println));
@@ -507,8 +507,10 @@ public abstract class User implements Serializable, CanViewResearches{
     	System.out.println("'0' - to exit. 'id' - to read paper.");
     	String choice = commonBuffer.readInput();
     	if(choice.equals("0")) return;
-    	else Data.getInstance().getResearchPapers().stream()
-    			.filter(p->p.getPaperId()==Integer.parseInt(choice)-1).forEach(p->p.printPaper());
+    	else {
+    		int paperIndex = Integer.parseInt(choice);
+    		Data.getInstance().getResearchPapers().stream()
+    			.filter(p->p.getPaperId()==paperIndex).forEach(p->p.printPaper());}
     }
     
     public void showAllResearchPapers() {

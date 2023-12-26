@@ -1,12 +1,15 @@
 package communication;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Vector;
 
 import common.DateStringFormat;
 import enums.*;
 
-public class ResearchPaper {
+public class ResearchPaper implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private int cnt = 1;
     private int paperId;
     private String researchProject;
@@ -30,9 +33,9 @@ public class ResearchPaper {
 	}
 
 	public void printPaper() {
-    	System.out.println(toString() + "Paper Authors = " + paperAuthor
-    			+ "Paper wording = " + paperWording + "References of Papers Cited In This Paper = " + references
-    			+ "Papers Cited This Paper: " + citations);
+    	System.out.println(toString() + "\nPaper Authors = " + paperAuthor
+    			+ "\nPaper wording = " + paperWording + "\nReferences of Papers Cited In This Paper = " + references
+    			+ "\nPapers Cited This Paper: " + citations);
     }
 	public String getCitation(PaperFormat format) {
 		if(format.equals(PaperFormat.PLAIN_TEXT)) {

@@ -1,11 +1,16 @@
 package communication;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import userCapabilities.*;
 
 
-public class ResearchProject {
+public class ResearchProject implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	private int cnt = 1;
+	private int projectId;
     private String journalName;
     private String topic;
     private Vector<String> participants;
@@ -20,6 +25,7 @@ public class ResearchProject {
 		this.participants = new Vector<>();
 		this.publishedPapers = new Vector<>();
 		this.subscribers = new Vector<>();
+		this.setProjectId(cnt++);
 	}
 
 	public void notifySubscribers(String paperTitle) {
@@ -88,8 +94,16 @@ public class ResearchProject {
 
 	@Override
 	public String toString() {
-		return "Journal Name = " + journalName + ", Topic = " + topic + ", Participants = " + participants
+		return "Project Id = " + projectId + ", Journal Name = " + journalName + ", Topic = " + topic + ", Participants = " + participants
 				+ ", Supervisor = " + supervisor;
+	}
+
+	public int getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
 	}
 	
 }

@@ -51,8 +51,29 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 		return category;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCategory(String category) {
+		if(category.equals("STUDENT")) {
+			this.category = Category.STUDENT;
+		}
+		else if (category.equals("LISTENER")) {
+			this.category = Category.LISTENER;
+		} else if (category.equals("APEC_STUDENT")) {
+			this.category = Category.APEC_STUDENT;
+		} else if (category.equals("FS_STUDENT")) {
+			this.category = Category.FS_STUDENT;
+		} else if (category.equals("EXCHANGE_STUDENT")) {
+			this.category = Category.EXCHANGE_STUDENT;
+		} else if (category.equals("LISTENER_UOL")) {
+			this.category = Category.LISTENER_UOL;
+		} else if (category.equals("CONDITIONALLY_ENROLLED")) {
+			this.category = Category.CONDITIONALLY_ENROLLED;
+		} else if (category.equals("STUDENT_SOCIAL_CATEGORY1_2")) {
+			this.category = Category.STUDENT_SOCIAL_CATEGORY1_2;
+		} else if (category.equals("STUDENT_SOCIAL_CATEGORY3_4")) {
+			this.category = Category.STUDENT_SOCIAL_CATEGORY3_4;
+		} else {
+	    System.out.println("Invalid category: " + category);
+	}
 	}
 
 	private void setGpa(double gpa) {
@@ -69,8 +90,31 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
         return this.faculty;
     }
 
-    private void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
+    private void setFaculty(String faculty) {
+    	if (faculty.equals("SITE")) {
+    	    this.faculty = Faculty.SITE;
+    	} else if (faculty.equals("SEOGI")) {
+    	    this.faculty = Faculty.SEOGI;
+    	} else if (faculty.equals("SG")) {
+    	    this.faculty = Faculty.SG;
+    	} else if (faculty.equals("SNSS")) {
+    	    this.faculty = Faculty.SNSS;
+    	} else if (faculty.equals("BS")) {
+    	    this.faculty = Faculty.BS;
+    	} else if (faculty.equals("ISE")) {
+    	    this.faculty = Faculty.ISE;
+    	} else if (faculty.equals("KMA")) {
+    	    this.faculty = Faculty.KMA;
+    	} else if (faculty.equals("SAM")) {
+    	    this.faculty = Faculty.SAM;
+    	} else if (faculty.equals("SMSGT")) {
+    	    this.faculty = Faculty.SMSGT;
+    	} else if (faculty.equals("SCE")) {
+    	    this.faculty = Faculty.SCE;
+    	} else {
+    	    System.out.println("Invalid faculty: " + faculty);
+    	}
+
     }
     private Date getEnrollmentDate() {
         return this.enrollmentDate;
@@ -184,7 +228,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 					+ "\nCERTIFICATE_OF_EDUCATION_IN_ENGLISH\nRESTORING_ONAY_CARD\nHELP_FOR_THE_DEPARTMENT_OF_DEFENSE_AFFAIRS"
 					+ "\nHELP_FOR_THE_MANUAL_FOR_LARGE_FAMILIES\nHELP_FOR_THE_MANUAL_FOR_ON_THE_LOSS_OF_THE_BREADWINNER"
 					+ "\nHELP_FOR_FINANCING_KAZENERGY\nINFORMATION_ABOUT_THE_PLACE_OF_REQUIREMENT\nTRANSCRIPT_FOR_THE_ENTIRE_PERIOD_OF_STUDY"
-					+ "\nTRANSCRIPT_FOR_THE_YEAR\nTRANSCRIPT_FOR_THE_SEMESTER");
+					+ "\nTRANSCRIPT_FOR_THE_YEAR\nTRANSCRIPT_FOR_THE_SEMESTER\nREQUEST_FOR_CREATING_ORGAIZATION");
 			String type = commonBuffer.readInput();
 			System.out.println("Select the Language: 'EN', 'RU', 'KZ'");
 			String language = commonBuffer.readInput();
@@ -368,7 +412,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     			this.showPapersOfSubscribedJournals();
     			break;
     		case "4":
-    			this.findHIndex();
+    			System.out.println(this.findHIndex()); 
     			break;
     		case "5":
     			this.topCitedResearcher();
@@ -432,8 +476,9 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     			System.out.println("Links To The Papers Used In Research: ");
     			while(true) {
     				System.out.println("'0' - end adding references.");
-    				if(choice.equals("0")) break;
-    				paper.setReferences(choice);
+    				String reference = commonBuffer.readInput();
+    				if(reference.equals("0")) break;
+    				paper.setReferences(reference);
     			}
     			Data.getInstance().setResearchPapers(paper);
     			Data.getInstance().getResearchProjects().stream()
@@ -657,6 +702,32 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
         }
         System.out.println("Press any key to continue:");
     	String fake=commonBuffer.readInput();
+    }
+	
+	@Override
+    public void editPersonalData() {
+    	while(true) {
+    		System.out.println(this);
+    		System.out.println("Choose:\n1.Set New Password\n2.Set Name\n3.Set Last Name\n4.Set Birth Day\n5.Set Phone Number\n6.Set Pasport Number"
+    				+ "\n7.Set Gender\n8.Set Nationality\n9.Set Citizenship\n10.Set Id\n11.Set Username\n12.Set Email\n13.Set Faculty\n14.Set Category");
+    		String choose = commonBuffer.readInput();
+    		if(choose.equals("0")) {break;}
+    		else if(choose.equals("1")) {System.out.print("Enter new password: "); setPassword(commonBuffer.readInput());}
+    		else if(choose.equals("2")) {System.out.println("Write a New Name: "); setFirstName(commonBuffer.readInput());}
+    		else if(choose.equals("3")) {System.out.println("Write a New Last Name: "); setLastName(commonBuffer.readInput());}
+    		else if(choose.equals("4")) {System.out.println("Write a Birth Day: "); setBirthDay(commonBuffer.readInput());}
+    		else if(choose.equals("5")) {System.out.println("Write a Phone Number: "); setPhoneNumber(commonBuffer.readInput());}
+    		else if(choose.equals("6")) {System.out.println("Write a Pasport Number: "); setPasportNumber(commonBuffer.readInput());}
+    		else if(choose.equals("7")) {System.out.println("Write a Gender: "); setGender(commonBuffer.readInput());}
+    		else if(choose.equals("8")) {System.out.println("Write a Nationality: "); setNationality(commonBuffer.readInput());}
+    		else if(choose.equals("9")) {System.out.println("Write a Citizenship: "); setCitizenship(commonBuffer.readInput());}
+    		else if(choose.equals("10")) {System.out.println("Write an Id: "); setId(commonBuffer.readInput());}
+    		else if(choose.equals("11")) {System.out.println("Write a username: "); setUsername(commonBuffer.readInput());}
+    		else if(choose.equals("12")) {System.out.println("Write a email: "); setEmail(commonBuffer.readInput());}
+    		else if(choose.equals("13")) {System.out.println("Write a faculty: "); setFaculty(commonBuffer.readInput());}
+    		else if(choose.equals("14")) {System.out.println("Write a category: "); setCategory(commonBuffer.readInput());}
+    		else {System.out.println("The wrong character is entered!");}
+	    }
     }
 
 	@Override

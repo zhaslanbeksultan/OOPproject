@@ -1,12 +1,14 @@
 package communication;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
 import enums.*;
 import users.User;
 
-public class Request {
+public class Request implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private static int cnt = 1;
 	private int requestId;
 	private String requester;

@@ -239,7 +239,7 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
     			this.showPapersOfSubscribedJournals();
     			break;
     		case "4":
-    			this.findHIndex();
+    			System.out.println(this.findHIndex()); 
     			break;
     		case "5":
     			this.topCitedResearcher();

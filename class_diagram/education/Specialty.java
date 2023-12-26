@@ -10,9 +10,6 @@ import enums.DisciplineType;
 
 public class Specialty implements Comparable<Specialty>, Serializable {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String specialtyId;
     private String specialtyName;
