@@ -22,7 +22,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
     private Vector<Course> CourseEnrolled;
     private String major;    
     private Vector<Organization> organizations = new Vector<>();
-    private HashMap<Lesson, Mark> marks;
+
 	private int availableECTS;
 
 	{
@@ -202,14 +202,7 @@ public class Student extends User implements CanBorrowBook, Educationable, Seria
 		}
 	}
     
-	public HashMap<Lesson, Mark> getMarks() {
-	        return getMarks();
-	    }
 
-	public void addMark(Lesson lesson, Mark mark) {
-			marks.put(lesson, mark);
-	    }
-	
 	public void addDropDiscipline() {
 		System.out.println("ADD/DROP WINDOW");
 		System.out.println("Enter a semester: ");
