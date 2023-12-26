@@ -37,25 +37,37 @@ public class Librarian extends Employee implements Subscriber{
 	
 	@Override
 	public void showMenu() {
-		System.out.println("----MAIN WINDOW----");
-		System.out.println("Choose:\n1.Add New Books To Library\n2.Remove Books From Library\n3.Notify All Readers"
-				+ "\n4.Add Order\n5.Research Cabinet\n6.Edit Personal Data\n7.Send Messages\n8.View Incoming Messages"
-				+ "\n9.Social Transcript\n0.LogOut");
-    	String choose = commonBuffer.readInput();
-    	if(choose=="0") {return;}
-    	else if(choose=="1") {addBook();}
-		else if(choose=="2") {removeBook();}
-		else if(choose=="3") {notifyReaders();}
-		else if(choose=="4") {addOrder();}
-		else if(choose=="5") {researchCabinet();}
-		else if(choose=="6") {editPersonalData();}
-		else if(choose=="7") {sendMessage();}
-		else if(choose=="8") {showMessages();}
-		else if(choose=="9") {viewSocialTranscript();}
-		else {System.out.println("The wrong character is entered!");}
-		
+		while(true) {
+			System.out.println("----MAIN WINDOW----");
+			System.out.println("Choose:\n1.Add New Books To Library\n2.Remove Books From Library\n3.Notify All Readers"
+					+ "\n4.Add Order\n5.Research Cabinet\n6.Edit Personal Data\n7.Send Messages\n8.View Incoming Messages"
+					+ "\n9.Social Transcript\n10.View All Books\n0.LogOut");
+	    	String choose = commonBuffer.readInput();
+	    	if(choose.equals("0")) {return;}
+	    	else if(choose.equals("1")) {addBook();}
+			else if(choose.equals("2")) {removeBook();}
+			else if(choose.equals("3")) {notifyReaders();}
+			else if(choose.equals("4")) {addOrder();}
+			else if(choose.equals("5")) {researchCabinet();}
+			else if(choose.equals("6")) {editPersonalData();}
+			else if(choose.equals("7")) {sendMessage();}
+			else if(choose.equals("8")){showMessages();}
+			else if(choose.equals("9")) {viewSocialTranscript();}
+			else if(choose.equals("10")) {viewAllBooks();}
+			else {System.out.println("The wrong character is entered!");}
+		}
 	}
 	
+
+	private void viewAllBooks() {
+		String choice = "";
+		while(!choice.equals("0")) {
+			System.out.println("----WINDOW ALL BOOKS----");
+			System.out.println("'0' - to exit.");
+			Data.getInstance().getBooks().forEach(System.out::println);
+			choice = commonBuffer.readInput();
+		}
+	}
 
 	public void addBook() {
 		while(true) {

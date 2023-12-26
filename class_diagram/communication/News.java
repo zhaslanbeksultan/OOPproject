@@ -22,7 +22,8 @@ public class News implements Comparable<News>, Serializable{
 		this.newsTitle = newsTitle;
 		this.newsWording = newsWording;
     	this.newsId = cnt++;
-		postSentDate = new Date();
+		this.postSentDate = new Date();
+		this.newsComments = new HashMap<>();
 	}
    
 	public String getRecipients() {
