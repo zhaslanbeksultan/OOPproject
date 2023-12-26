@@ -122,13 +122,10 @@ public abstract class User implements Serializable, CanViewResearches{
     }
 
     public void setPassword(String password) {
-	        if(this.password != password) {
-	        	this.password = password;
-	        	Data.getInstance().getUsers().entrySet().stream()
-	            .filter(entry -> username.equals(entry.getKey()))
-	            .forEach(entry -> entry.getValue().setPassword(password));
-	        	return;
-	        }
+    	this.password = password;
+    	Data.getInstance().getUsers().entrySet().stream()
+        .filter(entry -> username.equals(entry.getKey()))
+        .forEach(entry -> entry.getValue().setPassword(password));
     }
 
     private String getEmail() {
