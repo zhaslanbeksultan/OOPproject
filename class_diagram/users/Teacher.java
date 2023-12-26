@@ -90,11 +90,12 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 			System.out.println("----MAIN WINDOW----");
 			System.out.println("1. Journal\n2. Requests\n3. Personal Datas\n4. News\n5. Attendance Mark"
 					+ "\n6. View Attestation\n7. Discipline Schedule\n8. Lesson Schedule\n9. Exams Schedule"
-					+ "\n10. Social Transcript\n11. View Office Hours Schedule\n0.Log Out");
+					+ "\n10. Social Transcript\n11. View Office Hours Schedule\n12. Research Cabinet"
+					+ "\n13. Send Message\n14. Show Incoming Messages\n0.Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
-					break;
+					return;
 				case "1":
 					this.viewJournal();
 					break;
@@ -131,6 +132,12 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 				case "12":
 					this.researchCabinet();
 					break;
+				case "13":
+					this.sendMessage();
+					break;
+	    		case "14":
+	    			this.showMessages();
+	    			break;
 			}
 		}
 	}
@@ -155,8 +162,10 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 			String choice = commonBuffer.readInput();
 			if(choice.equals("0")) break;
 			if(choice.equals("1")) {
+				System.out.println("Additionally Info: ");
 				String info = commonBuffer.readInput();
 				request.setAdditionallyInfo(info);
+				System.out.println("'2' - Save");
 				choice = commonBuffer.readInput();}
 			if(choice.equals("2"))
 				Data.getInstance().addRequest(request);

@@ -17,30 +17,20 @@ public class GraduateStudent extends Student {
     private DegreeType degreeType;
     private Researcher supervisor;
     
-    public GraduateStudent(String firstName, String lastName, Date birthDay, String id, String username,
+
+	public GraduateStudent(String firstName, String lastName, Date birthDay, String id, String username,
 			String password, String email, Date registrationDate, String phoneNumber, String pasportNumber,
-			Gender gender, String nationality, String citizenship, double gpa, int studyYear, Faculty faculty,
-			Date enrollmentDate, Category category, Vector<Course> coursesEnrolled, String major,
-			Vector<Organization> organizations) {
+			Gender gender, String nationality, String citizenship, int studyYear, Faculty faculty, Date enrollmentDate,
+			Category category, String major, Date graduatingDate, String diplomaTytle, DegreeType degreeType,
+			Researcher supervisor) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
-				pasportNumber, gender, nationality, citizenship, gpa, studyYear, faculty, enrollmentDate, category,
-				coursesEnrolled, major, organizations);
-	}
-    
-    public GraduateStudent(String firstName, String lastName, Date birthDay, String id, String username,
-			String password, String email, Date registrationDate, String phoneNumber, String pasportNumber,
-			Gender gender, String nationality, String citizenship, double gpa, int studyYear, Faculty faculty,
-			Date enrollmentDate, Category category, Vector<Course> coursesEnrolled, String major,
-			Vector<Organization> organizations, Date graduatingDate,
-			String diplomaTytle, DegreeType degreeType, Researcher supervisor) {
-		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
-				pasportNumber, gender, nationality, citizenship, gpa, studyYear, faculty, enrollmentDate, category,
-				coursesEnrolled, major, organizations);
+				pasportNumber, gender, nationality, citizenship, studyYear, faculty, enrollmentDate, category, major);
 		this.graduatingDate = graduatingDate;
 		this.diplomaTytle = diplomaTytle;
 		this.degreeType = degreeType;
 		this.supervisor = supervisor;
 	}
+
 	public GraduateStudent() {
 		// TODO Auto-generated constructor stub
 	}

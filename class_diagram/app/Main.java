@@ -7,6 +7,7 @@ import users.*;
 import enums.*;
 public class Main {   
 	public static void main(String[] args) throws IOException {
+
 //		Admin admin = new Admin();
 //		admin.setUsername("steve_jobs");
 //		admin.setPassword("pass");
@@ -18,6 +19,7 @@ public class Main {
 		spec.setFaculty(Faculty.SITE);
 		Data.getInstance().getCourses().elementAt(0).setSpecialty(spec);
 		Data.getInstance().getStudents().elementAt(0).setAvailiableECTS(21);
+
 		Login login = new Login();
 		while(true) {
 			login.menu();
@@ -25,7 +27,6 @@ public class Main {
 			String input = commonBuffer.readInput();
 			if(input.equals("0")) break;
 		}
-		login.menu();
 		Data.write();
 	}
 }

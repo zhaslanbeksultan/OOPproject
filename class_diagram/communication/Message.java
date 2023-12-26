@@ -26,7 +26,6 @@ public class Message implements Comparable<Message> {
 		if(urgencyLevel.equals("LOW")) {
 			this.urgencyLevel = UrgencyLevel.LOW;
 		}
-		
 		if(urgencyLevel.equals("MEDIUM")) {
 			this.urgencyLevel = UrgencyLevel.MEDIUM;
 		}
@@ -143,20 +142,20 @@ public class Message implements Comparable<Message> {
 	@Override
     public int compareTo(Message other) {
         if (this.urgencyLevel.equals(UrgencyLevel.LOW) && other.urgencyLevel.equals(UrgencyLevel.MEDIUM)) {
-            return -1;}
+            return 1;}
         else if (this.urgencyLevel.equals(UrgencyLevel.LOW) && other.urgencyLevel.equals(UrgencyLevel.HIGH)) {
-            return -1;}
+            return 1;}
         else if (this.urgencyLevel.equals(UrgencyLevel.MEDIUM) && other.urgencyLevel.equals(UrgencyLevel.HIGH)) {
-            return -1;
-        }
-        else if (this.urgencyLevel.equals(UrgencyLevel.MEDIUM) && other.urgencyLevel.equals(UrgencyLevel.LOW)) {
             return 1;
         }
+        else if (this.urgencyLevel.equals(UrgencyLevel.MEDIUM) && other.urgencyLevel.equals(UrgencyLevel.LOW)) {
+            return -1;
+        }
         else if (this.urgencyLevel.equals(UrgencyLevel.HIGH) && other.urgencyLevel.equals(UrgencyLevel.LOW)) {
-            return 1; 
+            return -1; 
         }
         else if (this.urgencyLevel.equals(UrgencyLevel.HIGH) && other.urgencyLevel.equals(UrgencyLevel.MEDIUM)) {
-            return 1; 
+            return -1; 
         }
         else {
         	return this.messageSentDate.compareTo(other.messageSentDate);
