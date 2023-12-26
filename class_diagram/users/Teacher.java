@@ -1,5 +1,6 @@
 package users;
 
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -141,7 +142,8 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 	    			this.showMessages();
 	    			break;
 	    		case "15":
-	    			
+	    			this.putMarks();
+	    			break;
 			}
 		}
 	}
@@ -163,8 +165,23 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 		System.out.print("Enter lesson:\n1.Lecture\n2.Practice");
 		String type = commonBuffer.readInput();
 		int index=Integer.parseInt(week)+Integer.parseInt(type)-2;
-		course.getLessons().get(index).putMarks(null, null);
-		
+		course.getLessons().get(index).viewMarks();
+		System.out.print("Enter student's ID:");
+		input = commonBuffer.readInput();
+		Student student=null;
+		for(Student student1: course.getStudents()) {
+			if(student1.getId().equals(type)) {
+				student=student1;
+			}
+		}
+		System.out.print("Enter mark:");
+		input = commonBuffer.readInput();
+		course.getLessons().get(index).putMarks(student,Integer.parseInt(input));
+		try {
+			save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	@Override
 	public void addRequest() {
@@ -352,8 +369,19 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 
 	@Override
 	public void viewAttestation() {
-		// TODO Auto-generated method stub
-		
+		System.out.print("Courses that you view:");
+		for(Course course: courses) {
+			System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getStudents().size());
+		}
+		System.out.print("Enter course's ID:");
+		String input = commonBuffer.readInput();
+		Course course = null;
+		for(Course course1: courses) {
+			if(course1.getCourseId().equals(input)) {
+				course=course1;
+			}
+		}
+		course.viewAttestation();
 	}
 
 	@Override

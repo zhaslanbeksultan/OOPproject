@@ -5,6 +5,7 @@ import users.Student;
 import users.Teacher;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 import enums.DisciplineType;
@@ -21,7 +22,9 @@ public class Lesson implements Serializable {
     private String room;
     private Course course;
     private Map<Student, Integer> marks;
-    
+    {
+    	marks=new HashMap<>();
+    }
     public Lesson(int lessonId, String lessonName, Teacher instructor, DisciplineType lessonType, WeekDays lessonTime,
                   String room, Course course) {
         this.lessonId = lessonId;
@@ -37,6 +40,7 @@ public class Lesson implements Serializable {
     	for(Student student: course.getStudents()) {
     		marks.put(student, 0);
     	}
+    	this.lessonId=index;
     	this.instructor=course.getTeacher();
     }
     
@@ -77,7 +81,11 @@ public class Lesson implements Serializable {
     }
     public void viewMarks() {
     	System.out.println("Week "+this.lessonId+" "+this.lessonType);
-    	
+    	for (Map.Entry<Student, Integer> entry : marks.entrySet()) {
+            Student student = entry.getKey();
+            Integer mark = entry.getValue();
+            System.out.println(student.getFirstName()+" "+student.getId()+" "+mark);
+        }
     }
     public void putMarks(Student student, Integer mark) {
     	this.marks.put(student, mark);
