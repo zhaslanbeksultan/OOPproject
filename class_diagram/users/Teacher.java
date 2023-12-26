@@ -93,7 +93,8 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 			System.out.println("1. Journal\n2. Requests\n3. Personal Datas\n4. News\n5. Attendance Mark"
 					+ "\n6. View Attestation\n7. Discipline Schedule\n8. Lesson Schedule\n9. Exams Schedule"
 					+ "\n10. Social Transcript\n11. View Office Hours Schedule\n12. Research Cabinet"
-					+ "\n13. Send Message\n14. Show Incoming Messages\n15. Put marks\n0. Log Out");
+					+ "\n13. Send Message\n14. Show Incoming Messages\n15. Put marks\n16. View All Books\n0.Log Out");
+
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -143,9 +144,32 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 	    		case "15":
 	    			this.putMarks();
 	    			break;
+	    		case "16":
+	    			this.viewAllBooks();
+	    			break;
 			}
 		}
 	}
+	
+	@Override
+	public void viewAllBooks() {
+		while(true) {
+			System.out.println("----WINDOW ALL BOOKS----");
+			System.out.println("'0' - to exit.'1' - to borrow book. '2' - to return book.");
+			Data.getInstance().getBooks().forEach(System.out::println);
+			String choice = commonBuffer.readInput();
+			if(choice.equals("0")) {return;}
+			else if(choice.equals("1")) {
+				System.out.println("Write Book Name: ");
+				String bookName = commonBuffer.readInput();
+				this.borrowBook(bookName);}
+			else if(choice.equals("2")) {
+				System.out.println("Write Book Name: ");
+				String bookName = commonBuffer.readInput();
+				this.returnBook(bookName);}
+		}
+	}
+	
 	public void putMarks() {
 		while(true) {
 			System.out.println("Courses that you teach:");

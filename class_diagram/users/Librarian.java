@@ -57,17 +57,6 @@ public class Librarian extends Employee implements Subscriber{
 			else {System.out.println("The wrong character is entered!");}
 		}
 	}
-	
-
-	private void viewAllBooks() {
-		String choice = "";
-		while(!choice.equals("0")) {
-			System.out.println("----WINDOW ALL BOOKS----");
-			System.out.println("'0' - to exit.");
-			Data.getInstance().getBooks().forEach(System.out::println);
-			choice = commonBuffer.readInput();
-		}
-	}
 
 	public void addBook() {
 		while(true) {
