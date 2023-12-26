@@ -27,12 +27,14 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 
 	private static final long serialVersionUID = 1L;
 	private boolean isAdvisor;
-    private Set<Course> courses;
-    
+    private Vector<Course> courses;
+    {
+    	courses=new Vector<Course>();
+    }
 	public Teacher(String firstName, String lastName, Date birthDay, String id, String username, String password,
 			String email, Date registrationDate, String phoneNumber, String pasportNumber, Gender gender,
 			String nationality, String citizenship, double salary, Date hireDate, String insuranceNumber,
-			boolean isAdvisor, Set<Course> courses) {
+			boolean isAdvisor, Vector<Course> courses) {
 		super(firstName, lastName, birthDay, id, username, password, email, registrationDate, phoneNumber,
 				pasportNumber, gender, nationality, citizenship, salary, hireDate, insuranceNumber);
 		this.isAdvisor = isAdvisor;
@@ -40,7 +42,7 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 	}
 	public Teacher(){}
 
-	public Set<Course> getCourses() {
+	public Vector<Course> getCourses() {
         return courses;
     }
 

@@ -74,7 +74,7 @@ public abstract class User implements Serializable, CanViewResearches{
         }
     }
 
-    private String getId() {
+    public String getId() {
         return this.id;
     }
 
