@@ -1,11 +1,14 @@
 package communication;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Vector;
 import users.User;
 import java.util.HashMap;
 
-public class News implements Comparable<News>{
+public class News implements Comparable<News>, Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private static int cnt = 1;
 	private int newsId;
 	private String recipients;

@@ -1,10 +1,7 @@
 package users;
 
-<<<<<<< HEAD
-=======
 import java.io.IOException;
 import java.util.Comparator;
->>>>>>> 685efe2f1f46b791673797fc1a3edbcd7801166a
 import java.util.Date;
 import java.util.Vector;
 
@@ -235,7 +232,7 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
     			this.showPapersOfSubscribedJournals();
     			break;
     		case "4":
-    			this.findHIndex();
+    			System.out.println(this.findHIndex()); 
     			break;
     		case "5":
     			this.topCitedResearcher();

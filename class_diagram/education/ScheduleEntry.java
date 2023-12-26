@@ -3,11 +3,13 @@ package education;
 import enums.WeekDays;
 import users.Teacher;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ScheduleEntry {
-    private Lesson lesson;
+public class ScheduleEntry implements Serializable{
+	private static final long serialVersionUID = 1L;
+	private Lesson lesson;
     private WeekDays dayOfWeek;
     private String classroom;
     private String time;
