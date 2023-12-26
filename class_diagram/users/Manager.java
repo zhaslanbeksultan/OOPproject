@@ -277,7 +277,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 	    			this.showMessages();//done
 	    			break;
 	    		case "17":
-	    			this.editCourses();
+	    			this.editCourses();//done
 	    			break;
 			}
 		}
@@ -285,7 +285,7 @@ public class Manager extends Employee implements Managable, Subscriber {
 	public void editCourses() {
 		System.out.println("Available courses to edit:");
 		for(Course course: Data.getInstance().getCourses()) {
-			System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getNumberOfCredits()+" "+course.getTeacher().getFirstName()+" "+course.getStudents());
+			System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getNumberOfCredits()+" "+course.getStudents().size());
 		}
 		System.out.println("Enter courseID:");
 		String courseID = commonBuffer.readInput();
@@ -293,6 +293,11 @@ public class Manager extends Employee implements Managable, Subscriber {
 			if(course1.getCourseId().equals(courseID)) {
 				course1.editCourse();;
 			}
+		}
+		try {
+			save();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	@Override

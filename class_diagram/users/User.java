@@ -80,7 +80,28 @@ public abstract class User implements Serializable, CanViewResearches{
     }
 
     public void setId(String id) {
-        this.id = id;
+        User user = this;
+        if (user instanceof Student) {
+            this.id="s."+id;
+        } else if (user instanceof GraduateStudent) {
+        	this.id="gs."+id;
+        } else if (user instanceof Teacher) {
+        	this.id="t."+id;
+        } else if (user instanceof Manager) {
+        	this.id="m."+id;
+        } else if (user instanceof Admin) {
+        	this.id="a."+id;
+        } else if (user instanceof Dean) {
+        	this.id="d."+id;
+        } else if (user instanceof Professor) {
+        	this.id="l."+id;
+        } else if (user instanceof Librarian) {
+        	this.id="l."+id;
+        } else if (user instanceof TechSupportSpecialist) {
+        	this.id="tss."+id;
+        } else if (user instanceof Researcher) {
+        	this.id="r."+id;
+        }
     }
 
     public String getUsername() {
@@ -89,6 +110,7 @@ public abstract class User implements Serializable, CanViewResearches{
 
     public void setUsername(String username) {
         this.username = username;
+        this.setId(username);
     }
     public Vector<String> getSocialTranscript() {
 		return socialTranscript;

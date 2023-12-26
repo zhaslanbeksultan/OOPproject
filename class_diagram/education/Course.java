@@ -29,6 +29,7 @@ public class Course implements  Serializable {
 	private Vector<Student> students; 
 	{
 		students= new Vector<Student>();
+		lessons = new ArrayList<Lesson>();
 		
 	}
     public Course(String courseId, String courseName, int numberOfCredits,
@@ -43,6 +44,21 @@ public class Course implements  Serializable {
     }
     public Course() {
     	
+    }
+    public void viewAttestation() {
+    	for(Student student: students) {
+    		int att1=0;
+    		int att2=0;
+    		for(int i=0; i<32;i++) {
+    			if(i<16) {
+    				att1+=lessons.get(i).getMarks().get(student);
+    			}
+    			else {
+    				att2+=lessons.get(i).getMarks().get(student);
+    			}
+    		}
+    		System.out.println(student.getFirstName()+" First Attestation:"+att1+" Second Attestation:"+att2);
+    	}
     }
     public ArrayList<Lesson> getLessons(){
     	return lessons;
@@ -127,7 +143,7 @@ public class Course implements  Serializable {
     			input=commonBuffer.readInput();
     			for(Student student: Data.getInstance().getStudents()) {
     				if(student.getId().equals(input)) {
-    					this.addStudent(student);
+    					
     					student.enterCourse(this);
     				}
     			}
