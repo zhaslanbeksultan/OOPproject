@@ -148,39 +148,44 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
 		}
 	}
 	public void putMarks() {
-		System.out.print("Courses that you teach:");
-		for(Course course: courses) {
-			System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getStudents().size());
-		}
-		System.out.print("Enter course's ID:");
-		String input = commonBuffer.readInput();
-		Course course = null;
-		for(Course course1: courses) {
-			if(course1.getCourseId().equals(input)) {
-				course=course1;
+		while(true) {
+			System.out.print("Courses that you teach:");
+			for(Course course: courses) {
+				System.out.println(course.getCourseName()+" "+course.getCourseId()+" "+course.getStudents().size());
 			}
-		}
-		System.out.print("Enter week:");
-		String week = commonBuffer.readInput();
-		System.out.print("Enter lesson:\n1.Lecture\n2.Practice");
-		String type = commonBuffer.readInput();
-		int index=Integer.parseInt(week)+Integer.parseInt(type)-2;
-		course.getLessons().get(index).viewMarks();
-		System.out.print("Enter student's ID:");
-		input = commonBuffer.readInput();
-		Student student=null;
-		for(Student student1: course.getStudents()) {
-			if(student1.getId().equals(type)) {
-				student=student1;
+			System.out.print("Enter course's ID or press 0 to exit:");
+			String input = commonBuffer.readInput();
+			if(input.equals("0")) {
+				break;
 			}
-		}
-		System.out.print("Enter mark:");
-		input = commonBuffer.readInput();
-		course.getLessons().get(index).putMarks(student,Integer.parseInt(input));
-		try {
-			save();
-		} catch (IOException e) {
-			e.printStackTrace();
+			Course course = null;
+			for(Course course1: courses) {
+				if(course1.getCourseId().equals(input)) {
+					course=course1;
+				}
+			}
+			System.out.println("Enter week:");
+			String week = commonBuffer.readInput();
+			System.out.println("Enter lesson:\n1.Lecture\n2.Practice");
+			String type = commonBuffer.readInput();
+			int index=(Integer.parseInt(week)-1)*2+Integer.parseInt(type)-1;
+			course.getLessons().get(index).viewMarks();
+			System.out.println("Enter student's ID:");
+			input = commonBuffer.readInput();
+			Student student=null;
+			for(Student student1: course.getStudents()) {
+				if(student1.getId().equals(input)) {
+					student=student1;
+				}
+			}
+			System.out.println("Enter mark:");
+			input = commonBuffer.readInput();
+			course.getLessons().get(index).putMarks(student,Integer.parseInt(input));
+			try {
+				save();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	@Override

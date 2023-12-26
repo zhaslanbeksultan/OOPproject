@@ -25,11 +25,11 @@ public class Course implements  Serializable {
     private DisciplineType specialtyId;
     private Teacher teacher;
     private Specialty specialty;
-    private ArrayList<Lesson> lessons;
+    private Vector<Lesson> lessons;
 	private Vector<Student> students; 
 	{
 		students= new Vector<Student>();
-		lessons = new ArrayList<Lesson>();
+		lessons = new Vector<Lesson>();
 		
 	}
     public Course(String courseId, String courseName, int numberOfCredits,
@@ -40,7 +40,7 @@ public class Course implements  Serializable {
 
         this.specialtyId = disciplineType;
         this.teacher = teacher;
-        this.lessons = new ArrayList<>(32); 
+        this.lessons = new Vector<>(); 
     }
     public Course() {
     	
@@ -52,15 +52,16 @@ public class Course implements  Serializable {
     		for(int i=0; i<32;i++) {
     			if(i<16) {
     				att1+=lessons.get(i).getMarks().get(student);
-    			}
-    			else {
+    			} else {
     				att2+=lessons.get(i).getMarks().get(student);
     			}
     		}
     		System.out.println(student.getFirstName()+" First Attestation:"+att1+" Second Attestation:"+att2);
     	}
+    	System.out.println("Press any key to continue:");
+    	String fake=commonBuffer.readInput();
     }
-    public ArrayList<Lesson> getLessons(){
+    public Vector<Lesson> getLessons(){
     	return lessons;
     }
     public void startCourse() {
@@ -130,46 +131,48 @@ public class Course implements  Serializable {
     	return students;
     }
     public void editCourse() {
-    	System.out.println("Editing "+this.getCourseName()+"\n"+"1.Set Teacher\n2.Add Student\n3.Delete Student\n4.Check enrolled students\n5. Start Course\n0.Exit");
-    	String input = commonBuffer.readInput();
-    	switch(input){
-    		case "1":
-    			System.out.println("Enter teacher's ID:");
-    			input=commonBuffer.readInput();
-    			this.setTeacher(input);
-    			break;
-    		case "2":
-    			System.out.println("Enter student's ID:");
-    			input=commonBuffer.readInput();
-    			for(Student student: Data.getInstance().getStudents()) {
-    				if(student.getId().equals(input)) {
-    					
-    					student.enterCourse(this);
-    				}
-    			}
-    			break;
-    		case "3":
-    			System.out.println("Enter student's ID:");
-    			input=commonBuffer.readInput();
-    			for(Student student: Data.getInstance().getStudents()) {
-    				if(student.getId().equals(input)) {
-    					this.deleteStudent(student);
-    					student.dropCourse(this);
-    				}
-    			}
-    			break;
-    		case "4":
-    			for(Student student: students) {
-    				System.out.println(student.getFirstName()+" "+student.getId()+" "+student.getGpa());
-    			}
-    			System.out.println("Press any key to continue:");
-    			input=commonBuffer.readInput();
-    			break;
-    		case "5":
-    			this.startCourse();
-    			break;
-    		case "0":
-    			return;
+    	while(true) {
+    		System.out.println("Editing "+this.getCourseName()+"\n"+"1.Set Teacher\n2.Add Student\n3.Delete Student\n4.Check enrolled students\n5. Start Course\n0.Exit");
+        	String input = commonBuffer.readInput();
+        	switch(input){
+        		case "1":
+        			System.out.println("Enter teacher's ID:");
+        			input=commonBuffer.readInput();
+        			this.setTeacher(input);
+        			break;
+        		case "2":
+        			System.out.println("Enter student's ID:");
+        			input=commonBuffer.readInput();
+        			for(Student student: Data.getInstance().getStudents()) {
+        				if(student.getId().equals(input)) {
+        					
+        					student.enterCourse(this);
+        				}
+        			}
+        			break;
+        		case "3":
+        			System.out.println("Enter student's ID:");
+        			input=commonBuffer.readInput();
+        			for(Student student: Data.getInstance().getStudents()) {
+        				if(student.getId().equals(input)) {
+        					this.deleteStudent(student);
+        					student.dropCourse(this);
+        				}
+        			}
+        			break;
+        		case "4":
+        			for(Student student: students) {
+        				System.out.println(student.getFirstName()+" "+student.getId()+" "+student.getGpa());
+        			}
+        			System.out.println("Press any key to continue:");
+        			input=commonBuffer.readInput();
+        			break;
+        		case "5":
+        			this.startCourse();
+        			break;
+        		case "0":
+        			return;
+        	}
     	}
     }
 //    public boolean addDiscipline(Course discipline) {

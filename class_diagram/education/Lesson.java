@@ -40,7 +40,7 @@ public class Lesson implements Serializable {
     	for(Student student: course.getStudents()) {
     		marks.put(student, 0);
     	}
-    	this.lessonId=index;
+    	this.lessonId=index/2 +1;
     	this.instructor=course.getTeacher();
     }
     

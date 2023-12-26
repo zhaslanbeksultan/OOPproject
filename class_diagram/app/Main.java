@@ -8,11 +8,11 @@ import enums.*;
 public class Main {   
 	public static void main(String[] args) throws IOException {
 
-		Admin admin = new Admin();
-		admin.setUsername("steve_jobs");
-		admin.setPassword("pass");
-		Data.getInstance().addAdmin(admin);
-		Data.getInstance().addUser("steve_jobs", admin);
+//		Admin admin = new Admin();
+//		admin.setUsername("steve_jobs");
+//		admin.setPassword("pass");
+//		Data.getInstance().addAdmin(admin);
+//		Data.getInstance().addUser("steve_jobs", admin);
 //		Data.getInstance().getCourses().remove(1);
 //		System.out.println(Data.getInstance().getCourses());
 //		Specialty spec = new Specialty();
