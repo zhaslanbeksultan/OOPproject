@@ -43,6 +43,7 @@ public abstract class User implements Serializable, CanViewResearches{
 		this.gender = gender;
 		this.nationality = nationality;
 		this.citizenship = citizenship;
+		this.socialTranscript = new Vector<>();
 	}
 
     public String getFirstName() {

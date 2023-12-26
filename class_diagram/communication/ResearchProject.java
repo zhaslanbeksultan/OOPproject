@@ -1,10 +1,7 @@
 package communication;
 
-import java.util.Date;
 import java.util.Vector;
 
-import common.Data;
-import common.LowHIndexException;
 import userCapabilities.*;
 
 
@@ -20,6 +17,9 @@ public class ResearchProject {
 		this.journalName = journalName;
 		this.topic = topic;
 		this.supervisor = supervisor;
+		this.participants = new Vector<>();
+		this.publishedPapers = new Vector<>();
+		this.subscribers = new Vector<>();
 	}
 
 	public void notifySubscribers(String paperTitle) {

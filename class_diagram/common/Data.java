@@ -262,7 +262,7 @@ public class Data implements Serializable {
             libriarians.remove(user);
         } else if (user instanceof TechSupportSpecialist) {
             techSupportSpecialists.remove(user);
-        } else if (user instanceof Researcher) {
+        } else if (user instanceof EmployeeResearcher) {
             researcherEmployees.remove(user);
         }
 	}

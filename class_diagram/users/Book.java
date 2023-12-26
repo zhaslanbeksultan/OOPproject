@@ -3,11 +3,10 @@ package users;
 import java.io.Serializable;
 
 import common.Data;
-import userCapabilities.*;
 
 public class Book implements Serializable{
-
-    private String bookName;
+	private static final long serialVersionUID = 1L;
+	private String bookName;
     private String author;
     private int bookId;
     private int cnt = 1;

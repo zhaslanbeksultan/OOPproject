@@ -25,6 +25,8 @@ public class ResearchPaper {
 		this.paperWording = paperWording;
 		this.paperAuthor = paperAuthor;
 		this.publishedDate = new Date();
+		this.citations = new Vector<>();
+		this.references = new Vector<>();
 	}
 
 	public void printPaper() {

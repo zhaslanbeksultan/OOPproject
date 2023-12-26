@@ -1,10 +1,6 @@
 package users;
 
-import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Vector;
 
 import common.Data;
@@ -202,12 +198,12 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
     	while(true) {
     		System.out.println("----RESEARCH CABINET----");
     		System.out.println("'0' - to exit.\n'1' - Show All Research Papers\n'2' - Show All Research Journals"
-    				+ "\n'3' - Show Papers Of Subscribed Journals\n'5' - Top Cited Researcher\n'6' - Show My Research Papers"
+    				+ "\n'3' - Show Papers Of Subscribed Journals\n'4' - findHindex\n'5' - Top Cited Researcher\n'6' - Show My Research Papers"
     				+ "\n'7' - Add Research Paper\n'8' - Create Research Project");
     		String choice = commonBuffer.readInput();
     		switch(choice) {
     		case "0":
-    			break;
+    			return;
     		case "1":
     			this.showAllResearchPapers();
     			break;
@@ -280,8 +276,9 @@ public class Teacher extends Employee implements Managable,CanBorrowBook,Educati
     			System.out.println("Links To The Papers Used In Research: ");
     			while(true) {
     				System.out.println("'0' - end adding references.");
-    				if(choice.equals("0")) break;
-    				paper.setReferences(choice);
+    				String reference = commonBuffer.readInput();
+    				if(reference.equals("0")) break;
+    				paper.setReferences(reference);
     			}
     			Data.getInstance().setResearchPapers(paper);
     			Data.getInstance().getResearchProjects().stream()
