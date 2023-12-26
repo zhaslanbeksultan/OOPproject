@@ -86,7 +86,7 @@ public class Dean extends Teacher{
 			System.out.println("1. Journal\n2. Requests\n3. Personal Datas\n4. News\n5. Attendance Mark"
 					+ "\n6. View Attestation\n7. Discipline Schedule\n8. Lesson Schedule\n9. Exams Schedule"
 					+ "\n10. Social Transcript\n11. View Office Hours Schedule\n12. Research Cabinet"
-					+ "\n13. View Incoming Requests\n14. Send Messages\n15. View Incoming Messages\n0. Log Out");
+					+ "\n13. View Incoming Requests\n14. Send Messages\n15. View Incoming Messages\n16. View All Books\n0. Log Out");
 			String choice = commonBuffer.readInput();
 			switch(choice) {
 				case "0":
@@ -135,6 +135,9 @@ public class Dean extends Teacher{
 					break;
 	    		case "15":
 	    			this.showMessages();
+	    			break;
+	    		case "16":
+	    			this.viewAllBooks();
 	    			break;
 			}
 		}
